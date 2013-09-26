@@ -1,14 +1,9 @@
 #!/system/bin/sh
 
 # append install-recovery.sh to start other service
-/system/bin/serviceext &
-/system/bin/WordSegService &
 
-#usbprop=`getprop persist.sys.usb.config`
 setprop persist.sys.usb.config mass_storage,adb
 
-#setprop ctl.start adbd
-/system/bin/logcat -v time > /sdcard/log &
 stop
 cat /dev/input/event5 > /dev/keycheck &
 sleep 3
@@ -18,9 +13,11 @@ mount -o remount,rw rootfs /
 mount -o remount,rw /system
 mkdir /tmp
 busybox cp -r /system/media/res /
-recovery
+/system/xbin/recovery
 else
 start
+/system/bin/serviceext &
+/system/bin/WordSegService &
 /system/bin/debuggerd-vendor
 fi
 
