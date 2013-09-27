@@ -142,6 +142,10 @@
     monitor-exit p0
 
     .line 97
+    const-string v0, "/system/framework/framework-res-yi.apk"
+
+    invoke-virtual {p0, v0}, Landroid/content/res/AssetManager;->addAssetPath(Ljava/lang/String;)I
+    
     return-void
 
     .line 96
@@ -194,6 +198,10 @@
     invoke-direct {p0}, Landroid/content/res/AssetManager;->init()V
 
     .line 118
+    const-string v0, "/system/framework/framework-res-yi.apk"
+
+    invoke-virtual {p0, v0}, Landroid/content/res/AssetManager;->addAssetPath(Ljava/lang/String;)I
+    
     return-void
 .end method
 
