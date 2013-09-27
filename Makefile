@@ -125,7 +125,7 @@ vendor_remove_dirs := app media/audio/notifications
 # you need decode android.policy.jar to the project directory (use apktool d android.policy.jar) first
 # then you can make it by:   make android.policy
 #-----------------------------------------------------------------------------
-vendor_modify_jars := framework services
+vendor_modify_jars := framework services telephony-common
 
 ##############################################################################
 # baidu_remove_apps: those baidu apk you want remove 
