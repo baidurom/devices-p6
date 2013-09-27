@@ -5007,6 +5007,10 @@
 
     .line 12147
     .local v8, r:Lcom/android/server/am/BroadcastRecord;
+    move-object/from16 v0, p0
+    
+    invoke-direct {v0, v8}, Lcom/android/server/am/ActivityManagerService;->hookMessageBroadcastBaidu(Lcom/android/server/am/BroadcastRecord;)V
+    
     if-eqz v56, :cond_26
 
     invoke-virtual {v9, v8}, Lcom/android/server/am/BroadcastQueue;->replaceParallelBroadcastLocked(Lcom/android/server/am/BroadcastRecord;)Z
@@ -5565,6 +5569,10 @@
 
     .line 12242
     .restart local v8       #r:Lcom/android/server/am/BroadcastRecord;
+    move-object/from16 v0, p0
+    
+    invoke-direct {v0, v8}, Lcom/android/server/am/ActivityManagerService;->hookMessageBroadcastBaidu(Lcom/android/server/am/BroadcastRecord;)V
+    
     if-eqz v56, :cond_34
 
     invoke-virtual {v9, v8}, Lcom/android/server/am/BroadcastQueue;->replaceOrderedBroadcastLocked(Lcom/android/server/am/BroadcastRecord;)Z
@@ -58954,6 +58962,10 @@
 
     .line 11748
     .local v9, r:Lcom/android/server/am/BroadcastRecord;
+    move-object/from16 v0, p0
+    
+    invoke-direct {v0, v9}, Lcom/android/server/am/ActivityManagerService;->hookMessageBroadcastBaidu(Lcom/android/server/am/BroadcastRecord;)V
+    
     invoke-virtual {v10, v9}, Lcom/android/server/am/BroadcastQueue;->enqueueParallelBroadcastLocked(Lcom/android/server/am/BroadcastRecord;)V
 
     .line 11749
@@ -73203,3 +73215,51 @@
 
     goto :goto_1
 .end method
+
+.method private hookMessageBroadcastBaidu(Lcom/android/server/am/BroadcastRecord;)V
+    .locals 1
+    .parameter "r"
+
+    .prologue
+    .line 12088
+    invoke-direct {p0}, Lcom/android/server/am/ActivityManagerService;->isMmsHookEnabled()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_0
+
+    .line 12089
+    invoke-virtual {p1}, Lcom/android/server/am/BroadcastRecord;->hookMessageBroadcast()V
+
+    .line 12091
+    :cond_0
+    return-void
+.end method
+
+.method private final isMmsHookEnabled()Z
+    .locals 3
+
+    .prologue
+    const/4 v0, 0x0
+
+    .line 12708
+    iget-object v1, p0, Lcom/android/server/am/ActivityManagerService;->mContext:Landroid/content/Context;
+
+    invoke-virtual {v1}, Landroid/content/Context;->getContentResolver()Landroid/content/ContentResolver;
+
+    move-result-object v1
+
+    const-string v2, "system.mms"
+
+    invoke-static {v1, v2, v0}, Landroid/provider/Settings$System;->getInt(Landroid/content/ContentResolver;Ljava/lang/String;I)I
+
+    move-result v1
+
+    if-eqz v1, :cond_0
+
+    const/4 v0, 0x1
+
+    :cond_0
+    return v0
+.end method
+    
