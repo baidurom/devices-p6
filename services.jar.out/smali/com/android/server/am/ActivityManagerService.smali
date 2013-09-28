@@ -21556,7 +21556,7 @@
 
     .line 1461
     .local v1, context:Landroid/content/Context;
-    const v4, 0x103006b
+    const v4, #style@Theme.DeviceDefault.Light#t
 
     invoke-virtual {v1, v4}, Landroid/content/Context;->setTheme(I)V
 
@@ -62496,7 +62496,7 @@
 
     move-result-object v2
 
-    const v3, 0x10900b3
+    const v3, #layout@safe_mode#t
 
     const/4 v4, 0x0
 
@@ -66263,9 +66263,9 @@
 
     iget-object v3, v0, Lcom/android/server/am/ActivityManagerService;->mWindowManager:Lcom/android/server/wm/WindowManagerService;
 
-    const v4, 0x10a0050
+    const v4, #anim@screen_user_exit#t
 
-    const v5, 0x10a004f
+    const v5, #anim@screen_user_enter#t
 
     invoke-virtual {v3, v4, v5}, Lcom/android/server/wm/WindowManagerService;->startFreezingScreen(II)V
 
@@ -67810,7 +67810,7 @@
 
     move-result-object v3
 
-    const v4, 0x104033c
+    const v4, #string@factorytest_not_system#t
 
     invoke-virtual {v3, v4}, Landroid/content/res/Resources;->getText(I)Ljava/lang/CharSequence;
 
@@ -67830,7 +67830,7 @@
 
     move-result-object v3
 
-    const v4, 0x104033d
+    const v4, #string@factorytest_no_action#t
 
     invoke-virtual {v3, v4}, Landroid/content/res/Resources;->getText(I)Ljava/lang/CharSequence;
 
@@ -69804,7 +69804,7 @@
 
     .line 12623
     .local v22, kept:Z
-    if-eqz p1, :cond_9
+    if-eqz p1, :cond_a
 
     .line 12624
     new-instance v24, Landroid/content/res/Configuration;
@@ -69828,7 +69828,7 @@
     move-result v19
 
     .line 12626
-    if-eqz v19, :cond_9
+    if-eqz v19, :cond_a
 
     .line 12631
     const/16 v2, 0xa9f
@@ -70212,15 +70212,22 @@
     invoke-direct/range {v2 .. v16}, Lcom/android/server/am/ActivityManagerService;->broadcastIntentLocked(Lcom/android/server/am/ProcessRecord;Ljava/lang/String;Landroid/content/Intent;Ljava/lang/String;Landroid/content/IIntentReceiver;ILjava/lang/String;Landroid/os/Bundle;Ljava/lang/String;ZZIII)I
 
     .line 12700
+    :cond_9
+    move-object/from16 v0, p0
+    
+    move/from16 v1, v19
+    
+    invoke-direct {v0, v1}, Lcom/android/server/am/ActivityManagerService;->broadcastConfigTheme(I)V
+    
     .end local v5           #intent:Landroid/content/Intent;
     .end local v17           #ac:Lcom/android/server/AttributeCache;
     .end local v20           #configCopy:Landroid/content/res/Configuration;
     .end local v21           #i:I
     .end local v24           #newConfig:Landroid/content/res/Configuration;
-    :cond_9
-    if-eqz v19, :cond_a
+    :cond_a
+    if-eqz v19, :cond_b
 
-    if-nez p2, :cond_a
+    if-nez p2, :cond_b
 
     .line 12704
     move-object/from16 v0, p0
@@ -70234,8 +70241,8 @@
     move-result-object p2
 
     .line 12707
-    :cond_a
-    if-eqz p2, :cond_b
+    :cond_b
+    if-eqz p2, :cond_c
 
     .line 12708
     move-object/from16 v0, p0
@@ -70262,7 +70269,7 @@
     invoke-virtual {v2, v0, v1}, Lcom/android/server/am/ActivityStack;->ensureActivitiesVisibleLocked(Lcom/android/server/am/ActivityRecord;I)V
 
     .line 12714
-    :cond_b
+    :cond_c
     if-eqz p1, :cond_0
 
     move-object/from16 v0, p0
