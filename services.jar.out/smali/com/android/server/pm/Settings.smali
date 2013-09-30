@@ -501,12 +501,12 @@
 .end method
 
 .method constructor <init>(Landroid/content/Context;Ljava/io/File;)V
-    .locals 3
+    .locals 4
     .parameter "context"
     .parameter "dataDir"
 
     .prologue
-    const/4 v2, -0x1
+    const/4 v3, -0x1
 
     .line 177
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -670,7 +670,7 @@
 
     const/16 v1, 0x1fd
 
-    invoke-static {v0, v1, v2, v2}, Landroid/os/FileUtils;->setPermissions(Ljava/lang/String;III)I
+    invoke-static {v0, v1, v3, v3}, Landroid/os/FileUtils;->setPermissions(Ljava/lang/String;III)I
 
     .line 185
     new-instance v0, Ljava/io/File;
