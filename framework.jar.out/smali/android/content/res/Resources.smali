@@ -188,9 +188,42 @@
 
     .prologue
     const/4 v2, -0x1
-    
+
     const/4 v1, 0x0
-           
+
+    .line 105
+    new-instance v0, Ljava/lang/Object;
+
+    invoke-direct/range {v0 .. v0}, Ljava/lang/Object;-><init>()V
+
+    sput-object v0, Landroid/content/res/Resources;->mSync:Ljava/lang/Object;
+
+    .line 106
+    const/4 v0, 0x0
+
+    sput-object v0, Landroid/content/res/Resources;->mSystem:Landroid/content/res/Resources;
+
+    .line 111
+    new-instance v0, Landroid/util/LongSparseArray;
+
+    invoke-direct {v0}, Landroid/util/LongSparseArray;-><init>()V
+
+    sput-object v0, Landroid/content/res/Resources;->sPreloadedDrawables:Landroid/util/LongSparseArray;
+
+    .line 113
+    new-instance v0, Landroid/util/LongSparseArray;
+
+    invoke-direct {v0}, Landroid/util/LongSparseArray;-><init>()V
+
+    sput-object v0, Landroid/content/res/Resources;->sPreloadedColorStateLists:Landroid/util/LongSparseArray;
+
+    .line 115
+    new-instance v0, Landroid/util/LongSparseArray;
+
+    invoke-direct {v0}, Landroid/util/LongSparseArray;-><init>()V
+
+    sput-object v0, Landroid/content/res/Resources;->sPreloadedColorDrawables:Landroid/util/LongSparseArray;
+
     .line 148
     new-instance v0, Ljava/util/HashMap;
 
@@ -222,59 +255,13 @@
 
     .line 155
     sput v2, Landroid/content/res/Resources;->sConfigThemeChanged:I
-    
+
+    .line 206
     new-instance v0, Landroid/content/res/Resources$1;
 
     invoke-direct {v0, v1}, Landroid/content/res/Resources$1;-><init>(I)V
 
     sput-object v0, Landroid/content/res/Resources;->EMPTY_ARRAY:Landroid/util/LongSparseArray;
-   
-    .line 82
-    new-instance v1, Ljava/lang/Object;
-
-    invoke-direct {v1}, Ljava/lang/Object;-><init>()V
-
-    sput-object v1, Landroid/content/res/Resources;->mSync:Ljava/lang/Object;
-
-    .line 83
-    const/4 v1, 0x0
-
-    sput-object v1, Landroid/content/res/Resources;->mSystem:Landroid/content/res/Resources;
-
-    .line 88
-    new-instance v1, Landroid/util/LongSparseArray;
-
-    invoke-direct {v1}, Landroid/util/LongSparseArray;-><init>()V
-
-    sput-object v1, Landroid/content/res/Resources;->sPreloadedDrawables:Landroid/util/LongSparseArray;
-
-    .line 90
-    new-instance v1, Landroid/util/LongSparseArray;
-
-    invoke-direct {v1}, Landroid/util/LongSparseArray;-><init>()V
-
-    sput-object v1, Landroid/content/res/Resources;->sPreloadedColorStateLists:Landroid/util/LongSparseArray;
-
-    .line 92
-    new-instance v1, Landroid/util/LongSparseArray;
-
-    invoke-direct {v1}, Landroid/util/LongSparseArray;-><init>()V
-
-    sput-object v1, Landroid/content/res/Resources;->sPreloadedColorDrawables:Landroid/util/LongSparseArray;
-
-    .line 2270
-    const-string/jumbo v1, "ro.config.hwtheme"
-
-    invoke-static {v1, v0}, Landroid/os/SystemProperties;->getInt(Ljava/lang/String;I)I
-
-    move-result v1
-
-    if-lez v1, :cond_0
-
-    const/4 v0, 0x1
-
-    :cond_0
-    sput-boolean v0, Landroid/content/res/Resources;->sIsHwTheme:Z
 
     return-void
 .end method

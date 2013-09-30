@@ -3527,6 +3527,60 @@
     goto/16 :goto_2
 .end method
 
+.method private broadcastConfigTheme(I)V
+    .locals 15
+    .parameter "changes"
+
+    .prologue
+    .line 12490
+    const/high16 v0, -0x8000
+
+    and-int v0, v0, p1
+
+    if-eqz v0, :cond_0
+
+    .line 12491
+    const/4 v1, 0x0
+
+    const/4 v2, 0x0
+
+    new-instance v3, Landroid/content/Intent;
+
+    const-string v0, "android.intent.action.THEME_CHANGED"
+
+    invoke-direct {v3, v0}, Landroid/content/Intent;-><init>(Ljava/lang/String;)V
+
+    const/4 v4, 0x0
+
+    const/4 v5, 0x0
+
+    const/4 v6, 0x0
+
+    const/4 v7, 0x0
+
+    const/4 v8, 0x0
+
+    const/4 v9, 0x0
+
+    const/4 v10, 0x0
+
+    const/4 v11, 0x0
+
+    sget v12, Lcom/android/server/am/ActivityManagerService;->MY_PID:I
+
+    const/16 v13, 0x3e8
+
+    const/4 v14, 0x0
+
+    move-object v0, p0
+
+    invoke-direct/range {v0 .. v14}, Lcom/android/server/am/ActivityManagerService;->broadcastIntentLocked(Lcom/android/server/am/ProcessRecord;Ljava/lang/String;Landroid/content/Intent;Ljava/lang/String;Landroid/content/IIntentReceiver;ILjava/lang/String;Landroid/os/Bundle;Ljava/lang/String;ZZIII)I
+
+    .line 12496
+    :cond_0
+    return-void
+.end method
+
 .method private final broadcastIntentLocked(Lcom/android/server/am/ProcessRecord;Ljava/lang/String;Landroid/content/Intent;Ljava/lang/String;Landroid/content/IIntentReceiver;ILjava/lang/String;Landroid/os/Bundle;Ljava/lang/String;ZZIII)I
     .locals 64
     .parameter "callerApp"
