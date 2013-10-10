@@ -150,7 +150,8 @@ baidu_modify_jars := android.policy
 
 # property to show/hide feature of defaultWrite Settings
 override_property += \
-    ro.baidu.default_write.settable=true
+    ro.baidu.default_write.settable=true \
+    ro.baidu.recovery.pixelformat=RGB_565
 
 ##############################################################################
 # override_property: this property will override the build.prop

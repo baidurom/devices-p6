@@ -1,24 +1,56 @@
 #!/system/bin/sh
 
 # append install-recovery.sh to start other service
+curLog="/data/local/tmp/current_bdrec_log"
+lastLog="/data/local/tmp/last_bdrec_log"
 
+if [ -f $curLog ]; then
+	mv $curLog $lastLog
+fi
+
+date > $curLog
+
+chmod 777 $curLog
+
+{
+
+ls -l /system/xbin/su
+
+echo "remount system with rw"
+mount -o remount,rw /system
+
+echo "set su permission to 6755"
+chmod 6755 /system/xbin/su
+
+ls -l /system/xbin/su
+
+echo "remount system with ro"
+mount -o remount,ro /system
+
+echo "setprop persist.sys.usb.config mass_storage,adb"
 setprop persist.sys.usb.config mass_storage,adb
 
 stop
 cat /dev/input/event5 > /dev/keycheck &
 sleep 3
 kill -9 $!
+
 if [ -s /dev/keycheck -o -e /cache/recovery/command ];then
-mount -o remount,rw rootfs /
-mount -o remount,rw /system
-mkdir /tmp
-busybox cp -r /system/media/res /
-/system/xbin/recovery
+	mount -o remount,rw rootfs /
+	mount -o remount,rw /system
+	mkdir /tmp
+	busybox cp -r /system/media/res /
+        echo "start recovery"
+	/system/xbin/recovery
+        echo "out of recovery to remount system with ro"
+	mount -o remount,ro /system
 else
-start
-/system/bin/serviceext &
-/system/bin/WordSegService &
-/system/bin/debuggerd-vendor
+	start
+	echo "start baidu's services"
+	/system/bin/serviceext &
+	/system/bin/WordSegService &
+	/system/bin/debuggerd-vendor
 fi
+} > $curLog
 
 

@@ -1,7 +1,7 @@
 # mount point	fstype		device
 # DTS2012030702504   l00186011   2012/03/07  reserve the data of inner_sdcard when resetuser  
 
-/sdcard		vfat		/dev/block/platform/hi_mci.1/by-name/sdcard
+/sdcard		datamedia		null
 /system		ext4		/dev/block/platform/hi_mci.1/by-name/system
 /cache		ext4		/dev/block/platform/hi_mci.1/by-name/cache
 /data		ext4		/dev/block/platform/hi_mci.1/by-name/userdata length=-16384
