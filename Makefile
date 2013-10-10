@@ -161,4 +161,12 @@ remove_property += \
         ro.operator.spec \
         ro.operator.seg
 
+
+##############################################################################
+# if NOT_CUSTOM_FRAMEWORK-RES is true, when build framework-res, the custom_app.sh will not be called!
+# becarefull if you want to config this
+# add this config just because sometimes apktool may failed to build framework-res after call custom_app.sh
+#-----------------------------------------------------------------------------
+NOT_CUSTOM_FRAMEWORK-RES := true
+
 include $(PORT_BUILD)/main.mk
