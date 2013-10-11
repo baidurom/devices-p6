@@ -1207,7 +1207,7 @@
     .line 59
     sget-object v7, Landroid/os/Environment;->sPrimaryVolume:Landroid/os/storage/StorageVolume;
 
-    if-nez v7, :cond_2
+    if-nez v7, :cond_1
 
     .line 60
     sget-object v8, Landroid/os/Environment;->sLock:Ljava/lang/Object;
@@ -1220,7 +1220,7 @@
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
-    if-nez v7, :cond_1
+    if-nez v7, :cond_0
 
     .line 63
     :try_start_1
@@ -1259,7 +1259,7 @@
 
     .local v2, i$:I
     :goto_0
-    if-ge v2, v3, :cond_1
+    if-ge v2, v3, :cond_0
 
     aget-object v5, v0, v2
 
@@ -1269,7 +1269,7 @@
 
     move-result v7
 
-    if-nez v7, :cond_0
+    if-nez v7, :cond_2
 
     .line 69
     sput-object v5, Landroid/os/Environment;->sSecondaryVolume:Landroid/os/storage/StorageVolume;
@@ -1277,13 +1277,43 @@
     .catchall {:try_start_1 .. :try_end_1} :catchall_0
     .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_0
 
-    .line 67
+    .line 77
+    .end local v0           #arr$:[Landroid/os/storage/StorageVolume;
+    .end local v2           #i$:I
+    .end local v3           #len$:I
+    .end local v4           #mountService:Landroid/os/storage/IMountService;
+    .end local v5           #volumeItem:Landroid/os/storage/StorageVolume;
+    .end local v6           #volumes:[Landroid/os/storage/StorageVolume;
     :cond_0
+    :goto_1
+    :try_start_2
+    monitor-exit v8
+    :try_end_2
+    .catchall {:try_start_2 .. :try_end_2} :catchall_0
+
+    .line 79
+    :cond_1
+    packed-switch p0, :pswitch_data_0
+
+    .line 85
+    sget-object v7, Landroid/os/Environment;->sPrimaryVolume:Landroid/os/storage/StorageVolume;
+
+    :goto_2
+    return-object v7
+
+    .line 67
+    .restart local v0       #arr$:[Landroid/os/storage/StorageVolume;
+    .restart local v2       #i$:I
+    .restart local v3       #len$:I
+    .restart local v4       #mountService:Landroid/os/storage/IMountService;
+    .restart local v5       #volumeItem:Landroid/os/storage/StorageVolume;
+    .restart local v6       #volumes:[Landroid/os/storage/StorageVolume;
+    :cond_2
     add-int/lit8 v2, v2, 0x1
 
     goto :goto_0
 
-    .line 72
+    .line 73
     .end local v0           #arr$:[Landroid/os/storage/StorageVolume;
     .end local v2           #i$:I
     .end local v3           #len$:I
@@ -1293,56 +1323,43 @@
     :catch_0
     move-exception v1
 
-    .line 73
+    .line 74
     .local v1, e:Ljava/lang/Exception;
-    :try_start_2
+    :try_start_3
     const-string v7, "Environment"
 
     const-string v9, "couldn\'t talk to MountService"
 
     invoke-static {v7, v9, v1}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
 
-    .line 76
+    goto :goto_1
+
+    .line 77
     .end local v1           #e:Ljava/lang/Exception;
-    :cond_1
-    monitor-exit v8
-    :try_end_2
-    .catchall {:try_start_2 .. :try_end_2} :catchall_0
-
-    .line 78
-    :cond_2
-    packed-switch p0, :pswitch_data_0
-
-    .line 84
-    sget-object v7, Landroid/os/Environment;->sPrimaryVolume:Landroid/os/storage/StorageVolume;
-
-    :goto_1
-    return-object v7
-
-    .line 76
     :catchall_0
     move-exception v7
 
-    :try_start_3
     monitor-exit v8
     :try_end_3
     .catchall {:try_start_3 .. :try_end_3} :catchall_0
 
     throw v7
 
-    .line 80
+    .line 81
     :pswitch_0
     sget-object v7, Landroid/os/Environment;->sPrimaryVolume:Landroid/os/storage/StorageVolume;
 
-    goto :goto_1
+    goto :goto_2
 
-    .line 82
+    .line 83
     :pswitch_1
     sget-object v7, Landroid/os/Environment;->sSecondaryVolume:Landroid/os/storage/StorageVolume;
 
-    goto :goto_1
+    goto :goto_2
 
-    .line 78
+    .line 79
+    nop
+
     :pswitch_data_0
     .packed-switch 0x0
         :pswitch_0
