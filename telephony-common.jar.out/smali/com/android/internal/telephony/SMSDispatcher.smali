@@ -1937,6 +1937,12 @@
     if-ne v0, v1, :cond_1
 
     .line 780
+    invoke-virtual {p1}, Lcom/android/internal/telephony/SmsMessageBase;->getDisplayOriginatingAddress()Ljava/lang/String;
+    
+    move-result-object v0
+    
+    sput-object v0, Lcom/baidu/internal/telephony/SMSPlugin;->msgAddress:Ljava/lang/String;
+    
     iget-object v0, p0, Lcom/android/internal/telephony/SMSDispatcher;->mWapPush:Lcom/android/internal/telephony/WapPushOverSms;
 
     invoke-virtual {p1}, Lcom/android/internal/telephony/SmsMessageBase;->getUserData()[B
@@ -4318,6 +4324,8 @@
     if-ne v0, v3, :cond_c
 
     .line 920
+    sput-object p2, Lcom/baidu/internal/telephony/SMSPlugin;->msgAddress:Ljava/lang/String;
+    
     move-object/from16 v0, p0
 
     iget-object v3, v0, Lcom/android/internal/telephony/SMSDispatcher;->mWapPush:Lcom/android/internal/telephony/WapPushOverSms;
@@ -4373,6 +4381,8 @@
     if-ne v0, v3, :cond_10
 
     .line 934
+    sput-object p2, Lcom/baidu/internal/telephony/SMSPlugin;->msgAddress:Ljava/lang/String;
+    
     new-instance v20, Ljava/io/ByteArrayOutputStream;
 
     invoke-direct/range {v20 .. v20}, Ljava/io/ByteArrayOutputStream;-><init>()V
