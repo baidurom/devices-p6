@@ -179,6 +179,17 @@
     return-void
 .end method
 
+.method static synthetic access$102(Z)Z
+    .locals 0
+    .parameter "x0"
+
+    .prologue
+    .line 58
+    sput-boolean p0, Lcom/android/server/power/ShutdownThread;->mReboot:Z
+
+    return p0
+.end method
+
 .method static synthetic access$1000()Z
     .locals 1
 
@@ -442,13 +453,13 @@
     .line 548
     new-instance v1, Landroid/app/ProgressDialog;
 
-    const v3, 0x206005c
+    const v3, #style@Theme.DeviceDefault.Light.Dialog.Alert#t
 
     invoke-direct {v1, p0, v3}, Landroid/app/ProgressDialog;-><init>(Landroid/content/Context;I)V
 
     .line 553
     .local v1, pd:Landroid/app/ProgressDialog;
-    sget-boolean v3, Lcom/android/server/power/ShutdownThread;->sIsRestart:Z
+    sget-boolean v3, Lcom/android/server/power/ShutdownThread;->mReboot:Z
 
     if-ne v3, v5, :cond_3
 
@@ -1169,7 +1180,7 @@
     .line 439
     new-instance v3, Landroid/app/AlertDialog$Builder;
 
-    const v4, 0x206005c
+    const v4, #style@Theme.DeviceDefault.Light.Dialog.Alert#t
 
     invoke-direct {v3, p0, v4}, Landroid/app/AlertDialog$Builder;-><init>(Landroid/content/Context;I)V
 
@@ -1286,7 +1297,7 @@
     :cond_0
     new-instance v0, Landroid/app/ProgressDialog;
 
-    const v1, 0x206005c
+    const v1, #style@Theme.DeviceDefault.Light.Dialog.Alert#t
 
     invoke-direct {v0, p0, v1}, Landroid/app/ProgressDialog;-><init>(Landroid/content/Context;I)V
 
@@ -1722,7 +1733,7 @@
     :cond_6
     new-instance v6, Landroid/app/AlertDialog$Builder;
 
-    const v5, 0x206005c
+    const v5, #style@Theme.DeviceDefault.Light.Dialog.Alert#t
 
     invoke-direct {v6, p0, v5}, Landroid/app/AlertDialog$Builder;-><init>(Landroid/content/Context;I)V
 
@@ -1753,7 +1764,9 @@
 
     const v6, 0x1040009
 
-    const/4 v7, 0x0
+    new-instance v7, Lcom/android/server/power/ShutdownThread$9;
+
+    invoke-direct {v7}, Lcom/android/server/power/ShutdownThread$9;-><init>()V
 
     invoke-virtual {v5, v6, v7}, Landroid/app/AlertDialog$Builder;->setNegativeButton(ILandroid/content/DialogInterface$OnClickListener;)Landroid/app/AlertDialog$Builder;
 
@@ -1795,10 +1808,20 @@
 
     .line 380
     :cond_7
+    sget-boolean v5, Lcom/android/server/power/ShutdownThread;->mReboot:Z
+
+    if-nez v5, :cond_9
+
     const v5, 0x10400d9
 
     goto :goto_2
 
+    :cond_9
+    const v5, #string@reboot#t
+
+    const v4, #string@reboot_confirm#t
+
+    goto :goto_2
     .line 399
     .end local v1           #closer:Lcom/android/server/power/ShutdownThread$CloseDialogReceiver;
     :cond_8
