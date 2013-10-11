@@ -89,7 +89,7 @@ vendor_remove_dirs := app media/audio/notifications
 ##############################################################################
 # Vendor apks you want to use
 #-----------------------------------------------------------------------------
-#vendor_saved_apps := FMRadioService Bluetooth Nfc
+vendor_saved_apps := HwFMRadio Bluetooth HwBluetoothImport
 
 ##############################################################################
 # Apks build from current project root directory
