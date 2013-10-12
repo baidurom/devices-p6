@@ -37,11 +37,12 @@ echo. --- 连接设备成功，正在重启到刷机模式...
 echo.
 echo. --- 正在刷入系统镜像，请勿进行其它操作！
 %fastboot flash system system.img
+%fastboot flash cust cust.img
 %fastboot reboot
 
 echo.
 %adb wait-for-device
-echo. --- 系统镜像刷入成功!
+echo. --- 系统镜像刷入成功！
 
 :WIPEDATA
 echo.
@@ -51,11 +52,12 @@ echo. --- 正在清除用户数据...
 %adb shell copy-cache.sh
 %adb wait-for-device
 echo. --- 正在执行，请等待...
-%adb reboot recovery
+%adb reboot
 
 echo.
 %adb wait-for-device
 echo. --- 完成！
+echo.
 
 :EXIT
 pause

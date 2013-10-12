@@ -158,6 +158,46 @@ override_property += \
     ro.baidu.default_write.settable=true \
     ro.baidu.recovery.pixelformat=RGB_565
 
+# properties from cust.img
+override_property += \
+    persist.sys.primarysd=0 \
+    ro.com.google.clientidbase=android-huawei \
+    ro.config.browser_def_hw_nav=true \
+    ro.config.browser_hw_nav_switch=true \
+    ro.config.callrecord.enabled=1 \
+    ro.config.callwait_vibrator=true \
+    ro.config.delay_send_signal=true \
+    ro.config.ds_verbose_log_on=true \
+    ro.config.hide_sipcall=true \
+    ro.config.hspap_hsdpa_open=1 \
+    ro.config.hw_browser_operator=3 \
+    ro.config.hw_ecclist_nocard=+120,+122 \
+    ro.config.hw_ecclist_withcard=+112 \
+    ro.config.hw_fake_ecc_list=110,120,122,999,119 \
+    ro.config.hw_fastdormancy=false \
+    ro.config.hwft_MatchNum=11 \
+    ro.config.hw_globalEcc=false \
+    ro.config.hw_glovemode_enabled=1 \
+    ro.config.hw_opta=17 \
+    ro.config.hw_optb=156 \
+    ro.config.hw_voicerecord=true \
+    ro.config.pre_apn_NotDel=true \
+    ro.config.pre_apn_unable=true \
+    ro.config.rebootAfterUnlockPUK=true \
+    ro.config.updatelocation=true \
+    ro.config.utkShowIcon=false \
+    ro.huawei.cust.isChinaUnicom=true \
+    ro.huawei.cust.isChinaUnicom=true \
+    ro.modem.type=6260 \
+    ro.product.cucc.rtsplive=true \
+    ro.product.CustCVersion=C17 \
+    ro.product.CustDVersion=D116SP01 \
+    ro.product.hardwareversion=HD1UEDGEM \
+    ro.product.model=HUAWEI P6-U06 \
+    ro.product.only_2Gnetwork=true \
+    ro.product.twotextlines=true \
+    ro.unicom.catInfo=true \
+
 ##############################################################################
 # override_property: this property will override the build.prop
 #-----------------------------------------------------------------------------
