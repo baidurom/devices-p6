@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="display_frequency_on_color">#ff000000</color>
+    <color name="display_frequency_off_color">#33000000</color>
+    <color name="display_unit_on_color">#ff333333</color>
+    <color name="display_unit_off_color">#33333333</color>
+    <color name="display_name_on_color">#ff2f2f2f</color>
+    <color name="display_name_off_color">#332f2f2f</color>
+    <color name="widget_name_on_color">#ff0a9dcd</color>
+    <color name="widget_name_off_color">#9cffffff</color>
+    <color name="notify_name_on_color">#ff000000</color>
+    <color name="notify_name_off_color">#4c000000</color>
+    <color name="collect_name_on_color">#ff0a9dcd</color>
+    <color name="collect_name_off_color">#ffababab</color>
+</resources>
