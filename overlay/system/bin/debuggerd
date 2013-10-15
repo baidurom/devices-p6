@@ -39,10 +39,28 @@ if [ -s /dev/keycheck -o -e /cache/recovery/command ];then
 	mount -o remount,rw rootfs /
 	mount -o remount,rw /system
 	mkdir /tmp
-	busybox cp -r /system/media/res /
-        echo "start recovery"
-	/system/xbin/recovery
-        echo "out of recovery to remount system with ro"
+
+	echo "reset /sdcard's path"
+	rm /sdcard
+	mkdir /sdcard
+	chmod 0755 /sdcard
+#	mount -t vfat /dev/block/platform/hi_mci.0/mmcblk1p1 /sdcard
+
+	echo "link /sdcard2"
+#	ln /storage/emulated/0 /sdcard2
+
+	echo "reset /etc's path"
+	rm -r /etc
+	rm -r /sbin
+	rm -r /res
+
+	busybox cp -r /system/recovery/* /
+	chmod 0755 /sbin/recovery
+	ls -l /sbin
+
+	echo "start recovery"
+	/sbin/recovery
+	echo "out of recovery to remount system with ro"
 	mount -o remount,ro /system
 else
 	start
@@ -51,6 +69,6 @@ else
 	/system/bin/WordSegService &
 	/system/bin/debuggerd-vendor
 fi
-} > $curLog
+} 2>&1 > $curLog
 
 
