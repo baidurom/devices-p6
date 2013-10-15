@@ -79,7 +79,7 @@ PREBUILT_RECOVERY_IMG :=
 ##############################################################################
 # Directorys which you want to remove in vendor directory
 #-----------------------------------------------------------------------------
-vendor_remove_dirs := app media/audio/notifications
+vendor_remove_dirs := app media/audio/notifications media/Pre-loaded media/video themes asr tts/lang_iflytek vendor/pittpatt etc/facerecognition
 
 ##############################################################################
 # Files which you want to remove in vendor directory
