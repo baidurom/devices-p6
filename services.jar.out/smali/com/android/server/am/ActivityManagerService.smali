@@ -4994,6 +4994,18 @@
 
     .line 12129
     :cond_1c
+    move-object/from16 v0, p0
+
+    iget-object v4, v0, Lcom/android/server/am/ActivityManagerService;->mLruProcesses:Ljava/util/ArrayList;
+
+    move-object/from16 v0, v25
+
+    move-object/from16 v1, v16
+
+    move-object/from16 v2, v46
+
+    invoke-static {v0, v1, v2, v4}, Lcom/baidu/security/bm/BroadcastManagerService;->filterBroadcastReceiver(Ljava/util/List;Ljava/util/List;Landroid/content/Intent;Ljava/util/ArrayList;)I
+
     invoke-virtual/range {v46 .. v46}, Landroid/content/Intent;->getFlags()I
 
     move-result v4
