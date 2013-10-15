@@ -52,7 +52,7 @@ echo. --- 正在清除用户数据...
 %adb shell copy-cache.sh
 %adb wait-for-device
 echo. --- 正在执行，请等待...
-%adb reboot
+%adb reboot recovery
 
 echo.
 %adb wait-for-device
