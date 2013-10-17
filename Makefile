@@ -216,4 +216,6 @@ remove_property += \
 #-----------------------------------------------------------------------------
 NOT_CUSTOM_FRAMEWORK-RES := true
 
+USE_FIVE_PARAM_FORMAT := true
+
 include $(PORT_BUILD)/main.mk
