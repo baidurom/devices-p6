@@ -156,7 +156,9 @@ baidu_modify_jars := android.policy
 # property to show/hide feature of defaultWrite Settings
 override_property += \
     ro.baidu.default_write.settable=true \
-    ro.baidu.recovery.pixelformat=RGB_565
+    ro.baidu.recovery.pixelformat=RGB_565 \
+	ro.baidu.secure=0 \
+	ro.baidu.debuggable=1
 
 # properties from cust.img
 override_property += \
