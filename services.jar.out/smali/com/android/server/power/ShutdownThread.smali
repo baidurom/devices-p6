@@ -822,60 +822,144 @@
 .end method
 
 .method public static reboot(Landroid/content/Context;Ljava/lang/String;Z)V
-    .locals 4
+    .locals 2
     .parameter "context"
     .parameter "reason"
     .parameter "confirm"
 
     .prologue
-    .line 492
-    const-string v2, "ShutdownThread"
+    const/4 v1, 0x0
 
-    const-string v3, "reboot device"
+    .line 234
+    const/4 v0, 0x1
 
-    invoke-static {v2, v3}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+    sput-boolean v0, Lcom/android/server/power/ShutdownThread;->mReboot:Z
 
-    .line 494
-    :try_start_0
-    new-instance v1, Lcom/android/server/power/ShutdownThread$PrintRestartStackException;
+    .line 235
+    sput-boolean v1, Lcom/android/server/power/ShutdownThread;->mRebootSafeMode:Z
 
-    const-string v2, "myPrintException2"
+    .line 237
+    #sput-boolean v1, Lcom/android/server/power/ShutdownThread;->mIsQuickbootShutdown:Z
 
-    invoke-direct {v1, v2}, Lcom/android/server/power/ShutdownThread$PrintRestartStackException;-><init>(Ljava/lang/String;)V
+    .line 240
+    const-string v0, "recovery"
 
-    .line 495
-    .local v1, myPrintException2:Lcom/android/server/power/ShutdownThread$PrintRestartStackException;
-    throw v1
-    :try_end_0
-    .catch Lcom/android/server/power/ShutdownThread$PrintRestartStackException; {:try_start_0 .. :try_end_0} :catch_0
+    if-ne p1, v0, :cond_0
 
-    .line 496
-    .end local v1           #myPrintException2:Lcom/android/server/power/ShutdownThread$PrintRestartStackException;
-    :catch_0
-    move-exception v0
+    .line 241
+    const/4 v0, 0x0
 
-    .line 497
-    .local v0, e:Lcom/android/server/power/ShutdownThread$PrintRestartStackException;
-    invoke-virtual {v0}, Lcom/android/server/power/ShutdownThread$PrintRestartStackException;->printStackTrace()V
+    sput-object v0, Lcom/android/server/power/ShutdownThread;->mRebootReason:Ljava/lang/String;
 
-    .line 500
-    const/4 v2, 0x1
+    .line 242
+    invoke-static {}, Lcom/android/server/power/ShutdownThread;->rebootbaidurecovery()V
 
-    sput-boolean v2, Lcom/android/server/power/ShutdownThread;->mReboot:Z
-
-    .line 501
-    const/4 v2, 0x0
-
-    sput-boolean v2, Lcom/android/server/power/ShutdownThread;->mRebootSafeMode:Z
-
-    .line 502
-    sput-object p1, Lcom/android/server/power/ShutdownThread;->mRebootReason:Ljava/lang/String;
-
-    .line 503
+    .line 246
+    :goto_0
     invoke-static {p0, p2}, Lcom/android/server/power/ShutdownThread;->shutdownInner(Landroid/content/Context;Z)V
 
-    .line 504
+    .line 247
     return-void
+
+    .line 244
+    :cond_0
+    sput-object p1, Lcom/android/server/power/ShutdownThread;->mRebootReason:Ljava/lang/String;
+
+    goto :goto_0
+.end method
+
+.method private static rebootbaidurecovery()V
+    .locals 6
+
+    .prologue
+    .line 250
+    const-string v4, "ShutdownThread"
+
+    const-string v5, "Reboot to Baidu Recovery!"
+
+    invoke-static {v4, v5}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 251
+    new-instance v3, Ljava/io/File;
+
+    const-string v4, "/cache/recovery"
+
+    invoke-direct {v3, v4}, Ljava/io/File;-><init>(Ljava/lang/String;)V
+
+    .line 252
+    .local v3, recovery_dir:Ljava/io/File;
+    new-instance v0, Ljava/io/File;
+
+    const-string v4, "command"
+
+    invoke-direct {v0, v3, v4}, Ljava/io/File;-><init>(Ljava/io/File;Ljava/lang/String;)V
+
+    .line 254
+    .local v0, command:Ljava/io/File;
+    :try_start_0
+    invoke-virtual {v3}, Ljava/io/File;->mkdirs()Z
+
+    .line 255
+    invoke-virtual {v0}, Ljava/io/File;->delete()Z
+
+    .line 256
+    new-instance v2, Ljava/io/FileOutputStream;
+
+    invoke-direct {v2, v0}, Ljava/io/FileOutputStream;-><init>(Ljava/io/File;)V
+
+    .line 257
+    .local v2, outStream:Ljava/io/FileOutputStream;
+    const-string v4, " "
+
+    invoke-virtual {v4}, Ljava/lang/String;->getBytes()[B
+
+    move-result-object v4
+
+    invoke-virtual {v2, v4}, Ljava/io/FileOutputStream;->write([B)V
+
+    .line 258
+    const-string v4, "ShutdownThread"
+
+    const-string v5, "Create a empty /cache/recovery/command"
+
+    invoke-static {v4, v5}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+    :try_end_0
+    .catch Ljava/io/FileNotFoundException; {:try_start_0 .. :try_end_0} :catch_0
+    .catch Ljava/io/IOException; {:try_start_0 .. :try_end_0} :catch_1
+
+    .line 264
+    .end local v2           #outStream:Ljava/io/FileOutputStream;
+    :goto_0
+    return-void
+
+    .line 259
+    :catch_0
+    move-exception v1
+
+    .line 260
+    .local v1, e:Ljava/io/FileNotFoundException;
+    const-string v4, "ShutdownThread"
+
+    const-string v5, "Can not create /cache/recovery/command"
+
+    invoke-static {v4, v5, v1}, Landroid/util/Log;->i(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
+
+    goto :goto_0
+
+    .line 261
+    .end local v1           #e:Ljava/io/FileNotFoundException;
+    :catch_1
+    move-exception v1
+
+    .line 262
+    .local v1, e:Ljava/io/IOException;
+    const-string v4, "ShutdownThread"
+
+    const-string v5, "Can not write /cache/recovery/command"
+
+    invoke-static {v4, v5, v1}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
+
+    goto :goto_0
 .end method
 
 .method public static rebootOrShutdown(ZLjava/lang/String;)V
