@@ -308,6 +308,17 @@
     return-object p1
 .end method
 
+.method static synthetic access$403(Ljava/lang/String;)Ljava/lang/String;
+    .locals 0
+    .parameter "x0"
+
+    .prologue
+    .line 65
+    sput-object p0, Lcom/android/server/power/ShutdownThread;->mRebootReason:Ljava/lang/String;
+
+    return-object p0
+.end method
+
 .method static synthetic access$500(Lcom/android/server/power/ShutdownThread;)Landroid/os/PowerManager$WakeLock;
     .locals 1
     .parameter "x0"
@@ -462,6 +473,8 @@
     sget-boolean v3, Lcom/android/server/power/ShutdownThread;->mReboot:Z
 
     if-ne v3, v5, :cond_3
+
+    invoke-static {}, Lcom/android/server/power/ShutdownThread;->ifrebootbaidurecovery()V
 
     .line 554
     const v3, 0x202000b
@@ -842,9 +855,15 @@
     #sput-boolean v1, Lcom/android/server/power/ShutdownThread;->mIsQuickbootShutdown:Z
 
     .line 240
+    if-eqz p1, :cond_0
+
     const-string v0, "recovery"
 
-    if-ne p1, v0, :cond_0
+    invoke-virtual {p1, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v0
+
+    if-eqz v0, :cond_0
 
     .line 241
     const/4 v0, 0x0
@@ -866,6 +885,63 @@
     sput-object p1, Lcom/android/server/power/ShutdownThread;->mRebootReason:Ljava/lang/String;
 
     goto :goto_0
+.end method
+
+.method private static ifrebootbaidurecovery()V
+    .locals 3
+
+    .prologue
+    .line 267
+    const-string v0, "ShutdownThread"
+
+    new-instance v1, Ljava/lang/StringBuilder;
+
+    invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v2, "ifrebootbaidurecovery, mRebootReason:"
+
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v1
+
+    sget-object v2, Lcom/android/server/power/ShutdownThread;->mRebootReason:Ljava/lang/String;
+
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v1
+
+    invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v1
+
+    invoke-static {v0, v1}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 268
+    sget-object v0, Lcom/android/server/power/ShutdownThread;->mRebootReason:Ljava/lang/String;
+
+    if-eqz v0, :cond_0
+
+    sget-object v0, Lcom/android/server/power/ShutdownThread;->mRebootReason:Ljava/lang/String;
+
+    const-string v1, "recovery"
+
+    invoke-virtual {v0, v1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v0
+
+    if-eqz v0, :cond_0
+
+    .line 269
+    const/4 v0, 0x0
+
+    sput-object v0, Lcom/android/server/power/ShutdownThread;->mRebootReason:Ljava/lang/String;
+
+    .line 270
+    invoke-static {}, Lcom/android/server/power/ShutdownThread;->rebootbaidurecovery()V
+
+    .line 272
+    :cond_0
+    return-void
 .end method
 
 .method private static rebootbaidurecovery()V
@@ -1832,10 +1908,28 @@
 
     move-result-object v5
 
+    sget-boolean v7, Lcom/android/server/power/ShutdownThread;->mReboot:Z
+
+    if-nez v7, :cond_90
+
     invoke-virtual {v5, v4}, Landroid/app/AlertDialog$Builder;->setMessage(I)Landroid/app/AlertDialog$Builder;
+
+    goto :goto_3
+
+    :cond_90
+    const v4, #array@shutdown_reboot_options#t
+
+    const v6, 0x0
+
+    new-instance v7, Lcom/android/server/power/ShutdownThread$10;
+
+    invoke-direct {v7, p0}, Lcom/android/server/power/ShutdownThread$10;-><init>(Landroid/content/Context;)V
+
+    invoke-virtual {v5, v4, v6, v7}, Landroid/app/AlertDialog$Builder;->setSingleChoiceItems(IILandroid/content/DialogInterface$OnClickListener;)Landroid/app/AlertDialog$Builder;
 
     move-result-object v5
 
+    :goto_3
     const v6, 0x1040013
 
     new-instance v7, Lcom/android/server/power/ShutdownThread$3;
