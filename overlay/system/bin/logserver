@@ -22,6 +22,11 @@ function useBaiduAdbd()
 	echo "use baidu's adbd done!"
 }
 
+function setAdbReady()
+{
+    setprop persist.adb.ready 1
+}
+
 function resetSuPermission()
 {
 	ls -l /system/xbin/su
@@ -98,6 +103,7 @@ chmod 777 $curLog
 
 		resetSuPermission
 		useBaiduAdbd
+		setAdbReady
 
 		startBaiduService
 	fi
