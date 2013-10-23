@@ -18,7 +18,7 @@ echo.        请按任意键开始刷机！
 echo.
 echo.
 echo. ==========================================================================
-pause
+pause > NUL 2> NUL
 
 :FLASH
 cls
@@ -48,11 +48,17 @@ echo. --- 系统镜像刷入成功！
 echo.
 echo. --- 正在清除用户数据...
 %adb% wait-for-device
-%adb% push tools/wipe-data-command /data/local/tmp/command
-%adb% shell copy-cache.sh
+
+:ADBREADY
+echo waiting for adb status...
+ping 127.0.0.1 -n 3 > nul
+%adb% shell getprop persist.adb.ready > adb.stat
+set /p adbstat=<adb.stat
+if not %adbstat%x==1x goto :ADBREADY
+
 %adb% wait-for-device
 echo. --- 正在执行，请等待...
-%adb% reboot recovery
+%adb% shell recovery-wipe-data
 
 echo.
 %adb% wait-for-device
@@ -60,5 +66,5 @@ echo. --- 完成！
 echo.
 
 :EXIT
-pause
+pause > NUL 2> NUL
 exit
