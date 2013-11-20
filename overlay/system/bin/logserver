@@ -59,18 +59,12 @@ function rebootRecovery()
 	chmod 0750 /sbin/recovery
 	chmod 0750 /sbin/*
 
+	useBaiduAdbd
 	ls -l /sbin/
 	
 	/sbin/recovery
 	echo "out of recovery to remount system with ro"
 	mount -o remount,ro /system	
-}
-
-function startBaiduService()
-{
-	echo "start baidu's services"
-	/system/bin/serviceext &
-	/system/bin/WordSegService &
 }
 
 # append install-recovery.sh to start other service
@@ -105,7 +99,6 @@ chmod 777 $curLog
 		useBaiduAdbd
 		setAdbReady
 
-		startBaiduService
 	fi
 	mount -o remount,ro rootfs /
 	mount -o remount,ro /system
