@@ -2,25 +2,6 @@
 # Please use this file as the project Makefile reference
 
 ##############################################################################
-# Only for baidu, otherwise do not set USER
-#-----------------------------------------------------------------------------
-USER := baidu
-
-##############################################################################
-# This value defines the base source branch, only use for baidu server build.
-# when open this outside, delete this config
-# Support values: rom-mtk, baidu-4.0
-#-----------------------------------------------------------------------------
-BAIDU_BASE_BRANCH := rom-4.2
-
-##############################################################################
-# This value defines which overlay should be choose, only use for baidu internal.
-# Support values: rom-mtk, baidu-4.0
-# when your product is mtk, you can choose rom-mtk, otherwise set it to baidu-4.0
-#-----------------------------------------------------------------------------
-BAIDU_FRAMEWORK_OVERLAY_TYPE := rom-4.2
-
-##############################################################################
 # This value defines which base this project should choose, only for baidu internal.
 # Support values: S710, JRD77SS, YINS, YIGN
 #-----------------------------------------------------------------------------
@@ -47,34 +28,14 @@ DALVIK_VM_BUILD := 27
 DENSITY := xhdpi
 
 ##############################################################################
-# This value will control the method of pack or unpack image and so on
-# you can use mtk/qualcomm/ti/nvidia
-#-----------------------------------------------------------------------------
-PLATFORM := k3v2
-
-##############################################################################
-# you can custom boot image and recovery image name
-#-----------------------------------------------------------------------------
-# BOOT_IMG := bootname
-# RECOVERY_IMG := recoveryname
-
-##############################################################################
-# use for newproject, not unpack boot.img to BOOT, or not unpack recovery.img to RECOVERY
-# Support Values:
-# false, not unpack
-#-----------------------------------------------------------------------------
-# PRJ_UNPACK_BOOT_IMG := false
-# PRJ_UNPACK_RECOVERY_IMG := false
-
-##############################################################################
 # customize weather use prebuilt image or pack from BOOT/RECOVERY directory
 # Support Values:
-# true, use prebuilt boot.img/recovery.img
-# flase, pack boot.img/recovery.img from vendor/BOOT / vendor/RECOVERY
-# NULL, none boot.img/recovery.img
+# vendor_modify_images := boot recovery
+# boot/recovery, pack boot.img/recovery.img from vendor/BOOT / vendor/RECOVERY
+# NULL, check boot.img/recovery.img in project root directory, if it exists,
+# use a prebuilt boot.img/recovery.img, if not, nothing to do
 #-----------------------------------------------------------------------------
-PREBUILT_BOOT_IMG :=
-PREBUILT_RECOVERY_IMG :=
+# vendor_modify_images := boot recovery
 
 ##############################################################################
 # Directorys which you want to remove in vendor directory
