@@ -309,7 +309,6 @@ system/bin/start 0 2000 755
 system/bin/stop 0 2000 755
 system/bin/supl20clientd 0 2000 755
 system/bin/surfaceflinger 0 2000 755
-system/bin/.suv 0 0 6755
 system/bin/svc 0 2000 755
 system/bin/sync 0 2000 755
 system/bin/system_server 0 2000 755
