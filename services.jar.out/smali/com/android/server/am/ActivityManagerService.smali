@@ -28372,11 +28372,11 @@
 
     .line 2749
     .restart local v2       #tr:Lcom/android/server/am/TaskRecord;
-    iget-object v3, p0, Lcom/android/server/am/ActivityManagerService;->mRecentTasks:Ljava/util/ArrayList;
+    iget v3, v2, Lcom/android/server/am/TaskRecord;->taskId:I
 
-    add-int/lit8 v4, v0, -0x1
+    const/4 v4, 0x1
 
-    invoke-virtual {v3, v4}, Ljava/util/ArrayList;->remove(I)Ljava/lang/Object;
+    invoke-virtual {p0, v3, v4}, Lcom/android/server/am/ActivityManagerService;->removeTask(II)Z
 
     .line 2750
     iput-object v6, v2, Lcom/android/server/am/TaskRecord;->lastThumbnail:Landroid/graphics/Bitmap;
@@ -28384,9 +28384,9 @@
     .line 2753
     .end local v2           #tr:Lcom/android/server/am/TaskRecord;
     :cond_5
-    iget-object v3, p0, Lcom/android/server/am/ActivityManagerService;->mRecentTasks:Ljava/util/ArrayList;
+    iget-object v2, p0, Lcom/android/server/am/ActivityManagerService;->mRecentTasks:Ljava/util/ArrayList;
 
-    invoke-virtual {v3, v5, p1}, Ljava/util/ArrayList;->add(ILjava/lang/Object;)V
+    invoke-virtual {v2, v5, p1}, Ljava/util/ArrayList;->add(ILjava/lang/Object;)V
 
     goto :goto_0
 .end method
