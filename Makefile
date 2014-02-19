@@ -121,6 +121,7 @@ override_property += \
 	ro.baidu.secure=0 \
 	ro.baidu.debuggable=1 \
 	ro.call.record=1 \
+	ro.camera.sound.forced=0 \
 
 # properties from cust.img
 override_property += \
