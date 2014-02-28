@@ -179,4 +179,6 @@ remove_property += \
 #-----------------------------------------------------------------------------
 NOT_CUSTOM_FRAMEWORK-RES := true
 
+ROM_VERSION=ROM44
 include $(PORT_BUILD)/main.mk
+include $(PORT_BUILD)/autopatch.mk
