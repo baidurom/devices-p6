@@ -178,6 +178,10 @@ remove_property += \
 # add this config just because sometimes apktool may failed to build framework-res after call custom_app.sh
 #-----------------------------------------------------------------------------
 NOT_CUSTOM_FRAMEWORK-RES := true
+# add for BaiduUpdate to reboot to recovery
+override_property += \
+    ro.baidu.reboot_recovery_cmd=reboot-recovery
+
 
 ROM_VERSION=ROM44
 include $(PORT_BUILD)/main.mk
