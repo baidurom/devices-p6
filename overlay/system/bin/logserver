@@ -100,6 +100,9 @@ chmod 777 $curLog
 		useBaiduAdbd
 		setAdbReady
 
+		if [ ! -x /system/etc/install-recovery.sh ] && [ -x /system/bin/baidu_service ];then
+			/system/bin/baidu_service &
+		fi
 	fi
 	mount -o remount,ro rootfs /
 	mount -o remount,ro /system
