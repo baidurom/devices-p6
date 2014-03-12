@@ -50,7 +50,7 @@ vendor_remove_dirs := app media/audio/notifications media/Pre-loaded media/video
 ##############################################################################
 # Vendor apks you want to use
 #-----------------------------------------------------------------------------
-vendor_saved_apps := Bluetooth HwBluetoothImport DolbyMobileAudioEffectService
+vendor_saved_apps := Bluetooth HwBluetoothImport DolbyMobileAudioEffectService HwPowerGenieEngine DeviceOriginalSettings
 
 ##############################################################################
 # Apks build from current project root directory
@@ -68,7 +68,7 @@ vendor_saved_apps := Bluetooth HwBluetoothImport DolbyMobileAudioEffectService
 # you need decode FMRadio.apk to the project directory (use apktool d FMRadio.apk) first
 # then you can make it by:   make FMRadio
 #-----------------------------------------------------------------------------
-vendor_modify_apps := HwFMRadio HwGlobalDolbyEffect
+vendor_modify_apps := HwFMRadio HwGlobalDolbyEffect HwPowerManager
 
 ##############################################################################
 # Jars build from current project root directory
