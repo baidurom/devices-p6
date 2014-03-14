@@ -182,7 +182,5 @@ NOT_CUSTOM_FRAMEWORK-RES := true
 override_property += \
     ro.baidu.reboot_recovery_cmd=reboot-recovery
 
-
-ROM_VERSION=ROM44
 include $(PORT_BUILD)/main.mk
 include $(PORT_BUILD)/autopatch.mk
