@@ -118,10 +118,11 @@ baidu_modify_jars := android.policy
 override_property += \
     ro.baidu.default_write.settable=true \
     ro.baidu.recovery.pixelformat=RGB_565 \
-	ro.baidu.secure=0 \
-	ro.baidu.debuggable=1 \
-	ro.call.record=1 \
-	ro.camera.sound.forced=0 \
+    ro.baidu.secure=0 \
+    ro.baidu.debuggable=1 \
+    ro.call.record=1 \
+    ro.camera.sound.forced=0 \
+    ro.baidu.asec.type=1
 
 # properties from cust.img
 override_property += \
