@@ -118,6 +118,7 @@ baidu_modify_jars := android.policy
 override_property += \
     ro.baidu.default_write.settable=true \
     ro.baidu.recovery.pixelformat=RGB_565 \
+    ro.baidu.2nd_storage.format=enable \
     ro.baidu.secure=0 \
     ro.baidu.debuggable=1 \
     ro.call.record=1 \
