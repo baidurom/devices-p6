@@ -54,6 +54,12 @@
     <string name="menu_title_valid_all_new">TOUT ACTIVER</string>
     <string name="menu_title_invalid_all_new">TOUT DESACTIVER</string>
     <string name="menu_title_select_all">Toutes</string>
+    <string name="backgroundapp_stop_apps">FERMER LES APPS</string>
+    <string name="list_text_wakelock_hint">"Cette app fonctionne en arrière-plan et continue d'utiliser les ressources de traitement, ce qui consomme beaucoup d'énergie."</string>
+    <string name="notification_ignore">Ignorer cette app</string>
+    <string name="notification_stop_app">"Fermer l'app"</string>
+    <string name="backgroundapp_discription_content">"Vous pouvez limiter le nombre d'applications exécutées en arrière-plan depuis Energie > Gestionnaire d'apps en arrière-plan."</string>
+    <string name="genieengine_dailog_ok">OK</string>
     <string name="consume_detail_button">Surveiller</string>
     <string name="conversion_minute">m</string>
     <string name="conversion_minute_short">m</string>

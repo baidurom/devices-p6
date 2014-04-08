@@ -189,6 +189,138 @@
     return-object v0
 .end method
 
+.method private ensureForbiddenItemContain(Ljava/util/Set;)V
+    .locals 8
+    .parameter
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "(",
+            "Ljava/util/Set",
+            "<",
+            "Ljava/lang/String;",
+            ">;)V"
+        }
+    .end annotation
+
+    .prologue
+    .local p1, mForbiddenApps:Ljava/util/Set;,"Ljava/util/Set<Ljava/lang/String;>;"
+    invoke-virtual {p0}, Lcom/huawei/android/hwpowermanager/BootApplicationActivity;->getPackageManager()Landroid/content/pm/PackageManager;
+
+    move-result-object v4
+
+    .local v4, mPm:Landroid/content/pm/PackageManager;
+    new-instance v3, Ljava/util/ArrayList;
+
+    invoke-direct {v3}, Ljava/util/ArrayList;-><init>()V
+
+    .local v3, mAllBootListPkgName:Ljava/util/ArrayList;,"Ljava/util/ArrayList<Ljava/lang/String;>;"
+    sget-object v7, Lcom/huawei/android/hwpowermanager/BootApplicationActivity;->sAllBootPkgList:Ljava/util/ArrayList;
+
+    invoke-virtual {v7}, Ljava/util/ArrayList;->iterator()Ljava/util/Iterator;
+
+    move-result-object v2
+
+    .local v2, i$:Ljava/util/Iterator;
+    :goto_0
+    invoke-interface {v2}, Ljava/util/Iterator;->hasNext()Z
+
+    move-result v7
+
+    if-eqz v7, :cond_0
+
+    invoke-interface {v2}, Ljava/util/Iterator;->next()Ljava/lang/Object;
+
+    move-result-object v5
+
+    check-cast v5, Lcom/huawei/android/hwpowermanager/BootApplicationActivity$AppItem;
+
+    .local v5, tempAllBoot:Lcom/huawei/android/hwpowermanager/BootApplicationActivity$AppItem;
+    iget-object v7, v5, Lcom/huawei/android/hwpowermanager/BootApplicationActivity$AppItem;->mPkgName:Ljava/lang/String;
+
+    invoke-virtual {v3, v7}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
+
+    goto :goto_0
+
+    .end local v5           #tempAllBoot:Lcom/huawei/android/hwpowermanager/BootApplicationActivity$AppItem;
+    :cond_0
+    invoke-interface {p1}, Ljava/util/Set;->iterator()Ljava/util/Iterator;
+
+    move-result-object v2
+
+    :cond_1
+    :goto_1
+    invoke-interface {v2}, Ljava/util/Iterator;->hasNext()Z
+
+    move-result v7
+
+    if-eqz v7, :cond_2
+
+    invoke-interface {v2}, Ljava/util/Iterator;->next()Ljava/lang/Object;
+
+    move-result-object v6
+
+    check-cast v6, Ljava/lang/String;
+
+    .local v6, tempforbidden:Ljava/lang/String;
+    invoke-virtual {v3, v6}, Ljava/util/ArrayList;->contains(Ljava/lang/Object;)Z
+
+    move-result v7
+
+    if-nez v7, :cond_1
+
+    new-instance v1, Lcom/huawei/android/hwpowermanager/BootApplicationActivity$AppItem;
+
+    invoke-direct {v1}, Lcom/huawei/android/hwpowermanager/BootApplicationActivity$AppItem;-><init>()V
+
+    .local v1, forbiddenItem:Lcom/huawei/android/hwpowermanager/BootApplicationActivity$AppItem;
+    iput-object v6, v1, Lcom/huawei/android/hwpowermanager/BootApplicationActivity$AppItem;->mPkgName:Ljava/lang/String;
+
+    :try_start_0
+    invoke-virtual {v4, v6}, Landroid/content/pm/PackageManager;->getApplicationIcon(Ljava/lang/String;)Landroid/graphics/drawable/Drawable;
+
+    move-result-object v7
+
+    iput-object v7, v1, Lcom/huawei/android/hwpowermanager/BootApplicationActivity$AppItem;->mIcon:Landroid/graphics/drawable/Drawable;
+
+    const/4 v7, 0x0
+
+    invoke-virtual {v4, v6, v7}, Landroid/content/pm/PackageManager;->getApplicationInfo(Ljava/lang/String;I)Landroid/content/pm/ApplicationInfo;
+
+    move-result-object v7
+
+    invoke-virtual {v4, v7}, Landroid/content/pm/PackageManager;->getApplicationLabel(Landroid/content/pm/ApplicationInfo;)Ljava/lang/CharSequence;
+
+    move-result-object v7
+
+    iput-object v7, v1, Lcom/huawei/android/hwpowermanager/BootApplicationActivity$AppItem;->mLable:Ljava/lang/CharSequence;
+    :try_end_0
+    .catch Landroid/content/pm/PackageManager$NameNotFoundException; {:try_start_0 .. :try_end_0} :catch_0
+
+    const/4 v7, 0x1
+
+    iput-boolean v7, v1, Lcom/huawei/android/hwpowermanager/BootApplicationActivity$AppItem;->mNewEnable:Z
+
+    sget-object v7, Lcom/huawei/android/hwpowermanager/BootApplicationActivity;->sAllBootPkgList:Ljava/util/ArrayList;
+
+    invoke-virtual {v7, v1}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
+
+    goto :goto_1
+
+    :catch_0
+    move-exception v0
+
+    .local v0, e:Landroid/content/pm/PackageManager$NameNotFoundException;
+    invoke-virtual {v0}, Landroid/content/pm/PackageManager$NameNotFoundException;->printStackTrace()V
+
+    goto :goto_1
+
+    .end local v0           #e:Landroid/content/pm/PackageManager$NameNotFoundException;
+    .end local v1           #forbiddenItem:Lcom/huawei/android/hwpowermanager/BootApplicationActivity$AppItem;
+    .end local v6           #tempforbidden:Ljava/lang/String;
+    :cond_2
+    return-void
+.end method
+
 .method public static filterPackage(Ljava/util/ArrayList;Landroid/content/Context;)V
     .locals 12
     .parameter
@@ -1393,12 +1525,14 @@
 
     invoke-static {v0, v1}, Lcom/huawei/android/hwpowermanager/BootApplicationActivity;->filterPackage(Ljava/util/ArrayList;Landroid/content/Context;)V
 
-    .line 709
     monitor-exit v18
     :try_end_4
     .catchall {:try_start_4 .. :try_end_4} :catchall_2
 
-    .line 714
+    move-object/from16 v0, p0
+
+    invoke-direct {v0, v8}, Lcom/huawei/android/hwpowermanager/BootApplicationActivity;->ensureForbiddenItemContain(Ljava/util/Set;)V
+
     sget-object v17, Lcom/huawei/android/hwpowermanager/BootApplicationActivity;->sAllBootPkgList:Ljava/util/ArrayList;
 
     new-instance v18, Lcom/huawei/android/hwpowermanager/BootApplicationActivity$CompareNum;

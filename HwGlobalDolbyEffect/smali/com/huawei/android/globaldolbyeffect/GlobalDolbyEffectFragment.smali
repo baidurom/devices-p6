@@ -540,26 +540,28 @@
     .locals 2
 
     .prologue
-    .line 218
+    iget-object v0, p0, Lcom/huawei/android/globaldolbyeffect/GlobalDolbyEffectFragment;->mContext:Landroid/app/Activity;
+
+    iget-object v1, p0, Lcom/huawei/android/globaldolbyeffect/GlobalDolbyEffectFragment;->mHeadsetPlugReceiver:Landroid/content/BroadcastReceiver;
+
+    invoke-virtual {v0, v1}, Landroid/app/Activity;->unregisterReceiver(Landroid/content/BroadcastReceiver;)V
+
     iget-object v0, p0, Lcom/huawei/android/globaldolbyeffect/GlobalDolbyEffectFragment;->mDolbyClient:Landroid/media/dolby/DolbyMobileAudioEffectClient;
 
     if-eqz v0, :cond_0
 
-    .line 219
     iget-object v0, p0, Lcom/huawei/android/globaldolbyeffect/GlobalDolbyEffectFragment;->mDolbyClient:Landroid/media/dolby/DolbyMobileAudioEffectClient;
 
     iget-object v1, p0, Lcom/huawei/android/globaldolbyeffect/GlobalDolbyEffectFragment;->mContext:Landroid/app/Activity;
 
     invoke-virtual {v0, v1}, Landroid/media/dolby/DolbyMobileAudioEffectClient;->unBindFromRemoteRunningService(Landroid/app/Activity;)V
 
-    .line 220
     iget-object v0, p0, Lcom/huawei/android/globaldolbyeffect/GlobalDolbyEffectFragment;->mDolbyClient:Landroid/media/dolby/DolbyMobileAudioEffectClient;
 
     iget-object v1, p0, Lcom/huawei/android/globaldolbyeffect/GlobalDolbyEffectFragment;->callback:Landroid/media/dolby/DolbyMobileClientCallbacks;
 
     invoke-virtual {v0, v1}, Landroid/media/dolby/DolbyMobileAudioEffectClient;->unregisterCallback(Landroid/media/dolby/DolbyMobileClientCallbacks;)V
 
-    .line 222
     :cond_0
     iget-object v0, p0, Lcom/huawei/android/globaldolbyeffect/GlobalDolbyEffectFragment;->mHeadsetPlugReceiver:Landroid/content/BroadcastReceiver;
 

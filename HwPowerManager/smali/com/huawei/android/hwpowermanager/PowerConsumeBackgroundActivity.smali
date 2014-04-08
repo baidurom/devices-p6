@@ -449,162 +449,210 @@
 .end method
 
 .method private forceStopPackageAndSyncSaving()V
-    .locals 9
+    .locals 15
 
     .prologue
-    .line 338
-    iget-object v5, p0, Lcom/huawei/android/hwpowermanager/PowerConsumeBackgroundActivity;->checkedItemName:Ljava/util/ArrayList;
+    iget-object v11, p0, Lcom/huawei/android/hwpowermanager/PowerConsumeBackgroundActivity;->checkedItemName:Ljava/util/ArrayList;
 
-    invoke-virtual {v5}, Ljava/util/ArrayList;->size()I
-
-    move-result v2
-
-    .line 340
-    .local v2, mCheckedNameSize:I
-    new-instance v3, Ljava/util/ArrayList;
-
-    invoke-direct {v3}, Ljava/util/ArrayList;-><init>()V
-
-    .line 343
-    .local v3, mPackageName:Ljava/util/ArrayList;,"Ljava/util/ArrayList<Ljava/lang/String;>;"
-    const/4 v1, 0x0
-
-    .local v1, i:I
-    :goto_0
-    if-ge v1, v2, :cond_0
-
-    .line 344
-    :try_start_0
-    iget-object v5, p0, Lcom/huawei/android/hwpowermanager/PowerConsumeBackgroundActivity;->checkedItemName:Ljava/util/ArrayList;
-
-    invoke-virtual {v5, v1}, Ljava/util/ArrayList;->get(I)Ljava/lang/Object;
-
-    move-result-object v5
-
-    invoke-virtual {v3, v5}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
-
-    .line 343
-    add-int/lit8 v1, v1, 0x1
-
-    goto :goto_0
-
-    .line 347
-    :catch_0
-    move-exception v0
-
-    .line 348
-    .local v0, e:Ljava/lang/Exception;
-    invoke-virtual {v0}, Ljava/lang/Exception;->printStackTrace()V
-
-    .line 351
-    .end local v0           #e:Ljava/lang/Exception;
-    :cond_0
-    if-eqz v3, :cond_1
-
-    invoke-virtual {v3}, Ljava/util/ArrayList;->isEmpty()Z
+    invoke-virtual {v11}, Ljava/util/ArrayList;->size()I
 
     move-result v5
 
-    if-nez v5, :cond_1
+    .local v5, mCheckedNameSize:I
+    new-instance v6, Ljava/util/ArrayList;
 
-    .line 352
+    invoke-direct {v6}, Ljava/util/ArrayList;-><init>()V
+
+    .local v6, mPackageName:Ljava/util/ArrayList;,"Ljava/util/ArrayList<Ljava/lang/String;>;"
+    iget-object v11, p0, Lcom/huawei/android/hwpowermanager/PowerConsumeBackgroundActivity;->mContext:Landroid/content/Context;
+
+    invoke-virtual {v11}, Landroid/content/Context;->getPackageManager()Landroid/content/pm/PackageManager;
+
+    move-result-object v8
+
+    .local v8, pm:Landroid/content/pm/PackageManager;
+    const/4 v7, 0x0
+
+    .local v7, pkaNames:[Ljava/lang/String;
+    const/4 v2, 0x0
+
+    .local v2, i:I
+    :goto_0
+    if-ge v2, v5, :cond_2
+
+    .line 344
+    :try_start_0
+    iget-object v12, p0, Lcom/huawei/android/hwpowermanager/PowerConsumeBackgroundActivity;->mContext:Landroid/content/Context;
+
+    iget-object v11, p0, Lcom/huawei/android/hwpowermanager/PowerConsumeBackgroundActivity;->checkedItemName:Ljava/util/ArrayList;
+
+    invoke-virtual {v11, v2}, Ljava/util/ArrayList;->get(I)Ljava/lang/Object;
+
+    move-result-object v11
+
+    check-cast v11, Ljava/lang/String;
+
+    invoke-static {v12, v11}, Lcom/huawei/android/hwpowermanager/util/SavingSettingUtil;->getAppInfoByPackageName(Landroid/content/Context;Ljava/lang/String;)Landroid/content/pm/ApplicationInfo;
+
+    move-result-object v11
+
+    iget v11, v11, Landroid/content/pm/ApplicationInfo;->uid:I
+
+    invoke-virtual {v8, v11}, Landroid/content/pm/PackageManager;->getPackagesForUid(I)[Ljava/lang/String;
+
+    move-result-object v7
+
+    array-length v11, v7
+
+    const/4 v12, 0x1
+
+    if-le v11, v12, :cond_0
+
+    move-object v0, v7
+
+    .local v0, arr$:[Ljava/lang/String;
+    array-length v4, v0
+
+    .local v4, len$:I
+    const/4 v3, 0x0
+
+    .local v3, i$:I
+    :goto_1
+    if-ge v3, v4, :cond_1
+
+    aget-object v10, v0, v3
+
+    .local v10, temp:Ljava/lang/String;
+    invoke-virtual {v6, v10}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
+
+    add-int/lit8 v3, v3, 0x1
+
+    goto :goto_1
+
+    .end local v0           #arr$:[Ljava/lang/String;
+    .end local v3           #i$:I
+    .end local v4           #len$:I
+    .end local v10           #temp:Ljava/lang/String;
+    :cond_0
+    iget-object v11, p0, Lcom/huawei/android/hwpowermanager/PowerConsumeBackgroundActivity;->checkedItemName:Ljava/util/ArrayList;
+
+    invoke-virtual {v11, v2}, Ljava/util/ArrayList;->get(I)Ljava/lang/Object;
+
+    move-result-object v11
+
+    invoke-virtual {v6, v11}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
+    :try_end_0
+    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+
+    :cond_1
+    add-int/lit8 v2, v2, 0x1
+
+    goto :goto_0
+
+    :catch_0
+    move-exception v1
+
+    .local v1, e:Ljava/lang/Exception;
+    invoke-virtual {v1}, Ljava/lang/Exception;->printStackTrace()V
+
+    .end local v1           #e:Ljava/lang/Exception;
+    :cond_2
+    if-eqz v6, :cond_3
+
+    invoke-virtual {v6}, Ljava/util/ArrayList;->isEmpty()Z
+
+    move-result v11
+
+    if-nez v11, :cond_3
+
     invoke-virtual {p0}, Lcom/huawei/android/hwpowermanager/PowerConsumeBackgroundActivity;->getApplicationContext()Landroid/content/Context;
 
-    move-result-object v5
+    move-result-object v11
 
-    invoke-static {v5, v3}, Lcom/huawei/android/hwpowermanager/util/SavingSettingUtil;->forceStopPackageAndSyncSaving(Landroid/content/Context;Ljava/util/ArrayList;)V
+    invoke-static {v11, v6}, Lcom/huawei/android/hwpowermanager/util/SavingSettingUtil;->forceStopPackageAndSyncSaving(Landroid/content/Context;Ljava/util/ArrayList;)V
 
-    .line 355
-    :cond_1
+    :cond_3
     invoke-virtual {p0}, Lcom/huawei/android/hwpowermanager/PowerConsumeBackgroundActivity;->getIntent()Landroid/content/Intent;
 
-    move-result-object v4
+    move-result-object v9
 
-    .line 356
-    .local v4, recIntent:Landroid/content/Intent;
-    iget-object v5, p0, Lcom/huawei/android/hwpowermanager/PowerConsumeBackgroundActivity;->mPkgNameFromNotify:Ljava/lang/String;
+    .local v9, recIntent:Landroid/content/Intent;
+    iget-object v11, p0, Lcom/huawei/android/hwpowermanager/PowerConsumeBackgroundActivity;->mPkgNameFromNotify:Ljava/lang/String;
 
-    if-eqz v5, :cond_2
+    if-eqz v11, :cond_4
 
-    .line 357
-    const-string v5, "pkgName"
+    const-string v11, "pkgName"
 
-    invoke-virtual {v4, v5}, Landroid/content/Intent;->removeExtra(Ljava/lang/String;)V
+    invoke-virtual {v9, v11}, Landroid/content/Intent;->removeExtra(Ljava/lang/String;)V
 
-    .line 366
-    :cond_2
-    iget-object v5, p0, Lcom/huawei/android/hwpowermanager/PowerConsumeBackgroundActivity;->mBackgroundAppConsumeAdapter:Lcom/huawei/android/hwpowermanager/adapter/BackgroundAppPowerConsumeAdapter;
+    :cond_4
+    iget-object v11, p0, Lcom/huawei/android/hwpowermanager/PowerConsumeBackgroundActivity;->mBackgroundAppConsumeAdapter:Lcom/huawei/android/hwpowermanager/adapter/BackgroundAppPowerConsumeAdapter;
 
-    if-eqz v5, :cond_3
+    if-eqz v11, :cond_5
 
-    .line 367
-    iget-object v5, p0, Lcom/huawei/android/hwpowermanager/PowerConsumeBackgroundActivity;->mBackgroundAppConsumeAdapter:Lcom/huawei/android/hwpowermanager/adapter/BackgroundAppPowerConsumeAdapter;
+    iget-object v11, p0, Lcom/huawei/android/hwpowermanager/PowerConsumeBackgroundActivity;->mBackgroundAppConsumeAdapter:Lcom/huawei/android/hwpowermanager/adapter/BackgroundAppPowerConsumeAdapter;
 
-    invoke-virtual {v5}, Lcom/huawei/android/hwpowermanager/adapter/BackgroundAppPowerConsumeAdapter;->notifyDataSetChanged()V
+    invoke-virtual {v11}, Lcom/huawei/android/hwpowermanager/adapter/BackgroundAppPowerConsumeAdapter;->notifyDataSetChanged()V
 
-    .line 369
-    :cond_3
-    iget-object v5, p0, Lcom/huawei/android/hwpowermanager/PowerConsumeBackgroundActivity;->checkedItemName:Ljava/util/ArrayList;
+    :cond_5
+    iget-object v11, p0, Lcom/huawei/android/hwpowermanager/PowerConsumeBackgroundActivity;->checkedItemName:Ljava/util/ArrayList;
 
-    invoke-virtual {v5}, Ljava/util/ArrayList;->clear()V
+    invoke-virtual {v11}, Ljava/util/ArrayList;->clear()V
 
-    .line 372
     invoke-virtual {p0}, Lcom/huawei/android/hwpowermanager/PowerConsumeBackgroundActivity;->getApplication()Landroid/app/Application;
 
-    move-result-object v5
+    move-result-object v11
 
-    new-instance v6, Ljava/lang/StringBuilder;
+    new-instance v12, Ljava/lang/StringBuilder;
 
-    invoke-direct {v6}, Ljava/lang/StringBuilder;-><init>()V
+    invoke-direct {v12}, Ljava/lang/StringBuilder;-><init>()V
 
     invoke-direct {p0}, Lcom/huawei/android/hwpowermanager/PowerConsumeBackgroundActivity;->getCheckedNumer()I
 
-    move-result v7
+    move-result v13
 
-    invoke-virtual {v6, v7}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+    invoke-virtual {v12, v13}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
 
-    move-result-object v6
+    move-result-object v12
 
-    const-string v7, " "
+    const-string v13, " "
 
-    invoke-virtual {v6, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-virtual {v12, v13}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    move-result-object v6
+    move-result-object v12
 
     invoke-virtual {p0}, Lcom/huawei/android/hwpowermanager/PowerConsumeBackgroundActivity;->getResources()Landroid/content/res/Resources;
 
-    move-result-object v7
+    move-result-object v13
 
-    const v8, 0x7f090045
+    const v14, 0x7f090045
 
-    invoke-virtual {v7, v8}, Landroid/content/res/Resources;->getString(I)Ljava/lang/String;
+    invoke-virtual {v13, v14}, Landroid/content/res/Resources;->getString(I)Ljava/lang/String;
 
-    move-result-object v7
+    move-result-object v13
 
-    invoke-virtual {v6, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-virtual {v12, v13}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    move-result-object v6
+    move-result-object v12
 
-    invoke-virtual {v6}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+    invoke-virtual {v12}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
-    move-result-object v6
+    move-result-object v12
 
-    const/4 v7, 0x1
+    const/4 v13, 0x1
 
-    invoke-static {v5, v6, v7}, Landroid/widget/Toast;->makeText(Landroid/content/Context;Ljava/lang/CharSequence;I)Landroid/widget/Toast;
+    invoke-static {v11, v12, v13}, Landroid/widget/Toast;->makeText(Landroid/content/Context;Ljava/lang/CharSequence;I)Landroid/widget/Toast;
 
-    move-result-object v5
+    move-result-object v11
 
-    invoke-virtual {v5}, Landroid/widget/Toast;->show()V
+    invoke-virtual {v11}, Landroid/widget/Toast;->show()V
 
     .line 374
     return-void
 .end method
 
 .method private getBackgroundConsumeData()Ljava/util/List;
-    .locals 21
+    .locals 20
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "()",
@@ -619,16 +667,15 @@
     .end annotation
 
     .prologue
-    .line 137
-    new-instance v17, Lcom/huawei/android/hwpowermanager/model/PowerManagementModel;
+    new-instance v16, Lcom/huawei/android/hwpowermanager/model/PowerManagementModel;
 
-    move-object/from16 v0, v17
+    move-object/from16 v0, v16
 
     move-object/from16 v1, p0
 
     invoke-direct {v0, v1}, Lcom/huawei/android/hwpowermanager/model/PowerManagementModel;-><init>(Landroid/content/Context;)V
 
-    invoke-virtual/range {v17 .. v17}, Lcom/huawei/android/hwpowermanager/model/PowerManagementModel;->computerPowerBgConsumption()Ljava/util/ArrayList;
+    invoke-virtual/range {v16 .. v16}, Lcom/huawei/android/hwpowermanager/model/PowerManagementModel;->computerPowerBgConsumption()Ljava/util/ArrayList;
 
     move-result-object v5
 
@@ -638,14 +685,282 @@
 
     iget-object v0, v0, Lcom/huawei/android/hwpowermanager/PowerConsumeBackgroundActivity;->mContext:Landroid/content/Context;
 
-    move-object/from16 v17, v0
+    move-object/from16 v16, v0
 
-    invoke-virtual/range {v17 .. v17}, Landroid/content/Context;->getPackageManager()Landroid/content/pm/PackageManager;
+    invoke-virtual/range {v16 .. v16}, Landroid/content/Context;->getPackageManager()Landroid/content/pm/PackageManager;
+
+    move-result-object v12
+
+    .local v12, pm:Landroid/content/pm/PackageManager;
+    move-object/from16 v0, p0
+
+    iget-object v0, v0, Lcom/huawei/android/hwpowermanager/PowerConsumeBackgroundActivity;->mContext:Landroid/content/Context;
+
+    move-object/from16 v16, v0
+
+    invoke-virtual/range {v16 .. v16}, Landroid/content/Context;->getResources()Landroid/content/res/Resources;
+
+    move-result-object v16
+
+    const v17, 0x7f09003b
+
+    invoke-virtual/range {v16 .. v17}, Landroid/content/res/Resources;->getString(I)Ljava/lang/String;
+
+    move-result-object v8
+
+    .local v8, mHighlevel:Ljava/lang/String;
+    const-string v9, ""
+
+    .local v9, mLowlevel:Ljava/lang/String;
+    const/4 v11, 0x0
+
+    .local v11, mPackageName:Ljava/lang/String;
+    const/4 v10, 0x0
+
+    .local v10, mPackageLabel:Ljava/lang/String;
+    invoke-virtual/range {p0 .. p0}, Lcom/huawei/android/hwpowermanager/PowerConsumeBackgroundActivity;->getIntent()Landroid/content/Intent;
 
     move-result-object v13
 
-    .line 139
-    .local v13, pm:Landroid/content/pm/PackageManager;
+    .local v13, recIntent:Landroid/content/Intent;
+    const/4 v7, 0x0
+
+    .local v7, isAlreadyContain:Z
+    const-string v16, "pkgName"
+
+    move-object/from16 v0, v16
+
+    invoke-virtual {v13, v0}, Landroid/content/Intent;->getStringExtra(Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v16
+
+    move-object/from16 v0, v16
+
+    move-object/from16 v1, p0
+
+    iput-object v0, v1, Lcom/huawei/android/hwpowermanager/PowerConsumeBackgroundActivity;->mPkgNameFromNotify:Ljava/lang/String;
+
+    new-instance v16, Lcom/huawei/android/hwpowermanager/PowerConsumeBackgroundActivity$ApplicationBgComparator;
+
+    const/16 v17, 0x0
+
+    invoke-direct/range {v16 .. v17}, Lcom/huawei/android/hwpowermanager/PowerConsumeBackgroundActivity$ApplicationBgComparator;-><init>(Lcom/huawei/android/hwpowermanager/PowerConsumeBackgroundActivity$1;)V
+
+    move-object/from16 v0, v16
+
+    invoke-static {v5, v0}, Ljava/util/Collections;->sort(Ljava/util/List;Ljava/util/Comparator;)V
+
+    .line 148
+    move-object/from16 v0, p0
+
+    iget-object v0, v0, Lcom/huawei/android/hwpowermanager/PowerConsumeBackgroundActivity;->dataList:Ljava/util/List;
+
+    move-object/from16 v16, v0
+
+    invoke-interface/range {v16 .. v16}, Ljava/util/List;->clear()V
+
+    .line 150
+    invoke-virtual {v5}, Ljava/util/ArrayList;->iterator()Ljava/util/Iterator;
+
+    move-result-object v6
+
+    .local v6, i$:Ljava/util/Iterator;
+    :cond_0
+    :goto_0
+    invoke-interface {v6}, Ljava/util/Iterator;->hasNext()Z
+
+    move-result v16
+
+    if-eqz v16, :cond_3
+
+    invoke-interface {v6}, Ljava/util/Iterator;->next()Ljava/lang/Object;
+
+    move-result-object v15
+
+    check-cast v15, Lcom/huawei/android/hwpowermanager/model/PowerManagementModel$UidAndPower;
+
+    .local v15, uap:Lcom/huawei/android/hwpowermanager/model/PowerManagementModel$UidAndPower;
+    iget v0, v15, Lcom/huawei/android/hwpowermanager/model/PowerManagementModel$UidAndPower;->uid:I
+
+    move/from16 v16, v0
+
+    move-object/from16 v0, p0
+
+    move/from16 v1, v16
+
+    invoke-static {v0, v1}, Lcom/huawei/android/hwpowermanager/util/SavingSettingUtil;->getAppInfoByUid(Landroid/content/Context;I)Ljava/util/ArrayList;
+
+    move-result-object v4
+
+    .line 154
+    .local v4, appInfos:Ljava/util/ArrayList;,"Ljava/util/ArrayList<Landroid/content/pm/ApplicationInfo;>;"
+    if-eqz v4, :cond_0
+
+    iget-wide v0, v15, Lcom/huawei/android/hwpowermanager/model/PowerManagementModel$UidAndPower;->power:D
+
+    move-wide/from16 v16, v0
+
+    invoke-static {}, Lcom/huawei/android/hwpowermanager/util/SavingSettingUtil;->getApp_show_level()I
+
+    move-result v18
+
+    move/from16 v0, v18
+
+    mul-int/lit16 v0, v0, 0xe10
+
+    move/from16 v18, v0
+
+    move/from16 v0, v18
+
+    int-to-double v0, v0
+
+    move-wide/from16 v18, v0
+
+    cmpg-double v16, v16, v18
+
+    if-ltz v16, :cond_0
+
+    iget v0, v15, Lcom/huawei/android/hwpowermanager/model/PowerManagementModel$UidAndPower;->uid:I
+
+    move/from16 v16, v0
+
+    const/16 v17, 0x3e8
+
+    move/from16 v0, v16
+
+    move/from16 v1, v17
+
+    if-eq v0, v1, :cond_0
+
+    const/16 v16, 0x0
+
+    move/from16 v0, v16
+
+    invoke-virtual {v4, v0}, Ljava/util/ArrayList;->get(I)Ljava/lang/Object;
+
+    move-result-object v3
+
+    check-cast v3, Landroid/content/pm/ApplicationInfo;
+
+    .local v3, appInfo:Landroid/content/pm/ApplicationInfo;
+    if-eqz v3, :cond_0
+
+    iget-object v11, v3, Landroid/content/pm/ApplicationInfo;->packageName:Ljava/lang/String;
+
+    invoke-virtual/range {p0 .. p0}, Lcom/huawei/android/hwpowermanager/PowerConsumeBackgroundActivity;->getPackageName()Ljava/lang/String;
+
+    move-result-object v16
+
+    move-object/from16 v0, v16
+
+    invoke-virtual {v11, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v16
+
+    if-nez v16, :cond_0
+
+    move-object/from16 v0, p0
+
+    iget-object v0, v0, Lcom/huawei/android/hwpowermanager/PowerConsumeBackgroundActivity;->mContext:Landroid/content/Context;
+
+    move-object/from16 v16, v0
+
+    move-object/from16 v0, v16
+
+    invoke-static {v11, v0}, Lcom/huawei/android/hwpowermanager/util/SavingSettingUtil;->isSystemApp(Ljava/lang/String;Landroid/content/Context;)Z
+
+    move-result v16
+
+    if-nez v16, :cond_0
+
+    new-instance v14, Ljava/util/HashMap;
+
+    invoke-direct {v14}, Ljava/util/HashMap;-><init>()V
+
+    .local v14, serviceMap:Ljava/util/Map;,"Ljava/util/Map<Ljava/lang/String;Ljava/lang/Object;>;"
+    invoke-virtual/range {p0 .. p0}, Lcom/huawei/android/hwpowermanager/PowerConsumeBackgroundActivity;->getPackageManager()Landroid/content/pm/PackageManager;
+
+    move-result-object v16
+
+    move-object/from16 v0, v16
+
+    invoke-virtual {v3, v0}, Landroid/content/pm/ApplicationInfo;->loadLabel(Landroid/content/pm/PackageManager;)Ljava/lang/CharSequence;
+
+    move-result-object v16
+
+    invoke-virtual/range {v16 .. v16}, Ljava/lang/Object;->toString()Ljava/lang/String;
+
+    move-result-object v16
+
+    invoke-static/range {v16 .. v16}, Lcom/huawei/android/hwpowermanager/util/SavingSettingUtil;->toShortName(Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v10
+
+    const-string v16, "icon_app"
+
+    invoke-virtual {v12, v3}, Landroid/content/pm/PackageManager;->getApplicationIcon(Landroid/content/pm/ApplicationInfo;)Landroid/graphics/drawable/Drawable;
+
+    move-result-object v17
+
+    move-object/from16 v0, v16
+
+    move-object/from16 v1, v17
+
+    invoke-interface {v14, v0, v1}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+
+    const-string v16, "title"
+
+    move-object/from16 v0, v16
+
+    invoke-interface {v14, v0, v10}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+
+    const-string v16, "packageName"
+
+    .line 174
+    move-object/from16 v0, v16
+
+    invoke-interface {v14, v0, v11}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+
+    const-string v16, "PowerConsumeBackgroundActivity"
+
+    new-instance v17, Ljava/lang/StringBuilder;
+
+    invoke-direct/range {v17 .. v17}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v18, "mPackageName is "
+
+    invoke-virtual/range {v17 .. v18}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v17
+
+    move-object/from16 v0, v17
+
+    invoke-virtual {v0, v11}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v17
+
+    invoke-virtual/range {v17 .. v17}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v17
+
+    invoke-static/range {v16 .. v17}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
+
+    iget-wide v0, v15, Lcom/huawei/android/hwpowermanager/model/PowerManagementModel$UidAndPower;->power:D
+
+    move-wide/from16 v16, v0
+
+    move-object/from16 v0, p0
+
+    move-wide/from16 v1, v16
+
+    invoke-direct {v0, v1, v2}, Lcom/huawei/android/hwpowermanager/PowerConsumeBackgroundActivity;->isNeedRed(D)Z
+
+    move-result v16
+
+    if-eqz v16, :cond_1
+
+    const-string v16, "consume_level"
+
     move-object/from16 v0, p0
 
     iget-object v0, v0, Lcom/huawei/android/hwpowermanager/PowerConsumeBackgroundActivity;->mContext:Landroid/content/Context;
@@ -656,548 +971,242 @@
 
     move-result-object v17
 
-    const v18, 0x7f09003b
+    const v18, 0x7f02000b
 
-    invoke-virtual/range {v17 .. v18}, Landroid/content/res/Resources;->getString(I)Ljava/lang/String;
-
-    move-result-object v9
-
-    .line 140
-    .local v9, mHighlevel:Ljava/lang/String;
-    const-string v10, ""
-
-    .line 141
-    .local v10, mLowlevel:Ljava/lang/String;
-    const/4 v12, 0x0
-
-    .line 142
-    .local v12, mPackageName:Ljava/lang/String;
-    const/4 v11, 0x0
-
-    .line 143
-    .local v11, mPackageLabel:Ljava/lang/String;
-    invoke-virtual/range {p0 .. p0}, Lcom/huawei/android/hwpowermanager/PowerConsumeBackgroundActivity;->getIntent()Landroid/content/Intent;
-
-    move-result-object v14
-
-    .line 144
-    .local v14, recIntent:Landroid/content/Intent;
-    const/4 v8, 0x0
-
-    .line 145
-    .local v8, isAlreadyContain:Z
-    const-string v17, "pkgName"
-
-    move-object/from16 v0, v17
-
-    invoke-virtual {v14, v0}, Landroid/content/Intent;->getStringExtra(Ljava/lang/String;)Ljava/lang/String;
+    invoke-virtual/range {v17 .. v18}, Landroid/content/res/Resources;->getDrawable(I)Landroid/graphics/drawable/Drawable;
 
     move-result-object v17
 
-    move-object/from16 v0, v17
-
-    move-object/from16 v1, p0
-
-    iput-object v0, v1, Lcom/huawei/android/hwpowermanager/PowerConsumeBackgroundActivity;->mPkgNameFromNotify:Ljava/lang/String;
-
-    .line 147
-    new-instance v17, Lcom/huawei/android/hwpowermanager/PowerConsumeBackgroundActivity$ApplicationBgComparator;
-
-    const/16 v18, 0x0
-
-    invoke-direct/range {v17 .. v18}, Lcom/huawei/android/hwpowermanager/PowerConsumeBackgroundActivity$ApplicationBgComparator;-><init>(Lcom/huawei/android/hwpowermanager/PowerConsumeBackgroundActivity$1;)V
-
-    move-object/from16 v0, v17
-
-    invoke-static {v5, v0}, Ljava/util/Collections;->sort(Ljava/util/List;Ljava/util/Comparator;)V
-
-    .line 148
-    move-object/from16 v0, p0
-
-    iget-object v0, v0, Lcom/huawei/android/hwpowermanager/PowerConsumeBackgroundActivity;->dataList:Ljava/util/List;
-
-    move-object/from16 v17, v0
-
-    invoke-interface/range {v17 .. v17}, Ljava/util/List;->clear()V
-
-    .line 150
-    invoke-virtual {v5}, Ljava/util/ArrayList;->iterator()Ljava/util/Iterator;
-
-    move-result-object v6
-
-    :cond_0
-    :goto_0
-    invoke-interface {v6}, Ljava/util/Iterator;->hasNext()Z
-
-    move-result v17
-
-    if-eqz v17, :cond_5
-
-    invoke-interface {v6}, Ljava/util/Iterator;->next()Ljava/lang/Object;
-
-    move-result-object v16
-
-    check-cast v16, Lcom/huawei/android/hwpowermanager/model/PowerManagementModel$UidAndPower;
-
-    .line 152
-    .local v16, uap:Lcom/huawei/android/hwpowermanager/model/PowerManagementModel$UidAndPower;
     move-object/from16 v0, v16
 
-    iget v0, v0, Lcom/huawei/android/hwpowermanager/model/PowerManagementModel$UidAndPower;->uid:I
+    move-object/from16 v1, v17
 
-    move/from16 v17, v0
+    invoke-interface {v14, v0, v1}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
-    move-object/from16 v0, p0
-
-    move/from16 v1, v17
-
-    invoke-static {v0, v1}, Lcom/huawei/android/hwpowermanager/util/SavingSettingUtil;->getAppInfoByUid(Landroid/content/Context;I)Ljava/util/ArrayList;
-
-    move-result-object v4
-
-    .line 154
-    .local v4, appInfos:Ljava/util/ArrayList;,"Ljava/util/ArrayList<Landroid/content/pm/ApplicationInfo;>;"
-    if-eqz v4, :cond_0
+    const-string v16, "indicator"
 
     move-object/from16 v0, v16
 
-    iget-wide v0, v0, Lcom/huawei/android/hwpowermanager/model/PowerManagementModel$UidAndPower;->power:D
+    invoke-interface {v14, v0, v8}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
-    move-wide/from16 v17, v0
-
-    invoke-static {}, Lcom/huawei/android/hwpowermanager/util/SavingSettingUtil;->getApp_show_level()I
-
-    move-result v19
-
-    move/from16 v0, v19
-
-    mul-int/lit16 v0, v0, 0xe10
-
-    move/from16 v19, v0
-
-    move/from16 v0, v19
-
-    int-to-double v0, v0
-
-    move-wide/from16 v19, v0
-
-    cmpg-double v17, v17, v19
-
-    if-ltz v17, :cond_0
-
-    move-object/from16 v0, v16
-
-    iget v0, v0, Lcom/huawei/android/hwpowermanager/model/PowerManagementModel$UidAndPower;->uid:I
-
-    move/from16 v17, v0
-
-    const/16 v18, 0x3e8
-
-    move/from16 v0, v17
-
-    move/from16 v1, v18
-
-    if-eq v0, v1, :cond_0
-
-    .line 159
-    invoke-virtual {v4}, Ljava/util/ArrayList;->iterator()Ljava/util/Iterator;
-
-    move-result-object v7
-
-    .local v7, i$:Ljava/util/Iterator;
-    :cond_1
     :goto_1
-    invoke-interface {v7}, Ljava/util/Iterator;->hasNext()Z
+    iget-wide v0, v15, Lcom/huawei/android/hwpowermanager/model/PowerManagementModel$UidAndPower;->power:D
 
-    move-result v17
-
-    if-eqz v17, :cond_4
-
-    invoke-interface {v7}, Ljava/util/Iterator;->next()Ljava/lang/Object;
-
-    move-result-object v3
-
-    check-cast v3, Landroid/content/pm/ApplicationInfo;
-
-    .line 161
-    .local v3, appInfo:Landroid/content/pm/ApplicationInfo;
-    iget-object v12, v3, Landroid/content/pm/ApplicationInfo;->packageName:Ljava/lang/String;
-
-    .line 162
-    invoke-virtual/range {p0 .. p0}, Lcom/huawei/android/hwpowermanager/PowerConsumeBackgroundActivity;->getPackageName()Ljava/lang/String;
-
-    move-result-object v17
-
-    move-object/from16 v0, v17
-
-    invoke-virtual {v12, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
-
-    move-result v17
-
-    if-nez v17, :cond_1
-
-    .line 165
-    new-instance v15, Ljava/util/HashMap;
-
-    invoke-direct {v15}, Ljava/util/HashMap;-><init>()V
-
-    .line 166
-    .local v15, serviceMap:Ljava/util/Map;,"Ljava/util/Map<Ljava/lang/String;Ljava/lang/Object;>;"
-    invoke-virtual/range {p0 .. p0}, Lcom/huawei/android/hwpowermanager/PowerConsumeBackgroundActivity;->getPackageManager()Landroid/content/pm/PackageManager;
-
-    move-result-object v17
-
-    move-object/from16 v0, v17
-
-    invoke-virtual {v3, v0}, Landroid/content/pm/ApplicationInfo;->loadLabel(Landroid/content/pm/PackageManager;)Ljava/lang/CharSequence;
-
-    move-result-object v17
-
-    invoke-virtual/range {v17 .. v17}, Ljava/lang/Object;->toString()Ljava/lang/String;
-
-    move-result-object v17
-
-    invoke-static/range {v17 .. v17}, Lcom/huawei/android/hwpowermanager/util/SavingSettingUtil;->toShortName(Ljava/lang/String;)Ljava/lang/String;
-
-    move-result-object v11
-
-    .line 167
-    const-string v17, "icon_app"
-
-    invoke-virtual {v13, v3}, Landroid/content/pm/PackageManager;->getApplicationIcon(Landroid/content/pm/ApplicationInfo;)Landroid/graphics/drawable/Drawable;
-
-    move-result-object v18
-
-    move-object/from16 v0, v17
-
-    move-object/from16 v1, v18
-
-    invoke-interface {v15, v0, v1}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
-
-    .line 169
-    const-string v17, "title"
-
-    move-object/from16 v0, v17
-
-    invoke-interface {v15, v0, v11}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
-
-    .line 170
-    const-string v17, "packageName"
-
-    move-object/from16 v0, v17
-
-    invoke-interface {v15, v0, v12}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
-
-    .line 172
-    const-string v17, "PowerConsumeBackgroundActivity"
-
-    new-instance v18, Ljava/lang/StringBuilder;
-
-    invoke-direct/range {v18 .. v18}, Ljava/lang/StringBuilder;-><init>()V
-
-    const-string v19, "mPackageName is "
-
-    invoke-virtual/range {v18 .. v19}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v18
-
-    move-object/from16 v0, v18
-
-    invoke-virtual {v0, v12}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v18
-
-    invoke-virtual/range {v18 .. v18}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    move-result-object v18
-
-    invoke-static/range {v17 .. v18}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
-
-    .line 174
-    move-object/from16 v0, v16
-
-    iget-wide v0, v0, Lcom/huawei/android/hwpowermanager/model/PowerManagementModel$UidAndPower;->power:D
-
-    move-wide/from16 v17, v0
+    move-wide/from16 v16, v0
 
     move-object/from16 v0, p0
 
-    move-wide/from16 v1, v17
+    move-wide/from16 v1, v16
 
-    invoke-direct {v0, v1, v2}, Lcom/huawei/android/hwpowermanager/PowerConsumeBackgroundActivity;->isNeedRed(D)Z
+    invoke-direct {v0, v11, v1, v2}, Lcom/huawei/android/hwpowermanager/PowerConsumeBackgroundActivity;->isNeedChecked(Ljava/lang/String;D)Z
 
-    move-result v17
+    move-result v16
 
-    if-eqz v17, :cond_2
+    if-eqz v16, :cond_2
 
-    .line 175
-    const-string v17, "consume_level"
-
-    move-object/from16 v0, p0
-
-    iget-object v0, v0, Lcom/huawei/android/hwpowermanager/PowerConsumeBackgroundActivity;->mContext:Landroid/content/Context;
-
-    move-object/from16 v18, v0
-
-    invoke-virtual/range {v18 .. v18}, Landroid/content/Context;->getResources()Landroid/content/res/Resources;
-
-    move-result-object v18
-
-    const v19, 0x7f02000b
-
-    invoke-virtual/range {v18 .. v19}, Landroid/content/res/Resources;->getDrawable(I)Landroid/graphics/drawable/Drawable;
-
-    move-result-object v18
-
-    move-object/from16 v0, v17
-
-    move-object/from16 v1, v18
-
-    invoke-interface {v15, v0, v1}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
-
-    .line 176
-    const-string v17, "indicator"
-
-    move-object/from16 v0, v17
-
-    invoke-interface {v15, v0, v9}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
-
-    .line 182
-    :goto_2
-    move-object/from16 v0, v16
-
-    iget-wide v0, v0, Lcom/huawei/android/hwpowermanager/model/PowerManagementModel$UidAndPower;->power:D
-
-    move-wide/from16 v17, v0
-
-    move-object/from16 v0, p0
-
-    move-wide/from16 v1, v17
-
-    invoke-direct {v0, v12, v1, v2}, Lcom/huawei/android/hwpowermanager/PowerConsumeBackgroundActivity;->isNeedChecked(Ljava/lang/String;D)Z
-
-    move-result v17
-
-    if-eqz v17, :cond_3
-
-    .line 183
-    const-string v17, "switcher"
-
-    const/16 v18, 0x1
-
-    invoke-static/range {v18 .. v18}, Ljava/lang/Boolean;->valueOf(Z)Ljava/lang/Boolean;
-
-    move-result-object v18
-
-    move-object/from16 v0, v17
-
-    move-object/from16 v1, v18
-
-    invoke-interface {v15, v0, v1}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+    const-string v16, "switcher"
 
     .line 184
     const/16 v17, 0x1
 
+    invoke-static/range {v17 .. v17}, Ljava/lang/Boolean;->valueOf(Z)Ljava/lang/Boolean;
+
+    move-result-object v17
+
+    move-object/from16 v0, v16
+
+    move-object/from16 v1, v17
+
+    invoke-interface {v14, v0, v1}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+
+    const/16 v16, 0x1
+
     move-object/from16 v0, p0
 
-    move/from16 v1, v17
+    move/from16 v1, v16
 
-    invoke-direct {v0, v1, v12}, Lcom/huawei/android/hwpowermanager/PowerConsumeBackgroundActivity;->remarkCheckedItem(ZLjava/lang/String;)V
+    invoke-direct {v0, v1, v11}, Lcom/huawei/android/hwpowermanager/PowerConsumeBackgroundActivity;->remarkCheckedItem(ZLjava/lang/String;)V
 
-    .line 186
-    const-string v17, "PowerConsumeBackgroundActivity"
+    const-string v16, "PowerConsumeBackgroundActivity"
 
-    new-instance v18, Ljava/lang/StringBuilder;
+    new-instance v17, Ljava/lang/StringBuilder;
 
-    invoke-direct/range {v18 .. v18}, Ljava/lang/StringBuilder;-><init>()V
+    invoke-direct/range {v17 .. v17}, Ljava/lang/StringBuilder;-><init>()V
 
-    const-string v19, "checkedItemName.add("
+    const-string v18, "checkedItemName.add("
 
-    invoke-virtual/range {v18 .. v19}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-virtual/range {v17 .. v18}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    move-result-object v18
+    move-result-object v17
 
-    move-object/from16 v0, v18
+    move-object/from16 v0, v17
 
-    invoke-virtual {v0, v12}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-virtual {v0, v11}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    move-result-object v18
+    move-result-object v17
 
-    const-string v19, ")"
+    const-string v18, ")"
 
-    invoke-virtual/range {v18 .. v19}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-virtual/range {v17 .. v18}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    move-result-object v18
+    move-result-object v17
 
-    invoke-virtual/range {v18 .. v18}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+    invoke-virtual/range {v17 .. v17}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
-    move-result-object v18
+    move-result-object v17
 
-    invoke-static/range {v17 .. v18}, Landroid/util/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
+    invoke-static/range {v16 .. v17}, Landroid/util/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 193
-    :goto_3
+    :goto_2
     move-object/from16 v0, p0
 
     iget-object v0, v0, Lcom/huawei/android/hwpowermanager/PowerConsumeBackgroundActivity;->dataList:Ljava/util/List;
 
-    move-object/from16 v17, v0
+    move-object/from16 v16, v0
 
-    move-object/from16 v0, v17
+    move-object/from16 v0, v16
 
-    invoke-interface {v0, v15}, Ljava/util/List;->add(Ljava/lang/Object;)Z
+    invoke-interface {v0, v14}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    goto/16 :goto_1
+    goto/16 :goto_0
 
-    .line 178
-    :cond_2
-    const-string v17, "consume_level"
+    :cond_1
+    const-string v16, "consume_level"
 
     move-object/from16 v0, p0
 
     iget-object v0, v0, Lcom/huawei/android/hwpowermanager/PowerConsumeBackgroundActivity;->mContext:Landroid/content/Context;
 
-    move-object/from16 v18, v0
-
-    invoke-virtual/range {v18 .. v18}, Landroid/content/Context;->getResources()Landroid/content/res/Resources;
-
-    move-result-object v18
-
-    const v19, 0x7f02000c
-
-    invoke-virtual/range {v18 .. v19}, Landroid/content/res/Resources;->getDrawable(I)Landroid/graphics/drawable/Drawable;
-
-    move-result-object v18
-
-    move-object/from16 v0, v17
-
-    move-object/from16 v1, v18
-
-    invoke-interface {v15, v0, v1}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
-
-    .line 179
-    const-string v17, "indicator"
-
-    move-object/from16 v0, v17
-
-    invoke-interface {v15, v0, v10}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
-
-    goto :goto_2
-
-    .line 190
-    :cond_3
-    const-string v17, "switcher"
-
-    const/16 v18, 0x0
-
-    invoke-static/range {v18 .. v18}, Ljava/lang/Boolean;->valueOf(Z)Ljava/lang/Boolean;
-
-    move-result-object v18
-
-    move-object/from16 v0, v17
-
-    move-object/from16 v1, v18
-
-    invoke-interface {v15, v0, v1}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
-
-    .line 191
-    const/16 v17, 0x0
-
-    move-object/from16 v0, p0
-
-    move/from16 v1, v17
-
-    invoke-direct {v0, v1, v12}, Lcom/huawei/android/hwpowermanager/PowerConsumeBackgroundActivity;->remarkCheckedItem(ZLjava/lang/String;)V
-
-    goto :goto_3
-
-    .line 196
-    .end local v3           #appInfo:Landroid/content/pm/ApplicationInfo;
-    .end local v15           #serviceMap:Ljava/util/Map;,"Ljava/util/Map<Ljava/lang/String;Ljava/lang/Object;>;"
-    :cond_4
-    move-object/from16 v0, p0
-
-    iget-object v0, v0, Lcom/huawei/android/hwpowermanager/PowerConsumeBackgroundActivity;->mPkgNameFromNotify:Ljava/lang/String;
-
     move-object/from16 v17, v0
 
-    move-object/from16 v0, v17
+    invoke-virtual/range {v17 .. v17}, Landroid/content/Context;->getResources()Landroid/content/res/Resources;
 
-    invoke-virtual {v12, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+    move-result-object v17
 
-    move-result v17
+    const v18, 0x7f02000c
 
-    if-eqz v17, :cond_0
+    invoke-virtual/range {v17 .. v18}, Landroid/content/res/Resources;->getDrawable(I)Landroid/graphics/drawable/Drawable;
 
-    .line 197
-    const/4 v8, 0x1
+    move-result-object v17
 
-    goto/16 :goto_0
-
-    .line 201
-    .end local v4           #appInfos:Ljava/util/ArrayList;,"Ljava/util/ArrayList<Landroid/content/pm/ApplicationInfo;>;"
-    .end local v7           #i$:Ljava/util/Iterator;
-    .end local v16           #uap:Lcom/huawei/android/hwpowermanager/model/PowerManagementModel$UidAndPower;
-    :cond_5
-    if-nez v8, :cond_6
-
-    move-object/from16 v0, p0
-
-    iget-object v0, v0, Lcom/huawei/android/hwpowermanager/PowerConsumeBackgroundActivity;->mPkgNameFromNotify:Ljava/lang/String;
-
-    move-object/from16 v17, v0
-
-    if-eqz v17, :cond_6
-
-    .line 202
-    const/16 v17, 0x1
-
-    move-object/from16 v0, p0
-
-    iget-object v0, v0, Lcom/huawei/android/hwpowermanager/PowerConsumeBackgroundActivity;->mPkgNameFromNotify:Ljava/lang/String;
-
-    move-object/from16 v18, v0
-
-    move-object/from16 v0, p0
-
-    move/from16 v1, v17
-
-    move-object/from16 v2, v18
-
-    invoke-direct {v0, v1, v2}, Lcom/huawei/android/hwpowermanager/PowerConsumeBackgroundActivity;->remarkCheckedItem(ZLjava/lang/String;)V
-
-    .line 203
-    move-object/from16 v0, p0
-
-    iget-object v0, v0, Lcom/huawei/android/hwpowermanager/PowerConsumeBackgroundActivity;->mPkgNameFromNotify:Ljava/lang/String;
-
-    move-object/from16 v17, v0
-
-    move-object/from16 v0, p0
+    move-object/from16 v0, v16
 
     move-object/from16 v1, v17
 
-    invoke-direct {v0, v13, v1, v9}, Lcom/huawei/android/hwpowermanager/PowerConsumeBackgroundActivity;->addExtraItemFormNotification(Landroid/content/pm/PackageManager;Ljava/lang/String;Ljava/lang/String;)V
+    invoke-interface {v14, v0, v1}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 206
-    :cond_6
+    const-string v16, "indicator"
+
+    move-object/from16 v0, v16
+
+    invoke-interface {v14, v0, v9}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+
+    goto :goto_1
+
+    .line 178
+    :cond_2
+    const-string v16, "switcher"
+
+    const/16 v17, 0x0
+
+    invoke-static/range {v17 .. v17}, Ljava/lang/Boolean;->valueOf(Z)Ljava/lang/Boolean;
+
+    move-result-object v17
+
+    move-object/from16 v0, v16
+
+    move-object/from16 v1, v17
+
+    invoke-interface {v14, v0, v1}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+
+    const/16 v16, 0x0
+
+    move-object/from16 v0, p0
+
+    move/from16 v1, v16
+
+    invoke-direct {v0, v1, v11}, Lcom/huawei/android/hwpowermanager/PowerConsumeBackgroundActivity;->remarkCheckedItem(ZLjava/lang/String;)V
+
+    goto :goto_2
+
+    .end local v3           #appInfo:Landroid/content/pm/ApplicationInfo;
+    .end local v4           #appInfos:Ljava/util/ArrayList;,"Ljava/util/ArrayList<Landroid/content/pm/ApplicationInfo;>;"
+    .end local v14           #serviceMap:Ljava/util/Map;,"Ljava/util/Map<Ljava/lang/String;Ljava/lang/Object;>;"
+    .end local v15           #uap:Lcom/huawei/android/hwpowermanager/model/PowerManagementModel$UidAndPower;
+    :cond_3
+    if-eqz v11, :cond_4
+
+    move-object/from16 v0, p0
+
+    iget-object v0, v0, Lcom/huawei/android/hwpowermanager/PowerConsumeBackgroundActivity;->mPkgNameFromNotify:Ljava/lang/String;
+
+    move-object/from16 v16, v0
+
+    move-object/from16 v0, v16
+
+    invoke-virtual {v11, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v16
+
+    if-eqz v16, :cond_4
+
+    const/4 v7, 0x1
+
+    :cond_4
+    if-nez v7, :cond_5
+
+    move-object/from16 v0, p0
+
+    iget-object v0, v0, Lcom/huawei/android/hwpowermanager/PowerConsumeBackgroundActivity;->mPkgNameFromNotify:Ljava/lang/String;
+
+    move-object/from16 v16, v0
+
+    if-eqz v16, :cond_5
+
+    const/16 v16, 0x1
+
+    move-object/from16 v0, p0
+
+    iget-object v0, v0, Lcom/huawei/android/hwpowermanager/PowerConsumeBackgroundActivity;->mPkgNameFromNotify:Ljava/lang/String;
+
+    move-object/from16 v17, v0
+
+    move-object/from16 v0, p0
+
+    move/from16 v1, v16
+
+    move-object/from16 v2, v17
+
+    invoke-direct {v0, v1, v2}, Lcom/huawei/android/hwpowermanager/PowerConsumeBackgroundActivity;->remarkCheckedItem(ZLjava/lang/String;)V
+
+    move-object/from16 v0, p0
+
+    iget-object v0, v0, Lcom/huawei/android/hwpowermanager/PowerConsumeBackgroundActivity;->mPkgNameFromNotify:Ljava/lang/String;
+
+    move-object/from16 v16, v0
+
+    move-object/from16 v0, p0
+
+    move-object/from16 v1, v16
+
+    invoke-direct {v0, v12, v1, v8}, Lcom/huawei/android/hwpowermanager/PowerConsumeBackgroundActivity;->addExtraItemFormNotification(Landroid/content/pm/PackageManager;Ljava/lang/String;Ljava/lang/String;)V
+
+    :cond_5
     move-object/from16 v0, p0
 
     iget-object v0, v0, Lcom/huawei/android/hwpowermanager/PowerConsumeBackgroundActivity;->dataList:Ljava/util/List;
 
-    move-object/from16 v17, v0
+    move-object/from16 v16, v0
 
-    return-object v17
+    return-object v16
 .end method
 
 .method private getCheckedNumer()I
     .locals 6
 
     .prologue
-    .line 443
     const/4 v4, 0x0
 
-    .line 444
     .local v4, total:I
     iget-object v5, p0, Lcom/huawei/android/hwpowermanager/PowerConsumeBackgroundActivity;->dataList:Ljava/util/List;
 
@@ -1220,11 +1229,9 @@
 
     check-cast v2, Ljava/util/Map;
 
-    .line 445
     .local v2, data:Ljava/util/Map;,"Ljava/util/Map<Ljava/lang/String;Ljava/lang/Object;>;"
     const/4 v0, 0x0
 
-    .line 446
     .local v0, checked:Z
     const-string v5, "switcher"
 
@@ -1232,11 +1239,9 @@
 
     move-result-object v1
 
-    .line 447
     .local v1, checkedObject:Ljava/lang/Object;
     if-eqz v1, :cond_1
 
-    .line 448
     check-cast v1, Ljava/lang/Boolean;
 
     .end local v1           #checkedObject:Ljava/lang/Object;
@@ -1244,16 +1249,13 @@
 
     move-result v0
 
-    .line 450
     :cond_1
     if-eqz v0, :cond_0
 
-    .line 451
     add-int/lit8 v4, v4, 0x1
 
     goto :goto_0
 
-    .line 454
     .end local v0           #checked:Z
     .end local v2           #data:Ljava/util/Map;,"Ljava/util/Map<Ljava/lang/String;Ljava/lang/Object;>;"
     :cond_2
@@ -1264,7 +1266,6 @@
     .locals 3
 
     .prologue
-    .line 434
     new-instance v0, Ljava/lang/StringBuilder;
 
     iget-object v1, p0, Lcom/huawei/android/hwpowermanager/PowerConsumeBackgroundActivity;->mContext:Landroid/content/Context;
@@ -1281,13 +1282,11 @@
 
     invoke-direct {v0, v1}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
 
-    .line 435
     .local v0, mMenutitle:Ljava/lang/StringBuilder;
     const-string v1, " ("
 
     invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    .line 436
     invoke-direct {p0}, Lcom/huawei/android/hwpowermanager/PowerConsumeBackgroundActivity;->getCheckedNumer()I
 
     move-result v1
@@ -1298,12 +1297,10 @@
 
     invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    .line 437
     const-string v1, ")"
 
     invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    .line 439
     invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
     move-result-object v1
@@ -1319,14 +1316,11 @@
     .prologue
     const/4 v5, 0x1
 
-    .line 232
     const/4 v1, 0x0
 
-    .line 233
     .local v1, mIsCheck:Z
     const/4 v0, 0x0
 
-    .line 234
     .local v0, isIgnore:I
     invoke-virtual {p0}, Lcom/huawei/android/hwpowermanager/PowerConsumeBackgroundActivity;->getContentResolver()Landroid/content/ContentResolver;
 
@@ -1336,11 +1330,9 @@
 
     move-result-object v2
 
-    .line 235
     .local v2, tempObject:Ljava/lang/Object;
     if-eqz v2, :cond_0
 
-    .line 236
     invoke-virtual {v2}, Ljava/lang/Object;->toString()Ljava/lang/String;
 
     move-result-object v3
@@ -1349,7 +1341,6 @@
 
     move-result v0
 
-    .line 239
     :cond_0
     invoke-static {}, Lcom/huawei/android/hwpowermanager/util/SavingSettingUtil;->getHigh_level_standard()I
 
@@ -1363,17 +1354,13 @@
 
     if-lez v3, :cond_1
 
-    .line 240
     const/4 v1, 0x1
 
-    .line 242
     :cond_1
     if-ne v0, v5, :cond_2
 
-    .line 243
     const/4 v1, 0x0
 
-    .line 249
     :cond_2
     const-string v3, "PowerConsumeBackgroundActivity"
 
@@ -1403,7 +1390,6 @@
 
     invoke-static {v3, v4}, Landroid/util/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 251
     iget-object v3, p0, Lcom/huawei/android/hwpowermanager/PowerConsumeBackgroundActivity;->checkedItemName:Ljava/util/ArrayList;
 
     invoke-virtual {v3, p1}, Ljava/util/ArrayList;->contains(Ljava/lang/Object;)Z
@@ -1412,10 +1398,9 @@
 
     if-eqz v3, :cond_3
 
-    .line 252
     const/4 v1, 0x1
 
-    .line 255
+    .line 190
     :cond_3
     iget-object v3, p0, Lcom/huawei/android/hwpowermanager/PowerConsumeBackgroundActivity;->unCheckedItemName:Ljava/util/ArrayList;
 
@@ -1425,10 +1410,8 @@
 
     if-eqz v3, :cond_4
 
-    .line 256
     const/4 v1, 0x0
 
-    .line 260
     :cond_4
     const-string v3, "PowerConsumeBackgroundActivity"
 
@@ -1454,7 +1437,6 @@
 
     invoke-static {v3, v4}, Landroid/util/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 262
     return v1
 .end method
 
@@ -1463,10 +1445,8 @@
     .parameter "mPackagePower"
 
     .prologue
-    .line 266
     const/4 v0, 0x0
 
-    .line 267
     .local v0, mIsNeedRed:Z
     invoke-static {}, Lcom/huawei/android/hwpowermanager/util/SavingSettingUtil;->getHigh_level_standard()I
 
@@ -1480,10 +1460,8 @@
 
     if-lez v1, :cond_0
 
-    .line 268
     const/4 v0, 0x1
 
-    .line 270
     :cond_0
     return v0
 .end method
@@ -1494,10 +1472,8 @@
     .parameter "packageName"
 
     .prologue
-    .line 377
     if-eqz p1, :cond_2
 
-    .line 378
     iget-object v0, p0, Lcom/huawei/android/hwpowermanager/PowerConsumeBackgroundActivity;->checkedItemName:Ljava/util/ArrayList;
 
     invoke-virtual {v0, p2}, Ljava/util/ArrayList;->contains(Ljava/lang/Object;)Z
@@ -1506,29 +1482,24 @@
 
     if-nez v0, :cond_0
 
-    .line 379
     iget-object v0, p0, Lcom/huawei/android/hwpowermanager/PowerConsumeBackgroundActivity;->checkedItemName:Ljava/util/ArrayList;
 
     invoke-virtual {v0, p2}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
 
-    .line 381
     :cond_0
     iget-object v0, p0, Lcom/huawei/android/hwpowermanager/PowerConsumeBackgroundActivity;->unCheckedItemName:Ljava/util/ArrayList;
 
     invoke-virtual {v0, p2}, Ljava/util/ArrayList;->remove(Ljava/lang/Object;)Z
 
-    .line 388
     :cond_1
     :goto_0
     return-void
 
-    .line 383
     :cond_2
     iget-object v0, p0, Lcom/huawei/android/hwpowermanager/PowerConsumeBackgroundActivity;->checkedItemName:Ljava/util/ArrayList;
 
     invoke-virtual {v0, p2}, Ljava/util/ArrayList;->remove(Ljava/lang/Object;)Z
 
-    .line 384
     iget-object v0, p0, Lcom/huawei/android/hwpowermanager/PowerConsumeBackgroundActivity;->unCheckedItemName:Ljava/util/ArrayList;
 
     invoke-virtual {v0, p2}, Ljava/util/ArrayList;->contains(Ljava/lang/Object;)Z
@@ -1537,7 +1508,6 @@
 
     if-nez v0, :cond_1
 
-    .line 385
     iget-object v0, p0, Lcom/huawei/android/hwpowermanager/PowerConsumeBackgroundActivity;->unCheckedItemName:Ljava/util/ArrayList;
 
     invoke-virtual {v0, p2}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
@@ -1549,7 +1519,6 @@
     .locals 2
 
     .prologue
-    .line 118
     iget-object v0, p0, Lcom/huawei/android/hwpowermanager/PowerConsumeBackgroundActivity;->softList:Landroid/widget/ListView;
 
     new-instance v1, Lcom/huawei/android/hwpowermanager/PowerConsumeBackgroundActivity$1;
@@ -1558,7 +1527,6 @@
 
     invoke-virtual {v0, v1}, Landroid/widget/ListView;->setOnItemClickListener(Landroid/widget/AdapterView$OnItemClickListener;)V
 
-    .line 134
     return-void
 .end method
 
@@ -1569,34 +1537,27 @@
     .parameter "savedInstanceState"
 
     .prologue
-    .line 58
     invoke-super {p0, p1}, Landroid/app/Activity;->onCreate(Landroid/os/Bundle;)V
 
-    .line 59
     const v1, 0x7f030001
 
     invoke-virtual {p0, v1}, Lcom/huawei/android/hwpowermanager/PowerConsumeBackgroundActivity;->setContentView(I)V
 
-    .line 60
     iput-object p0, p0, Lcom/huawei/android/hwpowermanager/PowerConsumeBackgroundActivity;->mContext:Landroid/content/Context;
 
-    .line 61
     invoke-virtual {p0}, Lcom/huawei/android/hwpowermanager/PowerConsumeBackgroundActivity;->getActionBar()Landroid/app/ActionBar;
 
     move-result-object v0
 
-    .line 62
     .local v0, actionBar:Landroid/app/ActionBar;
     const/4 v1, 0x1
 
     invoke-virtual {v0, v1}, Landroid/app/ActionBar;->setDisplayHomeAsUpEnabled(Z)V
 
-    .line 63
     const v1, 0x7f09003e
 
     invoke-virtual {v0, v1}, Landroid/app/ActionBar;->setTitle(I)V
 
-    .line 65
     const v1, 0x7f0b0006
 
     invoke-virtual {p0, v1}, Lcom/huawei/android/hwpowermanager/PowerConsumeBackgroundActivity;->findViewById(I)Landroid/view/View;
@@ -1607,29 +1568,24 @@
 
     iput-object v1, p0, Lcom/huawei/android/hwpowermanager/PowerConsumeBackgroundActivity;->softList:Landroid/widget/ListView;
 
-    .line 66
     iget-object v1, p0, Lcom/huawei/android/hwpowermanager/PowerConsumeBackgroundActivity;->mContext:Landroid/content/Context;
 
     invoke-static {v1}, Lcom/huawei/android/hwpowermanager/util/SavingSettingUtil;->initalPowerWarningParameter(Landroid/content/Context;)V
 
-    .line 67
     invoke-direct {p0}, Lcom/huawei/android/hwpowermanager/PowerConsumeBackgroundActivity;->setClickListener()V
 
-    .line 68
     new-instance v1, Ljava/util/ArrayList;
 
     invoke-direct {v1}, Ljava/util/ArrayList;-><init>()V
 
     iput-object v1, p0, Lcom/huawei/android/hwpowermanager/PowerConsumeBackgroundActivity;->checkedItemName:Ljava/util/ArrayList;
 
-    .line 69
     new-instance v1, Ljava/util/ArrayList;
 
     invoke-direct {v1}, Ljava/util/ArrayList;-><init>()V
 
     iput-object v1, p0, Lcom/huawei/android/hwpowermanager/PowerConsumeBackgroundActivity;->unCheckedItemName:Ljava/util/ArrayList;
 
-    .line 73
     return-void
 .end method
 
@@ -1642,10 +1598,8 @@
 
     const/4 v1, 0x1
 
-    .line 307
     invoke-super {p0, p1}, Landroid/app/Activity;->onCreateOptionsMenu(Landroid/view/Menu;)Z
 
-    .line 308
     invoke-direct {p0}, Lcom/huawei/android/hwpowermanager/PowerConsumeBackgroundActivity;->getMenuTitle()Ljava/lang/String;
 
     move-result-object v0
@@ -1656,30 +1610,25 @@
 
     invoke-interface {v0, v1}, Landroid/view/MenuItem;->setShowAsAction(I)V
 
-    .line 310
     invoke-interface {p1, v1}, Landroid/view/Menu;->findItem(I)Landroid/view/MenuItem;
 
     move-result-object v0
 
     iput-object v0, p0, Lcom/huawei/android/hwpowermanager/PowerConsumeBackgroundActivity;->mValidMenu:Landroid/view/MenuItem;
 
-    .line 312
     invoke-direct {p0}, Lcom/huawei/android/hwpowermanager/PowerConsumeBackgroundActivity;->getCheckedNumer()I
 
     move-result v0
 
     if-nez v0, :cond_0
 
-    .line 313
     iget-object v0, p0, Lcom/huawei/android/hwpowermanager/PowerConsumeBackgroundActivity;->mValidMenu:Landroid/view/MenuItem;
 
     invoke-interface {v0, v2}, Landroid/view/MenuItem;->setEnabled(Z)Landroid/view/MenuItem;
 
-    .line 317
     :goto_0
     return v1
 
-    .line 315
     :cond_0
     iget-object v0, p0, Lcom/huawei/android/hwpowermanager/PowerConsumeBackgroundActivity;->mValidMenu:Landroid/view/MenuItem;
 
@@ -1692,43 +1641,38 @@
     .locals 1
 
     .prologue
-    .line 276
     iget-object v0, p0, Lcom/huawei/android/hwpowermanager/PowerConsumeBackgroundActivity;->dataList:Ljava/util/List;
 
     if-eqz v0, :cond_0
 
-    .line 277
     iget-object v0, p0, Lcom/huawei/android/hwpowermanager/PowerConsumeBackgroundActivity;->dataList:Ljava/util/List;
 
     invoke-interface {v0}, Ljava/util/List;->clear()V
 
-    .line 279
+    .line 239
     :cond_0
     iget-object v0, p0, Lcom/huawei/android/hwpowermanager/PowerConsumeBackgroundActivity;->checkedItemName:Ljava/util/ArrayList;
 
     if-eqz v0, :cond_1
 
-    .line 280
     iget-object v0, p0, Lcom/huawei/android/hwpowermanager/PowerConsumeBackgroundActivity;->checkedItemName:Ljava/util/ArrayList;
 
     invoke-virtual {v0}, Ljava/util/ArrayList;->clear()V
 
-    .line 282
     :cond_1
     iget-object v0, p0, Lcom/huawei/android/hwpowermanager/PowerConsumeBackgroundActivity;->unCheckedItemName:Ljava/util/ArrayList;
 
     if-eqz v0, :cond_2
 
-    .line 283
+    .line 385
     iget-object v0, p0, Lcom/huawei/android/hwpowermanager/PowerConsumeBackgroundActivity;->unCheckedItemName:Ljava/util/ArrayList;
 
     invoke-virtual {v0}, Ljava/util/ArrayList;->clear()V
 
-    .line 286
     :cond_2
     invoke-super {p0}, Landroid/app/Activity;->onDestroy()V
 
-    .line 287
+    .line 134
     return-void
 .end method
 

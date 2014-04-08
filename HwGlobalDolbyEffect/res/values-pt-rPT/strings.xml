@@ -8,7 +8,7 @@
     <string name="pref_title_dolby_digital_plus_on">Dolby Digital Plus ligado</string>
     <string name="dialog_title_dolby_effect_on">Definições Dolby mobile</string>
     <string name="dialog_title_dolby_digital_plus_on">Def. do Dolby Digital Plus</string>
-    <string name="dialog_msg_dolby_effect_on">Efeito Dolby desligado; deseja ligar?</string>
+    <string name="dialog_msg_dolby_effect_on">Efeito Dolby desligado, deseja ligar?</string>
     <string name="pref_title_audio_effect">Efeito áudio</string>
     <string name="pref_title_music_settings">Definições de música</string>
     <string name="dialog_title_audio_effect">Efeito áudio</string>

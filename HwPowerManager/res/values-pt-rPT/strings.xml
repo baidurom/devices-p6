@@ -54,6 +54,12 @@
     <string name="menu_title_valid_all_new">ACTIVAR TODAS</string>
     <string name="menu_title_invalid_all_new">DESACTIVAR TODAS</string>
     <string name="menu_title_select_all">Todas</string>
+    <string name="backgroundapp_stop_apps">Fechar Aplicações</string>
+    <string name="list_text_wakelock_hint">Esta aplicação está em execução em segundo plano utilizando recursos da CPU resultando uma grande utilização da bateria.</string>
+    <string name="notification_ignore">Ignorar esta aplicação</string>
+    <string name="notification_stop_app">Fechar aplicação</string>
+    <string name="backgroundapp_discription_content">"Pode impedir aplicações de executarem em segundo plano através de Gestor de Energia > Gestor de aplicações em segundo plano. "</string>
+    <string name="genieengine_dailog_ok">OK</string>
     <string name="consume_detail_button">Monitorizar</string>
     <string name="conversion_minute">m</string>
     <string name="conversion_minute_short">m</string>

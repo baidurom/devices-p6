@@ -54,6 +54,12 @@
     <string name="menu_title_valid_all_new">ATTIVA TUTTO</string>
     <string name="menu_title_invalid_all_new">DISATTIVA TUTTO</string>
     <string name="menu_title_select_all">Tutte</string>
+    <string name="backgroundapp_stop_apps">CHIUDI APP</string>
+    <string name="list_text_wakelock_hint">Questa app è in esecuzione in background e continua ad usare risorse CPU comportando un alto consumo energetico</string>
+    <string name="notification_ignore">Ignorare questa app</string>
+    <string name="notification_stop_app">Chiudere app</string>
+    <string name="backgroundapp_discription_content">"È possibile impedire l'esecuzione in background delle applicazioni da > Gest alim > Gest. app background."</string>
+    <string name="genieengine_dailog_ok">OK</string>
     <string name="consume_detail_button">Monitorare</string>
     <string name="conversion_minute">min</string>
     <string name="conversion_minute_short">m</string>

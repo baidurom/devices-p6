@@ -54,6 +54,12 @@
     <string name="menu_title_valid_all_new">ALLE AKTIVIEREN</string>
     <string name="menu_title_invalid_all_new">ALLE DEAKT.</string>
     <string name="menu_title_select_all">Alle</string>
+    <string name="backgroundapp_stop_apps">APPS SCHLIESSEN</string>
+    <string name="list_text_wakelock_hint">Diese App läuft im Hintergrund und verbraucht dabei CPU-Ressourcen. Das bewirkt einen hohen Stromverbrauch</string>
+    <string name="notification_ignore">Diese App ignorieren</string>
+    <string name="notification_stop_app">App schließen</string>
+    <string name="backgroundapp_discription_content">Mit Energievw. > Hintergrund-App-Manager können Sie die Hintergrundausführung von Anwendungen einschränken.</string>
+    <string name="genieengine_dailog_ok">OK</string>
     <string name="consume_detail_button">Überwachen</string>
     <string name="conversion_minute">min</string>
     <string name="conversion_minute_short">min</string>

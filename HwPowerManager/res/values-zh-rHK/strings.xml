@@ -64,6 +64,8 @@
     <string name="notification_power_consume_hint">找到耗電強應用程式，輕觸以檢視詳情</string>
     <string name="notification_ignore">忽略</string>
     <string name="notification_stop_app">關閉應用程式</string>
+    <string name="backgroundapp_discription_content">您可從「電源總管」>「背景應用程式總管」中設定限制應用程式在背景中執行</string>
+    <string name="genieengine_dailog_ok">確定</string>
     <string name="consume_detail_button">監控</string>
     <string name="conversion_minute">分鐘</string>
     <string name="conversion_minute_short">分鐘</string>

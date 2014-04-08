@@ -54,6 +54,12 @@
     <string name="menu_title_valid_all_new">ВЫБРАТЬ ВСЕ</string>
     <string name="menu_title_invalid_all_new">ОТМЕНИТЬ ВСЕ</string>
     <string name="menu_title_select_all">Все</string>
+    <string name="backgroundapp_stop_apps">ЗАКРЫТЬ ПРИЛОЖЕНИЯ</string>
+    <string name="list_text_wakelock_hint">Приложение работает в фоновом режиме, использует ресурсы процессора, повышая энергопотребление телефона</string>
+    <string name="notification_ignore">Игнорировать приложение</string>
+    <string name="notification_stop_app">Закрыть приложение</string>
+    <string name="backgroundapp_discription_content">Чтобы запретить запуск приложений в фоновом режиме, выберите Диспетчер питания > Работа приложений в фоновом режиме.</string>
+    <string name="genieengine_dailog_ok">OK</string>
     <string name="consume_detail_button">Мониторинг</string>
     <string name="conversion_minute">мин</string>
     <string name="conversion_minute_short">мин</string>

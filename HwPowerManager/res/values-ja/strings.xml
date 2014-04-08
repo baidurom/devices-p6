@@ -54,6 +54,12 @@
     <string name="menu_title_valid_all_new">全て有効化</string>
     <string name="menu_title_invalid_all_new">全て無効化</string>
     <string name="menu_title_select_all">すべて</string>
+    <string name="backgroundapp_stop_apps">アプリを閉じる</string>
+    <string name="list_text_wakelock_hint">このアプリはバックグラウンドで実行中ですが、CPUリソースが消費されるため、消費電力が高くなります</string>
+    <string name="notification_ignore">このアプリを無視する</string>
+    <string name="notification_stop_app">アプリを閉じる</string>
+    <string name="backgroundapp_discription_content">[電源マネージャー] > [バックグラウンドアプリマネージャー]からバックグラウンドでのアプリの実行を制限できます。</string>
+    <string name="genieengine_dailog_ok">OK</string>
     <string name="consume_detail_button">監視</string>
     <string name="conversion_minute">分</string>
     <string name="conversion_minute_short">分</string>

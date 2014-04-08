@@ -54,6 +54,12 @@
     <string name="menu_title_valid_all_new">HABILITAR TODAS</string>
     <string name="menu_title_invalid_all_new">DESHABILITAR TODAS</string>
     <string name="menu_title_select_all">Todos</string>
+    <string name="backgroundapp_stop_apps">CERRAR APLICACIONES</string>
+    <string name="list_text_wakelock_hint">Esta aplicación se está ejecutando en segundo plano y aún utiliza los recursos de la CPU, lo cual genera un alto consumo de energía.</string>
+    <string name="notification_ignore">Ignorar esta aplicación</string>
+    <string name="notification_stop_app">Cerrar aplicación</string>
+    <string name="backgroundapp_discription_content">Para evitar que las aplicaciones se ejecuten en segundo plano, acceda a Administración de energía > Ajustes de ahorro de energía.</string>
+    <string name="genieengine_dailog_ok">Aceptar</string>
     <string name="consume_detail_button">Supervisar</string>
     <string name="conversion_minute">min.</string>
     <string name="conversion_minute_short">min.</string>

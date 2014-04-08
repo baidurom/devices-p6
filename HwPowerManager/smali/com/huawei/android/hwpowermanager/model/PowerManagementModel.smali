@@ -529,148 +529,187 @@
 .end method
 
 .method private load()V
-    .locals 8
+    .locals 9
 
     .prologue
-    .line 127
-    const/4 v2, 0x0
+    const/4 v3, 0x0
 
-    .line 129
-    .local v2, parcel:Landroid/os/Parcel;
+    .local v3, parcel:Landroid/os/Parcel;
     :try_start_0
-    iget-object v3, p0, Lcom/huawei/android/hwpowermanager/model/PowerManagementModel;->mBatteryInfo:Lcom/android/internal/app/IBatteryStats;
+    iget-object v4, p0, Lcom/huawei/android/hwpowermanager/model/PowerManagementModel;->mBatteryInfo:Lcom/android/internal/app/IBatteryStats;
 
-    invoke-interface {v3}, Lcom/android/internal/app/IBatteryStats;->getStatistics()[B
+    invoke-interface {v4}, Lcom/android/internal/app/IBatteryStats;->getStatistics()[B
 
     move-result-object v0
 
-    .line 130
     .local v0, data:[B
-    invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
+    const/4 v2, 0x0
 
-    move-result-object v2
+    .local v2, i:I
+    :goto_0
+    const/4 v4, 0x5
 
-    .line 131
-    const/4 v3, 0x0
+    if-ge v2, v4, :cond_0
+
+    iget-object v4, p0, Lcom/huawei/android/hwpowermanager/model/PowerManagementModel;->mBatteryInfo:Lcom/android/internal/app/IBatteryStats;
+
+    invoke-interface {v4}, Lcom/android/internal/app/IBatteryStats;->getStatistics()[B
+
+    move-result-object v0
+
+    if-eqz v0, :cond_2
 
     array-length v4, v0
 
-    invoke-virtual {v2, v0, v3, v4}, Landroid/os/Parcel;->unmarshall([BII)V
+    if-eqz v4, :cond_2
 
-    .line 132
-    const/4 v3, 0x0
+    const/4 v4, 0x0
 
-    invoke-virtual {v2, v3}, Landroid/os/Parcel;->setDataPosition(I)V
+    aget-byte v4, v0, v4
 
-    .line 133
-    sget-object v3, Lcom/android/internal/os/BatteryStatsImpl;->CREATOR:Landroid/os/Parcelable$Creator;
+    if-eqz v4, :cond_2
 
-    invoke-interface {v3, v2}, Landroid/os/Parcelable$Creator;->createFromParcel(Landroid/os/Parcel;)Ljava/lang/Object;
+    :cond_0
+    invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v3
 
-    check-cast v3, Lcom/android/internal/os/BatteryStatsImpl;
+    const/4 v4, 0x0
 
-    iput-object v3, p0, Lcom/huawei/android/hwpowermanager/model/PowerManagementModel;->mStats:Lcom/android/internal/os/BatteryStatsImpl;
+    array-length v5, v0
 
-    .line 135
-    iget-object v3, p0, Lcom/huawei/android/hwpowermanager/model/PowerManagementModel;->mStats:Lcom/android/internal/os/BatteryStatsImpl;
+    invoke-virtual {v3, v0, v4, v5}, Landroid/os/Parcel;->unmarshall([BII)V
 
-    iget v4, p0, Lcom/huawei/android/hwpowermanager/model/PowerManagementModel;->mStatsType:I
+    const/4 v4, 0x0
 
-    invoke-virtual {v3, v4}, Lcom/android/internal/os/BatteryStatsImpl;->distributeWorkLocked(I)V
+    invoke-virtual {v3, v4}, Landroid/os/Parcel;->setDataPosition(I)V
 
-    .line 136
-    iget-object v3, p0, Lcom/huawei/android/hwpowermanager/model/PowerManagementModel;->mStats:Lcom/android/internal/os/BatteryStatsImpl;
+    sget-object v4, Lcom/android/internal/os/BatteryStatsImpl;->CREATOR:Landroid/os/Parcelable$Creator;
+
+    invoke-interface {v4, v3}, Landroid/os/Parcelable$Creator;->createFromParcel(Landroid/os/Parcel;)Ljava/lang/Object;
+
+    move-result-object v4
+
+    check-cast v4, Lcom/android/internal/os/BatteryStatsImpl;
+
+    iput-object v4, p0, Lcom/huawei/android/hwpowermanager/model/PowerManagementModel;->mStats:Lcom/android/internal/os/BatteryStatsImpl;
+
+    iget-object v4, p0, Lcom/huawei/android/hwpowermanager/model/PowerManagementModel;->mStats:Lcom/android/internal/os/BatteryStatsImpl;
+
+    iget v5, p0, Lcom/huawei/android/hwpowermanager/model/PowerManagementModel;->mStatsType:I
+
+    invoke-virtual {v4, v5}, Lcom/android/internal/os/BatteryStatsImpl;->distributeWorkLocked(I)V
+
+    iget-object v4, p0, Lcom/huawei/android/hwpowermanager/model/PowerManagementModel;->mStats:Lcom/android/internal/os/BatteryStatsImpl;
 
     invoke-static {}, Landroid/os/SystemClock;->elapsedRealtime()J
 
+    move-result-wide v5
+
+    const-wide/16 v7, 0x3e8
+
+    mul-long/2addr v5, v7
+
+    iget v7, p0, Lcom/huawei/android/hwpowermanager/model/PowerManagementModel;->mStatsType:I
+
+    invoke-virtual {v4, v5, v6, v7}, Lcom/android/internal/os/BatteryStatsImpl;->computeBatteryRealtime(JI)J
+
     move-result-wide v4
 
-    const-wide/16 v6, 0x3e8
-
-    mul-long/2addr v4, v6
-
-    iget v6, p0, Lcom/huawei/android/hwpowermanager/model/PowerManagementModel;->mStatsType:I
-
-    invoke-virtual {v3, v4, v5, v6}, Lcom/android/internal/os/BatteryStatsImpl;->computeBatteryRealtime(JI)J
-
-    move-result-wide v3
-
-    iput-wide v3, p0, Lcom/huawei/android/hwpowermanager/model/PowerManagementModel;->uSecTime:J
+    iput-wide v4, p0, Lcom/huawei/android/hwpowermanager/model/PowerManagementModel;->uSecTime:J
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
     .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
+    .catch Ljava/lang/IllegalArgumentException; {:try_start_0 .. :try_end_0} :catch_1
 
-    .line 141
-    if-eqz v2, :cond_0
+    if-eqz v3, :cond_1
 
-    .line 142
-    invoke-virtual {v2}, Landroid/os/Parcel;->recycle()V
+    invoke-virtual {v3}, Landroid/os/Parcel;->recycle()V
 
-    .line 147
     .end local v0           #data:[B
-    :cond_0
-    :goto_0
-    iget-object v3, p0, Lcom/huawei/android/hwpowermanager/model/PowerManagementModel;->mContext:Landroid/content/Context;
+    .end local v2           #i:I
+    :cond_1
+    :goto_1
+    iget-object v4, p0, Lcom/huawei/android/hwpowermanager/model/PowerManagementModel;->mContext:Landroid/content/Context;
 
-    invoke-virtual {v3}, Landroid/content/Context;->getPackageManager()Landroid/content/pm/PackageManager;
+    invoke-virtual {v4}, Landroid/content/Context;->getPackageManager()Landroid/content/pm/PackageManager;
 
-    move-result-object v3
+    move-result-object v4
 
-    iput-object v3, p0, Lcom/huawei/android/hwpowermanager/model/PowerManagementModel;->mPackageManager:Landroid/content/pm/PackageManager;
+    iput-object v4, p0, Lcom/huawei/android/hwpowermanager/model/PowerManagementModel;->mPackageManager:Landroid/content/pm/PackageManager;
 
-    .line 149
-    const-string v3, "netstats"
+    const-string v4, "netstats"
 
-    invoke-static {v3}, Landroid/os/ServiceManager;->getService(Ljava/lang/String;)Landroid/os/IBinder;
+    invoke-static {v4}, Landroid/os/ServiceManager;->getService(Ljava/lang/String;)Landroid/os/IBinder;
 
-    move-result-object v3
+    move-result-object v4
 
-    invoke-static {v3}, Landroid/net/INetworkStatsService$Stub;->asInterface(Landroid/os/IBinder;)Landroid/net/INetworkStatsService;
+    invoke-static {v4}, Landroid/net/INetworkStatsService$Stub;->asInterface(Landroid/os/IBinder;)Landroid/net/INetworkStatsService;
 
-    move-result-object v3
+    move-result-object v4
 
-    iput-object v3, p0, Lcom/huawei/android/hwpowermanager/model/PowerManagementModel;->mStatsService:Landroid/net/INetworkStatsService;
+    iput-object v4, p0, Lcom/huawei/android/hwpowermanager/model/PowerManagementModel;->mStatsService:Landroid/net/INetworkStatsService;
 
-    .line 155
     return-void
 
-    .line 138
-    :catch_0
-    move-exception v1
-
-    .line 139
-    .local v1, e:Landroid/os/RemoteException;
-    :try_start_1
-    const-string v3, "PowerManagementModel"
-
-    const-string v4, "RemoteException:"
-
-    invoke-static {v3, v4, v1}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
-    :try_end_1
-    .catchall {:try_start_1 .. :try_end_1} :catchall_0
-
-    .line 141
-    if-eqz v2, :cond_0
-
-    .line 142
-    invoke-virtual {v2}, Landroid/os/Parcel;->recycle()V
+    .restart local v0       #data:[B
+    .restart local v2       #i:I
+    :cond_2
+    add-int/lit8 v2, v2, 0x1
 
     goto :goto_0
 
-    .line 141
+    .end local v0           #data:[B
+    .end local v2           #i:I
+    :catch_0
+    move-exception v1
+
+    .local v1, e:Landroid/os/RemoteException;
+    :try_start_1
+    const-string v4, "PowerManagementModel"
+
+    const-string v5, "RemoteException:"
+
+    invoke-static {v4, v5, v1}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
+    :try_end_1
+    .catchall {:try_start_1 .. :try_end_1} :catchall_0
+
+    if-eqz v3, :cond_1
+
+    invoke-virtual {v3}, Landroid/os/Parcel;->recycle()V
+
+    goto :goto_1
+
     .end local v1           #e:Landroid/os/RemoteException;
+    :catch_1
+    move-exception v1
+
+    .local v1, e:Ljava/lang/IllegalArgumentException;
+    :try_start_2
+    const-string v4, "PowerManagementModel"
+
+    const-string v5, "IllegalArgumentException when BatteryInfo.getStatistics"
+
+    invoke-static {v4, v5}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
+    :try_end_2
+    .catchall {:try_start_2 .. :try_end_2} :catchall_0
+
+    if-eqz v3, :cond_1
+
+    invoke-virtual {v3}, Landroid/os/Parcel;->recycle()V
+
+    goto :goto_1
+
+    .end local v1           #e:Ljava/lang/IllegalArgumentException;
     :catchall_0
-    move-exception v3
+    move-exception v4
 
-    if-eqz v2, :cond_1
+    if-eqz v3, :cond_3
 
-    .line 142
-    invoke-virtual {v2}, Landroid/os/Parcel;->recycle()V
+    invoke-virtual {v3}, Landroid/os/Parcel;->recycle()V
 
-    :cond_1
-    throw v3
+    :cond_3
+    throw v4
 .end method
 
 .method private queryThirdUids()Ljava/util/Set;

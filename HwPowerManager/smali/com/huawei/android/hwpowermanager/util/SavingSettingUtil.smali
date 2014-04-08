@@ -1835,6 +1835,41 @@
     return-object v0
 .end method
 
+.method public static getAppInfoByPackageName(Landroid/content/Context;Ljava/lang/String;)Landroid/content/pm/ApplicationInfo;
+    .locals 4
+    .parameter "context"
+    .parameter "pName"
+
+    .prologue
+    const/4 v2, 0x0
+
+    .local v2, resultApp:Landroid/content/pm/ApplicationInfo;
+    invoke-virtual {p0}, Landroid/content/Context;->getPackageManager()Landroid/content/pm/PackageManager;
+
+    move-result-object v1
+
+    .local v1, pm:Landroid/content/pm/PackageManager;
+    const/4 v3, 0x0
+
+    :try_start_0
+    invoke-virtual {v1, p1, v3}, Landroid/content/pm/PackageManager;->getApplicationInfo(Ljava/lang/String;I)Landroid/content/pm/ApplicationInfo;
+    :try_end_0
+    .catch Landroid/content/pm/PackageManager$NameNotFoundException; {:try_start_0 .. :try_end_0} :catch_0
+
+    move-result-object v2
+
+    :goto_0
+    return-object v2
+
+    :catch_0
+    move-exception v0
+
+    .local v0, e:Landroid/content/pm/PackageManager$NameNotFoundException;
+    invoke-virtual {v0}, Landroid/content/pm/PackageManager$NameNotFoundException;->printStackTrace()V
+
+    goto :goto_0
+.end method
+
 .method public static getAppInfoByUid(Landroid/content/Context;I)Ljava/util/ArrayList;
     .locals 7
     .parameter "context"
@@ -1900,24 +1935,23 @@
     :try_end_0
     .catch Landroid/content/pm/PackageManager$NameNotFoundException; {:try_start_0 .. :try_end_0} :catch_0
 
-    .line 486
-    .end local v1           #i:I
-    :cond_0
-    return-object v4
-
-    .line 481
-    .restart local v1       #i:I
-    :catch_0
-    move-exception v0
-
-    .line 482
-    .local v0, e:Landroid/content/pm/PackageManager$NameNotFoundException;
-    invoke-virtual {v0}, Landroid/content/pm/PackageManager$NameNotFoundException;->printStackTrace()V
-
-    .line 477
+    :goto_1
     add-int/lit8 v1, v1, 0x1
 
     goto :goto_0
+
+    :catch_0
+    move-exception v0
+
+    .local v0, e:Landroid/content/pm/PackageManager$NameNotFoundException;
+    invoke-virtual {v0}, Landroid/content/pm/PackageManager$NameNotFoundException;->printStackTrace()V
+
+    goto :goto_1
+
+    .end local v0           #e:Landroid/content/pm/PackageManager$NameNotFoundException;
+    .end local v1           #i:I
+    :cond_0
+    return-object v4
 .end method
 
 .method public static getApp_show_level()I
@@ -3249,26 +3283,21 @@
 
     move-result-object v1
 
-    .line 498
-    :goto_0
     iget v3, v1, Landroid/content/pm/ApplicationInfo;->flags:I
 
     and-int/lit8 v3, v3, 0x1
 
     if-eqz v3, :cond_0
 
-    .line 499
     const/4 v2, 0x1
 
-    .line 501
     :cond_0
+    :goto_0
     return v2
 
-    .line 494
     :catch_0
     move-exception v0
 
-    .line 495
     .local v0, e:Landroid/content/pm/PackageManager$NameNotFoundException;
     invoke-virtual {v0}, Landroid/content/pm/PackageManager$NameNotFoundException;->printStackTrace()V
 
@@ -3285,7 +3314,6 @@
 
     const/4 v4, 0x0
 
-    .line 691
     const-string v2, "activity"
 
     invoke-virtual {p0, v2}, Landroid/content/Context;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
@@ -3294,13 +3322,11 @@
 
     check-cast v0, Landroid/app/ActivityManager;
 
-    .line 692
     .local v0, activityManager:Landroid/app/ActivityManager;
     invoke-virtual {v0, v3}, Landroid/app/ActivityManager;->getRunningTasks(I)Ljava/util/List;
 
     move-result-object v1
 
-    .line 693
     .local v1, tasksInfo:Ljava/util/List;,"Ljava/util/List<Landroid/app/ActivityManager$RunningTaskInfo;>;"
     invoke-interface {v1}, Ljava/util/List;->size()I
 
@@ -3308,7 +3334,6 @@
 
     if-lez v2, :cond_0
 
-    .line 694
     invoke-interface {v1, v4}, Ljava/util/List;->get(I)Ljava/lang/Object;
 
     move-result-object v2
@@ -3329,6 +3354,7 @@
 
     move v2, v3
 
+    .line 498
     .line 698
     :goto_0
     return v2
