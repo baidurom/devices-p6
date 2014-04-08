@@ -5590,7 +5590,7 @@
 
     invoke-virtual {v2}, Ljava/util/ArrayList;->clear()V
     :try_end_1
-    .catchall {:try_start_1 .. :try_end_1} :catchall_3
+    .catchall {:try_start_1 .. :try_end_1} :catchall_4
 
     move-object/from16 v19, v20
 
@@ -5638,7 +5638,7 @@
 
     invoke-virtual {v2}, Ljava/util/ArrayList;->clear()V
     :try_end_3
-    .catchall {:try_start_3 .. :try_end_3} :catchall_4
+    .catchall {:try_start_3 .. :try_end_3} :catchall_5
 
     move-object/from16 v28, v29
 
@@ -5706,7 +5706,7 @@
 
     invoke-virtual {v2}, Ljava/util/ArrayList;->clear()V
     :try_end_5
-    .catchall {:try_start_5 .. :try_end_5} :catchall_5
+    .catchall {:try_start_5 .. :try_end_5} :catchall_6
 
     move-object/from16 v25, v26
 
@@ -6007,36 +6007,40 @@
 
     invoke-virtual {v2}, Lcom/android/server/am/ActivityManagerService;->trimApplications()V
 
-    .line 3789
     if-eqz v18, :cond_12
 
-    .line 3790
     move-object/from16 v0, p0
 
     iget-object v2, v0, Lcom/android/server/am/ActivityStack;->mService:Lcom/android/server/am/ActivityManagerService;
 
     invoke-virtual {v2}, Lcom/android/server/am/ActivityManagerService;->enableScreenAfterBoot()V
 
-    .line 3793
     :cond_12
     if-eqz v15, :cond_13
 
-    .line 3794
+    move-object/from16 v0, p0
+
+    iget-object v3, v0, Lcom/android/server/am/ActivityStack;->mService:Lcom/android/server/am/ActivityManagerService;
+
+    monitor-enter v3
+
     const/4 v2, 0x0
 
+    :try_start_c
     move-object/from16 v0, p0
 
     invoke-virtual {v0, v2}, Lcom/android/server/am/ActivityStack;->resumeTopActivityLocked(Lcom/android/server/am/ActivityRecord;)Z
 
-    .line 3797
+    monitor-exit v3
+    :try_end_c
+    .catchall {:try_start_c .. :try_end_c} :catchall_3
+
     :cond_13
     return-object v23
 
-    .line 3779
     :cond_14
     if-eqz v25, :cond_11
 
-    .line 3780
     const/16 v21, 0x0
 
     :goto_8
@@ -6065,16 +6069,24 @@
 
     invoke-virtual {v3, v2}, Lcom/android/server/am/ActivityManagerService;->finishUserSwitch(Lcom/android/server/am/UserStartedState;)V
 
-    .line 3780
     add-int/lit8 v21, v21, 0x1
 
     goto :goto_8
 
-    .line 3735
+    :catchall_3
+    move-exception v2
+
+    :try_start_d
+    monitor-exit v3
+    :try_end_d
+    .catchall {:try_start_d .. :try_end_d} :catchall_3
+
+    throw v2
+
     .end local v19           #finishes:Ljava/util/ArrayList;,"Ljava/util/ArrayList<Lcom/android/server/am/ActivityRecord;>;"
     .end local v21           #i:I
     .restart local v20       #finishes:Ljava/util/ArrayList;,"Ljava/util/ArrayList<Lcom/android/server/am/ActivityRecord;>;"
-    :catchall_3
+    :catchall_4
     move-exception v2
 
     move-object/from16 v19, v20
@@ -6085,7 +6097,7 @@
 
     .end local v28           #thumbnails:Ljava/util/ArrayList;,"Ljava/util/ArrayList<Lcom/android/server/am/ActivityRecord;>;"
     .restart local v29       #thumbnails:Ljava/util/ArrayList;,"Ljava/util/ArrayList<Lcom/android/server/am/ActivityRecord;>;"
-    :catchall_4
+    :catchall_5
     move-exception v2
 
     move-object/from16 v28, v29
@@ -6096,7 +6108,7 @@
 
     .end local v25           #startingUsers:Ljava/util/ArrayList;,"Ljava/util/ArrayList<Lcom/android/server/am/UserStartedState;>;"
     .restart local v26       #startingUsers:Ljava/util/ArrayList;,"Ljava/util/ArrayList<Lcom/android/server/am/UserStartedState;>;"
-    :catchall_5
+    :catchall_6
     move-exception v2
 
     move-object/from16 v25, v26

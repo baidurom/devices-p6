@@ -19,15 +19,16 @@
 
 
 # direct methods
-.method constructor <init>(Lcom/android/server/Watchdog;)V
+.method constructor <init>(Lcom/android/server/Watchdog;Landroid/os/Looper;)V
     .locals 0
     .parameter
+    .parameter "looper"
 
     .prologue
     .line 119
     iput-object p1, p0, Lcom/android/server/Watchdog$HeartbeatHandler;->this$0:Lcom/android/server/Watchdog;
 
-    invoke-direct {p0}, Landroid/os/Handler;-><init>()V
+    invoke-direct {p0, p2}, Landroid/os/Handler;-><init>(Landroid/os/Looper;)V
 
     return-void
 .end method

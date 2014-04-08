@@ -52,6 +52,18 @@
 
     move-result-object v0
 
+    if-eqz v0, :cond_0
+
+    .line 9249
+    iget-object v0, p0, Landroid/webkit/WebViewClassic$InvokeListBox$4;->this$1:Landroid/webkit/WebViewClassic$InvokeListBox;
+
+    iget-object v0, v0, Landroid/webkit/WebViewClassic$InvokeListBox;->this$0:Landroid/webkit/WebViewClassic;
+
+    #getter for: Landroid/webkit/WebViewClassic;->mWebViewCore:Landroid/webkit/WebViewCore;
+    invoke-static {v0}, Landroid/webkit/WebViewClassic;->access$1700(Landroid/webkit/WebViewClassic;)Landroid/webkit/WebViewCore;
+
+    move-result-object v0
+
     const/16 v1, 0x7c
 
     const/4 v2, -0x2
@@ -60,7 +72,7 @@
 
     invoke-virtual {v0, v1, v2, v3}, Landroid/webkit/WebViewCore;->sendMessage(III)V
 
-    .line 9249
+    :cond_0
     iget-object v0, p0, Landroid/webkit/WebViewClassic$InvokeListBox$4;->this$1:Landroid/webkit/WebViewClassic$InvokeListBox;
 
     iget-object v0, v0, Landroid/webkit/WebViewClassic$InvokeListBox;->this$0:Landroid/webkit/WebViewClassic;

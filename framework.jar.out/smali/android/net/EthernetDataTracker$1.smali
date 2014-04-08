@@ -38,15 +38,15 @@
 
 # virtual methods
 .method public run()V
-    .locals 6
+    .locals 7
 
     .prologue
-    .line 173
+    const/4 v6, 0x1
+
     new-instance v0, Landroid/net/DhcpInfoInternal;
 
     invoke-direct {v0}, Landroid/net/DhcpInfoInternal;-><init>()V
 
-    .line 174
     .local v0, dhcpInfoInternal:Landroid/net/DhcpInfoInternal;
     invoke-static {}, Landroid/net/EthernetDataTracker;->access$000()Ljava/lang/String;
 
@@ -122,6 +122,15 @@
 
     move-result-object v2
 
+    invoke-virtual {v2, v6}, Landroid/net/NetworkInfo;->setIsAvailable(Z)V
+
+    iget-object v2, p0, Landroid/net/EthernetDataTracker$1;->this$0:Landroid/net/EthernetDataTracker;
+
+    #getter for: Landroid/net/EthernetDataTracker;->mNetworkInfo:Landroid/net/NetworkInfo;
+    invoke-static {v2}, Landroid/net/EthernetDataTracker;->access$200(Landroid/net/EthernetDataTracker;)Landroid/net/NetworkInfo;
+
+    move-result-object v2
+
     sget-object v3, Landroid/net/NetworkInfo$DetailedState;->CONNECTED:Landroid/net/NetworkInfo$DetailedState;
 
     const/4 v4, 0x0
@@ -143,16 +152,14 @@
 
     move-result-object v2
 
-    const/4 v3, 0x1
-
-    iget-object v4, p0, Landroid/net/EthernetDataTracker$1;->this$0:Landroid/net/EthernetDataTracker;
+    iget-object v3, p0, Landroid/net/EthernetDataTracker$1;->this$0:Landroid/net/EthernetDataTracker;
 
     #getter for: Landroid/net/EthernetDataTracker;->mNetworkInfo:Landroid/net/NetworkInfo;
-    invoke-static {v4}, Landroid/net/EthernetDataTracker;->access$200(Landroid/net/EthernetDataTracker;)Landroid/net/NetworkInfo;
+    invoke-static {v3}, Landroid/net/EthernetDataTracker;->access$200(Landroid/net/EthernetDataTracker;)Landroid/net/NetworkInfo;
 
-    move-result-object v4
+    move-result-object v3
 
-    invoke-virtual {v2, v3, v4}, Landroid/os/Handler;->obtainMessage(ILjava/lang/Object;)Landroid/os/Message;
+    invoke-virtual {v2, v6, v3}, Landroid/os/Handler;->obtainMessage(ILjava/lang/Object;)Landroid/os/Message;
 
     move-result-object v1
 

@@ -1337,4 +1337,7 @@ Tentativas restantes:"</string>
     <string name="enablePin">Falha ao activar o bloqueio do SIM/RUIM.</string>
     <string name="volume_fm">Volume FM</string>
     <string name="volume_icon_description_fm">Volume FM</string>
+    <string name="anonymous_message">Anónimo</string>
+    <string name="kg_bkup_pin">PIN de reserva</string>
+    <string name="kg_wrong_bkup_pin">PIN de reserva incorrecto</string>
 </resources>

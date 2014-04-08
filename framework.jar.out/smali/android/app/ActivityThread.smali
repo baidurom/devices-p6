@@ -11920,6 +11920,10 @@
 
     .line 4725
     :cond_0
+    const/4 v5, 0x0
+
+    iput-boolean v5, p1, Landroid/app/ActivityThread$ProviderRefCount;->removePending:Z
+
     iget-object v5, p1, Landroid/app/ActivityThread$ProviderRefCount;->holder:Landroid/app/IActivityManager$ContentProviderHolder;
 
     iget-object v5, v5, Landroid/app/IActivityManager$ContentProviderHolder;->provider:Landroid/content/IContentProvider;
@@ -12013,17 +12017,11 @@
     .restart local v1       #iter:Ljava/util/Iterator;,"Ljava/util/Iterator<Landroid/app/ActivityThread$ProviderClientRecord;>;"
     .restart local v2       #jBinder:Landroid/os/IBinder;
     :cond_3
-    const/4 v5, 0x0
-
     :try_start_1
-    iput-boolean v5, p1, Landroid/app/ActivityThread$ProviderRefCount;->removePending:Z
-
-    .line 4742
     monitor-exit v6
     :try_end_1
     .catchall {:try_start_1 .. :try_end_1} :catchall_0
 
-    .line 4749
     :try_start_2
     invoke-static {}, Landroid/app/ActivityManagerNative;->getDefault()Landroid/app/IActivityManager;
 

@@ -40,6 +40,8 @@
 
 .field static final TRANSACTION_remove:I = 0x6
 
+.field static final TRANSACTION_removeAllPendingAlarms:I = 0x12
+
 .field static final TRANSACTION_set:I = 0x1
 
 .field static final TRANSACTION_setAlarmDynList:I = 0xe
@@ -47,6 +49,8 @@
 .field static final TRANSACTION_setAlarmHeartBeat:I = 0xc
 
 .field static final TRANSACTION_setAlarmPolicyState:I = 0xa
+
+.field static final TRANSACTION_setAlarmsPending:I = 0x11
 
 .field static final TRANSACTION_setInexactRepeating:I = 0x3
 
@@ -145,26 +149,22 @@
     .end annotation
 
     .prologue
-    const/4 v2, 0x0
-
-    const/4 v10, 0x1
-
-    .line 43
     sparse-switch p1, :sswitch_data_0
 
-    .line 230
     invoke-super {p0, p1, p2, p3, p4}, Landroid/os/Binder;->onTransact(ILandroid/os/Parcel;Landroid/os/Parcel;I)Z
 
-    move-result v10
+    move-result v0
 
     :goto_0
-    return v10
+    return v0
 
     .line 47
     :sswitch_0
     const-string v0, "android.app.IAlarmManager"
 
     invoke-virtual {p3, v0}, Landroid/os/Parcel;->writeString(Ljava/lang/String;)V
+
+    const/4 v0, 0x1
 
     goto :goto_0
 
@@ -202,17 +202,16 @@
 
     check-cast v4, Landroid/app/PendingIntent;
 
-    .line 64
     .local v4, _arg2:Landroid/app/PendingIntent;
     :goto_1
     invoke-virtual {p0, v1, v2, v3, v4}, Landroid/app/IAlarmManager$Stub;->set(IJLandroid/app/PendingIntent;)V
 
-    .line 65
     invoke-virtual {p3}, Landroid/os/Parcel;->writeNoException()V
+
+    const/4 v0, 0x1
 
     goto :goto_0
 
-    .line 62
     .end local v4           #_arg2:Landroid/app/PendingIntent;
     :cond_0
     const/4 v4, 0x0
@@ -267,15 +266,14 @@
     :goto_2
     move-object v0, p0
 
-    .line 84
     invoke-virtual/range {v0 .. v6}, Landroid/app/IAlarmManager$Stub;->setRepeating(IJJLandroid/app/PendingIntent;)V
 
-    .line 85
     invoke-virtual {p3}, Landroid/os/Parcel;->writeNoException()V
+
+    const/4 v0, 0x1
 
     goto :goto_0
 
-    .line 82
     .end local v6           #_arg3:Landroid/app/PendingIntent;
     :cond_1
     const/4 v6, 0x0
@@ -331,15 +329,14 @@
     :goto_3
     move-object v0, p0
 
-    .line 104
     invoke-virtual/range {v0 .. v6}, Landroid/app/IAlarmManager$Stub;->setInexactRepeating(IJJLandroid/app/PendingIntent;)V
 
-    .line 105
     invoke-virtual {p3}, Landroid/os/Parcel;->writeNoException()V
+
+    const/4 v0, 0x1
 
     goto :goto_0
 
-    .line 102
     .end local v6           #_arg3:Landroid/app/PendingIntent;
     :cond_2
     const/4 v6, 0x0
@@ -357,56 +354,50 @@
 
     invoke-virtual {p2, v0}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
 
-    .line 112
     invoke-virtual {p2}, Landroid/os/Parcel;->readLong()J
 
     move-result-wide v7
 
-    .line 113
     .local v7, _arg0:J
     invoke-virtual {p0, v7, v8}, Landroid/app/IAlarmManager$Stub;->setTime(J)V
 
-    .line 114
     invoke-virtual {p3}, Landroid/os/Parcel;->writeNoException()V
+
+    const/4 v0, 0x1
 
     goto/16 :goto_0
 
-    .line 119
     .end local v7           #_arg0:J
     :sswitch_5
     const-string v0, "android.app.IAlarmManager"
 
     invoke-virtual {p2, v0}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
 
-    .line 121
     invoke-virtual {p2}, Landroid/os/Parcel;->readString()Ljava/lang/String;
 
     move-result-object v1
 
-    .line 122
     .local v1, _arg0:Ljava/lang/String;
     invoke-virtual {p0, v1}, Landroid/app/IAlarmManager$Stub;->setTimeZone(Ljava/lang/String;)V
 
-    .line 123
     invoke-virtual {p3}, Landroid/os/Parcel;->writeNoException()V
+
+    const/4 v0, 0x1
 
     goto/16 :goto_0
 
-    .line 128
     .end local v1           #_arg0:Ljava/lang/String;
     :sswitch_6
     const-string v0, "android.app.IAlarmManager"
 
     invoke-virtual {p2, v0}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
 
-    .line 130
     invoke-virtual {p2}, Landroid/os/Parcel;->readInt()I
 
     move-result v0
 
     if-eqz v0, :cond_3
 
-    .line 131
     sget-object v0, Landroid/app/PendingIntent;->CREATOR:Landroid/os/Parcelable$Creator;
 
     invoke-interface {v0, p2}, Landroid/os/Parcelable$Creator;->createFromParcel(Landroid/os/Parcel;)Ljava/lang/Object;
@@ -415,17 +406,16 @@
 
     check-cast v1, Landroid/app/PendingIntent;
 
-    .line 136
     .local v1, _arg0:Landroid/app/PendingIntent;
     :goto_4
     invoke-virtual {p0, v1}, Landroid/app/IAlarmManager$Stub;->remove(Landroid/app/PendingIntent;)V
 
-    .line 137
     invoke-virtual {p3}, Landroid/os/Parcel;->writeNoException()V
+
+    const/4 v0, 0x1
 
     goto/16 :goto_0
 
-    .line 134
     .end local v1           #_arg0:Landroid/app/PendingIntent;
     :cond_3
     const/4 v1, 0x0
@@ -433,47 +423,42 @@
     .restart local v1       #_arg0:Landroid/app/PendingIntent;
     goto :goto_4
 
-    .line 142
     .end local v1           #_arg0:Landroid/app/PendingIntent;
     :sswitch_7
     const-string v0, "android.app.IAlarmManager"
 
     invoke-virtual {p2, v0}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
 
-    .line 143
     invoke-virtual {p0}, Landroid/app/IAlarmManager$Stub;->disableLocked()V
 
-    .line 144
     invoke-virtual {p3}, Landroid/os/Parcel;->writeNoException()V
+
+    const/4 v0, 0x1
 
     goto/16 :goto_0
 
-    .line 149
     :sswitch_8
     const-string v0, "android.app.IAlarmManager"
 
     invoke-virtual {p2, v0}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
 
-    .line 150
     invoke-virtual {p0}, Landroid/app/IAlarmManager$Stub;->enableLocked()V
 
-    .line 151
     invoke-virtual {p3}, Landroid/os/Parcel;->writeNoException()V
+
+    const/4 v0, 0x1
 
     goto/16 :goto_0
 
-    .line 156
     :sswitch_9
     const-string v0, "android.app.IAlarmManager"
 
     invoke-virtual {p2, v0}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
 
-    .line 158
     invoke-virtual {p2}, Landroid/os/Parcel;->readString()Ljava/lang/String;
 
     move-result-object v1
 
-    .line 160
     .local v1, _arg0:Ljava/lang/String;
     invoke-virtual {p2}, Landroid/os/Parcel;->readInt()I
 
@@ -481,21 +466,25 @@
 
     if-eqz v0, :cond_4
 
-    move v2, v10
+    const/4 v2, 0x1
 
-    .line 161
     .local v2, _arg1:Z
-    :cond_4
+    :goto_5
     invoke-virtual {p0, v1, v2}, Landroid/app/IAlarmManager$Stub;->optionalLocked(Ljava/lang/String;Z)V
 
-    .line 162
     invoke-virtual {p3}, Landroid/os/Parcel;->writeNoException()V
+
+    const/4 v0, 0x1
 
     goto/16 :goto_0
 
-    .line 167
-    .end local v1           #_arg0:Ljava/lang/String;
     .end local v2           #_arg1:Z
+    :cond_4
+    const/4 v2, 0x0
+
+    goto :goto_5
+
+    .end local v1           #_arg0:Ljava/lang/String;
     :sswitch_a
     const-string v0, "android.app.IAlarmManager"
 
@@ -508,141 +497,139 @@
 
     if-eqz v0, :cond_5
 
-    move v1, v10
+    const/4 v1, 0x1
 
-    .line 170
     .local v1, _arg0:Z
-    :goto_5
+    :goto_6
     invoke-virtual {p0, v1}, Landroid/app/IAlarmManager$Stub;->setAlarmPolicyState(Z)V
 
-    .line 171
     invoke-virtual {p3}, Landroid/os/Parcel;->writeNoException()V
+
+    const/4 v0, 0x1
 
     goto/16 :goto_0
 
     .end local v1           #_arg0:Z
     :cond_5
-    move v1, v2
+    const/4 v1, 0x0
 
-    .line 169
-    goto :goto_5
+    goto :goto_6
 
-    .line 176
     :sswitch_b
     const-string v0, "android.app.IAlarmManager"
 
     invoke-virtual {p2, v0}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
 
-    .line 177
     invoke-virtual {p0}, Landroid/app/IAlarmManager$Stub;->getAlarmPolicyState()Z
 
-    move-result v9
+    move-result v10
 
-    .line 178
-    .local v9, _result:Z
+    .local v10, _result:Z
     invoke-virtual {p3}, Landroid/os/Parcel;->writeNoException()V
 
-    .line 179
-    if-eqz v9, :cond_6
+    if-eqz v10, :cond_6
 
-    move v2, v10
+    const/4 v0, 0x1
 
-    :cond_6
-    invoke-virtual {p3, v2}, Landroid/os/Parcel;->writeInt(I)V
+    :goto_7
+    invoke-virtual {p3, v0}, Landroid/os/Parcel;->writeInt(I)V
+
+    const/4 v0, 0x1
 
     goto/16 :goto_0
 
-    .line 184
-    .end local v9           #_result:Z
+    :cond_6
+    const/4 v0, 0x0
+
+    goto :goto_7
+
+    .end local v10           #_result:Z
     :sswitch_c
     const-string v0, "android.app.IAlarmManager"
 
     invoke-virtual {p2, v0}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
 
-    .line 186
     invoke-virtual {p2}, Landroid/os/Parcel;->readInt()I
 
     move-result v1
 
-    .line 187
     .local v1, _arg0:I
     invoke-virtual {p0, v1}, Landroid/app/IAlarmManager$Stub;->setAlarmHeartBeat(I)Z
 
-    move-result v9
+    move-result v10
 
-    .line 188
-    .restart local v9       #_result:Z
+    .restart local v10       #_result:Z
     invoke-virtual {p3}, Landroid/os/Parcel;->writeNoException()V
 
-    .line 189
-    if-eqz v9, :cond_7
+    if-eqz v10, :cond_7
 
-    move v2, v10
+    const/4 v0, 0x1
 
-    :cond_7
-    invoke-virtual {p3, v2}, Landroid/os/Parcel;->writeInt(I)V
+    :goto_8
+    invoke-virtual {p3, v0}, Landroid/os/Parcel;->writeInt(I)V
+
+    const/4 v0, 0x1
 
     goto/16 :goto_0
 
+    :cond_7
+    const/4 v0, 0x0
+
+    goto :goto_8
+
     .line 194
     .end local v1           #_arg0:I
-    .end local v9           #_result:Z
+    .end local v10           #_result:Z
     :sswitch_d
     const-string v0, "android.app.IAlarmManager"
 
     invoke-virtual {p2, v0}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
 
-    .line 195
     invoke-virtual {p0}, Landroid/app/IAlarmManager$Stub;->getAlarmHeartBeat()I
 
-    move-result v9
+    move-result v10
 
-    .line 196
-    .local v9, _result:I
+    .local v10, _result:I
     invoke-virtual {p3}, Landroid/os/Parcel;->writeNoException()V
 
-    .line 197
-    invoke-virtual {p3, v9}, Landroid/os/Parcel;->writeInt(I)V
+    invoke-virtual {p3, v10}, Landroid/os/Parcel;->writeInt(I)V
+
+    const/4 v0, 0x1
 
     goto/16 :goto_0
 
-    .line 202
-    .end local v9           #_result:I
+    .end local v10           #_result:I
     :sswitch_e
     const-string v0, "android.app.IAlarmManager"
 
     invoke-virtual {p2, v0}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
 
-    .line 204
     invoke-virtual {p2}, Landroid/os/Parcel;->readString()Ljava/lang/String;
 
     move-result-object v1
 
-    .line 206
     .local v1, _arg0:Ljava/lang/String;
     invoke-virtual {p2}, Landroid/os/Parcel;->readInt()I
 
     move-result v2
 
-    .line 207
     .local v2, _arg1:I
     invoke-virtual {p0, v1, v2}, Landroid/app/IAlarmManager$Stub;->setAlarmDynList(Ljava/lang/String;I)I
 
-    move-result v9
+    move-result v10
 
-    .line 208
-    .restart local v9       #_result:I
+    .restart local v10       #_result:I
     invoke-virtual {p3}, Landroid/os/Parcel;->writeNoException()V
 
-    .line 209
-    invoke-virtual {p3, v9}, Landroid/os/Parcel;->writeInt(I)V
+    invoke-virtual {p3, v10}, Landroid/os/Parcel;->writeInt(I)V
+
+    const/4 v0, 0x1
 
     goto/16 :goto_0
 
-    .line 214
     .end local v1           #_arg0:Ljava/lang/String;
     .end local v2           #_arg1:I
-    .end local v9           #_result:I
+    .end local v10           #_result:I
     :sswitch_f
     const-string v0, "android.app.IAlarmManager"
 
@@ -655,52 +642,118 @@
 
     if-eqz v0, :cond_8
 
-    move v1, v10
+    const/4 v1, 0x1
 
-    .line 217
     .local v1, _arg0:Z
-    :goto_6
+    :goto_9
     invoke-virtual {p0, v1}, Landroid/app/IAlarmManager$Stub;->setPhbEnable(Z)V
 
-    .line 218
     invoke-virtual {p3}, Landroid/os/Parcel;->writeNoException()V
+
+    const/4 v0, 0x1
 
     goto/16 :goto_0
 
     .end local v1           #_arg0:Z
     :cond_8
-    move v1, v2
+    const/4 v1, 0x0
 
-    .line 216
-    goto :goto_6
+    goto :goto_9
 
-    .line 223
     :sswitch_10
     const-string v0, "android.app.IAlarmManager"
 
     invoke-virtual {p2, v0}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
 
-    .line 224
     invoke-virtual {p0}, Landroid/app/IAlarmManager$Stub;->getPhbState()Z
 
-    move-result v9
+    move-result v10
 
-    .line 225
-    .local v9, _result:Z
+    .local v10, _result:Z
     invoke-virtual {p3}, Landroid/os/Parcel;->writeNoException()V
 
-    .line 226
-    if-eqz v9, :cond_9
+    if-eqz v10, :cond_9
 
-    move v2, v10
+    const/4 v0, 0x1
 
-    :cond_9
-    invoke-virtual {p3, v2}, Landroid/os/Parcel;->writeInt(I)V
+    :goto_a
+    invoke-virtual {p3, v0}, Landroid/os/Parcel;->writeInt(I)V
+
+    const/4 v0, 0x1
 
     goto/16 :goto_0
 
-    .line 43
-    nop
+    :cond_9
+    const/4 v0, 0x0
+
+    goto :goto_a
+
+    .end local v10           #_result:Z
+    :sswitch_11
+    const-string v0, "android.app.IAlarmManager"
+
+    invoke-virtual {p2, v0}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
+
+    invoke-virtual {p2}, Landroid/os/Parcel;->createStringArrayList()Ljava/util/ArrayList;
+
+    move-result-object v9
+
+    .local v9, _arg0:Ljava/util/List;,"Ljava/util/List<Ljava/lang/String;>;"
+    invoke-virtual {p2}, Landroid/os/Parcel;->readInt()I
+
+    move-result v0
+
+    if-eqz v0, :cond_a
+
+    const/4 v2, 0x1
+
+    .local v2, _arg1:Z
+    :goto_b
+    invoke-virtual {p2}, Landroid/os/Parcel;->readInt()I
+
+    move-result v0
+
+    if-eqz v0, :cond_b
+
+    const/4 v4, 0x1
+
+    .local v4, _arg2:Z
+    :goto_c
+    invoke-virtual {p0, v9, v2, v4}, Landroid/app/IAlarmManager$Stub;->setAlarmsPending(Ljava/util/List;ZZ)V
+
+    invoke-virtual {p3}, Landroid/os/Parcel;->writeNoException()V
+
+    const/4 v0, 0x1
+
+    goto/16 :goto_0
+
+    .end local v2           #_arg1:Z
+    .end local v4           #_arg2:Z
+    :cond_a
+    const/4 v2, 0x0
+
+    goto :goto_b
+
+    .restart local v2       #_arg1:Z
+    :cond_b
+    const/4 v4, 0x0
+
+    goto :goto_c
+
+    .end local v2           #_arg1:Z
+    .end local v9           #_arg0:Ljava/util/List;,"Ljava/util/List<Ljava/lang/String;>;"
+    :sswitch_12
+    const-string v0, "android.app.IAlarmManager"
+
+    invoke-virtual {p2, v0}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
+
+    invoke-virtual {p0}, Landroid/app/IAlarmManager$Stub;->removeAllPendingAlarms()V
+
+    invoke-virtual {p3}, Landroid/os/Parcel;->writeNoException()V
+
+    const/4 v0, 0x1
+
+    goto/16 :goto_0
 
     :sswitch_data_0
     .sparse-switch
@@ -720,6 +773,8 @@
         0xe -> :sswitch_e
         0xf -> :sswitch_f
         0x10 -> :sswitch_10
+        0x11 -> :sswitch_11
+        0x12 -> :sswitch_12
         0x5f4e5446 -> :sswitch_0
     .end sparse-switch
 .end method

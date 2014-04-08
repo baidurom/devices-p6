@@ -145,7 +145,7 @@
 #the value of this static final field might be set in the static constructor
 .field static final IS_USER_BUILD:Z = false
 
-.field static final KEY_DISPATCHING_TIMEOUT:I = 0x2710
+.field static final KEY_DISPATCHING_TIMEOUT:I = 0x1f40
 
 .field static final KILL_APPLICATION_MSG:I = 0x16
 
@@ -53552,7 +53552,7 @@
 
     .line 7659
     :cond_5
-    const-wide/16 v2, 0x2710
+    const-wide/16 v2, 0x1f40
 
     goto :goto_0
 .end method

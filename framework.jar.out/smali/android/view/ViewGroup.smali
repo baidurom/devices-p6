@@ -6731,6 +6731,8 @@
 
     .line 1480
     :goto_3
+    move-object v14, v11
+
     const/16 v21, 0x9
 
     move/from16 v0, v21
@@ -6850,42 +6852,32 @@
 
     iput-object v0, v11, Landroid/view/ViewGroup$HoverTarget;->next:Landroid/view/ViewGroup$HoverTarget;
 
-    .line 1463
     const/16 v18, 0x1
 
-    .line 1464
     .restart local v18       #wasHovered:Z
     goto :goto_2
 
-    .line 1460
     .end local v18           #wasHovered:Z
     :cond_5
     iget-object v9, v11, Landroid/view/ViewGroup$HoverTarget;->next:Landroid/view/ViewGroup$HoverTarget;
 
     goto :goto_7
 
-    .line 1467
     :cond_6
     move-object/from16 v17, v11
 
-    .line 1468
     iget-object v11, v11, Landroid/view/ViewGroup$HoverTarget;->next:Landroid/view/ViewGroup$HoverTarget;
 
     goto :goto_1
 
-    .line 1475
     .restart local v18       #wasHovered:Z
     :cond_7
-    move-object v14, v11
-
-    .line 1476
     move-object/from16 v0, p0
 
     iput-object v11, v0, Landroid/view/ViewGroup;->mFirstHoverTarget:Landroid/view/ViewGroup$HoverTarget;
 
     goto :goto_3
 
-    .line 1486
     :cond_8
     const/16 v21, 0x7
 

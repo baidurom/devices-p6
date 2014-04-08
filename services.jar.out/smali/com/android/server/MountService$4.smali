@@ -264,7 +264,7 @@
     iget-object v13, v0, Lcom/android/server/MountService$4;->this$0:Lcom/android/server/MountService;
 
     #getter for: Lcom/android/server/MountService;->mPms:Lcom/android/server/pm/PackageManagerService;
-    invoke-static {v13}, Lcom/android/server/MountService;->access$300(Lcom/android/server/MountService;)Lcom/android/server/pm/PackageManagerService;
+    invoke-static {v13}, Lcom/android/server/MountService;->access$400(Lcom/android/server/MountService;)Lcom/android/server/pm/PackageManagerService;
 
     move-result-object v13
 

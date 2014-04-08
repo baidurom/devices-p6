@@ -638,7 +638,7 @@
     <string name="policydesc_disableKeyguardFeatures">禁止使用鍵盤保護框上的部分功能。</string>
     <string name="phoneTypeCustom">自訂</string>
     <string name="phoneTypeHome">住家</string>
-    <string name="phoneTypeMobile">行動裝置</string>
+    <string name="phoneTypeMobile">行動電話</string>
     <string name="phoneTypeWork">公司</string>
     <string name="phoneTypeFaxWork">公司傳真</string>
     <string name="phoneTypeFaxHome">住家傳真</string>

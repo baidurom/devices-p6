@@ -17256,25 +17256,21 @@
 .end method
 
 .method public getHandler()Landroid/os/Handler;
-    .locals 1
+    .locals 2
 
     .prologue
-    .line 10540
     iget-object v0, p0, Landroid/view/View;->mAttachInfo:Landroid/view/View$AttachInfo;
 
+    .local v0, attachInfo:Landroid/view/View$AttachInfo;
     if-eqz v0, :cond_0
 
-    .line 10541
-    iget-object v0, p0, Landroid/view/View;->mAttachInfo:Landroid/view/View$AttachInfo;
+    iget-object v1, v0, Landroid/view/View$AttachInfo;->mHandler:Landroid/os/Handler;
 
-    iget-object v0, v0, Landroid/view/View$AttachInfo;->mHandler:Landroid/os/Handler;
-
-    .line 10543
     :goto_0
-    return-object v0
+    return-object v1
 
     :cond_0
-    const/4 v0, 0x0
+    const/4 v1, 0x0
 
     goto :goto_0
 .end method

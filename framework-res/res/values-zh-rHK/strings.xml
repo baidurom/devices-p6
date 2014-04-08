@@ -646,7 +646,7 @@
     <string name="phoneTypeWork">公司</string>
     <string name="phoneTypeFaxWork">公司傳真</string>
     <string name="phoneTypeFaxHome">住家傳真</string>
-    <string name="phoneTypePager">呼叫器</string>
+    <string name="phoneTypePager">傳呼機</string>
     <string name="phoneTypeOther">其他</string>
     <string name="phoneTypeCallback">回撥</string>
     <string name="phoneTypeCar">車用電話</string>
@@ -736,8 +736,8 @@
     <string name="lockscreen_battery_short">%d%%</string>
     <string name="lockscreen_low_battery">請連接充電器。</string>
     <string name="lockscreen_missing_sim_message_short">沒有 SIM 卡</string>
-    <string name="lockscreen_missing_sim_message">手機中無 SIM 卡。</string>
-    <string name="lockscreen_missing_sim_instructions">請插入 SIM 卡。</string>
+    <string name="lockscreen_missing_sim_message">手機中無 SIM 卡</string>
+    <string name="lockscreen_missing_sim_instructions">請插入 SIM 卡</string>
     <string name="lockscreen_missing_sim_instructions_long">SIM 卡不存在或無法讀取。請插入可讀取的 SIM 卡。</string>
     <string name="lockscreen_permanent_disabled_sim_message_short">無效的 SIM 卡。</string>
     <string name="lockscreen_permanent_disabled_sim_instructions">"您的 SIM 卡已永久停用。

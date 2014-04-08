@@ -2389,77 +2389,79 @@
 .end method
 
 .method public getGsmAsuLevel()I
-    .locals 6
+    .locals 5
 
     .prologue
-    const/4 v3, -0x1
-
-    .line 747
     invoke-virtual {p0}, Landroid/telephony/SignalStrength;->getGsmSignalStrength()I
 
     move-result v2
 
-    .line 749
     .local v2, gsmSignalStrength:I
-    if-nez v2, :cond_1
+    new-instance v3, Ljava/lang/StringBuilder;
 
-    move v1, v3
+    invoke-direct {v3}, Ljava/lang/StringBuilder;-><init>()V
 
-    .line 750
+    const-string v4, "gsmSignalStrength="
+
+    invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v3
+
+    invoke-virtual {v3, v2}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
+    move-result-object v3
+
+    const-string v4, ", mWcdmaRscp"
+
+    invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v3
+
+    iget v4, p0, Landroid/telephony/SignalStrength;->mWcdmaRscp:I
+
+    invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
+    move-result-object v3
+
+    invoke-virtual {v3}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v3
+
+    invoke-static {v3}, Landroid/telephony/SignalStrength;->log(Ljava/lang/String;)V
+
+    invoke-virtual {p0}, Landroid/telephony/SignalStrength;->getGsmDbm()I
+
+    move-result v1
+
     .local v1, dbm:I
-    :goto_0
-    new-instance v4, Ljava/lang/StringBuilder;
+    const/4 v3, -0x1
 
-    invoke-direct {v4}, Ljava/lang/StringBuilder;-><init>()V
+    if-eq v3, v1, :cond_2
 
-    const-string v5, "gsmSignalStrength="
+    if-eqz v1, :cond_2
 
-    invoke-virtual {v4, v5}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    const v3, 0x7fffffff
 
-    move-result-object v4
+    if-eq v3, v1, :cond_2
 
-    invoke-virtual {v4, v2}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
-
-    move-result-object v4
-
-    const-string v5, ", mWcdmaRscp"
-
-    invoke-virtual {v4, v5}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v4
-
-    iget v5, p0, Landroid/telephony/SignalStrength;->mWcdmaRscp:I
-
-    invoke-virtual {v4, v5}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
-
-    move-result-object v4
-
-    invoke-virtual {v4}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    move-result-object v4
-
-    invoke-static {v4}, Landroid/telephony/SignalStrength;->log(Ljava/lang/String;)V
-
-    .line 751
-    if-eq v1, v3, :cond_2
-
-    iget v4, p0, Landroid/telephony/SignalStrength;->mWcdmaRscp:I
-
-    if-eqz v4, :cond_0
-
-    iget v4, p0, Landroid/telephony/SignalStrength;->mWcdmaRscp:I
-
-    if-ne v3, v4, :cond_2
-
-    .line 752
-    :cond_0
     add-int/lit8 v3, v1, 0x71
 
     div-int/lit8 v0, v3, 0x2
 
-    .line 757
     .local v0, asu:I
-    :goto_1
+    if-gez v0, :cond_0
+
+    const/4 v0, 0x0
+
+    :cond_0
+    const/16 v3, 0x1f
+
+    if-ge v3, v0, :cond_1
+
+    const/16 v0, 0x1f
+
+    :cond_1
+    :goto_0
     new-instance v3, Ljava/lang/StringBuilder;
 
     invoke-direct {v3}, Ljava/lang/StringBuilder;-><init>()V
@@ -2484,20 +2486,11 @@
     return v0
 
     .end local v0           #asu:I
-    .end local v1           #dbm:I
-    :cond_1
-    move v1, v2
-
-    .line 749
-    goto :goto_0
-
-    .line 754
-    .restart local v1       #dbm:I
     :cond_2
     const/4 v0, -0x1
 
     .restart local v0       #asu:I
-    goto :goto_1
+    goto :goto_0
 .end method
 
 .method public getGsmBitErrorRate()I

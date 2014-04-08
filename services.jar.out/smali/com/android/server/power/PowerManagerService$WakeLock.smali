@@ -18,6 +18,8 @@
 
 
 # instance fields
+.field public mDetectorTransferToFlags:I
+
 .field public mFlags:I
 
 .field public final mLock:Landroid/os/IBinder;
@@ -49,21 +51,20 @@
     .parameter "ownerPid"
 
     .prologue
-    .line 2797
     iput-object p1, p0, Lcom/android/server/power/PowerManagerService$WakeLock;->this$0:Lcom/android/server/power/PowerManagerService;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 2798
+    const/4 v0, 0x0
+
+    iput v0, p0, Lcom/android/server/power/PowerManagerService$WakeLock;->mDetectorTransferToFlags:I
+
     iput-object p2, p0, Lcom/android/server/power/PowerManagerService$WakeLock;->mLock:Landroid/os/IBinder;
 
-    .line 2799
     iput p3, p0, Lcom/android/server/power/PowerManagerService$WakeLock;->mFlags:I
 
-    .line 2800
     iput-object p4, p0, Lcom/android/server/power/PowerManagerService$WakeLock;->mTag:Ljava/lang/String;
 
-    .line 2801
     #calls: Lcom/android/server/power/PowerManagerService;->copyWorkSource(Landroid/os/WorkSource;)Landroid/os/WorkSource;
     invoke-static {p5}, Lcom/android/server/power/PowerManagerService;->access$3200(Landroid/os/WorkSource;)Landroid/os/WorkSource;
 

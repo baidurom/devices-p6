@@ -788,34 +788,39 @@
 
     sub-int/2addr v0, v1
 
-    .line 1080
     :goto_0
     return v0
 
-    .line 1074
     :cond_1
     iget-object v0, p0, Landroid/preference/Preference;->mTitle:Ljava/lang/CharSequence;
 
-    if-nez v0, :cond_2
+    iget-object v1, p1, Landroid/preference/Preference;->mTitle:Ljava/lang/CharSequence;
 
-    .line 1075
+    if-ne v0, v1, :cond_2
+
+    const/4 v0, 0x0
+
+    goto :goto_0
+
+    :cond_2
+    iget-object v0, p0, Landroid/preference/Preference;->mTitle:Ljava/lang/CharSequence;
+
+    if-nez v0, :cond_3
+
     const/4 v0, 0x1
 
     goto :goto_0
 
-    .line 1076
-    :cond_2
+    :cond_3
     iget-object v0, p1, Landroid/preference/Preference;->mTitle:Ljava/lang/CharSequence;
 
-    if-nez v0, :cond_3
+    if-nez v0, :cond_4
 
-    .line 1077
     const/4 v0, -0x1
 
     goto :goto_0
 
-    .line 1080
-    :cond_3
+    :cond_4
     iget-object v0, p0, Landroid/preference/Preference;->mTitle:Ljava/lang/CharSequence;
 
     iget-object v1, p1, Landroid/preference/Preference;->mTitle:Ljava/lang/CharSequence;

@@ -3117,44 +3117,20 @@
     .parameter "uid"
 
     .prologue
-    .line 596
     iget-object v5, p0, Lcom/android/server/location/GpsLocationProvider;->mPackageManager:Landroid/content/pm/PackageManager;
 
     invoke-virtual {v5, p1}, Landroid/content/pm/PackageManager;->getPackagesForUid(I)[Ljava/lang/String;
 
     move-result-object v3
 
-    .line 597
     .local v3, packages:[Ljava/lang/String;
-    if-nez v3, :cond_0
-
-    .line 598
-    new-instance v5, Ljava/lang/SecurityException;
-
-    new-instance v6, Ljava/lang/StringBuilder;
-
-    invoke-direct {v6}, Ljava/lang/StringBuilder;-><init>()V
-
-    const-string v7, "invalid UID "
-
-    invoke-virtual {v6, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v6
-
-    invoke-virtual {v6, p1}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
-
-    move-result-object v6
-
-    invoke-virtual {v6}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    move-result-object v6
-
-    invoke-direct {v5, v6}, Ljava/lang/SecurityException;-><init>(Ljava/lang/String;)V
-
-    throw v5
+    if-nez v3, :cond_1
 
     .line 600
     :cond_0
+    return-void
+
+    :cond_1
     move-object v0, v3
 
     .local v0, arr$:[Ljava/lang/String;
@@ -3165,7 +3141,7 @@
 
     .local v1, i$:I
     :goto_0
-    if-ge v1, v2, :cond_1
+    if-ge v1, v2, :cond_0
 
     aget-object v4, v0, v1
 
@@ -3209,15 +3185,9 @@
 
     invoke-static {v5, v6}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 600
     add-int/lit8 v1, v1, 0x1
 
     goto :goto_0
-
-    .line 603
-    .end local v4           #pkg:Ljava/lang/String;
-    :cond_1
-    return-void
 .end method
 
 .method private reportAGpsStatus(III)V

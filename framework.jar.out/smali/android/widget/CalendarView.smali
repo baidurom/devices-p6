@@ -187,57 +187,50 @@
     .parameter "defStyle"
 
     .prologue
-    .line 340
     const/4 v6, 0x0
 
     invoke-direct {p0, p1, p2, v6}, Landroid/widget/FrameLayout;-><init>(Landroid/content/Context;Landroid/util/AttributeSet;I)V
 
-    .line 183
     const/4 v6, 0x2
 
     iput v6, p0, Landroid/widget/CalendarView;->mListScrollTopOffset:I
 
-    .line 188
     const/16 v6, 0xc
 
     iput v6, p0, Landroid/widget/CalendarView;->mWeekMinVisibleHeight:I
 
-    .line 193
     const/16 v6, 0x14
 
     iput v6, p0, Landroid/widget/CalendarView;->mBottomBuffer:I
 
-    .line 208
     const/4 v6, 0x7
 
     iput v6, p0, Landroid/widget/CalendarView;->mDaysPerWeek:I
 
-    .line 213
     const v6, 0x3d4ccccd
 
     iput v6, p0, Landroid/widget/CalendarView;->mFriction:F
 
-    .line 218
     const v6, 0x3eaa7efa
 
     iput v6, p0, Landroid/widget/CalendarView;->mVelocityScale:F
 
-    .line 263
+    const/4 v6, -0x1
+
+    iput v6, p0, Landroid/widget/CalendarView;->mCurrentMonthDisplayed:I
+
     const/4 v6, 0x0
 
     iput-boolean v6, p0, Landroid/widget/CalendarView;->mIsScrollingUp:Z
 
-    .line 268
     const/4 v6, 0x0
 
     iput v6, p0, Landroid/widget/CalendarView;->mPreviousScrollState:I
 
-    .line 273
     const/4 v6, 0x0
 
     iput v6, p0, Landroid/widget/CalendarView;->mCurrentScrollState:I
 
-    .line 283
     new-instance v6, Landroid/widget/CalendarView$ScrollStateRunnable;
 
     const/4 v7, 0x0

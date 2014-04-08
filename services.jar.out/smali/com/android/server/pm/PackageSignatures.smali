@@ -887,37 +887,46 @@
 
     array-length v6, v6
 
-    if-ge v0, v6, :cond_4
+    if-ge v0, v6, :cond_5
 
-    .line 56
-    const-string v6, "cert"
-
-    invoke-interface {p1, v8, v6}, Lorg/xmlpull/v1/XmlSerializer;->startTag(Ljava/lang/String;Ljava/lang/String;)Lorg/xmlpull/v1/XmlSerializer;
-
-    .line 57
     iget-object v6, p0, Lcom/android/server/pm/PackageSignatures;->mSignatures:[Landroid/content/pm/Signature;
 
     aget-object v4, v6, v0
 
-    .line 58
     .local v4, sig:Landroid/content/pm/Signature;
+    if-nez v4, :cond_1
+
+    const-string v6, "PackageSignatures"
+
+    const-string v7, "null sig"
+
+    invoke-static {v6, v7}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
+
+    :goto_2
+    add-int/lit8 v0, v0, 0x1
+
+    goto :goto_1
+
+    :cond_1
+    const-string v6, "cert"
+
+    invoke-interface {p1, v8, v6}, Lorg/xmlpull/v1/XmlSerializer;->startTag(Ljava/lang/String;Ljava/lang/String;)Lorg/xmlpull/v1/XmlSerializer;
+
     invoke-virtual {v4}, Landroid/content/pm/Signature;->hashCode()I
 
     move-result v5
 
-    .line 59
     .local v5, sigHash:I
     invoke-virtual {p3}, Ljava/util/ArrayList;->size()I
 
     move-result v2
 
-    .line 61
     .local v2, numPast:I
     const/4 v1, 0x0
 
     .local v1, j:I
-    :goto_2
-    if-ge v1, v2, :cond_1
+    :goto_3
+    if-ge v1, v2, :cond_2
 
     .line 62
     invoke-virtual {p3, v1}, Ljava/util/ArrayList;->get(I)Ljava/lang/Object;
@@ -932,13 +941,13 @@
 
     move-result v6
 
-    if-ne v6, v5, :cond_3
+    if-ne v6, v5, :cond_4
 
     invoke-virtual {v3, v4}, Landroid/content/pm/Signature;->equals(Ljava/lang/Object;)Z
 
     move-result v6
 
-    if-eqz v6, :cond_3
+    if-eqz v6, :cond_4
 
     .line 64
     const-string v6, "index"
@@ -949,15 +958,12 @@
 
     invoke-interface {p1, v8, v6, v7}, Lorg/xmlpull/v1/XmlSerializer;->attribute(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lorg/xmlpull/v1/XmlSerializer;
 
-    .line 68
     .end local v3           #pastSig:Landroid/content/pm/Signature;
-    :cond_1
-    if-lt v1, v2, :cond_2
+    :cond_2
+    if-lt v1, v2, :cond_3
 
-    .line 69
     invoke-virtual {p3, v4}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
 
-    .line 70
     const-string v6, "index"
 
     invoke-static {v2}, Ljava/lang/Integer;->toString(I)Ljava/lang/String;
@@ -975,31 +981,25 @@
 
     invoke-interface {p1, v8, v6, v7}, Lorg/xmlpull/v1/XmlSerializer;->attribute(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lorg/xmlpull/v1/XmlSerializer;
 
-    .line 73
-    :cond_2
+    :cond_3
     const-string v6, "cert"
 
     invoke-interface {p1, v8, v6}, Lorg/xmlpull/v1/XmlSerializer;->endTag(Ljava/lang/String;Ljava/lang/String;)Lorg/xmlpull/v1/XmlSerializer;
 
-    .line 55
-    add-int/lit8 v0, v0, 0x1
-
-    goto :goto_1
-
-    .line 61
-    .restart local v3       #pastSig:Landroid/content/pm/Signature;
-    :cond_3
-    add-int/lit8 v1, v1, 0x1
-
     goto :goto_2
 
-    .line 75
+    .restart local v3       #pastSig:Landroid/content/pm/Signature;
+    :cond_4
+    add-int/lit8 v1, v1, 0x1
+
+    goto :goto_3
+
     .end local v1           #j:I
     .end local v2           #numPast:I
     .end local v3           #pastSig:Landroid/content/pm/Signature;
     .end local v4           #sig:Landroid/content/pm/Signature;
     .end local v5           #sigHash:I
-    :cond_4
+    :cond_5
     invoke-interface {p1, v8, p2}, Lorg/xmlpull/v1/XmlSerializer;->endTag(Ljava/lang/String;Ljava/lang/String;)Lorg/xmlpull/v1/XmlSerializer;
 
     goto :goto_0

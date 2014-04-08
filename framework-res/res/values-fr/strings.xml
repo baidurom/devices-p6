@@ -716,7 +716,7 @@ Les applications malveillantes peuvent compromettre l'intégralité du système.
     <string name="keyguard_password_wrong_pin_code">Code PIN erroné</string>
     <string name="keyguard_label_text">Pour déverrouiller le clavier, appuyez sur \"Menu\" puis sur 0.</string>
     <string name="emergency_call_dialog_number_for_display">"Numéro d'urgence"</string>
-    <string name="lockscreen_carrier_default">Aucun service.</string>
+    <string name="lockscreen_carrier_default">Aucun service</string>
     <string name="lockscreen_screen_locked">Écran verrouillé</string>
     <string name="lockscreen_instructions_when_pattern_enabled">"Appuyez sur \"Menu\" pour déverrouiller le téléphone ou appeler un numéro d'urgence"</string>
     <string name="lockscreen_instructions_when_pattern_disabled">Appuyez sur \"Menu\" pour déverrouiller le téléphone.</string>
@@ -1339,6 +1339,7 @@ Tentatives restantes :"</string>
     <string name="enablePin">"Impossible d'activer le verrou SIM/RUIM."</string>
     <string name="volume_fm">Volume FM</string>
     <string name="volume_icon_description_fm">Volume FM</string>
+    <string name="anonymous_message">Anonyme</string>
     <string name="kg_bkup_pin">PIN de sauv.</string>
     <string name="kg_wrong_bkup_pin">PIN de sauvegarde incorrect</string>
 </resources>

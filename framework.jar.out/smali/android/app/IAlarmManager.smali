@@ -71,6 +71,14 @@
     .end annotation
 .end method
 
+.method public abstract removeAllPendingAlarms()V
+    .annotation system Ldalvik/annotation/Throws;
+        value = {
+            Landroid/os/RemoteException;
+        }
+    .end annotation
+.end method
+
 .method public abstract set(IJLandroid/app/PendingIntent;)V
     .annotation system Ldalvik/annotation/Throws;
         value = {
@@ -96,6 +104,24 @@
 .end method
 
 .method public abstract setAlarmPolicyState(Z)V
+    .annotation system Ldalvik/annotation/Throws;
+        value = {
+            Landroid/os/RemoteException;
+        }
+    .end annotation
+.end method
+
+.method public abstract setAlarmsPending(Ljava/util/List;ZZ)V
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "(",
+            "Ljava/util/List",
+            "<",
+            "Ljava/lang/String;",
+            ">;ZZ)V"
+        }
+    .end annotation
+
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;

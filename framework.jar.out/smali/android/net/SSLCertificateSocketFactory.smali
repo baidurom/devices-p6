@@ -4,8 +4,6 @@
 
 
 # static fields
-.field private static final HOSTNAME_VERIFIER:Ljavax/net/ssl/HostnameVerifier; = null
-
 .field private static final INSECURE_TRUST_MANAGER:[Ljavax/net/ssl/TrustManager; = null
 
 .field private static final TAG:Ljava/lang/String; = "SSLCertificateSocketFactory"
@@ -48,13 +46,6 @@
     aput-object v2, v0, v1
 
     sput-object v0, Landroid/net/SSLCertificateSocketFactory;->INSECURE_TRUST_MANAGER:[Ljavax/net/ssl/TrustManager;
-
-    .line 83
-    invoke-static {}, Ljavax/net/ssl/HttpsURLConnection;->getDefaultHostnameVerifier()Ljavax/net/ssl/HostnameVerifier;
-
-    move-result-object v0
-
-    sput-object v0, Landroid/net/SSLCertificateSocketFactory;->HOSTNAME_VERIFIER:Ljavax/net/ssl/HostnameVerifier;
 
     return-void
 .end method
@@ -703,7 +694,9 @@
 
     .line 196
     :cond_1
-    sget-object v2, Landroid/net/SSLCertificateSocketFactory;->HOSTNAME_VERIFIER:Ljavax/net/ssl/HostnameVerifier;
+    invoke-static {}, Ljavax/net/ssl/HttpsURLConnection;->getDefaultHostnameVerifier()Ljavax/net/ssl/HostnameVerifier;
+
+    move-result-object v2
 
     invoke-interface {v2, p1, v0}, Ljavax/net/ssl/HostnameVerifier;->verify(Ljava/lang/String;Ljavax/net/ssl/SSLSession;)Z
 

@@ -65,6 +65,8 @@
 
 .field public static final keyguard_avatar_size:I = 0x1050072
 
+.field public static final kg_eccbkpin_btn_font_size:I = 0x105007e
+
 .field public static final kg_edge_swipe_region_size:I = 0x1050074
 
 .field public static final kg_small_widget_height:I = 0x1050076

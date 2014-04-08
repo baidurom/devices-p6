@@ -56,7 +56,7 @@
     move-result v3
 
     #setter for: Lcom/android/server/power/PowerManagerService;->gPowerSaveMode:I
-    invoke-static {v2, v3}, Lcom/android/server/power/PowerManagerService;->access$2102(Lcom/android/server/power/PowerManagerService;I)I
+    invoke-static {v2, v3}, Lcom/android/server/power/PowerManagerService;->access$2202(Lcom/android/server/power/PowerManagerService;I)I
     :try_end_0
     .catch Ljava/lang/NumberFormatException; {:try_start_0 .. :try_end_0} :catch_0
 

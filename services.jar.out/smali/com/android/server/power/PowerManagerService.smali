@@ -508,7 +508,17 @@
     return-void
 .end method
 
-.method static synthetic access$1176(Lcom/android/server/power/PowerManagerService;I)I
+.method static synthetic access$1100(Lcom/android/server/power/PowerManagerService;)Ljava/lang/Object;
+    .locals 1
+    .parameter "x0"
+
+    .prologue
+    iget-object v0, p0, Lcom/android/server/power/PowerManagerService;->mLock:Ljava/lang/Object;
+
+    return-object v0
+.end method
+
+.method static synthetic access$1276(Lcom/android/server/power/PowerManagerService;I)I
     .locals 1
     .parameter "x0"
     .parameter "x1"
@@ -524,7 +534,7 @@
     return v0
 .end method
 
-.method static synthetic access$1200(Lcom/android/server/power/PowerManagerService;)V
+.method static synthetic access$1300(Lcom/android/server/power/PowerManagerService;)V
     .locals 0
     .parameter "x0"
 
@@ -535,7 +545,7 @@
     return-void
 .end method
 
-.method static synthetic access$1300(Lcom/android/server/power/PowerManagerService;)Z
+.method static synthetic access$1400(Lcom/android/server/power/PowerManagerService;)Z
     .locals 1
     .parameter "x0"
 
@@ -546,7 +556,7 @@
     return v0
 .end method
 
-.method static synthetic access$1400(Lcom/android/server/power/PowerManagerService;)Ljava/util/ArrayList;
+.method static synthetic access$1500(Lcom/android/server/power/PowerManagerService;)Ljava/util/ArrayList;
     .locals 1
     .parameter "x0"
 
@@ -557,7 +567,7 @@
     return-object v0
 .end method
 
-.method static synthetic access$1500(Lcom/android/server/power/PowerManagerService;)Z
+.method static synthetic access$1600(Lcom/android/server/power/PowerManagerService;)Z
     .locals 1
     .parameter "x0"
 
@@ -570,7 +580,7 @@
     return v0
 .end method
 
-.method static synthetic access$1600(Lcom/android/server/power/PowerManagerService;)Lcom/android/server/power/PowerManagerService$WakeLockDetector;
+.method static synthetic access$1700(Lcom/android/server/power/PowerManagerService;)Lcom/android/server/power/PowerManagerService$WakeLockDetector;
     .locals 1
     .parameter "x0"
 
@@ -581,7 +591,7 @@
     return-object v0
 .end method
 
-.method static synthetic access$1702(Lcom/android/server/power/PowerManagerService;Z)Z
+.method static synthetic access$1802(Lcom/android/server/power/PowerManagerService;Z)Z
     .locals 0
     .parameter "x0"
     .parameter "x1"
@@ -593,7 +603,7 @@
     return p1
 .end method
 
-.method static synthetic access$1800(Lcom/android/server/power/PowerManagerService;JI)Z
+.method static synthetic access$1900(Lcom/android/server/power/PowerManagerService;JI)Z
     .locals 1
     .parameter "x0"
     .parameter "x1"
@@ -608,7 +618,7 @@
     return v0
 .end method
 
-.method static synthetic access$1900(Lcom/android/server/power/PowerManagerService;J)Z
+.method static synthetic access$2000(Lcom/android/server/power/PowerManagerService;J)Z
     .locals 1
     .parameter "x0"
     .parameter "x1"
@@ -622,7 +632,7 @@
     return v0
 .end method
 
-.method static synthetic access$2000(Lcom/android/server/power/PowerManagerService;)Landroid/content/Context;
+.method static synthetic access$2100(Lcom/android/server/power/PowerManagerService;)Landroid/content/Context;
     .locals 1
     .parameter "x0"
 
@@ -633,7 +643,7 @@
     return-object v0
 .end method
 
-.method static synthetic access$2102(Lcom/android/server/power/PowerManagerService;I)I
+.method static synthetic access$2202(Lcom/android/server/power/PowerManagerService;I)I
     .locals 0
     .parameter "x0"
     .parameter "x1"
@@ -643,17 +653,6 @@
     iput p1, p0, Lcom/android/server/power/PowerManagerService;->gPowerSaveMode:I
 
     return p1
-.end method
-
-.method static synthetic access$2200(Lcom/android/server/power/PowerManagerService;)Ljava/lang/Object;
-    .locals 1
-    .parameter "x0"
-
-    .prologue
-    .line 92
-    iget-object v0, p0, Lcom/android/server/power/PowerManagerService;->mLock:Ljava/lang/Object;
-
-    return-object v0
 .end method
 
 .method static synthetic access$2300(Lcom/android/server/power/PowerManagerService;)V

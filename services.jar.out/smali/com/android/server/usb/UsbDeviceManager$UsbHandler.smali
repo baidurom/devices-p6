@@ -1628,6 +1628,17 @@
 
     if-eqz v0, :cond_0
 
+    iget-object v0, p0, Lcom/android/server/usb/UsbDeviceManager$UsbHandler;->mCurrentFunctions:Ljava/lang/String;
+
+    const-string v1, "pcmodem1"
+
+    #calls: Lcom/android/server/usb/UsbDeviceManager;->containsFunction(Ljava/lang/String;Ljava/lang/String;)Z
+    invoke-static {v0, v1}, Lcom/android/server/usb/UsbDeviceManager;->access$700(Ljava/lang/String;Ljava/lang/String;)Z
+
+    move-result v0
+
+    if-eqz v0, :cond_0
+
     .line 507
     invoke-static {}, Lcom/android/server/usb/UsbDeviceManager;->access$500()Ljava/lang/String;
 
@@ -2381,6 +2392,17 @@
     const-string v4, "2"
 
     invoke-virtual {v3, v4}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
+
+    move-result v4
+
+    if-eqz v4, :cond_8
+
+    iget-object v4, p0, Lcom/android/server/usb/UsbDeviceManager$UsbHandler;->mCurrentFunctions:Ljava/lang/String;
+
+    const-string v6, "pcmodem1"
+
+    #calls: Lcom/android/server/usb/UsbDeviceManager;->containsFunction(Ljava/lang/String;Ljava/lang/String;)Z
+    invoke-static {v4, v6}, Lcom/android/server/usb/UsbDeviceManager;->access$700(Ljava/lang/String;Ljava/lang/String;)Z
 
     move-result v4
 

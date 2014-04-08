@@ -121,4 +121,5 @@
     <dimen name="kg_small_widget_height">160.0dip</dimen>
     <dimen name="app_inner_icon_size">48.0dip</dimen>
     <dimen name="app_big_icon_size">56.0dip</dimen>
+    <dimen name="kg_eccbkpin_btn_font_size">16.0dip</dimen>
 </resources>

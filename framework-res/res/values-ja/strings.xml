@@ -599,7 +599,7 @@
     <string name="permlab_writeDictionary">ユーザー辞書への書き込み</string>
     <string name="permdesc_writeDictionary">ユーザー辞書に新しい語句を書き込むことをアプリに許可します。</string>
     <string name="permlab_sdcardRead">保護されたストレージへのテストアクセス</string>
-    <string name="permdesc_sdcardRead">今後追加するデバイスで使用できるSDカードの権限のテストをアプリに許可します。</string>
+    <string name="permdesc_sdcardRead">SDカードの権限をテストすることをアプリに許可し、今後使用するデバイスで使用可能にします。</string>
     <string name="permlab_sdcardWrite">SDカードのコンテンツの変更または削除</string>
     <string name="permdesc_sdcardWrite">SDカードへの書き込みをアプリに許可します。</string>
     <string name="permlab_mediaStorageWrite">内部メディアストレージの内容の変更/削除</string>
@@ -927,7 +927,7 @@
     <string name="capital_off">オフ</string>
     <string name="whichApplication">アプリケーションを選択</string>
     <string name="alwaysUse">常にこの操作で使用する</string>
-    <string name="clearDefaultHintMsg">[システム設定]>[アプリ]>[ダウンロード済み]でデフォルト設定をクリアします。</string>
+    <string name="clearDefaultHintMsg">[システム設定]>[アプリ]>[ダウンロード済み]でデフォルト設定を消去します。</string>
     <string name="chooseActivity">操作の選択</string>
     <string name="chooseUsbActivity">USBデバイス用アプリを選択</string>
     <string name="noApplications">この操作を実行できるアプリはありません。</string>
@@ -1338,6 +1338,7 @@
     <string name="enablePin">SIM/RUIMロックの有効化に失敗しました。</string>
     <string name="volume_fm">FM音量</string>
     <string name="volume_icon_description_fm">FM音量</string>
+    <string name="anonymous_message">匿名</string>
     <string name="kg_bkup_pin">バックアップPIN</string>
     <string name="kg_wrong_bkup_pin">バックアップPINが正しくありません</string>
 </resources>

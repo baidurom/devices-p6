@@ -715,7 +715,7 @@
     <string name="keyguard_password_wrong_pin_code">Неверный PIN-код</string>
     <string name="keyguard_label_text">Для разблокировки нажмите \"Меню\", а затем 0.</string>
     <string name="emergency_call_dialog_number_for_display">Экстренная служба</string>
-    <string name="lockscreen_carrier_default">Нет связи.</string>
+    <string name="lockscreen_carrier_default">Нет связи</string>
     <string name="lockscreen_screen_locked">Экран заблокирован.</string>
     <string name="lockscreen_instructions_when_pattern_enabled">Нажмите \"Меню\", чтобы разблокировать экран или вызвать службу экстренной помощи.</string>
     <string name="lockscreen_instructions_when_pattern_disabled">Для разблокировки нажмите \"Меню\".</string>
@@ -894,7 +894,7 @@
     <string name="hour">ч</string>
     <string name="hours">ч</string>
     <string name="minute">мин.</string>
-    <string name="minutes">мин.</string>
+    <string name="minutes">мин</string>
     <string name="second">с.</string>
     <string name="seconds">с.</string>
     <string name="week">нед.</string>
@@ -1334,6 +1334,7 @@
     <string name="enablePin">Сбой включения блокировки SIM-карты.</string>
     <string name="volume_fm">Громкость FM-приемника</string>
     <string name="volume_icon_description_fm">Громкость FM-радио</string>
+    <string name="anonymous_message">Неизвестный абонент</string>
     <string name="kg_bkup_pin">Резервный PIN-код</string>
     <string name="kg_wrong_bkup_pin">Неверный резервный PIN-код</string>
 </resources>

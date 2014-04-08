@@ -4380,6 +4380,7 @@
     <public type="dimen" name="kg_small_widget_height" id="0x01050076" />
     <public type="dimen" name="app_inner_icon_size" id="0x0105007c" />
     <public type="dimen" name="app_big_icon_size" id="0x0105007d" />
+    <public type="dimen" name="kg_eccbkpin_btn_font_size" id="0x0105007e" />
     <public type="dimen" name="password_keyboard_height" id="0x01050078" />
     <public type="dimen" name="keyguard_pattern_unlock_clock_font_size" id="0x01050079" />
     <public type="dimen" name="keyguard_pattern_unlock_status_line_font_size" id="0x0105007a" />

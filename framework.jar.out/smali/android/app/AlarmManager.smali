@@ -227,6 +227,26 @@
     goto :goto_0
 .end method
 
+.method public removeAllPendingAlarms()V
+    .locals 1
+
+    .prologue
+    :try_start_0
+    iget-object v0, p0, Landroid/app/AlarmManager;->mService:Landroid/app/IAlarmManager;
+
+    invoke-interface {v0}, Landroid/app/IAlarmManager;->removeAllPendingAlarms()V
+    :try_end_0
+    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
+
+    :goto_0
+    return-void
+
+    :catch_0
+    move-exception v0
+
+    goto :goto_0
+.end method
+
 .method public set(IJLandroid/app/PendingIntent;)V
     .locals 1
     .parameter "type"
@@ -332,6 +352,39 @@
     return-void
 
     .line 333
+    :catch_0
+    move-exception v0
+
+    goto :goto_0
+.end method
+
+.method public setAlarmsPending(Ljava/util/List;ZZ)V
+    .locals 1
+    .parameter
+    .parameter "pending"
+    .parameter "allAlarms"
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "(",
+            "Ljava/util/List",
+            "<",
+            "Ljava/lang/String;",
+            ">;ZZ)V"
+        }
+    .end annotation
+
+    .prologue
+    .local p1, pkgList:Ljava/util/List;,"Ljava/util/List<Ljava/lang/String;>;"
+    :try_start_0
+    iget-object v0, p0, Landroid/app/AlarmManager;->mService:Landroid/app/IAlarmManager;
+
+    invoke-interface {v0, p1, p2, p3}, Landroid/app/IAlarmManager;->setAlarmsPending(Ljava/util/List;ZZ)V
+    :try_end_0
+    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
+
+    :goto_0
+    return-void
+
     :catch_0
     move-exception v0
 

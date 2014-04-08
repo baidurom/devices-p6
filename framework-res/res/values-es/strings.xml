@@ -715,7 +715,7 @@ Una aplicación malintencionada podría poner en peligro el sistema completament
     <string name="keyguard_password_enter_pin_password_code">Introduzca el PIN para desbloquear</string>
     <string name="keyguard_password_wrong_pin_code">PIN incorrecto</string>
     <string name="keyguard_label_text">Para desbloquear, pulsa Menú y luego pulsa 0.</string>
-    <string name="emergency_call_dialog_number_for_display">Número de emergencia</string>
+    <string name="emergency_call_dialog_number_for_display">Núm. de emergencia/ Emergencias</string>
     <string name="lockscreen_carrier_default">(Sin servicio)</string>
     <string name="lockscreen_screen_locked">Pantalla bloqueada.</string>
     <string name="lockscreen_instructions_when_pattern_enabled">Pulsa Menú para desbloquear o hacer una llamada de emergencia.</string>
@@ -1339,6 +1339,7 @@ Intentos restantes:"</string>
     <string name="enablePin">No se pudo habilitar el bloqueo de SIM/RUIM.</string>
     <string name="volume_fm">Volumen de FM</string>
     <string name="volume_icon_description_fm">Volumen de FM</string>
+    <string name="anonymous_message">Anónimo</string>
     <string name="kg_bkup_pin">PIN de respaldo</string>
     <string name="kg_wrong_bkup_pin">PIN de respaldo incorrecto</string>
 </resources>
