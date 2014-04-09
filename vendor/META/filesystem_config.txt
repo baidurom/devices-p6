@@ -1,6 +1,7 @@
 system 0 0 755
 system/app 0 0 755
 system/app/AGPSProvider.apk 0 0 644
+system/app/AirSharingCast.apk 0 0 644
 system/app/ApkBatchInstall.apk 0 0 644
 system/app/ApplicationsProvider.apk 0 0 644
 system/app/BackupRestoreConfirmation.apk 0 0 644
@@ -31,7 +32,6 @@ system/app/GmsCore.apk 0 0 644
 system/app/GoogleLoginService.apk 0 0 644
 system/app/GoogleServicesFramework.apk 0 0 644
 system/app/HandWritingSimpPack.apk 0 0 644
-system/app/HiSpace.apk 0 0 644
 system/app/HoloSpiralWallpaper.apk 0 0 644
 system/app/HTMLViewer.apk 0 0 644
 system/app/HwAllBackup.apk 0 0 644
@@ -91,6 +91,7 @@ system/app/MyEmail.apk 0 0 644
 system/app/NetworkLocation.apk 0 0 644
 system/app/NoiseField.apk 0 0 644
 system/app/OMACP.apk 0 0 644
+system/app/OptimalRemoteClient.apk 0 0 644
 system/app/PackageInstaller.apk 0 0 644
 system/app/PGPSDownloader.apk 0 0 644
 system/app/PhaseBeam.apk 0 0 644
@@ -294,6 +295,7 @@ system/bin/sdcard 0 2000 755
 system/bin/sendevent 0 2000 755
 system/bin/sensorservice 0 2000 755
 system/bin/ser2soc 0 2000 755
+system/bin/server_agent 0 2000 755
 system/bin/service 0 2000 755
 system/bin/servicemanager 0 2000 755
 system/bin/setconsole 0 2000 755
@@ -754,6 +756,7 @@ system/etc/firmware/ti-connectivity/wl18xx-fw.bin 0 0 644
 system/etc/firmware/ti-connectivity/wl18xx-fw-mc.bin 0 0 644
 system/etc/firmware/TIInit_12.8.32.bts 0 0 644
 system/etc/globalAutoAdapt-conf.xml 0 0 644
+system/etc/globalMatchs-conf.xml 0 0 644
 system/etc/gnss 0 0 755
 system/etc/gnss/config 0 0 755
 system/etc/gnss/config/cacerts.bks 0 0 644
@@ -966,6 +969,7 @@ system/etc/t_conf/U9800D_conf 0 0 644
 system/etc/t_conf/U9900_conf 0 0 644
 system/etc/t_conf/UEDGE_conf 0 0 644
 system/etc/updatecmds 0 0 755
+system/etc/virtualNets-conf.xml 0 0 644
 system/etc/vold.fstab 0 0 644
 system/etc/wifi 0 0 755
 system/etc/wifi/hostapd.conf 0 0 644
@@ -1138,8 +1142,6 @@ system/lib/hw/power.default.so 0 0 644
 system/lib/hw/sensors.k3v2oem1.so 0 0 644
 system/lib/lib_8290.so 0 0 644
 system/lib/libagnss.so 0 0 644
-system/lib/libAisound.so 0 0 644
-system/lib/libAitalkLD.so 0 0 644
 system/lib/libAmtJniProtocal_K3.so 0 0 644
 system/lib/libAmtJniProtocal.so 0 0 644
 system/lib/libandroidfw.so 0 0 644
@@ -1214,6 +1216,7 @@ system/lib/libFFTEm.so 0 0 644
 system/lib/libfilterfw.so 0 0 644
 system/lib/libfilterpack_facedetect.so 0 0 644
 system/lib/libfilterpack_imageproc.so 0 0 644
+system/lib/libflyfoxffmpeg.so 0 0 644
 system/lib/lib_g1.so 0 0 644
 system/lib/libgabi++.so 0 0 644
 system/lib/libGAL.so 0 0 644
@@ -1237,7 +1240,11 @@ system/lib/libhardware.so 0 0 644
 system/lib/libharfbuzz.so 0 0 644
 system/lib/libhdr.so 0 0 644
 system/lib/libhelixplayer.so 0 0 644
+system/lib/libhmp_client.so 0 0 644
+system/lib/libhmp_server.so 0 0 644
 system/lib/libhuawei-audio-ril.so 0 0 644
+system/lib/libhwAisound.so 0 0 644
+system/lib/libhwAitalkLD.so 0 0 644
 system/lib/libHWColorPen.so 0 0 644
 system/lib/libhw_flashlight.so 0 0 644
 system/lib/libHwMotionRecognition.so 0 0 644
@@ -1279,8 +1286,8 @@ system/lib/lib_k3_omx_rv.so 0 0 644
 system/lib/lib_k3_omx_vc1.so 0 0 644
 system/lib/lib_k3_omx_vp8.so 0 0 644
 system/lib/libkeystore_client.so 0 0 644
+system/lib/liblive555.so 0 0 644
 system/lib/libllxml.so 0 0 644
-system/lib/liblocSDK_2.4.so 0 0 644
 system/lib/liblocSDK_2_5OEM.so 0 0 644
 system/lib/liblocSDK3.so 0 0 644
 system/lib/liblog.so 0 0 644
@@ -1306,12 +1313,14 @@ system/lib/libnbaio.so 0 0 644
 system/lib/libnetlink.so 0 0 644
 system/lib/libnetutils.so 0 0 644
 system/lib/libnfc_ndef.so 0 0 644
+system/lib/libnsffmpeg.so 0 0 644
 system/lib/libnve.so 0 0 644
 system/lib/libnv_public_interface.so 0 0 644
 system/lib/liboeminfo_public_interface.so 0 0 644
 system/lib/liboeminfo.so 0 0 644
 system/lib/libOpenMAXAL.so 0 0 644
 system/lib/libOpenSLES.so 0 0 644
+system/lib/liboru.so 0 0 644
 system/lib/liboverlay.so 0 0 644
 system/lib/libparseprofile.so 0 0 644
 system/lib/libpcsclite.so 0 0 644
@@ -1336,6 +1345,7 @@ system/lib/libscremotell.so 0 0 644
 system/lib/libscremoteprotocol.so 0 0 644
 system/lib/libsensorservice.so 0 0 644
 system/lib/libskia.so 0 0 644
+system/lib/libsohuplayer_jni.so 0 0 644
 system/lib/libsonivox.so 0 0 644
 system/lib/libsoundpool.so 0 0 644
 system/lib/libsparse.so 0 0 644
@@ -1411,6 +1421,9 @@ system/lib/libvideoeditor_jni.so 0 0 644
 system/lib/libvideoeditor_osal.so 0 0 644
 system/lib/libvideoeditorplayer.so 0 0 644
 system/lib/libvideoeditor_videofilters.so 0 0 644
+system/lib/libVideoHWDecoder_jni_14.so 0 0 644
+system/lib/libVideoHWDecoder_jni_16.so 0 0 644
+system/lib/libVideoHWDecoder_jni_9.so 0 0 644
 system/lib/libvorbisidec.so 0 0 644
 system/lib/libvppdlna.so 0 0 644
 system/lib/libvpp.so 0 0 644
@@ -1582,6 +1595,8 @@ system/usr/idc/qwerty.idc 0 0 644
 system/usr/idc/screenovate_keyboard.idc 0 0 644
 system/usr/idc/screenovate_mouse.idc 0 0 644
 system/usr/idc/synaptics.idc 0 0 644
+system/usr/iku 0 0 711
+system/usr/iku/isu 0 0 6755
 system/usr/keychars 0 0 755
 system/usr/keychars/Generic.kcm 0 0 644
 system/usr/keychars/qwerty2.kcm 0 0 644
