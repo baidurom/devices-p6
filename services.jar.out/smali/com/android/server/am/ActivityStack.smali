@@ -7659,8 +7659,7 @@
     invoke-virtual {v8, v9, v7}, Lcom/android/server/wm/WindowManagerService;->setAppVisibility(Landroid/os/IBinder;Z)V
 
     .line 1372
-    invoke-direct {p0, v5, v7}, Lcom/android/server/am/ActivityStack;->yiActivityVisibilityChanged(Lcom/android/server/am/ActivityRecord;Z)V
-    
+    invoke-direct {p0, v5}, Lcom/android/server/am/ActivityStack;->yiActivityVisibilityChanged(Lcom/android/server/am/ActivityRecord;)V
     :cond_8
     if-eq v5, p2, :cond_9
 
@@ -7821,10 +7820,7 @@
     invoke-virtual {v8, v9, v10}, Lcom/android/server/wm/WindowManagerService;->setAppVisibility(Landroid/os/IBinder;Z)V
 
     .line 1395
-    const/4 v8, 0x1
-    
-    invoke-direct {p0, v5, v8}, Lcom/android/server/am/ActivityStack;->yiActivityVisibilityChanged(Lcom/android/server/am/ActivityRecord;Z)V
-    
+    invoke-direct {p0, v5}, Lcom/android/server/am/ActivityStack;->yiActivityVisibilityChanged(Lcom/android/server/am/ActivityRecord;)V
     const/4 v8, 0x0
 
     iput-boolean v8, v5, Lcom/android/server/am/ActivityRecord;->sleeping:Z
@@ -12710,14 +12706,11 @@
 
     invoke-virtual {v2, v3, v4}, Lcom/android/server/wm/WindowManagerService;->setAppVisibility(Landroid/os/IBinder;Z)V
 
-    const/4 v2, 0x1
-    
     move-object/from16 v0, p0
     
     move-object/from16 v1, v20
     
-    invoke-direct {v0, v1, v2}, Lcom/android/server/am/ActivityStack;->yiActivityVisibilityChanged(Lcom/android/server/am/ActivityRecord;Z)V
-    
+    invoke-direct {v0, v1}, Lcom/android/server/am/ActivityStack;->yiActivityVisibilityChanged(Lcom/android/server/am/ActivityRecord;)V
     invoke-virtual/range {v20 .. v20}, Lcom/android/server/am/ActivityRecord;->startLaunchTickingLocked()V
 
     move-object/from16 v0, p0
@@ -14408,6 +14401,19 @@
     const/16 v23, 0x0
 
     .local v23, err:I
+    move-object/from16 v0, p0
+
+    iget-object v3, v0, Lcom/android/server/am/ActivityStack;->mService:Lcom/android/server/am/ActivityManagerService;
+
+    iget-boolean v3, v3, Lcom/android/server/am/ActivityManagerService;->mSystemReady:Z
+
+    if-nez v3, :cond_baidu_0
+
+    move/from16 v3, v23
+
+    goto/16 :goto_3
+
+    :cond_baidu_0
     const/16 v20, 0x0
 
     .local v20, callerApp:Lcom/android/server/am/ProcessRecord;
@@ -18223,6 +18229,43 @@
 
     invoke-virtual {v1, v2}, Lcom/android/server/wm/WindowManagerService;->validateAppTokens(Ljava/util/List;)V
 
-    .line 2042
+    return-void
+.end method
+
+.method private yiActivityVisibilityChanged(Lcom/android/server/am/ActivityRecord;)V
+    .locals 3
+    .parameter "r"
+    .prologue
+    const/4 v2, 0x1
+
+    const/4 v1, 0x0
+
+    iget-boolean v0, p1, Lcom/android/server/am/ActivityRecord;->isHomeActivity:Z
+
+    if-eqz v0, :cond_0
+
+    iget-boolean v0, p0, Lcom/android/server/am/ActivityStack;->isHomeVisiable:Z
+
+    if-nez v0, :cond_0
+
+    iput-boolean v2, p0, Lcom/android/server/am/ActivityStack;->isHomeVisiable:Z
+
+    invoke-direct {p0, v2}, Lcom/android/server/am/ActivityStack;->sendHomeVisibilityBroadcast(Z)V
+
+    .line 3893
+    :cond_0
+    iget-boolean v0, p1, Lcom/android/server/am/ActivityRecord;->isHomeActivity:Z
+
+    if-nez v0, :cond_1
+
+    iget-boolean v0, p0, Lcom/android/server/am/ActivityStack;->isHomeVisiable:Z
+
+    if-eqz v0, :cond_1
+
+    iput-boolean v1, p0, Lcom/android/server/am/ActivityStack;->isHomeVisiable:Z
+
+    invoke-direct {p0, v1}, Lcom/android/server/am/ActivityStack;->sendHomeVisibilityBroadcast(Z)V
+
+    :cond_1
     return-void
 .end method
