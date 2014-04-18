@@ -540,43 +540,37 @@
     .locals 2
 
     .prologue
+    .line 219
     iget-object v0, p0, Lcom/huawei/android/globaldolbyeffect/GlobalDolbyEffectFragment;->mContext:Landroid/app/Activity;
 
     iget-object v1, p0, Lcom/huawei/android/globaldolbyeffect/GlobalDolbyEffectFragment;->mHeadsetPlugReceiver:Landroid/content/BroadcastReceiver;
 
     invoke-virtual {v0, v1}, Landroid/app/Activity;->unregisterReceiver(Landroid/content/BroadcastReceiver;)V
 
+    .line 221
     iget-object v0, p0, Lcom/huawei/android/globaldolbyeffect/GlobalDolbyEffectFragment;->mDolbyClient:Landroid/media/dolby/DolbyMobileAudioEffectClient;
 
     if-eqz v0, :cond_0
 
+    .line 222
     iget-object v0, p0, Lcom/huawei/android/globaldolbyeffect/GlobalDolbyEffectFragment;->mDolbyClient:Landroid/media/dolby/DolbyMobileAudioEffectClient;
 
     iget-object v1, p0, Lcom/huawei/android/globaldolbyeffect/GlobalDolbyEffectFragment;->mContext:Landroid/app/Activity;
 
     invoke-virtual {v0, v1}, Landroid/media/dolby/DolbyMobileAudioEffectClient;->unBindFromRemoteRunningService(Landroid/app/Activity;)V
 
+    .line 223
     iget-object v0, p0, Lcom/huawei/android/globaldolbyeffect/GlobalDolbyEffectFragment;->mDolbyClient:Landroid/media/dolby/DolbyMobileAudioEffectClient;
 
     iget-object v1, p0, Lcom/huawei/android/globaldolbyeffect/GlobalDolbyEffectFragment;->callback:Landroid/media/dolby/DolbyMobileClientCallbacks;
 
     invoke-virtual {v0, v1}, Landroid/media/dolby/DolbyMobileAudioEffectClient;->unregisterCallback(Landroid/media/dolby/DolbyMobileClientCallbacks;)V
 
+    .line 225
     :cond_0
-    iget-object v0, p0, Lcom/huawei/android/globaldolbyeffect/GlobalDolbyEffectFragment;->mHeadsetPlugReceiver:Landroid/content/BroadcastReceiver;
-
-    if-eqz v0, :cond_1
-
-    iget-object v0, p0, Lcom/huawei/android/globaldolbyeffect/GlobalDolbyEffectFragment;->mHeadsetPlugReceiver:Landroid/content/BroadcastReceiver;
-
-    iget-object v1, p0, Lcom/huawei/android/globaldolbyeffect/GlobalDolbyEffectFragment;->mContext:Landroid/app/Activity;
-
-    invoke-virtual {v1, v0}, Landroid/app/Activity;->unregisterReceiver(Landroid/content/BroadcastReceiver;)V
-
-    :cond_1
     invoke-super {p0}, Landroid/preference/PreferenceFragment;->onDestroy()V
 
-    .line 223
+    .line 226
     return-void
 .end method
 
