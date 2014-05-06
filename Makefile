@@ -102,7 +102,7 @@ baidu_saved_files := bin/bootanimation fonts/Clockopia.ttf
 # baidu_modify_apps: which base the baidu's apk
 # just override the res, append *.smali.part
 #-----------------------------------------------------------------------------
-baidu_modify_apps := Settings
+baidu_modify_apps := Settings MediaProvider
 
 ##############################################################################
 # baidu_modify_jars: which base the baidu's jar
@@ -124,6 +124,9 @@ override_property += \
     ro.call.record=1 \
     ro.camera.sound.forced=0 \
     ro.baidu.asec.type=1
+
+override_property += \
+    ro.baidu.default_write.settable=true \
 
 # properties from cust.img
 override_property += \
