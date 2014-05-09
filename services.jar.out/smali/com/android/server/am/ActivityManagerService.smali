@@ -20123,6 +20123,26 @@
     return-void
 .end method
 
+.method private hookMessageBroadcastBaidu(Lcom/android/server/am/BroadcastRecord;)V
+    .locals 1
+    .parameter "r"
+
+    .prologue
+    .line 12088
+    invoke-direct {p0}, Lcom/android/server/am/ActivityManagerService;->isMmsHookEnabled()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_0
+
+    .line 12089
+    invoke-virtual {p1}, Lcom/android/server/am/BroadcastRecord;->hookMessageBroadcast()V
+
+    .line 12091
+    :cond_0
+    return-void
+.end method
+
 .method public static final installSystemProviders()V
     .locals 8
 
@@ -20330,6 +20350,32 @@
     goto :goto_1
 .end method
 
+.method private final isMmsHookEnabled()Z
+    .locals 3
+
+    .prologue
+    const/4 v0, 0x0
+
+    .line 12708
+    iget-object v1, p0, Lcom/android/server/am/ActivityManagerService;->mContext:Landroid/content/Context;
+
+    invoke-virtual {v1}, Landroid/content/Context;->getContentResolver()Landroid/content/ContentResolver;
+
+    move-result-object v1
+
+    const-string v2, "system.mms"
+
+    invoke-static {v1, v2, v0}, Landroid/provider/Settings$System;->getInt(Landroid/content/ContentResolver;Ljava/lang/String;I)I
+
+    move-result v1
+
+    if-eqz v1, :cond_0
+
+    const/4 v0, 0x1
+
+    :cond_0
+    return v0
+.end method
 
 .method private final isOomAdjCustomized(Ljava/lang/String;)Z
     .locals 6
@@ -20476,6 +20522,71 @@
     const/4 v3, 0x0
 
     goto :goto_0
+.end method
+
+.method private killOrphanedProcess([ILjava/lang/String;)V
+    .locals 4
+    .parameter "pids"
+    .parameter "reason"
+
+    .prologue
+    .line 7593
+    const-string v1, "orphaned"
+
+    invoke-virtual {v1, p2}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v1
+
+    if-eqz v1, :cond_0
+
+    .line 7594
+    const/4 v0, 0x0
+
+    .local v0, i:I
+    :goto_0
+    array-length v1, p1
+
+    if-ge v0, v1, :cond_0
+
+    .line 7595
+    const-string v1, "ActivityManager"
+
+    new-instance v2, Ljava/lang/StringBuilder;
+
+    invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v3, "Killing orphaned "
+
+    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v2
+
+    aget v3, p1, v0
+
+    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
+    move-result-object v2
+
+    invoke-virtual {v2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v2
+
+    invoke-static {v1, v2}, Landroid/util/Slog;->w(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 7596
+    aget v1, p1, v0
+
+    invoke-static {v1}, Landroid/os/Process;->killProcessQuiet(I)V
+
+    .line 7594
+    add-int/lit8 v0, v0, 0x1
+
+    goto :goto_0
+
+    .line 7599
+    .end local v0           #i:I
+    :cond_0
+    return-void
 .end method
 
 .method private final killPackageProcessesLocked(Ljava/lang/String;IIIZZZZLjava/lang/String;)Z
@@ -21550,93 +21661,73 @@
 
     goto :goto_0
 
-    .line 1451
     :catch_0
     move-exception v4
 
     goto :goto_0
 
-    .line 1454
     :cond_0
     :try_start_2
     monitor-exit v3
     :try_end_2
     .catchall {:try_start_2 .. :try_end_2} :catchall_0
 
-    .line 1456
     iget-object v2, v3, Lcom/android/server/am/ActivityManagerService$AThread;->mService:Lcom/android/server/am/ActivityManagerService;
 
-    .line 1457
     .local v2, m:Lcom/android/server/am/ActivityManagerService;
     sput-object v2, Lcom/android/server/am/ActivityManagerService;->mSelf:Lcom/android/server/am/ActivityManagerService;
 
-    .line 1458
     invoke-static {}, Landroid/app/ActivityThread;->systemMain()Landroid/app/ActivityThread;
 
     move-result-object v0
 
-    .line 1459
     .local v0, at:Landroid/app/ActivityThread;
     sput-object v0, Lcom/android/server/am/ActivityManagerService;->mSystemThread:Landroid/app/ActivityThread;
 
-    .line 1460
     invoke-virtual {v0}, Landroid/app/ActivityThread;->getSystemContext()Landroid/app/ContextImpl;
 
     move-result-object v1
 
-    .line 1461
     .local v1, context:Landroid/content/Context;
-    const v4, #style@Theme.DeviceDefault.Light#t
+    const v4, 0x103012b
 
     invoke-virtual {v1, v4}, Landroid/content/Context;->setTheme(I)V
 
-    .line 1462
     iput-object v1, v2, Lcom/android/server/am/ActivityManagerService;->mContext:Landroid/content/Context;
 
-    .line 1463
     iput p0, v2, Lcom/android/server/am/ActivityManagerService;->mFactoryTest:I
 
-    .line 1464
     new-instance v4, Lcom/android/server/am/ActivityStack;
 
     invoke-direct {v4, v2, v1, v6}, Lcom/android/server/am/ActivityStack;-><init>(Lcom/android/server/am/ActivityManagerService;Landroid/content/Context;Z)V
 
     iput-object v4, v2, Lcom/android/server/am/ActivityManagerService;->mMainStack:Lcom/android/server/am/ActivityStack;
 
-    .line 1466
     iget-object v4, v2, Lcom/android/server/am/ActivityManagerService;->mBatteryStatsService:Lcom/android/server/am/BatteryStatsService;
 
     invoke-virtual {v4, v1}, Lcom/android/server/am/BatteryStatsService;->publish(Landroid/content/Context;)V
 
-    .line 1467
     iget-object v4, v2, Lcom/android/server/am/ActivityManagerService;->mUsageStatsService:Lcom/android/server/am/UsageStatsService;
 
     invoke-virtual {v4, v1}, Lcom/android/server/am/UsageStatsService;->publish(Landroid/content/Context;)V
 
-    .line 1469
     monitor-enter v3
 
-    .line 1470
     const/4 v4, 0x1
 
     :try_start_3
     iput-boolean v4, v3, Lcom/android/server/am/ActivityManagerService$AThread;->mReady:Z
 
-    .line 1471
     invoke-virtual {v3}, Ljava/lang/Object;->notifyAll()V
 
-    .line 1472
     monitor-exit v3
     :try_end_3
     .catchall {:try_start_3 .. :try_end_3} :catchall_1
 
-    .line 1474
     invoke-virtual {v2, v5, v5, v5, v5}, Lcom/android/server/am/ActivityManagerService;->startRunning(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
 
-    .line 1476
     return-object v1
 
-    .line 1454
     .end local v0           #at:Landroid/app/ActivityThread;
     .end local v1           #context:Landroid/content/Context;
     .end local v2           #m:Lcom/android/server/am/ActivityManagerService;
@@ -55553,6 +55644,8 @@
     .restart local v7       #worstType:I
     :cond_8
     :try_start_1
+    invoke-direct {p0, p1, v4}, Lcom/android/server/am/ActivityManagerService;->killOrphanedProcess([ILjava/lang/String;)V
+
     monitor-exit v9
     :try_end_1
     .catchall {:try_start_1 .. :try_end_1} :catchall_0
@@ -62080,6 +62173,74 @@
     throw v0
 .end method
 
+.method public setPersistent(Landroid/content/pm/ApplicationInfo;Z)V
+    .locals 3
+    .parameter "info"
+    .parameter "persistent"
+    .annotation system Ldalvik/annotation/Throws;
+        value = {
+            Landroid/os/RemoteException;
+        }
+    .end annotation
+
+    .prologue
+    .line 14966
+    if-eqz p1, :cond_0
+
+    const-string v1, "com.baidu.home2"
+
+    iget-object v2, p1, Landroid/content/pm/ApplicationInfo;->packageName:Ljava/lang/String;
+
+    invoke-virtual {v1, v2}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v1
+
+    if-eqz v1, :cond_0
+
+    iget v1, p1, Landroid/content/pm/ApplicationInfo;->flags:I
+
+    and-int/lit8 v1, v1, 0x1
+
+    const/4 v2, 0x1
+
+    if-ne v1, v2, :cond_0
+
+    .line 14968
+    iget-object v1, p1, Landroid/content/pm/ApplicationInfo;->processName:Ljava/lang/String;
+
+    iget v2, p1, Landroid/content/pm/ApplicationInfo;->uid:I
+
+    invoke-virtual {p0, v1, v2}, Lcom/android/server/am/ActivityManagerService;->getProcessRecordLocked(Ljava/lang/String;I)Lcom/android/server/am/ProcessRecord;
+
+    move-result-object v0
+
+    .line 14969
+    .local v0, app:Lcom/android/server/am/ProcessRecord;
+    iput-boolean p2, v0, Lcom/android/server/am/ProcessRecord;->persistent:Z
+
+    .line 14970
+    if-eqz p2, :cond_1
+
+    const/16 v1, -0xc
+
+    :goto_0
+    iput v1, v0, Lcom/android/server/am/ProcessRecord;->maxAdj:I
+
+    .line 14971
+    invoke-virtual {p0, v0}, Lcom/android/server/am/ActivityManagerService;->updateOomAdjLocked(Lcom/android/server/am/ProcessRecord;)Z
+
+    .line 14973
+    .end local v0           #app:Lcom/android/server/am/ProcessRecord;
+    :cond_0
+    return-void
+
+    .line 14970
+    .restart local v0       #app:Lcom/android/server/am/ProcessRecord;
+    :cond_1
+    const/16 v1, 0xf
+
+    goto :goto_0
+.end method
 .method public setProcessForeground(Landroid/os/IBinder;IZ)V
     .locals 8
     .parameter "token"
@@ -62729,7 +62890,7 @@
 
     move-result-object v2
 
-    const v3, #layout@safe_mode#t
+    const v3, 0x10900b3
 
     const/4 v4, 0x0
 
@@ -66496,9 +66657,9 @@
 
     iget-object v3, v0, Lcom/android/server/am/ActivityManagerService;->mWindowManager:Lcom/android/server/wm/WindowManagerService;
 
-    const v4, #anim@screen_user_exit#t
+    const v4, 0x10a0050
 
-    const v5, #anim@screen_user_enter#t
+    const v5, 0x10a004f
 
     invoke-virtual {v3, v4, v5}, Lcom/android/server/wm/WindowManagerService;->startFreezingScreen(II)V
 
@@ -68043,7 +68204,7 @@
 
     move-result-object v3
 
-    const v4, #string@factorytest_not_system#t
+    const v4, 0x104033c
 
     invoke-virtual {v3, v4}, Landroid/content/res/Resources;->getText(I)Ljava/lang/CharSequence;
 
@@ -68063,7 +68224,7 @@
 
     move-result-object v3
 
-    const v4, #string@factorytest_no_action#t
+    const v4, 0x104033d
 
     invoke-virtual {v3, v4}, Landroid/content/res/Resources;->getText(I)Ljava/lang/CharSequence;
 
@@ -73515,119 +73676,4 @@
     goto :goto_1
 .end method
 
-.method private hookMessageBroadcastBaidu(Lcom/android/server/am/BroadcastRecord;)V
-    .locals 1
-    .parameter "r"
-
-    .prologue
-    .line 12088
-    invoke-direct {p0}, Lcom/android/server/am/ActivityManagerService;->isMmsHookEnabled()Z
-
-    move-result v0
-
-    if-eqz v0, :cond_0
-
-    .line 12089
-    invoke-virtual {p1}, Lcom/android/server/am/BroadcastRecord;->hookMessageBroadcast()V
-
-    .line 12091
-    :cond_0
-    return-void
-.end method
-
-.method private final isMmsHookEnabled()Z
-    .locals 3
-
-    .prologue
-    const/4 v0, 0x0
-
-    .line 12708
-    iget-object v1, p0, Lcom/android/server/am/ActivityManagerService;->mContext:Landroid/content/Context;
-
-    invoke-virtual {v1}, Landroid/content/Context;->getContentResolver()Landroid/content/ContentResolver;
-
-    move-result-object v1
-
-    const-string v2, "system.mms"
-
-    invoke-static {v1, v2, v0}, Landroid/provider/Settings$System;->getInt(Landroid/content/ContentResolver;Ljava/lang/String;I)I
-
-    move-result v1
-
-    if-eqz v1, :cond_0
-
-    const/4 v0, 0x1
-
-    :cond_0
-    return v0
-.end method
-
-.method public setPersistent(Landroid/content/pm/ApplicationInfo;Z)V
-    .locals 3
-    .parameter "info"
-    .parameter "persistent"
-    .annotation system Ldalvik/annotation/Throws;
-        value = {
-            Landroid/os/RemoteException;
-        }
-    .end annotation
-
-    .prologue
-    .line 14966
-    if-eqz p1, :cond_0
-
-    const-string v1, "com.baidu.home2"
-
-    iget-object v2, p1, Landroid/content/pm/ApplicationInfo;->packageName:Ljava/lang/String;
-
-    invoke-virtual {v1, v2}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
-
-    move-result v1
-
-    if-eqz v1, :cond_0
-
-    iget v1, p1, Landroid/content/pm/ApplicationInfo;->flags:I
-
-    and-int/lit8 v1, v1, 0x1
-
-    const/4 v2, 0x1
-
-    if-ne v1, v2, :cond_0
-
-    .line 14968
-    iget-object v1, p1, Landroid/content/pm/ApplicationInfo;->processName:Ljava/lang/String;
-
-    iget v2, p1, Landroid/content/pm/ApplicationInfo;->uid:I
-
-    invoke-virtual {p0, v1, v2}, Lcom/android/server/am/ActivityManagerService;->getProcessRecordLocked(Ljava/lang/String;I)Lcom/android/server/am/ProcessRecord;
-
-    move-result-object v0
-
-    .line 14969
-    .local v0, app:Lcom/android/server/am/ProcessRecord;
-    iput-boolean p2, v0, Lcom/android/server/am/ProcessRecord;->persistent:Z
-
-    .line 14970
-    if-eqz p2, :cond_1
-
-    const/16 v1, -0xc
-
-    :goto_0
-    iput v1, v0, Lcom/android/server/am/ProcessRecord;->maxAdj:I
-
-    .line 14971
-    invoke-virtual {p0, v0}, Lcom/android/server/am/ActivityManagerService;->updateOomAdjLocked(Lcom/android/server/am/ProcessRecord;)Z
-
-    .line 14973
-    .end local v0           #app:Lcom/android/server/am/ProcessRecord;
-    :cond_0
-    return-void
-
-    .line 14970
-    .restart local v0       #app:Lcom/android/server/am/ProcessRecord;
-    :cond_1
-    const/16 v1, 0xf
-
-    goto :goto_0
-.end method
 
