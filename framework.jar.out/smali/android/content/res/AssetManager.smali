@@ -767,16 +767,13 @@
     const/4 v2, 0x0
 
     .local v2, result:Ljava/io/File;
-    new-instance v4, Ljava/lang/StringBuffer;
-
-    invoke-direct {v4, p2}, Ljava/lang/StringBuffer;-><init>(Ljava/lang/String;)V
-
-    .local v4, tempPath:Ljava/lang/StringBuffer;
     iget v5, p0, Landroid/content/res/AssetManager;->mDpi:I
 
-    sparse-switch v5, :sswitch_data_0
+    invoke-static {p2, p3, v5}, Landroid/content/res/AssetManager;->findAccurateFolder(Ljava/lang/String;Ljava/lang/String;I)Ljava/lang/StringBuffer;
 
-    :goto_0
+    move-result-object v4
+
+    .local v4, tempPath:Ljava/lang/StringBuffer;
     const-string v1, ""
 
     .local v1, realFile:Ljava/lang/String;
@@ -801,7 +798,7 @@
 
     .end local v0           #lastIndex:I
     :cond_0
-    :goto_1
+    :goto_0
     const-string v5, ""
 
     invoke-virtual {v5, v1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
@@ -837,42 +834,10 @@
     :cond_1
     return-object v2
 
-    .end local v1           #realFile:Ljava/lang/String;
-    :sswitch_0
-    const-string v5, "/res/drawable-xhdpi/"
-
-    invoke-virtual {v4, v5}, Ljava/lang/StringBuffer;->append(Ljava/lang/String;)Ljava/lang/StringBuffer;
-
-    goto :goto_0
-
-    :sswitch_1
-    const-string v5, "/res/drawable-hdpi/"
-
-    invoke-virtual {v4, v5}, Ljava/lang/StringBuffer;->append(Ljava/lang/String;)Ljava/lang/StringBuffer;
-
-    goto :goto_0
-
-    :sswitch_2
-    const-string v5, "/res/drawable-xxhdpi/"
-
-    invoke-virtual {v4, v5}, Ljava/lang/StringBuffer;->append(Ljava/lang/String;)Ljava/lang/StringBuffer;
-
-    goto :goto_0
-
-    .restart local v1       #realFile:Ljava/lang/String;
     :cond_2
     move-object v1, p3
 
-    goto :goto_1
-
-    nop
-
-    :sswitch_data_0
-    .sparse-switch
-        0xf0 -> :sswitch_1
-        0x140 -> :sswitch_0
-        0x1e0 -> :sswitch_2
-    .end sparse-switch
+    goto :goto_0
 .end method
 
 .method private final native getArrayStringInfo(I)[I
@@ -4098,4 +4063,99 @@
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
     throw v0
+.end method
+
+.method private static findAccurateFolder(Ljava/lang/String;Ljava/lang/String;I)Ljava/lang/StringBuffer;
+    .locals 3
+    .parameter "folderPath"
+    .parameter "fileName"
+    .parameter "dpi"
+
+    .prologue
+    const-string v2, "/res/drawable"
+
+    invoke-virtual {p1, v2}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
+
+    move-result v0
+
+    .local v0, bDrawable:Z
+    new-instance v1, Ljava/lang/StringBuffer;
+
+    invoke-direct {v1, p0}, Ljava/lang/StringBuffer;-><init>(Ljava/lang/String;)V
+
+    .local v1, tempPath:Ljava/lang/StringBuffer;
+    sparse-switch p2, :sswitch_data_0
+
+    :goto_0
+    return-object v1
+
+    :sswitch_0
+    if-eqz v0, :cond_0
+
+    const-string v2, "/res/drawable-xhdpi/"
+
+    :goto_1
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuffer;->append(Ljava/lang/String;)Ljava/lang/StringBuffer;
+
+    goto :goto_0
+
+    :cond_0
+    const-string v2, "/res/mipmap-xhdpi/"
+
+    goto :goto_1
+
+    :sswitch_1
+    if-eqz v0, :cond_1
+
+    const-string v2, "/res/drawable-hdpi/"
+
+    :goto_2
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuffer;->append(Ljava/lang/String;)Ljava/lang/StringBuffer;
+
+    goto :goto_0
+
+    :cond_1
+    const-string v2, "/res/mipmap-hdpi/"
+
+    goto :goto_2
+
+    :sswitch_2
+    if-eqz v0, :cond_2
+
+    const-string v2, "/res/drawable-xxhdpi/"
+
+    :goto_3
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuffer;->append(Ljava/lang/String;)Ljava/lang/StringBuffer;
+
+    goto :goto_0
+
+    :cond_2
+    const-string v2, "/res/mipmap-xxhdpi/"
+
+    goto :goto_3
+
+    :sswitch_3
+    if-eqz v0, :cond_3
+
+    const-string v2, "/res/drawable-mdpi/"
+
+    :goto_4
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuffer;->append(Ljava/lang/String;)Ljava/lang/StringBuffer;
+
+    goto :goto_0
+
+    :cond_3
+    const-string v2, "/res/mipmap-mdpi/"
+
+    goto :goto_4
+
+    nop
+
+    :sswitch_data_0
+    .sparse-switch
+        0xa0 -> :sswitch_3
+        0xf0 -> :sswitch_1
+        0x140 -> :sswitch_0
+        0x1e0 -> :sswitch_2
+    .end sparse-switch
 .end method

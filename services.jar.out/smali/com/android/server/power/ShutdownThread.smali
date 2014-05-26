@@ -93,45 +93,36 @@
     .prologue
     const/4 v1, 0x0
 
-    .line 93
     new-instance v0, Ljava/lang/Object;
 
     invoke-direct {v0}, Ljava/lang/Object;-><init>()V
 
     sput-object v0, Lcom/android/server/power/ShutdownThread;->sIsStartedGuard:Ljava/lang/Object;
 
-    .line 94
     sput-boolean v1, Lcom/android/server/power/ShutdownThread;->sIsStarted:Z
 
-    .line 107
     new-instance v0, Lcom/android/server/power/ShutdownThread;
 
     invoke-direct {v0}, Lcom/android/server/power/ShutdownThread;-><init>()V
 
     sput-object v0, Lcom/android/server/power/ShutdownThread;->sInstance:Lcom/android/server/power/ShutdownThread;
 
-    .line 121
     sput-boolean v1, Lcom/android/server/power/ShutdownThread;->sIsRestart:Z
 
-    .line 135
     const/4 v0, 0x0
 
     sput-object v0, Lcom/android/server/power/ShutdownThread;->animProcess:Ljava/lang/Process;
 
-    .line 929
     sput-boolean v1, Lcom/android/server/power/ShutdownThread;->isHaveShutdownAnimation:Z
 
-    .line 930
     const-string v0, "/data/cust/media/shutdownanimation.zip"
 
     sput-object v0, Lcom/android/server/power/ShutdownThread;->mShutdown_path1:Ljava/lang/String;
 
-    .line 931
     const-string v0, "/data/local/shutdownanimation.zip"
 
     sput-object v0, Lcom/android/server/power/ShutdownThread;->mShutdown_path2:Ljava/lang/String;
 
-    .line 932
     const-string v0, "/system/media/shutdownanimation.zip"
 
     sput-object v0, Lcom/android/server/power/ShutdownThread;->mShutdown_path3:Ljava/lang/String;
@@ -407,68 +398,56 @@
 
     const/4 v5, 0x1
 
-    .line 532
     new-instance v2, Landroid/content/Intent;
 
     const-string v3, "com.android.internal.app.SHUTDOWNBROADCAST"
 
     invoke-direct {v2, v3}, Landroid/content/Intent;-><init>(Ljava/lang/String;)V
 
-    .line 533
     .local v2, shutdownBroadcast:Landroid/content/Intent;
     invoke-virtual {p0, v2}, Landroid/content/Context;->sendBroadcast(Landroid/content/Intent;)V
 
-    .line 535
     sget-object v4, Lcom/android/server/power/ShutdownThread;->sIsStartedGuard:Ljava/lang/Object;
 
     monitor-enter v4
 
-    .line 536
     :try_start_0
     sget-boolean v3, Lcom/android/server/power/ShutdownThread;->sIsStarted:Z
 
     if-eqz v3, :cond_0
 
-    .line 537
     const-string v3, "ShutdownThread"
 
     const-string v5, "Shutdown sequence already running, returning."
 
     invoke-static {v3, v5}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 538
     monitor-exit v4
 
-    .line 607
     :goto_0
     return-void
 
-    .line 540
     :cond_0
     const/4 v3, 0x1
 
     sput-boolean v3, Lcom/android/server/power/ShutdownThread;->sIsStarted:Z
 
-    .line 541
     monitor-exit v4
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
-    .line 544
     invoke-static {}, Lcom/android/server/power/ShutdownThread;->isDoShutdownAnimation()Z
 
     move-result v3
 
     if-nez v3, :cond_1
 
-    .line 548
     new-instance v1, Landroid/app/ProgressDialog;
 
-    const v3, #style@Theme.DeviceDefault.Light.Dialog.Alert#t
+    const v3, 0x103030f
 
     invoke-direct {v1, p0, v3}, Landroid/app/ProgressDialog;-><init>(Landroid/content/Context;I)V
 
-    .line 553
     .local v1, pd:Landroid/app/ProgressDialog;
     sget-boolean v3, Lcom/android/server/power/ShutdownThread;->mReboot:Z
 
@@ -1340,7 +1319,7 @@
     .line 439
     new-instance v3, Landroid/app/AlertDialog$Builder;
 
-    const v4, #style@Theme.DeviceDefault.Light.Dialog.Alert#t
+    const v4, 0x103030f
 
     invoke-direct {v3, p0, v4}, Landroid/app/AlertDialog$Builder;-><init>(Landroid/content/Context;I)V
 
@@ -1457,7 +1436,7 @@
     :cond_0
     new-instance v0, Landroid/app/ProgressDialog;
 
-    const v1, #style@Theme.DeviceDefault.Light.Dialog.Alert#t
+    const v1, 0x103030f
 
     invoke-direct {v0, p0, v1}, Landroid/app/ProgressDialog;-><init>(Landroid/content/Context;I)V
 
@@ -1893,7 +1872,7 @@
     :cond_6
     new-instance v6, Landroid/app/AlertDialog$Builder;
 
-    const v5, #style@Theme.DeviceDefault.Light.Dialog.Alert#t
+    const v5, 0x103030f
 
     invoke-direct {v6, p0, v5}, Landroid/app/AlertDialog$Builder;-><init>(Landroid/content/Context;I)V
 
@@ -2625,4 +2604,14 @@
     move-exception v2
 
     goto/16 :goto_3
+.end method
+
+.method static synthetic access$sput-sConfirmDialog-38d6d6(Landroid/app/AlertDialog;)Landroid/app/AlertDialog;
+    .locals 0
+    .parameter "x0"
+
+    .prologue
+    sput-object p0, Lcom/android/server/power/ShutdownThread;->sConfirmDialog:Landroid/app/AlertDialog;
+
+    return-object p0
 .end method
