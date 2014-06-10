@@ -11,23 +11,44 @@ cls
 echo. ==========================================================================
 echo.
 echo. 声明：
-echo.        1.为保证手机系统运行稳定，请确认手机原厂系统版本是B120版本
-echo.        2.如果手机原厂系统版本不是B120，请先更新到B120后再刷入百度云ROM
-echo.        3.如有疑问，请访问百度云ROM论坛 P6(联通版)版块
+echo.        为保证手机系统运行稳定，请确认手机原厂系统版本是B120版本
+echo.        如果手机原厂系统版本不是B120，请先更新到B120后再刷入百度云ROM
+echo.        如有疑问，请访问百度云ROM论坛 P6(联通版)版块
 echo.
 echo. 注意：
-echo.        1.请使用USB线连接手机和电脑，并打开手机的USB调试模式；
-echo.        2.请备份好当前用户数据。
+echo.        请使用USB线连接手机和电脑，并打开手机的USB调试模式；
+echo.        请备份好当前用户数据。
 echo.
-echo.        请按任意键开始刷机！
+echo. --------------------------------------------------------------------------
 echo.
+echo. 请选择刷机后是否清除手机数据：
+echo.
+echo.        1.清除数据（从原厂系统或其它ROM刷到百度云ROM，必须清除数据）
+echo.        2.不清除数据
 echo.
 echo. ==========================================================================
-pause > NUL 2> NUL
+
+:CHOOSE
+set /p choice= "*请选择你要进行的操作（输入数字，回车）":
+IF NOT "%choice%"=="" SET choice=%choice:~0,1%
+if /i "%choice%"=="1" goto FORMAT_WARNING
+if /i "%choice%"=="2" goto NOT_FORMAT
+echo 选择无效，请重新输入
+goto CHOOSE
+
+:FORMAT_WARNING
+cls
+echo.
+echo. --- 开始刷机，刷机后将清除手机数据
+goto FLASH
+
+:NOT_FORMAT
+cls
+echo.
+echo. --- 开始刷机，刷机后不清除手机数据
+goto FLASH
 
 :FLASH
-cls
-
 %adb% kill-server
 %adb% start-server
 echo.
@@ -49,6 +70,8 @@ echo.
 %adb% wait-for-device
 echo. --- 系统镜像刷入成功！
 
+if /i "%choice%"=="2" goto FINISH
+
 :WIPEDATA
 echo.
 echo. --- 正在清除用户数据...
@@ -66,9 +89,10 @@ del adb.stat
 echo. --- 正在执行，请等待...
 %adb% shell recovery-wipe-data
 
+:FINISH
 echo.
 %adb% wait-for-device
-echo. --- 完成！
+echo. --- 刷机完成！
 echo.
 
 :EXIT
