@@ -453,7 +453,7 @@
 
     if-ne v3, v5, :cond_3
 
-    invoke-static {}, Lcom/android/server/power/ShutdownThread;->ifrebootbaidurecovery()V
+    #invoke-static {}, Lcom/android/server/power/ShutdownThread;->ifrebootbaidurecovery()V
 
     .line 554
     const v3, 0x202000b

@@ -13,3 +13,4 @@
 /splash2	ext4		/dev/block/platform/hi_mci.1/by-name/splash2
 /modem/modem_image  ext4  /dev/block/platform/hi_mci.1/by-name/modemimage
 /usb		vfat		/dev/block/sda
+/sdcard2     datamedia       null

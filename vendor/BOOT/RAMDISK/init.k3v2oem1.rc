@@ -368,6 +368,8 @@ on boot1
     # we will remap this as /mnt/sdcard with the sdcard fuse tool
     mkdir /data/share 0775 sdcard_rw sdcard_rw
     chown sdcard_rw sdcard_rw /data/share
+    mkdir /data/media 0775 media_rw media_rw
+    chown media_rw media_rw /data/media
 
 # add by z36904 for cts
     chown system system /sys/devices/platform/k3_hdmi.0/edid
@@ -598,3 +600,22 @@ service acceleratord /system/xbin/acceleratord
 on property:ro.config.hw_acceleratord_onoff=1
   start acceleratord
 #DTS2012122601935 j00161244 2012/12/26 add huawei accelerator support end
+
+#/*<DTS2013071000598 yangshizheng 00102627 20130710 begin*/
+on property:persist.sys.primarysd=*
+    exec /system/bin/preparesd.sh
+#/* DTS2013071000598 yangshizheng 00102627 end>*/
+
+#DTS2013081601538 chenchen 00205994 2013/08/16 begin
+service server_agent /system/bin/server_agent
+  class main
+  user root
+  group root
+  disabled
+
+on property:sys.server_agent_onoff=1
+  start server_agent
+
+on property:sys.server_agent_onoff=0
+  stop server_agent
+#DTS2013081601538 chenchen 00205994 2013/08/16 end

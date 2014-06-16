@@ -138,6 +138,10 @@ loglevel 3
     write /dev/cpuctl/apps/bg_non_interactive/cpu.rt_runtime_us 700000
     write /dev/cpuctl/apps/bg_non_interactive/cpu.rt_period_us 1000000
 
+# Create cgroup mount points for PG process freezer
+    mkdir /dev/frz
+    mount cgroup none /dev/frz freezer
+
 # Allow everybody to read the xt_qtaguid resource tracking misc dev.
 # This is needed by any process that uses socket tagging.
     chmod 0644 /dev/xt_qtaguid
@@ -1073,6 +1077,10 @@ service vold /system/bin/vold
     socket vold stream 0660 root mount
     ioprio be 2
 
+service pfreezerd /system/bin/pfreezerd
+    class main
+    user root
+
 service netd /system/bin/netd
     class main
     socket netd stream 0660 root system
@@ -1306,9 +1314,9 @@ service k3v2_thermal /system/bin/k3v2_thermal
     oneshot
 
 service check_root /sbin/check_root
-    class late_start
+    class main
     oneshot
-    disabled
+
 #start catmemleak service if enabled inside kernel by zhangliang z00175161 2013/3/28
 service  catmemleak /system/bin/catmemleak.sh 0
     class main

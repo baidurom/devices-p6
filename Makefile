@@ -117,7 +117,6 @@ baidu_modify_jars := android.policy
 # property to show/hide feature of defaultWrite Settings
 override_property += \
     ro.baidu.default_write.settable=true \
-    ro.baidu.recovery.pixelformat=RGB_565 \
     ro.baidu.2nd_storage.format=enable \
     ro.baidu.secure=0 \
     ro.baidu.debuggable=1 \
@@ -184,8 +183,8 @@ remove_property += \
 #-----------------------------------------------------------------------------
 NOT_CUSTOM_FRAMEWORK-RES := true
 # add for BaiduUpdate to reboot to recovery
-override_property += \
-    ro.baidu.reboot_recovery_cmd=reboot-recovery
+#override_property += \
+#    ro.baidu.reboot_recovery_cmd=reboot-recovery
 
 include $(PORT_BUILD)/main.mk
 include $(PORT_BUILD)/autopatch.mk
