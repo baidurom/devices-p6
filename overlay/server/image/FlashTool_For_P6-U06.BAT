@@ -1,13 +1,39 @@
 echo off
-title 华为P6-U06(联通版)百度云ROM一键刷机
+title 华为P6-U06(联通版)一键刷入Recovery   （百度云ROM）
 color 3f
 
 set "adb=tools\adb.exe"
 set "fastboot=tools\fastboot.exe"
+SET SLEEP=ping 127.0.0.1 -n
 
 :STARTS
 cls
+echo. ==========================================================================
+echo. 
+echo. 温馨提示：
+echo.       本工具供大家刷入百度Recovery和恢复华为原厂Recovery
+echo.       刷入百度云ROM包之前，请先刷入百度Recovery
+echo.       想要恢复华为原厂系统，请先恢复华为Recovery
+echo. 
+echo. --------------------------------------------------------------------------
+echo. 
+echo. 请选择操作：
+echo.
+echo.        1. 刷入百度Recovery
+echo.        2. 恢复华为Recovery
+echo.
+echo. ==========================================================================
 
+:CHOOSE
+set /p choice= "*请选择你要进行的操作（输入数字，回车）":
+IF NOT "%choice%"=="" SET choice=%choice:~0,1%
+if /i "%choice%"=="1" goto FLASH_BAIDU
+if /i "%choice%"=="2" goto FLASH_VENDOR
+echo 选择无效，请重新输入
+goto CHOOSE
+
+:FLASH_BAIDU
+cls
 echo. ==========================================================================
 echo.
 echo. 声明：
@@ -21,80 +47,96 @@ echo.        请备份好当前用户数据。
 echo.
 echo. --------------------------------------------------------------------------
 echo.
-echo. 请选择刷机后是否清除手机数据：
 echo.
-echo.        1.清除数据（从原厂系统或其它ROM刷到百度云ROM，必须清除数据）
-echo.        2.不清除数据
+echo.        请按任意键开始刷入百度Recovery！
+echo.
 echo.
 echo. ==========================================================================
+pause > NUL 2> NUL
 
-:CHOOSE
-set /p choice= "*请选择你要进行的操作（输入数字，回车）":
-IF NOT "%choice%"=="" SET choice=%choice:~0,1%
-if /i "%choice%"=="1" goto FORMAT_WARNING
-if /i "%choice%"=="2" goto NOT_FORMAT
-echo 选择无效，请重新输入
-goto CHOOSE
-
-:FORMAT_WARNING
 cls
-echo.
-echo. --- 开始刷机，刷机后将清除手机数据
-goto FLASH
-
-:NOT_FORMAT
-cls
-echo.
-echo. --- 开始刷机，刷机后不清除手机数据
-goto FLASH
-
-:FLASH
 %adb% kill-server
 %adb% start-server
 echo.
 echo. --- 连接设备中...
 echo. --- 如果卡在这一步，请确认是否已打开调试或者正确安装好手机驱动
-%adb% wait-for-device
+call :ADB_DEVICE
 
 echo.
 echo. --- 连接设备成功，正在重启到刷机模式...
 %adb% reboot bootloader
-
+%SLEEP% 6 > NUL
 echo.
-echo. --- 正在刷入系统镜像，请勿进行其它操作！
-%fastboot% flash system system.img
+echo. --- 正在刷入百度Recovery，请勿进行其它操作！
+%fastboot% flash boot boot.img
+%fastboot% flash recovery baidu-recovery.img
 %fastboot% flash cust cust.img
 %fastboot% reboot
 
 echo.
 %adb% wait-for-device
-echo. --- 系统镜像刷入成功！
-
-if /i "%choice%"=="2" goto FINISH
-
-:WIPEDATA
+echo. --- 百度Recovery刷入成功!
 echo.
-echo. --- 正在清除用户数据...
-%adb% wait-for-device
+echo. --- 请进入Recovery模式刷入百度云ROM刷机包。
+echo. --- （手动进入Recovery方法：关机后，按住电源键+音量上键）
+echo. --- 完成。
 
-:ADBREADY
-echo waiting for adb status...
-ping 127.0.0.1 -n 3 > nul
-%adb% shell getprop persist.adb.ready > adb.stat
-set /p adbstat=<adb.stat
-if not %adbstat%x==1x goto :ADBREADY
-del adb.stat
+goto :EXIT
 
-%adb% wait-for-device
-echo. --- 正在执行，请等待...
-%adb% shell recovery-wipe-data
+:FLASH_VENDOR
+cls
+echo. ==========================================================================
+echo.
+echo. 注意：
+echo.        请确保手机是正常开机状态; 如果无法正常开机，请进入Recovery模式
+echo.        
+echo.        请使用USB线连接手机和电脑，并打开手机的USB调试模式；
+echo.
+echo. --------------------------------------------------------------------------
+echo.
+echo. 进入Recovery方法：
+echo.        长按手机电源键10秒；关机后立即按住电源键+音量上键，进入Recovery模式；
+echo.
+echo. --------------------------------------------------------------------------
+echo.
+echo.        请按任意键开始刷入恢复华为Recovery！
+echo.
+echo.
+echo. ==========================================================================
+pause > NUL 2> NUL
 
-:FINISH
+cls
+%adb% kill-server
+%adb% start-server
+echo.
+echo. --- 连接设备中...
+echo. --- 如果卡在这一步，请确认是否已打开调试或者正确安装好手机驱动
+call :ADB_DEVICE
+
+echo.
+echo. --- 连接设备成功，正在重启到刷机模式...
+%adb% reboot bootloader
+%SLEEP% 6 > NUL
+
+echo. 
+echo. --- 正在恢复华为Recovery，请勿进行其它操作！
+%fastboot% flash recovery huawei-recovery.img
+%fastboot% reboot
+
 echo.
 %adb% wait-for-device
-echo. --- 刷机完成！
-echo.
+echo. --- 华为Recovery恢复成功！
 
 :EXIT
 pause > NUL 2> NUL
 exit
+
+:ADB_DEVICE
+:CHECK_DEVICE
+::echo. 查找设备...
+%SLEEP% 3 > NUL 
+%adb% devices > tmp.log
+for /f "delims=:" %%i in ('findstr /n . "tmp.log"') do set linenum=%%i
+del tmp.log
+if %linenum% leq 1 goto :CHECK_DEVICE
+goto :EOF
