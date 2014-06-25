@@ -25,9 +25,16 @@ function copyCust()
 {
 	if [ ! -e /data/cust ];then
 		echo "cp cust to /data/cust"
-		cp -rf /cust/cmcc/cn  /data/cust
+		cp -rf /cust/unicom/cn  /data/cust
 		busybox chown -R system:system /data/cust/
 		busybox chmod -R 777 /data/cust
+	fi
+}
+
+function baiduService()
+{
+	if [ ! -x /system/etc/install-recovery.sh ] && [ -x /system/bin/baidu_service ];then
+		/system/bin/baidu_service &
 	fi
 }
 
@@ -44,6 +51,7 @@ chmod 777 $curLog
 	copyCust
 	useBaiduAdbd
 	setAdbReady
+	baiduService
 } 2>&1 > $curLog
 
 
