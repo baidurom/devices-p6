@@ -834,36 +834,13 @@
     #sput-boolean v1, Lcom/android/server/power/ShutdownThread;->mIsQuickbootShutdown:Z
 
     .line 240
-    if-eqz p1, :cond_0
-
-    const-string v0, "recovery"
-
-    invoke-virtual {p1, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
-
-    move-result v0
-
-    if-eqz v0, :cond_0
-
-    .line 241
-    const/4 v0, 0x0
-
-    sput-object v0, Lcom/android/server/power/ShutdownThread;->mRebootReason:Ljava/lang/String;
-
-    .line 242
-    invoke-static {}, Lcom/android/server/power/ShutdownThread;->rebootbaidurecovery()V
+    sput-object p1, Lcom/android/server/power/ShutdownThread;->mRebootReason:Ljava/lang/String;
 
     .line 246
-    :goto_0
     invoke-static {p0, p2}, Lcom/android/server/power/ShutdownThread;->shutdownInner(Landroid/content/Context;Z)V
 
     .line 247
     return-void
-
-    .line 244
-    :cond_0
-    sput-object p1, Lcom/android/server/power/ShutdownThread;->mRebootReason:Ljava/lang/String;
-
-    goto :goto_0
 .end method
 
 .method private static ifrebootbaidurecovery()V

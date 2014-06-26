@@ -165,7 +165,7 @@
 
     .line 417
     .local v1, pm:Landroid/os/PowerManager;
-    const-string/jumbo v2, ""
+    const-string/jumbo v2, "recovery"
 
     invoke-virtual {v1, v2}, Landroid/os/PowerManager;->reboot(Ljava/lang/String;)V
 
