@@ -44,6 +44,8 @@ echo.
 echo. 注意：
 echo.        请使用USB线连接手机和电脑，并打开手机的USB调试模式；
 echo.        请备份好当前用户数据。
+echo.        请提前在外置存储SD卡中放入最新的百度云ROM刷机包，
+echo.        百度Recovery刷入完成后会直接重启到百度Recovery。
 echo.
 echo. --------------------------------------------------------------------------
 echo.
@@ -77,9 +79,14 @@ echo.
 %adb% wait-for-device
 echo. --- 百度Recovery刷入成功!
 echo.
-echo. --- 请进入Recovery模式刷入百度云ROM刷机包。
-echo. --- （手动进入Recovery方法：关机后，按住电源键+音量上键）
-echo. --- 完成。
+echo. --- 正在重启到百度Recovery...
+echo.
+%adb% reboot recovery
+call :ADB_DEVICE
+echo. --- 已经进入百度Recovery！
+echo.
+echo. --- 请根据刷机步骤，刷入百度云ROM刷机包!
+echo. --- 完成！
 
 goto :EXIT
 
@@ -128,6 +135,9 @@ echo.
 echo. --- 华为Recovery恢复成功！
 
 :EXIT
+echo.
+echo. *** 请按任意键退出，或直接关闭!
+echo.
 pause > NUL 2> NUL
 exit
 

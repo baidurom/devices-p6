@@ -1,0 +1,139 @@
+on early-init
+    start ueventd
+
+on init
+    export PATH /sbin
+    export LD_LIBRARY_PATH /lib
+    export ANDROID_ROOT /system
+    export ANDROID_DATA /data
+    export EXTERNAL_STORAGE /sdcard
+    mkdir /sdcard
+    mkdir /sdcard2
+    mkdir /system
+    mkdir /data
+    #  DTS2012020704453   c00182898    2012/02/07   HOTA update system and cust image failed begin
+    mkdir /cust
+    #  DTS2012020704453   c00182898    2012/02/07   HOTA update system and cust image failed end
+    mkdir /splash2
+    mkdir /usb
+    mkdir /modem
+    mkdir /modem/modem_image
+    mkdir /modem/nvm1
+    mkdir /modem/nvm2
+    chown system system /dev/cpuctl
+    chown system system /dev/cpuctl/tasks
+    mkdir /cache
+    write /sys/module/block2mtd/parameters/block2mtd /dev/block/mmcblk0p3
+    mount tmpfs tmpfs /tmp
+    symlink /sbin/ /system/bin
+    # change nve device visit permission
+    wait /dev/nve0
+    chmod 0777 /dev/nve0
+    write /sys/module/usbcore/parameters/autosuspend 2
+on fs
+    #wait /dev/block/platform/hi_mci.1/by-name/system
+    #exec /sbin/e2fsck_s -a -F -f /dev/block/platform/hi_mci.1/by-name/system
+    #exec /sbin/resize2fs_s -f /dev/block/platform/hi_mci.1/by-name/system
+    #mount ext4 /dev/block/platform/hi_mci.1/by-name/system /system rw
+    mount vfat /dev/block/platform/hi_mci.0/mmcblk1p1 /sdcard
+    mount vfat /dev/block/mmcblk1 /sdcard
+#bq2416x_charger
+     chmod 0660 /sys/bus/i2c/devices/1-006b/enable_charger
+     chown system system /sys/bus/i2c/devices/1-006b/enable_charger
+     #DTS2012110200803 g00212954 20121102 start
+     chown system system /sys/class/leds/synaptics-backlight-tk/brightness
+     chmod 0660 /sys/class/leds/synaptics-backlight-tk/brightness
+     #DTS2012110200803 g00212954 20121102 end
+
+on boot
+    mount debugfs /sys/kernel/debug /sys/kernel/debug
+    ifup lo
+    hostname localhost
+    domainname localdomain
+
+    write /sys/devices/system/cpu/cpu1/online 0
+    write /sys/devices/platform/ipps-v2.0/mcu "I 64"
+    write /sys/devices/platform/ipps-v2.0/mcu "I 112"
+    write /sys/devices/platform/ipps-v2.0/mcu "I 17"
+    write /sys/devices/platform/ipps-v2.0/mcu "I 49"
+    
+    class_start default
+    
+#to let uim-sysfs run in recovery mode for safety.
+   chmod 0775 /sbin/uim-sysfs
+   
+#FM Chr driver insmod outside UIM. As UIM owner is bluetooth
+   insmod /system/lib/ti-fm-ko/fmdrv_chr.ko
+
+#Change FM dev node permission for safety.
+   chmod 0775 /dev/tifm
+#DTS2012071008378       y00215327      2012/07/10     add end>
+
+	#add by w00187765
+	mkdir /data/dumplog
+	chmod 777 /data/dumplog
+
+service ueventd /sbin/ueventd
+    critical
+
+#<DTS2012071008378       y00215327      2012/07/10     add begin
+#shared transport user space mgr service for Bluetooth, FM and GPS
+service uim /sbin/uim-sysfs
+#	critical
+#        class core
+#        user root
+#        group bluetooth net_bt_admin
+#DTS2012071008378       y00215327      2012/07/10     add end>
+
+service recovery /sbin/recovery
+
+# DTS2011082903260  r00186667 2011/08/30 added begin
+service chargeservice /sbin/chargeservice
+# DTS2011082903260  r00186667 2011/08/30 added end
+service adbd /sbin/adbd recovery
+    disabled
+
+# Always start adbd on userdebug and eng builds
+# < DTS2012022100235 l00188955 2012-03-24 begin: modified ports and pid
+# /* <DTS2012030800779 z00202508 2012-3-20 update start> */
+    write /sys/class/android_usb/android0/iManufacturer $ro.product.manufacturer
+    write /sys/class/android_usb/android0/iProduct $ro.product.model
+# /* <DTS2012030800779 z00202508 2012-3-20 update end> */
+# DTS2012022100235 l00188955 2012-03-24 end >
+
+on property:sys.usb.config=modem,nmea,mass_storage,adb,diag
+    write /sys/class/android_usb/android0/enable 0
+    write /sys/class/android_usb/android0/idVendor 12d1
+    write /sys/class/android_usb/android0/idProduct 1035
+    write /sys/class/android_usb/android0/iSerial $ro.serialno
+    write /sys/class/android_usb/f_mass_storage/luns sdcard
+    write /sys/class/android_usb/f_mass_storage/lun/file none
+    write /sys/class/android_usb/android0/functions $sys.usb.config
+    write /sys/class/android_usb/android0/enable 1
+    start adbd
+    setprop sys.usb.state $sys.usb.config
+
+on property:sys.usb.config=modem,nmea,mass_storage,adb,diag,default_mode
+    write /sys/class/android_usb/android0/enable 0
+    write /sys/class/android_usb/android0/idVendor 12d1
+    write /sys/class/android_usb/android0/idProduct 1035
+    write /sys/class/android_usb/android0/iSerial cleanup
+    write /sys/class/android_usb/f_mass_storage/luns sdcard
+    write /sys/class/android_usb/f_mass_storage/lun/file none
+    write /sys/class/android_usb/android0/functions modem,nmea,mass_storage,adb,diag
+    write /sys/class/android_usb/android0/enable 1
+    start adbd
+    setprop sys.usb.state $sys.usb.config
+
+on property:sys.usb.config=none
+    stop adbd
+    write /sys/class/android_usb/android0/enable 0
+    write /sys/class/android_usb/android0/bDeviceClass 0
+    setprop sys.usb.state $sys.usb.config
+
+# Restart adbd so it can run as root
+on property:service.adb.root=1
+    write /sys/class/android_usb/android0/enable 0
+    restart adbd
+    write /sys/class/android_usb/android0/enable 1
+    
