@@ -20,7 +20,7 @@ echo.
 echo. 请选择操作：
 echo.
 echo.        1. 刷入百度Recovery
-echo.        2. 恢复华为Recovery
+echo.        2. 恢复华为Recovery(B120版本)
 echo.
 echo. ==========================================================================
 
@@ -39,6 +39,8 @@ echo.
 echo. 声明：
 echo.        为保证手机系统运行稳定，请确认手机原厂系统版本是B120版本
 echo.        如果手机原厂系统版本不是B120，请先更新到B120后再刷入百度云ROM
+echo.        如果手机原厂系统版本是高版本用户，
+echo.        请先使用本工具恢复华为Recovery(B120版本)后，再强刷华为B120版本系统
 echo.        如有疑问，请访问百度云ROM论坛 P6(联通版)版块
 echo.
 echo. 注意：
@@ -64,10 +66,32 @@ echo. --- 连接设备中...
 echo. --- 如果卡在这一步，请确认是否已打开调试或者正确安装好手机驱动
 call :ADB_DEVICE
 
+if %timeout% neq 0 goto :REBOOT_BOOTLOADER_1
+echo.
+echo. --- 连接手机超时！请重新检查手机状态后重试！
+echo.
+echo. --- 如果手机无法正常开机，请手动进入fastboot模式：
+echo.
+echo.     操作方法：连接数据线，长按电源键10秒关机，关机后，立即按住“音量减”，
+echo.              手机重启会停在开机首屏界面（此时可以放开音量键）。
+echo. 
+echo. --- 手动操作完成后，请按键盘任意键继续...
+pause > NUL 2> NUL
+call :FASTBOOT_DEVICE
+
+if %timeout% neq 0 goto :REBOOT_BOOTLOANDER_2
+echo.
+echo. --- 依旧无法连接手机！请严格按照步骤操作，请重试！
+goto :EXIT
+
+:REBOOT_BOOTLOADER_1
+
 echo.
 echo. --- 连接设备成功，正在重启到刷机模式...
 %adb% reboot bootloader
 %SLEEP% 6 > NUL
+
+:REBOOT_BOOTLOANDER_2
 echo.
 echo. --- 正在刷入百度Recovery，请勿进行其它操作！
 %fastboot% flash boot boot.img
@@ -76,11 +100,15 @@ echo. --- 正在刷入百度Recovery，请勿进行其它操作！
 %fastboot% reboot
 
 echo.
-%adb% wait-for-device
 echo. --- 百度Recovery刷入成功!
 echo.
 echo. --- 正在重启到百度Recovery...
+echo.     
+echo. --- 如果无法进入百度Recovery，可以手动操作：
+echo.     操作方法：连接数据线，长按电源键10秒关机，关机后，立即按住“音量加”，
+echo.              手机进入百度Recovery（此时可以放开音量键）。
 echo.
+%adb% wait-for-device
 %adb% reboot recovery
 call :ADB_DEVICE
 echo. --- 已经进入百度Recovery！
@@ -102,7 +130,8 @@ echo.
 echo. --------------------------------------------------------------------------
 echo.
 echo. 进入Recovery方法：
-echo.        长按手机电源键10秒；关机后立即按住电源键+音量上键，进入Recovery模式；
+echo.        1、长按手机电源键10秒；关机后立即按住电源键+音量上键，进入Recovery模式；
+echo.        2、手机连接数据线，长按手机电源键10秒；关机后立即按住音量上键，进入Recovery模式；
 echo.
 echo. --------------------------------------------------------------------------
 echo.
@@ -120,11 +149,31 @@ echo. --- 连接设备中...
 echo. --- 如果卡在这一步，请确认是否已打开调试或者正确安装好手机驱动
 call :ADB_DEVICE
 
+if %timeout% neq 0 goto :REBOOT_BOOTLOADER_3
+echo.
+echo. --- 连接手机超时！请重新检查手机状态后重试！
+echo.
+echo. --- 如果手机无法正常开机，请手动进入fastboot模式：
+echo.
+echo.     操作方法：连接数据线，长按电源键10秒关机，关机后，立即按住“音量减”，
+echo.              手机重启会停在开机首屏界面（此时可以放开音量键）。
+echo. 
+echo. --- 手动操作完成后，请按键盘任意键继续...
+pause > NUL 2> NUL
+call :FASTBOOT_DEVICE
+
+if %timeout% neq 0 goto :REBOOT_BOOTLOADER_4
+echo.
+echo. --- 依旧无法连接手机！请严格按照步骤操作，请重试！
+goto :EXIT
+
+:REBOOT_BOOTLOADER_3
 echo.
 echo. --- 连接设备成功，正在重启到刷机模式...
 %adb% reboot bootloader
 %SLEEP% 6 > NUL
 
+:REBOOT_BOOTLOADER_4
 echo. 
 echo. --- 正在恢复华为Recovery，请勿进行其它操作！
 %fastboot% flash recovery huawei-recovery.img
@@ -142,11 +191,29 @@ pause > NUL 2> NUL
 exit
 
 :ADB_DEVICE
+set timeout=6
 :CHECK_DEVICE
-::echo. 查找设备...
+set /a timeout-=1
+if %timeout% equ 0 goto :ADB_DEVICE_RETURN
+echo.       查找设备...  (剩余次数: %timeout%)
 %SLEEP% 3 > NUL 
 %adb% devices > tmp.log
 for /f "delims=:" %%i in ('findstr /n . "tmp.log"') do set linenum=%%i
 del tmp.log
 if %linenum% leq 1 goto :CHECK_DEVICE
+:ADB_DEVICE_RETURN
+goto :EOF
+
+:FASTBOOT_DEVICE
+set timeout=6
+:CHECK_FASTBOOT_DEVICE
+set /a timeout-=1
+if %timeout% equ 0 goto :FASTBOOT_DEVICE_RETURN
+echo.       查找设备...  (剩余次数: %timeout%)
+%SLEEP% 3 > NUL 
+%fastboot% devices > tmp.log
+for /f "delims=:" %%i in ('findstr /n . "tmp.log"') do set linenum=%%i
+del tmp.log
+if %linenum% lss 1 goto :CHECK_FASTBOOT_DEVICE
+:FASTBOOT_DEVICE_RETURN
 goto :EOF
