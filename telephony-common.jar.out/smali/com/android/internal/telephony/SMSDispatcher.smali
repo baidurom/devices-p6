@@ -1871,7 +1871,7 @@
 
     if-eqz v1, :cond_baidu_1
 
-    move v8, v0
+    const/4 v8, 0x1
 
     goto :goto_0
 
