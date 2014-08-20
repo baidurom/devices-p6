@@ -1,4 +1,4 @@
-.class Lcom/android/internal/policy/impl/GlobalActions$4$1$1;
+.class Lcom/android/internal/policy/impl/GlobalActions$3$1$1;
 .super Ljava/lang/Object;
 .source "GlobalActions.java"
 
@@ -8,7 +8,7 @@
 
 # annotations
 .annotation system Ldalvik/annotation/EnclosingMethod;
-    value = Lcom/android/internal/policy/impl/GlobalActions$4$1;->onClick(Landroid/content/DialogInterface;I)V
+    value = Lcom/android/internal/policy/impl/GlobalActions$3$1;->onClick(Landroid/content/DialogInterface;I)V
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
@@ -18,19 +18,19 @@
 
 
 # instance fields
-.field final synthetic this$2:Lcom/android/internal/policy/impl/GlobalActions$4$1;
+.field final synthetic this$2:Lcom/android/internal/policy/impl/GlobalActions$3$1;
 
 
 # direct methods
-.method constructor <init>(Lcom/android/internal/policy/impl/GlobalActions$4$1;)V
+.method constructor <init>(Lcom/android/internal/policy/impl/GlobalActions$3$1;)V
     .locals 0
     .parameter
 
     .prologue
-    .line 328
-    iput-object p1, p0, Lcom/android/internal/policy/impl/GlobalActions$4$1$1;->this$2:Lcom/android/internal/policy/impl/GlobalActions$4$1;
+    .line 281
+    iput-object p1, p0, Lcom/android/internal/policy/impl/GlobalActions$3$1$1;->this$2:Lcom/android/internal/policy/impl/GlobalActions$3$1;
 
-    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+    invoke-direct/range {p0 .. p0}, Ljava/lang/Object;-><init>()V
 
     return-void
 .end method
@@ -41,7 +41,7 @@
     .locals 1
 
     .prologue
-    .line 331
+    .line 284
     :try_start_0
     invoke-static {}, Landroid/app/ActivityManagerNative;->getDefault()Landroid/app/IActivityManager;
 
@@ -51,11 +51,11 @@
     :try_end_0
     .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
 
-    .line 335
+    .line 288
     :goto_0
     return-void
 
-    .line 333
+    .line 286
     :catch_0
     move-exception v0
 

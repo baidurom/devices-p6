@@ -314,6 +314,28 @@
 
     if-nez v8, :cond_0
 
+    const-string v8, "com.huawei.android.FMRadio"
+    
+    invoke-virtual {v8, p2}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+    
+    move-result v7
+    
+    if-eqz v7, :cond_99
+    
+    const-string v8, "com.huawei.android.FMRadio.png"
+    
+    invoke-virtual {v8, p1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+    
+    move-result v7
+    
+    if-eqz v7, :cond_99
+
+    const-string v8, "com.baidu.fm.png"
+    
+    move-object p1, v8
+
+    :cond_99
+
     new-instance v7, Ljava/lang/StringBuffer;
 
     const-string v8, "/data/data/com.baidu.thememanager.ui/files"

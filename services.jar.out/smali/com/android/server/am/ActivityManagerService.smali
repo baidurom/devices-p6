@@ -69744,7 +69744,6 @@
 
     :cond_0
     :goto_0
-    :goto_baidu_0
     return v22
 
     :cond_1
@@ -70231,6 +70230,14 @@
 
     invoke-virtual {v2, v3}, Lcom/android/server/wm/WindowManagerService;->setNewConfiguration(Landroid/content/res/Configuration;)V
 
+    :cond_baidu_0
+
+    move-object/from16 v0, p0
+
+    move/from16 v1, v19
+
+    invoke-static {v0, v1}, Lcom/android/server/am/ActivityManagerService$BaiduInjector;->broadcastConfigTheme(Lcom/android/server/am/ActivityManagerService;I)V
+
     goto/16 :goto_0
 
     .line 12686
@@ -70243,15 +70250,6 @@
     move-exception v2
 
     goto/16 :goto_3
-
-    :cond_baidu_0
-    move-object/from16 v0, p0
-
-    move/from16 v1, v19
-
-    invoke-static {v0, v1}, Lcom/android/server/am/ActivityManagerService$BaiduInjector;->broadcastConfigTheme(Lcom/android/server/am/ActivityManagerService;I)V
-
-    goto/16 :goto_baidu_0
 .end method
 
 .method updateCpuStats()V

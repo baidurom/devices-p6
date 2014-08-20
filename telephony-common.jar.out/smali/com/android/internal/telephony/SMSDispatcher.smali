@@ -6,7 +6,6 @@
 # annotations
 .annotation system Ldalvik/annotation/MemberClasses;
     value = {
-        Lcom/android/internal/telephony/SMSDispatcher$BaiduInjector;,
         Lcom/android/internal/telephony/SMSDispatcher$ConfirmDialogListener;,
         Lcom/android/internal/telephony/SMSDispatcher$SmsTracker;,
         Lcom/android/internal/telephony/SMSDispatcher$SettingsObserver;
@@ -434,7 +433,7 @@
 
     move-result-object v0
 
-    const v3, #bool@config_sms_capable#t
+    const v3, 0x1110030
 
     invoke-virtual {v0, v3}, Landroid/content/res/Resources;->getBoolean(I)Z
 
@@ -551,30 +550,33 @@
 
     invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
+    .line 312
     invoke-static {}, Lcom/android/internal/telephony/uicc/UiccController;->getInstance()Lcom/android/internal/telephony/uicc/UiccController;
 
     move-result-object v0
 
     iput-object v0, p0, Lcom/android/internal/telephony/SMSDispatcher;->mUiccController:Lcom/android/internal/telephony/uicc/UiccController;
 
+    .line 313
     iget-object v0, p0, Lcom/android/internal/telephony/SMSDispatcher;->mUiccController:Lcom/android/internal/telephony/uicc/UiccController;
 
     const/16 v1, 0xc
 
     invoke-virtual {v0, p0, v1, v5}, Lcom/android/internal/telephony/uicc/UiccController;->registerForIccChanged(Landroid/os/Handler;ILjava/lang/Object;)V
 
-    invoke-static {p0}, Lcom/android/internal/telephony/SMSDispatcher$BaiduInjector;->registerReceiver(Lcom/android/internal/telephony/SMSDispatcher;)V
-
+    .line 314
     return-void
 
     :cond_0
     move v0, v2
 
+    .line 301
     goto :goto_0
 
     :cond_1
     move v1, v2
 
+    .line 303
     goto :goto_1
 .end method
 
@@ -1834,11 +1836,12 @@
 
     move-result v8
 
+    .line 795
     .end local v11           #pdus:[[B
     :goto_0
-    :goto_baidu_0
     return v8
 
+    .line 784
     .restart local v11       #pdus:[[B
     :cond_1
     iget-object v0, v13, Lcom/android/internal/telephony/SmsHeader;->portAddrs:Lcom/android/internal/telephony/SmsHeader$PortAddrs;
@@ -1849,38 +1852,22 @@
 
     goto :goto_0
 
+    .line 788
     :cond_2
-    iget-object v0, p0, Lcom/android/internal/telephony/SMSDispatcher;->mContext:Landroid/content/Context;
-
-    invoke-virtual {p0}, Lcom/android/internal/telephony/SMSDispatcher;->getFormat()Ljava/lang/String;
-
-    move-result-object v1
-
-    const/4 v2, -0x1
-
-    invoke-static {v0, v11, v1, v2}, Lcom/android/internal/telephony/SMSPlugin;->prehandleMsg(Landroid/content/Context;[[BLjava/lang/String;I)Z
-
-    move-result v0
-
-    if-eqz v0, :cond_baidu_0
-
-    const/4 v8, 0x1
-
-    goto :goto_baidu_0
-
-    :cond_baidu_0
-
     invoke-virtual {p0, v11}, Lcom/android/internal/telephony/SMSDispatcher;->dispatchPdus([[B)V
 
     goto :goto_0
 
+    .line 793
     .end local v11           #pdus:[[B
     :cond_3
     iget-object v10, v13, Lcom/android/internal/telephony/SmsHeader;->concatRef:Lcom/android/internal/telephony/SmsHeader$ConcatRef;
 
+    .line 794
     .local v10, concatRef:Lcom/android/internal/telephony/SmsHeader$ConcatRef;
     iget-object v12, v13, Lcom/android/internal/telephony/SmsHeader;->portAddrs:Lcom/android/internal/telephony/SmsHeader$PortAddrs;
 
+    .line 795
     .local v12, portAddrs:Lcom/android/internal/telephony/SmsHeader$PortAddrs;
     invoke-virtual {p1}, Lcom/android/internal/telephony/SmsMessageBase;->getPdu()[B
 
@@ -2086,14 +2073,18 @@
 
     if-eqz v14, :cond_0
 
+    .line 1554
     :goto_0
     return-void
 
+    .line 1508
     :cond_0
     if-eqz p1, :cond_1
 
-    const v4, #string@sms_premium_short_code_details#t
+    .line 1509
+    const v4, 0x1040422
 
+    .line 1514
     .local v4, detailsId:I
     :goto_1
     move-object/from16 v0, p2
@@ -2116,7 +2107,7 @@
 
     .line 1516
     .local v12, r:Landroid/content/res/Resources;
-    const v14, #string@sms_short_code_confirm_message#t
+    const v14, 0x1040420
 
     const/4 v15, 0x2
 
@@ -2160,7 +2151,7 @@
 
     .line 1521
     .local v7, inflater:Landroid/view/LayoutInflater;
-    const v14, #layout@sms_short_code_confirmation_dialog#t
+    const v14, 0x10900ca
 
     const/4 v15, 0x0
 
@@ -2172,7 +2163,7 @@
     .local v8, layout:Landroid/view/View;
     new-instance v9, Lcom/android/internal/telephony/SMSDispatcher$ConfirmDialogListener;
 
-    const v14, #id@sms_short_code_remember_undo_instruction#t
+    const v14, 0x1020374
 
     invoke-virtual {v8, v14}, Landroid/view/View;->findViewById(I)Landroid/view/View;
 
@@ -2188,7 +2179,7 @@
 
     .line 1527
     .local v9, listener:Lcom/android/internal/telephony/SMSDispatcher$ConfirmDialogListener;
-    const v14, #id@sms_short_code_confirm_message#t
+    const v14, 0x102036e
 
     invoke-virtual {v8, v14}, Landroid/view/View;->findViewById(I)Landroid/view/View;
 
@@ -2196,10 +2187,12 @@
 
     check-cast v11, Landroid/widget/TextView;
 
+    .line 1528
     .local v11, messageView:Landroid/widget/TextView;
     invoke-virtual {v11, v10}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
 
-    const v14, #id@sms_short_code_detail_layout#t
+    .line 1530
+    const v14, 0x102036f
 
     invoke-virtual {v8, v14}, Landroid/view/View;->findViewById(I)Landroid/view/View;
 
@@ -2209,7 +2202,7 @@
 
     .line 1532
     .local v5, detailsLayout:Landroid/view/ViewGroup;
-    const v14, #id@sms_short_code_detail_message#t
+    const v14, 0x1020371
 
     invoke-virtual {v5, v14}, Landroid/view/ViewGroup;->findViewById(I)Landroid/view/View;
 
@@ -2217,10 +2210,12 @@
 
     check-cast v6, Landroid/widget/TextView;
 
+    .line 1534
     .local v6, detailsView:Landroid/widget/TextView;
     invoke-virtual {v6, v4}, Landroid/widget/TextView;->setText(I)V
 
-    const v14, #id@sms_short_code_remember_choice_checkbox#t
+    .line 1536
+    const v14, 0x1020372
 
     invoke-virtual {v8, v14}, Landroid/view/View;->findViewById(I)Landroid/view/View;
 
@@ -2247,7 +2242,7 @@
 
     move-result-object v14
 
-    const v15, #string@sms_short_code_confirm_allow#t
+    const v15, 0x1040423
 
     invoke-virtual {v12, v15}, Landroid/content/res/Resources;->getString(I)Ljava/lang/String;
 
@@ -2257,7 +2252,7 @@
 
     move-result-object v14
 
-    const v15, #string@sms_short_code_confirm_deny#t
+    const v15, 0x1040424
 
     invoke-virtual {v12, v15}, Landroid/content/res/Resources;->getString(I)Ljava/lang/String;
 
@@ -2322,7 +2317,7 @@
     .end local v12           #r:Landroid/content/res/Resources;
     .end local v13           #rememberChoice:Landroid/widget/CheckBox;
     :cond_1
-    const v4, #string@sms_short_code_details#t
+    const v4, 0x1040421
 
     .restart local v4       #detailsId:I
     goto/16 :goto_1
@@ -2914,7 +2909,7 @@
 
     .line 1478
     .local v4, r:Landroid/content/res/Resources;
-    const v5, #string@sms_control_message#t
+    const v5, 0x104041d
 
     const/4 v6, 0x1
 
@@ -2950,13 +2945,13 @@
 
     invoke-direct {v5, v6, v7}, Landroid/app/AlertDialog$Builder;-><init>(Landroid/content/Context;I)V
 
-    const v6, #string@sms_control_title#t
+    const v6, 0x104041c
 
     invoke-virtual {v5, v6}, Landroid/app/AlertDialog$Builder;->setTitle(I)Landroid/app/AlertDialog$Builder;
 
     move-result-object v5
 
-    const v6, #drawable@stat_sys_warning#t
+    const v6, 0x108008a
 
     invoke-virtual {v5, v6}, Landroid/app/AlertDialog$Builder;->setIcon(I)Landroid/app/AlertDialog$Builder;
 
@@ -2966,7 +2961,7 @@
 
     move-result-object v5
 
-    const v6, #string@sms_control_yes#t
+    const v6, 0x104041e
 
     invoke-virtual {v4, v6}, Landroid/content/res/Resources;->getString(I)Ljava/lang/String;
 
@@ -2976,7 +2971,7 @@
 
     move-result-object v5
 
-    const v6, #string@sms_control_no#t
+    const v6, 0x104041f
 
     invoke-virtual {v4, v6}, Landroid/content/res/Resources;->getString(I)Ljava/lang/String;
 
@@ -3818,7 +3813,6 @@
     .end local v23           #seqNumber:Ljava/lang/String;
     :cond_1
     :goto_0
-    :goto_baidu_0
     return v3
 
     .line 848
@@ -4351,30 +4345,6 @@
 
     .line 954
     :cond_11
-    move-object/from16 v0, p0
-
-    iget-object v0, v0, Lcom/android/internal/telephony/SMSDispatcher;->mContext:Landroid/content/Context;
-
-    invoke-virtual/range {p0 .. p0}, Lcom/android/internal/telephony/SMSDispatcher;->getFormat()Ljava/lang/String;
-
-    move-result-object v1
-
-    const/4 v2, -0x1
-
-    move-object/from16 v3, v21
-
-    invoke-static {v0, v3, v1, v2}, Lcom/android/internal/telephony/SMSPlugin;->prehandleMsg(Landroid/content/Context;[[BLjava/lang/String;I)Z
-
-    move-result v0
-
-    if-eqz v0, :cond_baidu_0
-
-    const/4 v3, 0x1
-
-    goto/16 :goto_baidu_0
-
-    :cond_baidu_0
-
     move-object/from16 v0, p0
 
     move-object/from16 v1, v21

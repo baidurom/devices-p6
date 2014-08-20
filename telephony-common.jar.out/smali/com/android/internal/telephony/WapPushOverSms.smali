@@ -201,7 +201,7 @@
 
     move-result v3
 
-    invoke-virtual {v1, v2, v3}, Landroid/content/Intent;->putExtra(Ljava/lang/String;I)Landroid/content/Intent;
+    #invoke-virtual {v1, v2, v3}, Landroid/content/Intent;->putExtra(Ljava/lang/String;I)Landroid/content/Intent;
 
     .line 373
     const-string v2, "network_type"
@@ -220,7 +220,7 @@
 
     move-result v3
 
-    invoke-virtual {v1, v2, v3}, Landroid/content/Intent;->putExtra(Ljava/lang/String;I)Landroid/content/Intent;
+    #invoke-virtual {v1, v2, v3}, Landroid/content/Intent;->putExtra(Ljava/lang/String;I)Landroid/content/Intent;
 
     .line 377
     :cond_0
@@ -675,7 +675,7 @@
 
     move-object/from16 v0, v18
 
-    invoke-virtual {v0, v3, v4}, Landroid/content/Intent;->putExtra(Ljava/lang/String;I)Landroid/content/Intent;
+    #invoke-virtual {v0, v3, v4}, Landroid/content/Intent;->putExtra(Ljava/lang/String;I)Landroid/content/Intent;
 
     .line 262
     const-string v3, "network_type"
@@ -698,7 +698,7 @@
 
     move-object/from16 v0, v18
 
-    invoke-virtual {v0, v3, v4}, Landroid/content/Intent;->putExtra(Ljava/lang/String;I)Landroid/content/Intent;
+    #invoke-virtual {v0, v3, v4}, Landroid/content/Intent;->putExtra(Ljava/lang/String;I)Landroid/content/Intent;
 
     .line 266
     :cond_8

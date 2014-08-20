@@ -30,27 +30,27 @@
     .parameter "dialog"
 
     .prologue
-    .line 242
+    .line 224
     invoke-direct {p0}, Landroid/content/BroadcastReceiver;-><init>()V
 
-    .line 243
+    .line 225
     iput-object p1, p0, Landroid/view/VolumePanel$WarningDialogReceiver;->mContext:Landroid/content/Context;
 
-    .line 244
+    .line 226
     iput-object p2, p0, Landroid/view/VolumePanel$WarningDialogReceiver;->mDialog:Landroid/app/Dialog;
 
-    .line 245
+    .line 227
     new-instance v0, Landroid/content/IntentFilter;
 
     const-string v1, "android.intent.action.CLOSE_SYSTEM_DIALOGS"
 
     invoke-direct {v0, v1}, Landroid/content/IntentFilter;-><init>(Ljava/lang/String;)V
 
-    .line 246
+    .line 228
     .local v0, filter:Landroid/content/IntentFilter;
     invoke-virtual {p1, p0, v0}, Landroid/content/Context;->registerReceiver(Landroid/content/BroadcastReceiver;Landroid/content/IntentFilter;)Landroid/content/Intent;
 
-    .line 247
+    .line 229
     return-void
 .end method
 
@@ -61,31 +61,31 @@
     .parameter "unused"
 
     .prologue
-    .line 258
+    .line 240
     iget-object v0, p0, Landroid/view/VolumePanel$WarningDialogReceiver;->mContext:Landroid/content/Context;
 
     invoke-virtual {v0, p0}, Landroid/content/Context;->unregisterReceiver(Landroid/content/BroadcastReceiver;)V
 
-    .line 259
+    .line 241
     invoke-static {}, Landroid/view/VolumePanel;->access$000()Ljava/lang/Object;
 
     move-result-object v1
 
     monitor-enter v1
 
-    .line 260
+    .line 242
     const/4 v0, 0x0
 
     :try_start_0
     invoke-static {v0}, Landroid/view/VolumePanel;->access$102(Landroid/app/AlertDialog;)Landroid/app/AlertDialog;
 
-    .line 261
+    .line 243
     monitor-exit v1
 
-    .line 262
+    .line 244
     return-void
 
-    .line 261
+    .line 243
     :catchall_0
     move-exception v0
 
@@ -102,31 +102,31 @@
     .parameter "intent"
 
     .prologue
-    .line 251
+    .line 233
     iget-object v0, p0, Landroid/view/VolumePanel$WarningDialogReceiver;->mDialog:Landroid/app/Dialog;
 
     invoke-virtual {v0}, Landroid/app/Dialog;->cancel()V
 
-    .line 252
+    .line 234
     invoke-static {}, Landroid/view/VolumePanel;->access$000()Ljava/lang/Object;
 
     move-result-object v1
 
     monitor-enter v1
 
-    .line 253
+    .line 235
     const/4 v0, 0x0
 
     :try_start_0
     invoke-static {v0}, Landroid/view/VolumePanel;->access$102(Landroid/app/AlertDialog;)Landroid/app/AlertDialog;
 
-    .line 254
+    .line 236
     monitor-exit v1
 
-    .line 255
+    .line 237
     return-void
 
-    .line 254
+    .line 236
     :catchall_0
     move-exception v0
 

@@ -27,10 +27,10 @@
     .parameter
 
     .prologue
-    .line 918
+    .line 850
     iput-object p1, p0, Landroid/view/VolumePanel$5;->this$0:Landroid/view/VolumePanel;
 
-    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+    invoke-direct/range {p0 .. p0}, Ljava/lang/Object;-><init>()V
 
     return-void
 .end method
@@ -43,13 +43,13 @@
     .parameter "which"
 
     .prologue
-    .line 920
+    .line 852
     iget-object v0, p0, Landroid/view/VolumePanel$5;->this$0:Landroid/view/VolumePanel;
 
     iget-object v0, v0, Landroid/view/VolumePanel;->mAudioService:Landroid/media/AudioService;
 
     invoke-virtual {v0}, Landroid/media/AudioService;->disableSafeMediaVolume()V
 
-    .line 921
+    .line 853
     return-void
 .end method

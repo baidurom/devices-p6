@@ -443,7 +443,7 @@
     .line 548
     new-instance v1, Landroid/app/ProgressDialog;
 
-    const v3, 0x206005c
+    const v3, #style@Theme.DeviceDefault.Light.Dialog.Alert#t
 
     invoke-direct {v1, p0, v3}, Landroid/app/ProgressDialog;-><init>(Landroid/content/Context;I)V
 
@@ -1168,7 +1168,7 @@
     .line 439
     new-instance v3, Landroid/app/AlertDialog$Builder;
 
-    const v4, 0x206005c
+    const v4, #style@Theme.DeviceDefault.Light.Dialog.Alert#t
 
     invoke-direct {v3, p0, v4}, Landroid/app/AlertDialog$Builder;-><init>(Landroid/content/Context;I)V
 
@@ -1285,7 +1285,7 @@
     :cond_0
     new-instance v0, Landroid/app/ProgressDialog;
 
-    const v1, 0x206005c
+    const v1, #style@Theme.DeviceDefault.Light.Dialog.Alert#t
 
     invoke-direct {v0, p0, v1}, Landroid/app/ProgressDialog;-><init>(Landroid/content/Context;I)V
 
@@ -1706,8 +1706,6 @@
 
     invoke-direct {v1, p0}, Lcom/android/server/power/ShutdownThread$CloseDialogReceiver;-><init>(Landroid/content/Context;)V
 
-    invoke-static {p0}, Lcom/android/server/power/ShutdownThread$BaiduInjector;->createRebootDialogBaidu(Landroid/content/Context;)V
-
     .line 376
     .local v1, closer:Lcom/android/server/power/ShutdownThread$CloseDialogReceiver;
     sget-object v5, Lcom/android/server/power/ShutdownThread;->sConfirmDialog:Landroid/app/AlertDialog;
@@ -1723,7 +1721,7 @@
     :cond_6
     new-instance v6, Landroid/app/AlertDialog$Builder;
 
-    const v5, 0x206005c
+    const v5, #style@Theme.DeviceDefault.Light.Dialog.Alert#t
 
     invoke-direct {v6, p0, v5}, Landroid/app/AlertDialog$Builder;-><init>(Landroid/content/Context;I)V
 
@@ -1765,6 +1763,8 @@
     move-result-object v5
 
     sput-object v5, Lcom/android/server/power/ShutdownThread;->sConfirmDialog:Landroid/app/AlertDialog;
+
+    invoke-static {p0}, Lcom/android/server/power/ShutdownThread$BaiduInjector;->createRebootDialogBaidu(Landroid/content/Context;)V
 
     .line 393
     sget-object v5, Lcom/android/server/power/ShutdownThread;->sConfirmDialog:Landroid/app/AlertDialog;

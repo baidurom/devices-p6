@@ -1,11 +1,11 @@
 .class Lcom/android/internal/policy/impl/GlobalActions$7;
-.super Lcom/android/internal/policy/impl/GlobalActions$SinglePressAction;
+.super Landroid/telephony/PhoneStateListener;
 .source "GlobalActions.java"
 
 
 # annotations
-.annotation system Ldalvik/annotation/EnclosingMethod;
-    value = Lcom/android/internal/policy/impl/GlobalActions;->addUsersToMenu(Ljava/util/ArrayList;)V
+.annotation system Ldalvik/annotation/EnclosingClass;
+    value = Lcom/android/internal/policy/impl/GlobalActions;
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
@@ -17,100 +17,107 @@
 # instance fields
 .field final synthetic this$0:Lcom/android/internal/policy/impl/GlobalActions;
 
-.field final synthetic val$user:Landroid/content/pm/UserInfo;
-
 
 # direct methods
-.method constructor <init>(Lcom/android/internal/policy/impl/GlobalActions;ILandroid/graphics/drawable/Drawable;Ljava/lang/CharSequence;Landroid/content/pm/UserInfo;)V
+.method constructor <init>(Lcom/android/internal/policy/impl/GlobalActions;)V
     .locals 0
-    .parameter
-    .parameter "x0"
-    .parameter "x1"
-    .parameter "x2"
     .parameter
 
     .prologue
-    .line 441
+    .line 835
     iput-object p1, p0, Lcom/android/internal/policy/impl/GlobalActions$7;->this$0:Lcom/android/internal/policy/impl/GlobalActions;
 
-    iput-object p5, p0, Lcom/android/internal/policy/impl/GlobalActions$7;->val$user:Landroid/content/pm/UserInfo;
-
-    invoke-direct {p0, p2, p3, p4}, Lcom/android/internal/policy/impl/GlobalActions$SinglePressAction;-><init>(ILandroid/graphics/drawable/Drawable;Ljava/lang/CharSequence;)V
+    invoke-direct {p0}, Landroid/telephony/PhoneStateListener;-><init>()V
 
     return-void
 .end method
 
 
 # virtual methods
-.method public onPress()V
-    .locals 4
+.method public onServiceStateChanged(Landroid/telephony/ServiceState;)V
+    .locals 3
+    .parameter "serviceState"
 
     .prologue
-    .line 444
-    :try_start_0
-    invoke-static {}, Landroid/app/ActivityManagerNative;->getDefault()Landroid/app/IActivityManager;
+    .line 838
+    iget-object v1, p0, Lcom/android/internal/policy/impl/GlobalActions$7;->this$0:Lcom/android/internal/policy/impl/GlobalActions;
 
-    move-result-object v1
+    #getter for: Lcom/android/internal/policy/impl/GlobalActions;->mHasTelephony:Z
+    invoke-static {v1}, Lcom/android/internal/policy/impl/GlobalActions;->access$000(Lcom/android/internal/policy/impl/GlobalActions;)Z
 
-    iget-object v2, p0, Lcom/android/internal/policy/impl/GlobalActions$7;->val$user:Landroid/content/pm/UserInfo;
+    move-result v1
 
-    iget v2, v2, Landroid/content/pm/UserInfo;->id:I
+    if-nez v1, :cond_0
 
-    invoke-interface {v1, v2}, Landroid/app/IActivityManager;->switchUser(I)Z
-    :try_end_0
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
-
-    .line 448
+    .line 843
     :goto_0
     return-void
 
-    .line 445
-    :catch_0
-    move-exception v0
+    .line 839
+    :cond_0
+    invoke-virtual {p1}, Landroid/telephony/ServiceState;->getState()I
 
-    .line 446
-    .local v0, re:Landroid/os/RemoteException;
-    const-string v1, "GlobalActions"
+    move-result v1
 
-    new-instance v2, Ljava/lang/StringBuilder;
+    const/4 v2, 0x3
 
-    invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
+    if-ne v1, v2, :cond_1
 
-    const-string v3, "Couldn\'t switch user "
-
-    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v2
-
-    invoke-virtual {v2, v0}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
-
-    move-result-object v2
-
-    invoke-virtual {v2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    move-result-object v2
-
-    invoke-static {v1, v2}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
-
-    goto :goto_0
-.end method
-
-.method public showBeforeProvisioning()Z
-    .locals 1
-
-    .prologue
-    .line 455
-    const/4 v0, 0x0
-
-    return v0
-.end method
-
-.method public showDuringKeyguard()Z
-    .locals 1
-
-    .prologue
-    .line 451
     const/4 v0, 0x1
 
-    return v0
+    .line 840
+    .local v0, inAirplaneMode:Z
+    :goto_1
+    iget-object v2, p0, Lcom/android/internal/policy/impl/GlobalActions$7;->this$0:Lcom/android/internal/policy/impl/GlobalActions;
+
+    if-eqz v0, :cond_2
+
+    sget-object v1, Lcom/android/internal/policy/impl/GlobalActions$ToggleAction$State;->On:Lcom/android/internal/policy/impl/GlobalActions$ToggleAction$State;
+
+    :goto_2
+    #setter for: Lcom/android/internal/policy/impl/GlobalActions;->mAirplaneState:Lcom/android/internal/policy/impl/GlobalActions$ToggleAction$State;
+    invoke-static {v2, v1}, Lcom/android/internal/policy/impl/GlobalActions;->access$402(Lcom/android/internal/policy/impl/GlobalActions;Lcom/android/internal/policy/impl/GlobalActions$ToggleAction$State;)Lcom/android/internal/policy/impl/GlobalActions$ToggleAction$State;
+
+    .line 841
+    iget-object v1, p0, Lcom/android/internal/policy/impl/GlobalActions$7;->this$0:Lcom/android/internal/policy/impl/GlobalActions;
+
+    #getter for: Lcom/android/internal/policy/impl/GlobalActions;->mAirplaneModeOn:Lcom/android/internal/policy/impl/GlobalActions$ToggleAction;
+    invoke-static {v1}, Lcom/android/internal/policy/impl/GlobalActions;->access$1300(Lcom/android/internal/policy/impl/GlobalActions;)Lcom/android/internal/policy/impl/GlobalActions$ToggleAction;
+
+    move-result-object v1
+
+    iget-object v2, p0, Lcom/android/internal/policy/impl/GlobalActions$7;->this$0:Lcom/android/internal/policy/impl/GlobalActions;
+
+    #getter for: Lcom/android/internal/policy/impl/GlobalActions;->mAirplaneState:Lcom/android/internal/policy/impl/GlobalActions$ToggleAction$State;
+    invoke-static {v2}, Lcom/android/internal/policy/impl/GlobalActions;->access$400(Lcom/android/internal/policy/impl/GlobalActions;)Lcom/android/internal/policy/impl/GlobalActions$ToggleAction$State;
+
+    move-result-object v2
+
+    invoke-virtual {v1, v2}, Lcom/android/internal/policy/impl/GlobalActions$ToggleAction;->updateState(Lcom/android/internal/policy/impl/GlobalActions$ToggleAction$State;)V
+
+    .line 842
+    iget-object v1, p0, Lcom/android/internal/policy/impl/GlobalActions$7;->this$0:Lcom/android/internal/policy/impl/GlobalActions;
+
+    #getter for: Lcom/android/internal/policy/impl/GlobalActions;->mAdapter:Lcom/android/internal/policy/impl/GlobalActions$MyAdapter;
+    invoke-static {v1}, Lcom/android/internal/policy/impl/GlobalActions;->access$800(Lcom/android/internal/policy/impl/GlobalActions;)Lcom/android/internal/policy/impl/GlobalActions$MyAdapter;
+
+    move-result-object v1
+
+    invoke-virtual {v1}, Lcom/android/internal/policy/impl/GlobalActions$MyAdapter;->notifyDataSetChanged()V
+
+    goto :goto_0
+
+    .line 839
+    .end local v0           #inAirplaneMode:Z
+    :cond_1
+    const/4 v0, 0x0
+
+    goto :goto_1
+
+    .line 840
+    .restart local v0       #inAirplaneMode:Z
+    :cond_2
+    sget-object v1, Lcom/android/internal/policy/impl/GlobalActions$ToggleAction$State;->Off:Lcom/android/internal/policy/impl/GlobalActions$ToggleAction$State;
+
+    goto :goto_2
 .end method

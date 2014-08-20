@@ -18,7 +18,7 @@
     const/high16 v3, 0x2
 
     .line 32
-    const v1, 0x206001d
+    const v1, #style@Theme.Dialog.AppError#t
 
     invoke-direct {p0, p1, v1}, Landroid/app/AlertDialog;-><init>(Landroid/content/Context;I)V
 
