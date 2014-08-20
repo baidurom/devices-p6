@@ -150,6 +150,16 @@
     .locals 8
 
     .prologue
+    invoke-direct {p0}, Lcom/android/server/BatteryService$Led;->updateLightsLockedHook()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_baidu_0
+
+    goto :goto_baidu_0
+
+    :cond_baidu_0
+
     const/4 v5, 0x5
 
     const/4 v4, 0x2

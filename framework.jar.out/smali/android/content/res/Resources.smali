@@ -197,7 +197,7 @@
     return-void
 .end method
 
-.method protected constructor <init>()V
+.method constructor <init>()V
     .locals 3
 
     .prologue
@@ -882,10 +882,10 @@
 
     if-eqz v1, :cond_1
 
-    new-instance v0, Landroid/content/res/ResourcesEx;
+    new-instance v0, Landroid/content/res/BaiduResources;
 
     .end local v0           #ret:Landroid/content/res/Resources;
-    invoke-direct {v0}, Landroid/content/res/ResourcesEx;-><init>()V
+    invoke-direct {v0}, Landroid/content/res/BaiduResources;-><init>()V
 
     .line 210
     .restart local v0       #ret:Landroid/content/res/Resources;
@@ -6497,7 +6497,7 @@
 
     .prologue
     .local p1, drawableCache:Landroid/util/LongSparseArray;,"Landroid/util/LongSparseArray<Ljava/lang/ref/WeakReference<Landroid/graphics/drawable/Drawable$ConstantState;>;>;"
-    invoke-direct {p0, p1, p2, p3}, Landroid/content/res/Resources;->getCachedDrawable(Landroid/util/LongSparseArray;J)Landroid/graphics/drawable/Drawable;
+    invoke-virtual {p0, p1, p2, p3}, Landroid/content/res/Resources;->getCachedDrawable(Landroid/util/LongSparseArray;J)Landroid/graphics/drawable/Drawable;
 
     move-result-object v0
 

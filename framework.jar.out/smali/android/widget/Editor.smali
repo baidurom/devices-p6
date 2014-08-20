@@ -914,9 +914,9 @@
 
     .prologue
     .line 3989
-    new-instance v0, Landroid/widget/Editor$HwActionPopupWindow;
+    new-instance v0, Landroid/widget/Editor$BaiduActionPopupWindow;
 
-    invoke-direct {v0, p0}, Landroid/widget/Editor$HwActionPopupWindow;-><init>(Landroid/widget/Editor;)V
+    invoke-direct {v0, p0}, Landroid/widget/Editor$BaiduActionPopupWindow;-><init>(Landroid/widget/Editor;)V
 
     return-object v0
 .end method

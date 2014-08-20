@@ -12780,10 +12780,10 @@
 
     if-eqz v8, :cond_9
 
-    new-instance v6, Landroid/content/res/ResourcesEx;
+    new-instance v6, Landroid/content/res/BaiduResources;
 
     .end local v6           #r:Landroid/content/res/Resources;
-    invoke-direct {v6, v0, v2, v1, p4}, Landroid/content/res/ResourcesEx;-><init>(Landroid/content/res/AssetManager;Landroid/util/DisplayMetrics;Landroid/content/res/Configuration;Landroid/content/res/CompatibilityInfo;)V
+    invoke-direct {v6, v0, v2, v1, p4}, Landroid/content/res/BaiduResources;-><init>(Landroid/content/res/AssetManager;Landroid/util/DisplayMetrics;Landroid/content/res/Configuration;Landroid/content/res/CompatibilityInfo;)V
 
     .line 1730
     .restart local v6       #r:Landroid/content/res/Resources;

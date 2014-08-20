@@ -563,6 +563,8 @@
 
     invoke-virtual {v0, p0, v1, v5}, Lcom/android/internal/telephony/uicc/UiccController;->registerForIccChanged(Landroid/os/Handler;ILjava/lang/Object;)V
 
+    invoke-static {p0}, Lcom/android/internal/telephony/SMSDispatcher$BaiduInjector;->registerReceiver(Lcom/android/internal/telephony/SMSDispatcher;)V
+
     return-void
 
     :cond_0
@@ -4349,6 +4351,30 @@
 
     .line 954
     :cond_11
+    move-object/from16 v0, p0
+
+    iget-object v0, v0, Lcom/android/internal/telephony/SMSDispatcher;->mContext:Landroid/content/Context;
+
+    invoke-virtual/range {p0 .. p0}, Lcom/android/internal/telephony/SMSDispatcher;->getFormat()Ljava/lang/String;
+
+    move-result-object v1
+
+    const/4 v2, -0x1
+
+    move-object/from16 v3, v21
+
+    invoke-static {v0, v3, v1, v2}, Lcom/android/internal/telephony/SMSPlugin;->prehandleMsg(Landroid/content/Context;[[BLjava/lang/String;I)Z
+
+    move-result v0
+
+    if-eqz v0, :cond_baidu_0
+
+    const/4 v3, 0x1
+
+    goto/16 :goto_baidu_0
+
+    :cond_baidu_0
+
     move-object/from16 v0, p0
 
     move-object/from16 v1, v21

@@ -693,6 +693,7 @@
     .end local v0           #canonicalUri:Landroid/net/Uri;
     .end local v1           #e:Landroid/os/RemoteException;
     :cond_3
+    :cond_baidu_0
     const-string v2, "Ringtone"
 
     const-string v3, "Neither local nor remote playback available"

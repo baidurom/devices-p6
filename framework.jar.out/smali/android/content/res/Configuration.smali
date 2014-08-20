@@ -786,7 +786,7 @@
 
     iget-object v4, p1, Landroid/content/res/Configuration;->extraConfig:Landroid/content/res/ConfigurationEx;
 
-    invoke-virtual {v3, v4}, Landroid/content/res/ConfigurationEx;->compareTo(Landroid/content/res/ConfigurationEx;)I
+    invoke-static {p0, p1, v2}, Landroid/content/res/Configuration$BaiduInjector;->compareTo(Landroid/content/res/Configuration;Landroid/content/res/Configuration;I)I
 
     move-result v2
 
@@ -1286,16 +1286,9 @@
 
     add-int v0, v1, v2
 
-    mul-int/lit8 v1, v0, 0x1f
+    invoke-static {p0, v0}, Landroid/content/res/Configuration$BaiduInjector;->hashCode(Landroid/content/res/Configuration;I)I
 
-    iget-object v2, p0, Landroid/content/res/Configuration;->extraConfig:Landroid/content/res/ConfigurationEx;
-
-    invoke-virtual {v2}, Landroid/content/res/ConfigurationEx;->hashCode()I
-
-    move-result v2
-
-    add-int v0, v1, v2
-
+    move-result v0
     return v0
 
     :cond_0

@@ -1604,7 +1604,7 @@
 .end method
 
 .method public clearLock(Z)V
-    .locals 1
+    .locals 3
     .parameter "isFallback"
 
     .prologue

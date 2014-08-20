@@ -13,6 +13,7 @@
         Lcom/android/server/power/PowerManagerService$WakeLockDetector;,
         Lcom/android/server/power/PowerManagerService$HandleType;,
         Lcom/android/server/power/PowerManagerService$GenerateType;,
+        Lcom/android/server/power/PowerManagerService$BaiduInjector;,
         Lcom/android/server/power/PowerManagerService$DisplayBlankerImpl;,
         Lcom/android/server/power/PowerManagerService$ScreenOnBlockerImpl;,
         Lcom/android/server/power/PowerManagerService$SuspendBlockerImpl;,
@@ -9931,6 +9932,8 @@
     invoke-virtual {v0, v14}, Lcom/android/server/power/PowerManagerService;->setColorTemperature(I)I
 
     invoke-direct/range {p0 .. p0}, Lcom/android/server/power/PowerManagerService;->updatePowerStateLocked()V
+
+    invoke-static/range {p0 .. p0}, Lcom/android/server/power/PowerManagerService$BaiduInjector;->regitsterButtonLightReceiver(Lcom/android/server/power/PowerManagerService;)V
 
     monitor-exit v20
 

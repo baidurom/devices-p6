@@ -2395,6 +2395,16 @@
     .locals 7
 
     .prologue
+    invoke-direct {p0}, Lcom/android/server/NotificationManagerService;->updateLightsLockedHook()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_baidu_0
+
+    goto :goto_baidu_0
+
+    :cond_baidu_0
+
     const-string v5, "true"
 
     const-string v6, "ro.config.hw_quickpoweron"
@@ -2440,6 +2450,7 @@
     .end local v4           #strPower:Ljava/lang/String;
     :cond_0
     :goto_0
+    :goto_baidu_0
     return-void
 
     .line 1554

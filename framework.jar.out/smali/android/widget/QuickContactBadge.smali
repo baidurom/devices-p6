@@ -10,6 +10,7 @@
 .annotation system Ldalvik/annotation/MemberClasses;
     value = {
         Landroid/widget/QuickContactBadge$QuickContactBadgeEx;,
+        Landroid/widget/QuickContactBadge$BaiduInjector;,
         Landroid/widget/QuickContactBadge$QueryHandler;
     }
 .end annotation

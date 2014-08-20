@@ -1008,6 +1008,8 @@
 
     iput-boolean v9, p0, Landroid/widget/Editor$HandleView;->mIsDragging:Z
 
+    invoke-static {}, Landroid/widget/Editor$BaiduEditorInjector;->hideDelayed()V
+
     invoke-direct {p0, v9, p1}, Landroid/widget/Editor$HandleView;->showPopoupWindowAfterDrag(ILandroid/view/MotionEvent;)V
 
     goto/16 :goto_0

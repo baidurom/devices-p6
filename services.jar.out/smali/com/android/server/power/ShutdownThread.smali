@@ -7,7 +7,8 @@
 .annotation system Ldalvik/annotation/MemberClasses;
     value = {
         Lcom/android/server/power/ShutdownThread$CloseDialogReceiver;,
-        Lcom/android/server/power/ShutdownThread$PrintRestartStackException;
+        Lcom/android/server/power/ShutdownThread$PrintRestartStackException;,
+        Lcom/android/server/power/ShutdownThread$BaiduInjector;
     }
 .end annotation
 
@@ -471,6 +472,8 @@
     invoke-virtual {v1, v3}, Landroid/app/ProgressDialog;->setMessage(Ljava/lang/CharSequence;)V
 
     :goto_1
+    invoke-static {p0, v1}, Lcom/android/server/power/ShutdownThread$BaiduInjector;->rebootProgressDialogBaidu(Landroid/content/Context;Landroid/app/ProgressDialog;)V
+
     invoke-virtual {v1, v5}, Landroid/app/ProgressDialog;->setIndeterminate(Z)V
 
     invoke-virtual {v1, v6}, Landroid/app/ProgressDialog;->setCancelable(Z)V
@@ -1702,6 +1705,8 @@
     new-instance v1, Lcom/android/server/power/ShutdownThread$CloseDialogReceiver;
 
     invoke-direct {v1, p0}, Lcom/android/server/power/ShutdownThread$CloseDialogReceiver;-><init>(Landroid/content/Context;)V
+
+    invoke-static {p0}, Lcom/android/server/power/ShutdownThread$BaiduInjector;->createRebootDialogBaidu(Landroid/content/Context;)V
 
     .line 376
     .local v1, closer:Lcom/android/server/power/ShutdownThread$CloseDialogReceiver;
