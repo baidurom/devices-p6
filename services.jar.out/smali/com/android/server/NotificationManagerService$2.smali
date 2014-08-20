@@ -523,7 +523,6 @@
     #setter for: Lcom/android/server/NotificationManagerService;->mScreenOn:Z
     invoke-static {v1, v3}, Lcom/android/server/NotificationManagerService;->access$1102(Lcom/android/server/NotificationManagerService;Z)Z
 
-    .line 588
     move-object/from16 v0, p0
 
     iget-object v1, v0, Lcom/android/server/NotificationManagerService$2;->this$0:Lcom/android/server/NotificationManagerService;
@@ -533,7 +532,6 @@
 
     goto/16 :goto_4
 
-    .line 590
     :cond_c
     const-string v1, "android.intent.action.PHONE_STATE"
 
@@ -543,6 +541,7 @@
 
     if-eqz v1, :cond_d
 
+    .line 588
     .line 591
     move-object/from16 v0, p0
 

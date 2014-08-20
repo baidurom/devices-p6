@@ -8,6 +8,14 @@
 .implements Landroid/text/TextWatcher;
 
 
+# annotations
+.annotation system Ldalvik/annotation/MemberClasses;
+    value = {
+        Lcom/android/internal/policy/impl/keyguard/KeyguardAbsKeyInputView$BaiduInjector;
+    }
+.end annotation
+
+
 # static fields
 .field protected static final MINIMUM_PASSWORD_LENGTH_BEFORE_REPORT:I = 0x3
 
@@ -132,8 +140,7 @@
     .locals 1
 
     .prologue
-    .line 157
-    const v0, 0x1040525
+    const v0, #string@kg_wrong_password#t
 
     return v0
 .end method
@@ -315,15 +322,13 @@
 
     invoke-virtual {v1, v2}, Landroid/widget/TextView;->addTextChangedListener(Landroid/text/TextWatcher;)V
 
-    .line 137
     new-instance v1, Lcom/android/internal/policy/impl/keyguard/KeyguardMessageArea$Helper;
 
     invoke-direct {v1, p0}, Lcom/android/internal/policy/impl/keyguard/KeyguardMessageArea$Helper;-><init>(Landroid/view/View;)V
 
     iput-object v1, p0, Lcom/android/internal/policy/impl/keyguard/KeyguardAbsKeyInputView;->mSecurityMessageDisplay:Lcom/android/internal/policy/impl/keyguard/SecurityMessageDisplay;
 
-    .line 138
-    const v1, 0x10202ae
+    const v1, #id@keyguard_selector_fade_container#t
 
     invoke-virtual {p0, v1}, Lcom/android/internal/policy/impl/keyguard/KeyguardAbsKeyInputView;->findViewById(I)Landroid/view/View;
 
@@ -331,25 +336,21 @@
 
     iput-object v1, p0, Lcom/android/internal/policy/impl/keyguard/KeyguardAbsKeyInputView;->mEcaView:Landroid/view/View;
 
-    .line 139
-    const v1, 0x10202aa
+    const v1, #id@keyguard_bouncer_frame#t
 
     invoke-virtual {p0, v1}, Lcom/android/internal/policy/impl/keyguard/KeyguardAbsKeyInputView;->findViewById(I)Landroid/view/View;
 
     move-result-object v0
 
-    .line 140
     .local v0, bouncerFrameView:Landroid/view/View;
     if-eqz v0, :cond_0
 
-    .line 141
     invoke-virtual {v0}, Landroid/view/View;->getBackground()Landroid/graphics/drawable/Drawable;
 
     move-result-object v1
 
     iput-object v1, p0, Lcom/android/internal/policy/impl/keyguard/KeyguardAbsKeyInputView;->mBouncerFrame:Landroid/graphics/drawable/Drawable;
 
-    .line 143
     :cond_0
     return-void
 .end method

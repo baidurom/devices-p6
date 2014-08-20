@@ -20,6 +20,7 @@
         Landroid/widget/Editor$SelectionStartHandleView;,
         Landroid/widget/Editor$InsertionHandleView;,
         Landroid/widget/Editor$HandleView;,
+        Landroid/widget/Editor$BaiduActionPopupWindow;,
         Landroid/widget/Editor$ActionPopupWindow;,
         Landroid/widget/Editor$SelectionActionModeCallback;,
         Landroid/widget/Editor$SuggestionsPopupWindow;,
@@ -29,7 +30,8 @@
         Landroid/widget/Editor$EasyEditSpanController;,
         Landroid/widget/Editor$DragLocalState;,
         Landroid/widget/Editor$Blink;,
-        Landroid/widget/Editor$TextViewPositionListener;
+        Landroid/widget/Editor$TextViewPositionListener;,
+        Landroid/widget/Editor$BaiduEditorInjector;
     }
 .end annotation
 
@@ -109,6 +111,8 @@
 
 .field mPreserveDetachedSelection:Z
 
+.field public mSearchText:Ljava/lang/CharSequence;
+
 .field mSelectAllOnFocus:Z
 
 .field private mSelectHandleCenter:Landroid/graphics/drawable/Drawable;
@@ -185,52 +189,42 @@
 
     const/4 v1, 0x0
 
-    .line 194
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 134
     iput v1, p0, Landroid/widget/Editor;->mInputType:I
 
-    .line 142
     iput-boolean v0, p0, Landroid/widget/Editor;->mCursorVisible:Z
 
-    .line 159
     iput-boolean v0, p0, Landroid/widget/Editor;->mShowSoftInputOnFocus:Z
 
-    .line 167
     const/4 v0, 0x2
 
     new-array v0, v0, [Landroid/graphics/drawable/Drawable;
 
     iput-object v0, p0, Landroid/widget/Editor;->mCursorDrawable:[Landroid/graphics/drawable/Drawable;
 
-    .line 192
     new-instance v0, Landroid/widget/Editor$UserDictionaryListener;
 
     invoke-direct {v0}, Landroid/widget/Editor$UserDictionaryListener;-><init>()V
 
     iput-object v0, p0, Landroid/widget/Editor;->mUserDictionaryListener:Landroid/widget/Editor$UserDictionaryListener;
 
-    .line 1453
     iput v1, p0, Landroid/widget/Editor;->mOriginal:I
 
-    .line 1454
     iput-boolean v1, p0, Landroid/widget/Editor;->isChanged:Z
 
-    .line 4415
     iput-boolean v1, p0, Landroid/widget/Editor;->mIsInSelectionActionMode:Z
 
-    .line 4416
     new-instance v0, Landroid/widget/Editor$EditTextAddtionConfig;
 
     invoke-direct {v0}, Landroid/widget/Editor$EditTextAddtionConfig;-><init>()V
 
     iput-object v0, p0, Landroid/widget/Editor;->mAddtionConfig:Landroid/widget/Editor$EditTextAddtionConfig;
 
-    .line 195
     iput-object p1, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
-    .line 196
+    invoke-static {p0}, Landroid/widget/Editor$BaiduEditorInjector;->enableMagnifier(Landroid/widget/Editor;)V
+
     return-void
 .end method
 
@@ -832,7 +826,7 @@
 
     move-result-object v1
 
-    const v2, 0x105004c
+    const v2, #dimen@textview_error_popup_default_width#t
 
     invoke-virtual {v1, v2}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
 
@@ -2635,7 +2629,7 @@
 
     move-result-object v2
 
-    const v3, 0x10900d2
+    const v3, #layout@text_drag_thumbnail#t
 
     const/4 v4, 0x0
 
@@ -3852,7 +3846,7 @@
 
     .line 274
     .local v1, inflater:Landroid/view/LayoutInflater;
-    const v4, 0x10900da
+    const v4, #layout@textview_hint#t
 
     const/4 v5, 0x0
 
@@ -4908,13 +4902,11 @@
     .locals 2
 
     .prologue
-    .line 678
     iget-object v0, p0, Landroid/widget/Editor;->mWordIterator:Landroid/text/method/WordIterator;
 
     if-nez v0, :cond_0
 
-    .line 679
-    new-instance v0, Landroid/text/method/WordIterator;
+    new-instance v0, Landroid/text/method/BaiduWordIterator;
 
     iget-object v1, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
@@ -4922,7 +4914,7 @@
 
     move-result-object v1
 
-    invoke-direct {v0, v1}, Landroid/text/method/WordIterator;-><init>(Ljava/util/Locale;)V
+    invoke-direct {v0, v1}, Landroid/text/method/BaiduWordIterator;-><init>(Ljava/util/Locale;)V
 
     iput-object v0, p0, Landroid/widget/Editor;->mWordIterator:Landroid/text/method/WordIterator;
 
@@ -7021,7 +7013,8 @@
     .parameter "handled"
 
     .prologue
-    .line 809
+    invoke-static {p0}, Landroid/widget/Editor$BaiduEditorInjector;->onEventWordSearch(Landroid/widget/Editor;)V
+
     if-nez p1, :cond_0
 
     iget v6, p0, Landroid/widget/Editor;->mLastDownPositionX:F
@@ -8107,9 +8100,7 @@
 
     .line 1482
     .local v6, top:I
-    add-int/lit8 v7, v3, 0x1
-
-    invoke-virtual {v2, v7}, Landroid/text/Layout;->getLineTop(I)I
+    invoke-static {p0, v3}, Landroid/widget/Editor$BaiduEditorInjector;->fixCursorPostion(Landroid/widget/Editor;I)I
 
     move-result v0
 
