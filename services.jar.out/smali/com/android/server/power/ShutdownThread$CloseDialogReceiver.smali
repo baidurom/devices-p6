@@ -57,14 +57,12 @@
     .parameter "unused"
 
     .prologue
+    .line 477
     iget-object v0, p0, Lcom/android/server/power/ShutdownThread$CloseDialogReceiver;->mContext:Landroid/content/Context;
 
     invoke-virtual {v0, p0}, Landroid/content/Context;->unregisterReceiver(Landroid/content/BroadcastReceiver;)V
 
-    const/4 v0, 0x0
-
-    invoke-static {v0}, Lcom/android/server/power/ShutdownThread;->access$sput-sConfirmDialog-38d6d6(Landroid/app/AlertDialog;)Landroid/app/AlertDialog;
-
+    .line 478
     return-void
 .end method
 

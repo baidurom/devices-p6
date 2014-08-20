@@ -24,7 +24,7 @@
     .parameter
 
     .prologue
-    .line 3004
+    .line 3017
     iput-object p1, p0, Lcom/android/server/power/PowerManagerService$5;->this$0:Lcom/android/server/power/PowerManagerService;
 
     invoke-direct {p0}, Landroid/content/BroadcastReceiver;-><init>()V
@@ -40,7 +40,7 @@
     .parameter "intent"
 
     .prologue
-    .line 3007
+    .line 3020
     const-string v1, "android.intent.action.ACTION_POWER_CONNECTED"
 
     invoke-virtual {p2}, Landroid/content/Intent;->getAction()Ljava/lang/String;
@@ -67,7 +67,7 @@
 
     if-eqz v1, :cond_1
 
-    .line 3009
+    .line 3022
     const-string v1, "persist.sys.quickpoweron"
 
     const-string v2, "0"
@@ -76,13 +76,13 @@
 
     move-result-object v0
 
-    .line 3010
+    .line 3023
     .local v0, strPower:Ljava/lang/String;
     const/4 v1, 0x1
 
     invoke-static {v1}, Lcom/android/internal/policy/Powerstate;->setPowerConnected(Z)V
 
-    .line 3011
+    .line 3024
     const-string v1, "shutdown"
 
     invoke-virtual {v1, v0}, Ljava/lang/String;->equalsIgnoreCase(Ljava/lang/String;)Z
@@ -91,34 +91,34 @@
 
     if-eqz v1, :cond_0
 
-    .line 3012
+    .line 3025
     const-string v1, "PowerManagerService"
 
     const-string v2, "onReceive::Power.shutdown E"
 
     invoke-static {v1, v2}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 3013
+    .line 3026
     invoke-static {}, Lcom/android/internal/policy/Powerstate;->getInstance()Lcom/android/internal/policy/Powerstate;
 
     move-result-object v1
 
     invoke-virtual {v1}, Lcom/android/internal/policy/Powerstate;->showPowerOffCharge()V
 
-    .line 3014
+    .line 3027
     const-string v1, "PowerManagerService"
 
     const-string v2, "onReceive::Power.shutdown X"
 
     invoke-static {v1, v2}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 3023
+    .line 3036
     .end local v0           #strPower:Ljava/lang/String;
     :cond_0
     :goto_0
     return-void
 
-    .line 3016
+    .line 3029
     :cond_1
     const-string v1, "android.intent.action.ACTION_POWER_DISCONNECTED"
 
@@ -146,17 +146,17 @@
 
     if-eqz v1, :cond_0
 
-    .line 3018
+    .line 3031
     const/4 v1, 0x0
 
     invoke-static {v1}, Lcom/android/internal/policy/Powerstate;->setPowerConnected(Z)V
 
-    .line 3019
+    .line 3032
     sget-object v1, Lcom/android/internal/policy/Powerstate;->animChargeProcess:Ljava/lang/Process;
 
     if-eqz v1, :cond_0
 
-    .line 3020
+    .line 3033
     invoke-static {}, Lcom/android/internal/policy/Powerstate;->getInstance()Lcom/android/internal/policy/Powerstate;
 
     move-result-object v1

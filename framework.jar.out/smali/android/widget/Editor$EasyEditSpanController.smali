@@ -35,7 +35,7 @@
     .parameter
 
     .prologue
-    .line 2005
+    .line 1943
     iput-object p1, p0, Landroid/widget/Editor$EasyEditSpanController;->this$0:Landroid/widget/Editor;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -49,21 +49,21 @@
     .locals 2
 
     .prologue
-    .line 2071
+    .line 2009
     iget-object v0, p0, Landroid/widget/Editor$EasyEditSpanController;->mPopupWindow:Landroid/widget/Editor$EasyEditPopupWindow;
 
     if-eqz v0, :cond_0
 
-    .line 2072
+    .line 2010
     iget-object v0, p0, Landroid/widget/Editor$EasyEditSpanController;->mPopupWindow:Landroid/widget/Editor$EasyEditPopupWindow;
 
     invoke-virtual {v0}, Landroid/widget/Editor$EasyEditPopupWindow;->hide()V
 
-    .line 2073
+    .line 2011
     iget-object v0, p0, Landroid/widget/Editor$EasyEditSpanController;->this$0:Landroid/widget/Editor;
 
     #getter for: Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
-    invoke-static {v0}, Landroid/widget/Editor;->access$900(Landroid/widget/Editor;)Landroid/widget/TextView;
+    invoke-static {v0}, Landroid/widget/Editor;->access$600(Landroid/widget/Editor;)Landroid/widget/TextView;
 
     move-result-object v0
 
@@ -71,7 +71,7 @@
 
     invoke-virtual {v0, v1}, Landroid/widget/TextView;->removeCallbacks(Ljava/lang/Runnable;)Z
 
-    .line 2075
+    .line 2013
     :cond_0
     return-void
 .end method
@@ -84,17 +84,17 @@
     .parameter "end"
 
     .prologue
-    .line 2015
+    .line 1953
     instance-of v0, p2, Landroid/text/style/EasyEditSpan;
 
     if-eqz v0, :cond_2
 
-    .line 2016
+    .line 1954
     iget-object v0, p0, Landroid/widget/Editor$EasyEditSpanController;->mPopupWindow:Landroid/widget/Editor$EasyEditPopupWindow;
 
     if-nez v0, :cond_0
 
-    .line 2017
+    .line 1955
     new-instance v0, Landroid/widget/Editor$EasyEditPopupWindow;
 
     iget-object v1, p0, Landroid/widget/Editor$EasyEditSpanController;->this$0:Landroid/widget/Editor;
@@ -105,35 +105,35 @@
 
     iput-object v0, p0, Landroid/widget/Editor$EasyEditSpanController;->mPopupWindow:Landroid/widget/Editor$EasyEditPopupWindow;
 
-    .line 2018
+    .line 1956
     new-instance v0, Landroid/widget/Editor$EasyEditSpanController$1;
 
     invoke-direct {v0, p0}, Landroid/widget/Editor$EasyEditSpanController$1;-><init>(Landroid/widget/Editor$EasyEditSpanController;)V
 
     iput-object v0, p0, Landroid/widget/Editor$EasyEditSpanController;->mHidePopup:Ljava/lang/Runnable;
 
-    .line 2027
+    .line 1965
     :cond_0
     iget-object v0, p0, Landroid/widget/Editor$EasyEditSpanController;->mPopupWindow:Landroid/widget/Editor$EasyEditPopupWindow;
 
     #getter for: Landroid/widget/Editor$EasyEditPopupWindow;->mEasyEditSpan:Landroid/text/style/EasyEditSpan;
-    invoke-static {v0}, Landroid/widget/Editor$EasyEditPopupWindow;->access$1100(Landroid/widget/Editor$EasyEditPopupWindow;)Landroid/text/style/EasyEditSpan;
+    invoke-static {v0}, Landroid/widget/Editor$EasyEditPopupWindow;->access$800(Landroid/widget/Editor$EasyEditPopupWindow;)Landroid/text/style/EasyEditSpan;
 
     move-result-object v0
 
     if-eqz v0, :cond_1
 
-    .line 2028
+    .line 1966
     iget-object v0, p0, Landroid/widget/Editor$EasyEditSpanController;->mPopupWindow:Landroid/widget/Editor$EasyEditPopupWindow;
 
     #getter for: Landroid/widget/Editor$EasyEditPopupWindow;->mEasyEditSpan:Landroid/text/style/EasyEditSpan;
-    invoke-static {v0}, Landroid/widget/Editor$EasyEditPopupWindow;->access$1100(Landroid/widget/Editor$EasyEditPopupWindow;)Landroid/text/style/EasyEditSpan;
+    invoke-static {v0}, Landroid/widget/Editor$EasyEditPopupWindow;->access$800(Landroid/widget/Editor$EasyEditPopupWindow;)Landroid/text/style/EasyEditSpan;
 
     move-result-object v0
 
     invoke-interface {p1, v0}, Landroid/text/Spannable;->removeSpan(Ljava/lang/Object;)V
 
-    .line 2031
+    .line 1969
     :cond_1
     iget-object v0, p0, Landroid/widget/Editor$EasyEditSpanController;->mPopupWindow:Landroid/widget/Editor$EasyEditPopupWindow;
 
@@ -142,11 +142,11 @@
     .end local p2
     invoke-virtual {v0, p2}, Landroid/widget/Editor$EasyEditPopupWindow;->setEasyEditSpan(Landroid/text/style/EasyEditSpan;)V
 
-    .line 2033
+    .line 1971
     iget-object v0, p0, Landroid/widget/Editor$EasyEditSpanController;->this$0:Landroid/widget/Editor;
 
     #getter for: Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
-    invoke-static {v0}, Landroid/widget/Editor;->access$900(Landroid/widget/Editor;)Landroid/widget/TextView;
+    invoke-static {v0}, Landroid/widget/Editor;->access$600(Landroid/widget/Editor;)Landroid/widget/TextView;
 
     move-result-object v0
 
@@ -156,17 +156,17 @@
 
     if-eqz v0, :cond_3
 
-    .line 2053
+    .line 1991
     :cond_2
     :goto_0
     return-void
 
-    .line 2038
+    .line 1976
     :cond_3
     iget-object v0, p0, Landroid/widget/Editor$EasyEditSpanController;->this$0:Landroid/widget/Editor;
 
     #getter for: Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
-    invoke-static {v0}, Landroid/widget/Editor;->access$900(Landroid/widget/Editor;)Landroid/widget/TextView;
+    invoke-static {v0}, Landroid/widget/Editor;->access$600(Landroid/widget/Editor;)Landroid/widget/TextView;
 
     move-result-object v0
 
@@ -176,26 +176,26 @@
 
     if-eqz v0, :cond_2
 
-    .line 2043
+    .line 1981
     iget-object v0, p0, Landroid/widget/Editor$EasyEditSpanController;->this$0:Landroid/widget/Editor;
 
     #calls: Landroid/widget/Editor;->extractedTextModeWillBeStarted()Z
-    invoke-static {v0}, Landroid/widget/Editor;->access$1200(Landroid/widget/Editor;)Z
+    invoke-static {v0}, Landroid/widget/Editor;->access$900(Landroid/widget/Editor;)Z
 
     move-result v0
 
     if-nez v0, :cond_2
 
-    .line 2049
+    .line 1987
     iget-object v0, p0, Landroid/widget/Editor$EasyEditSpanController;->mPopupWindow:Landroid/widget/Editor$EasyEditPopupWindow;
 
     invoke-virtual {v0}, Landroid/widget/Editor$EasyEditPopupWindow;->show()V
 
-    .line 2050
+    .line 1988
     iget-object v0, p0, Landroid/widget/Editor$EasyEditSpanController;->this$0:Landroid/widget/Editor;
 
     #getter for: Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
-    invoke-static {v0}, Landroid/widget/Editor;->access$900(Landroid/widget/Editor;)Landroid/widget/TextView;
+    invoke-static {v0}, Landroid/widget/Editor;->access$600(Landroid/widget/Editor;)Landroid/widget/TextView;
 
     move-result-object v0
 
@@ -203,11 +203,11 @@
 
     invoke-virtual {v0, v1}, Landroid/widget/TextView;->removeCallbacks(Ljava/lang/Runnable;)Z
 
-    .line 2051
+    .line 1989
     iget-object v0, p0, Landroid/widget/Editor$EasyEditSpanController;->this$0:Landroid/widget/Editor;
 
     #getter for: Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
-    invoke-static {v0}, Landroid/widget/Editor;->access$900(Landroid/widget/Editor;)Landroid/widget/TextView;
+    invoke-static {v0}, Landroid/widget/Editor;->access$600(Landroid/widget/Editor;)Landroid/widget/TextView;
 
     move-result-object v0
 
@@ -230,7 +230,7 @@
     .parameter "newEnd"
 
     .prologue
-    .line 2065
+    .line 2003
     iget-object v0, p0, Landroid/widget/Editor$EasyEditSpanController;->mPopupWindow:Landroid/widget/Editor$EasyEditPopupWindow;
 
     if-eqz v0, :cond_0
@@ -238,23 +238,23 @@
     iget-object v0, p0, Landroid/widget/Editor$EasyEditSpanController;->mPopupWindow:Landroid/widget/Editor$EasyEditPopupWindow;
 
     #getter for: Landroid/widget/Editor$EasyEditPopupWindow;->mEasyEditSpan:Landroid/text/style/EasyEditSpan;
-    invoke-static {v0}, Landroid/widget/Editor$EasyEditPopupWindow;->access$1100(Landroid/widget/Editor$EasyEditPopupWindow;)Landroid/text/style/EasyEditSpan;
+    invoke-static {v0}, Landroid/widget/Editor$EasyEditPopupWindow;->access$800(Landroid/widget/Editor$EasyEditPopupWindow;)Landroid/text/style/EasyEditSpan;
 
     move-result-object v0
 
     if-ne p2, v0, :cond_0
 
-    .line 2066
+    .line 2004
     iget-object v0, p0, Landroid/widget/Editor$EasyEditSpanController;->mPopupWindow:Landroid/widget/Editor$EasyEditPopupWindow;
 
     #getter for: Landroid/widget/Editor$EasyEditPopupWindow;->mEasyEditSpan:Landroid/text/style/EasyEditSpan;
-    invoke-static {v0}, Landroid/widget/Editor$EasyEditPopupWindow;->access$1100(Landroid/widget/Editor$EasyEditPopupWindow;)Landroid/text/style/EasyEditSpan;
+    invoke-static {v0}, Landroid/widget/Editor$EasyEditPopupWindow;->access$800(Landroid/widget/Editor$EasyEditPopupWindow;)Landroid/text/style/EasyEditSpan;
 
     move-result-object v0
 
     invoke-interface {p1, v0}, Landroid/text/Spannable;->removeSpan(Ljava/lang/Object;)V
 
-    .line 2068
+    .line 2006
     :cond_0
     return-void
 .end method
@@ -267,7 +267,7 @@
     .parameter "end"
 
     .prologue
-    .line 2057
+    .line 1995
     iget-object v0, p0, Landroid/widget/Editor$EasyEditSpanController;->mPopupWindow:Landroid/widget/Editor$EasyEditPopupWindow;
 
     if-eqz v0, :cond_0
@@ -275,16 +275,16 @@
     iget-object v0, p0, Landroid/widget/Editor$EasyEditSpanController;->mPopupWindow:Landroid/widget/Editor$EasyEditPopupWindow;
 
     #getter for: Landroid/widget/Editor$EasyEditPopupWindow;->mEasyEditSpan:Landroid/text/style/EasyEditSpan;
-    invoke-static {v0}, Landroid/widget/Editor$EasyEditPopupWindow;->access$1100(Landroid/widget/Editor$EasyEditPopupWindow;)Landroid/text/style/EasyEditSpan;
+    invoke-static {v0}, Landroid/widget/Editor$EasyEditPopupWindow;->access$800(Landroid/widget/Editor$EasyEditPopupWindow;)Landroid/text/style/EasyEditSpan;
 
     move-result-object v0
 
     if-ne p2, v0, :cond_0
 
-    .line 2058
+    .line 1996
     invoke-virtual {p0}, Landroid/widget/Editor$EasyEditSpanController;->hide()V
 
-    .line 2060
+    .line 1998
     :cond_0
     return-void
 .end method

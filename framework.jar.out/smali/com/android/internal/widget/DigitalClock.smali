@@ -20,9 +20,9 @@
 
 .field private static final SYSTEM:Ljava/lang/String; = "/system/fonts/"
 
-.field private static final SYSTEM_FONT_TIME_BACKGROUND:Ljava/lang/String; = "/system/fonts/Clockopia.ttf"
+.field private static final SYSTEM_FONT_TIME_BACKGROUND:Ljava/lang/String; = "/system/fonts/AndroidClock.ttf"
 
-.field private static final SYSTEM_FONT_TIME_FOREGROUND:Ljava/lang/String; = "/system/fonts/Clockopia.ttf"
+.field private static final SYSTEM_FONT_TIME_FOREGROUND:Ljava/lang/String; = "/system/fonts/AndroidClock_Highlight.ttf"
 
 .field private static final sBackgroundFont:Landroid/graphics/Typeface;
 
@@ -55,7 +55,7 @@
 
     .prologue
     .line 66
-    const-string v0, "/system/fonts/Clockopia.ttf"
+    const-string v0, "/system/fonts/AndroidClock.ttf"
 
     invoke-static {v0}, Landroid/graphics/Typeface;->createFromFile(Ljava/lang/String;)Landroid/graphics/Typeface;
 
@@ -64,7 +64,7 @@
     sput-object v0, Lcom/android/internal/widget/DigitalClock;->sBackgroundFont:Landroid/graphics/Typeface;
 
     .line 67
-    const-string v0, "/system/fonts/Clockopia.ttf"
+    const-string v0, "/system/fonts/AndroidClock_Highlight.ttf"
 
     invoke-static {v0}, Landroid/graphics/Typeface;->createFromFile(Ljava/lang/String;)Landroid/graphics/Typeface;
 
@@ -349,7 +349,7 @@
     invoke-super {p0}, Landroid/widget/RelativeLayout;->onFinishInflate()V
 
     .line 170
-    const v0, #id@timeDisplayBackground#t
+    const v0, 0x10202e1
 
     invoke-virtual {p0, v0}, Lcom/android/internal/widget/DigitalClock;->findViewById(I)Landroid/view/View;
 
@@ -374,7 +374,7 @@
     invoke-virtual {v0, v1}, Landroid/widget/TextView;->setVisibility(I)V
 
     .line 174
-    const v0, #id@timeDisplayForeground#t
+    const v0, 0x10202e2
 
     invoke-virtual {p0, v0}, Lcom/android/internal/widget/DigitalClock;->findViewById(I)Landroid/view/View;
 

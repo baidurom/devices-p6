@@ -27,7 +27,7 @@
     .parameter
 
     .prologue
-    .line 1165
+    .line 1189
     iput-object p1, p0, Lcom/android/server/MountService$6;->this$0:Lcom/android/server/MountService;
 
     iput-object p2, p0, Lcom/android/server/MountService$6;->val$path:Ljava/lang/String;
@@ -43,10 +43,10 @@
     .locals 9
 
     .prologue
-    .line 1170
+    .line 1194
     const/4 v3, 0x0
 
-    .line 1171
+    .line 1195
     .local v3, retryCountToDisableUMS:I
     :try_start_0
     const-string v4, "MountService"
@@ -55,11 +55,11 @@
 
     invoke-static {v4, v5}, Landroid/util/Slog;->w(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 1173
+    .line 1197
     :goto_0
     add-int/lit8 v3, v3, 0x1
 
-    .line 1174
+    .line 1198
     iget-object v4, p0, Lcom/android/server/MountService$6;->this$0:Lcom/android/server/MountService;
 
     iget-object v5, p0, Lcom/android/server/MountService$6;->val$path:Ljava/lang/String;
@@ -71,7 +71,7 @@
     #calls: Lcom/android/server/MountService;->doShareUnshareVolume(Ljava/lang/String;Ljava/lang/String;Z)V
     invoke-static {v4, v5, v6, v7}, Lcom/android/server/MountService;->access$200(Lcom/android/server/MountService;Ljava/lang/String;Ljava/lang/String;Z)V
 
-    .line 1175
+    .line 1199
     iget-object v4, p0, Lcom/android/server/MountService$6;->this$0:Lcom/android/server/MountService;
 
     iget-object v5, p0, Lcom/android/server/MountService$6;->val$path:Ljava/lang/String;
@@ -84,19 +84,19 @@
     .local v2, rc:I
     if-nez v2, :cond_0
 
-    .line 1195
+    .line 1219
     .end local v2           #rc:I
     :goto_1
     return-void
 
-    .line 1180
+    .line 1204
     .restart local v2       #rc:I
     :cond_0
     const/4 v4, 0x5
 
     if-lt v3, v4, :cond_1
 
-    .line 1181
+    .line 1205
     const-string v4, "MountService"
 
     const-string v5, "Failed to remount {%s} on UMS enabled-disconnect (%d)"
@@ -129,12 +129,12 @@
 
     goto :goto_1
 
-    .line 1191
+    .line 1215
     .end local v2           #rc:I
     :catch_0
     move-exception v1
 
-    .line 1192
+    .line 1216
     .local v1, ex:Ljava/lang/Exception;
     const-string v4, "MountService"
 
@@ -142,12 +142,12 @@
 
     invoke-static {v4, v5, v1}, Landroid/util/Slog;->w(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
 
-    .line 1193
+    .line 1217
     invoke-virtual {v1}, Ljava/lang/Exception;->printStackTrace()V
 
     goto :goto_1
 
-    .line 1185
+    .line 1209
     .end local v1           #ex:Ljava/lang/Exception;
     .restart local v2       #rc:I
     :cond_1
@@ -160,11 +160,11 @@
 
     goto :goto_0
 
-    .line 1186
+    .line 1210
     :catch_1
     move-exception v0
 
-    .line 1187
+    .line 1211
     .local v0, e:Ljava/lang/Exception;
     :try_start_2
     invoke-virtual {v0}, Ljava/lang/Exception;->printStackTrace()V

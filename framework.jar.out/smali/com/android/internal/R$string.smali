@@ -417,8 +417,6 @@
 
 .field public static final description_target_unlock_tablet:I = 0x10404df
 
-.field public static final description_target_unlock:I = #string@description_target_unlock#t
-
 .field public static final dial_number_using:I = 0x1040478
 
 .field public static final dialog_alert_title:I = 0x1040014
@@ -1597,7 +1595,7 @@
     .locals 0
 
     .prologue
-    .line 13195
+    .line 13203
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     return-void

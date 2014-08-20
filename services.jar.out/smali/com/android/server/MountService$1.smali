@@ -24,7 +24,7 @@
     .parameter
 
     .prologue
-    .line 522
+    .line 544
     iput-object p1, p0, Lcom/android/server/MountService$1;->this$0:Lcom/android/server/MountService;
 
     invoke-direct {p0}, Landroid/content/BroadcastReceiver;-><init>()V
@@ -40,12 +40,12 @@
     .parameter "intent"
 
     .prologue
-    .line 525
+    .line 547
     invoke-virtual {p2}, Landroid/content/Intent;->getAction()Ljava/lang/String;
 
     move-result-object v0
 
-    .line 526
+    .line 548
     .local v0, action:Ljava/lang/String;
     const-string v6, "android.intent.action.BOOT_COMPLETED"
 
@@ -55,7 +55,7 @@
 
     if-eqz v6, :cond_1
 
-    .line 530
+    .line 552
     iget-object v6, p0, Lcom/android/server/MountService$1;->this$0:Lcom/android/server/MountService;
 
     #getter for: Lcom/android/server/MountService;->mVolumesLock:Ljava/lang/Object;
@@ -65,7 +65,7 @@
 
     monitor-enter v7
 
-    .line 531
+    .line 553
     :try_start_0
     new-instance v4, Ljava/util/HashMap;
 
@@ -78,13 +78,13 @@
 
     invoke-direct {v4, v6}, Ljava/util/HashMap;-><init>(Ljava/util/Map;)V
 
-    .line 532
+    .line 554
     .local v4, snapshot:Ljava/util/HashMap;,"Ljava/util/HashMap<Ljava/lang/String;Ljava/lang/String;>;"
     monitor-exit v7
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
-    .line 534
+    .line 556
     invoke-virtual {v4}, Ljava/util/HashMap;->entrySet()Ljava/util/Set;
 
     move-result-object v6
@@ -108,7 +108,7 @@
 
     check-cast v1, Ljava/util/Map$Entry;
 
-    .line 535
+    .line 557
     .local v1, entry:Ljava/util/Map$Entry;,"Ljava/util/Map$Entry<Ljava/lang/String;Ljava/lang/String;>;"
     invoke-interface {v1}, Ljava/util/Map$Entry;->getKey()Ljava/lang/Object;
 
@@ -116,7 +116,7 @@
 
     check-cast v3, Ljava/lang/String;
 
-    .line 536
+    .line 558
     .local v3, path:Ljava/lang/String;
     invoke-interface {v1}, Ljava/util/Map$Entry;->getValue()Ljava/lang/Object;
 
@@ -124,7 +124,7 @@
 
     check-cast v5, Ljava/lang/String;
 
-    .line 537
+    .line 559
     .local v5, state:Ljava/lang/String;
     const-string v6, "mounted"
 
@@ -134,7 +134,7 @@
 
     if-eqz v6, :cond_0
 
-    .line 538
+    .line 560
     iget-object v6, p0, Lcom/android/server/MountService$1;->this$0:Lcom/android/server/MountService;
 
     const/4 v7, 0x0
@@ -148,7 +148,7 @@
 
     goto :goto_0
 
-    .line 532
+    .line 554
     .end local v1           #entry:Ljava/util/Map$Entry;,"Ljava/util/Map$Entry<Ljava/lang/String;Ljava/lang/String;>;"
     .end local v2           #i$:Ljava/util/Iterator;
     .end local v3           #path:Ljava/lang/String;
@@ -164,7 +164,7 @@
 
     throw v6
 
-    .line 543
+    .line 565
     :cond_1
     return-void
 .end method

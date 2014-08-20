@@ -74,22 +74,22 @@
 
     const/4 v3, 0x0
 
-    .line 3072
+    .line 3085
     iput-object p1, p0, Lcom/android/server/power/PowerManagerService$WakeLockDetector;->this$0:Lcom/android/server/power/PowerManagerService;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 3079
+    .line 3092
     sget-object v0, Lcom/android/server/power/PowerManagerService$GenerateType;->WLDTOR_GT_HISTORY:Lcom/android/server/power/PowerManagerService$GenerateType;
 
     iput-object v0, p0, Lcom/android/server/power/PowerManagerService$WakeLockDetector;->mGType:Lcom/android/server/power/PowerManagerService$GenerateType;
 
-    .line 3080
+    .line 3093
     sget-object v0, Lcom/android/server/power/PowerManagerService$HandleType;->WLDTOR_HT_TRANSFER:Lcom/android/server/power/PowerManagerService$HandleType;
 
     iput-object v0, p0, Lcom/android/server/power/PowerManagerService$WakeLockDetector;->mHType:Lcom/android/server/power/PowerManagerService$HandleType;
 
-    .line 3083
+    .line 3096
     const/4 v0, 0x3
 
     new-array v0, v0, [Ljava/lang/String;
@@ -112,26 +112,26 @@
 
     iput-object v0, p0, Lcom/android/server/power/PowerManagerService$WakeLockDetector;->TagFilters:[Ljava/lang/String;
 
-    .line 3084
+    .line 3097
     iput-object v4, p0, Lcom/android/server/power/PowerManagerService$WakeLockDetector;->PidFilters:[I
 
-    .line 3087
+    .line 3100
     iput-object v4, p0, Lcom/android/server/power/PowerManagerService$WakeLockDetector;->mTimer:Ljava/util/Timer;
 
-    .line 3088
+    .line 3101
     iput-boolean v3, p0, Lcom/android/server/power/PowerManagerService$WakeLockDetector;->mInSchedule:Z
 
-    .line 3089
+    .line 3102
     iput v3, p0, Lcom/android/server/power/PowerManagerService$WakeLockDetector;->mCurrHistoryIndex:I
 
-    .line 3090
+    .line 3103
     new-instance v0, Ljava/util/ArrayList;
 
     invoke-direct {v0}, Ljava/util/ArrayList;-><init>()V
 
     iput-object v0, p0, Lcom/android/server/power/PowerManagerService$WakeLockDetector;->mTargetWkLocks:Ljava/util/ArrayList;
 
-    .line 3091
+    .line 3104
     new-instance v0, Ljava/util/ArrayList;
 
     const/16 v1, 0x60
@@ -149,7 +149,7 @@
     .parameter "x1"
 
     .prologue
-    .line 3072
+    .line 3085
     invoke-direct {p0, p1}, Lcom/android/server/power/PowerManagerService$WakeLockDetector;-><init>(Lcom/android/server/power/PowerManagerService;)V
 
     return-void
@@ -160,7 +160,7 @@
     .parameter "x0"
 
     .prologue
-    .line 3072
+    .line 3085
     invoke-direct {p0}, Lcom/android/server/power/PowerManagerService$WakeLockDetector;->generateTarget()I
 
     move-result v0
@@ -173,7 +173,7 @@
     .parameter "x0"
 
     .prologue
-    .line 3072
+    .line 3085
     invoke-direct {p0}, Lcom/android/server/power/PowerManagerService$WakeLockDetector;->handleTarget()V
 
     return-void
@@ -184,14 +184,14 @@
     .parameter "wk"
 
     .prologue
-    .line 3273
+    .line 3285
     iget v1, p0, Lcom/android/server/power/PowerManagerService$WakeLockDetector;->mCurrHistoryIndex:I
 
     rem-int/lit8 v1, v1, 0x60
 
     iput v1, p0, Lcom/android/server/power/PowerManagerService$WakeLockDetector;->mCurrHistoryIndex:I
 
-    .line 3274
+    .line 3286
     iget v1, p0, Lcom/android/server/power/PowerManagerService$WakeLockDetector;->mCurrHistoryIndex:I
 
     invoke-direct {p0, v1}, Lcom/android/server/power/PowerManagerService$WakeLockDetector;->validHistoryIndex(I)Z
@@ -200,26 +200,26 @@
 
     if-eqz v1, :cond_0
 
-    .line 3275
+    .line 3287
     invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
 
     move-result-wide v1
 
     iput-wide v1, p1, Lcom/android/server/power/PowerManagerService$WakeLock;->mTimeStamp:J
 
-    .line 3276
+    .line 3288
     const-wide/16 v1, 0x0
 
     iput-wide v1, p1, Lcom/android/server/power/PowerManagerService$WakeLock;->mTimeSum:J
 
-    .line 3277
+    .line 3289
     iget-object v1, p0, Lcom/android/server/power/PowerManagerService$WakeLockDetector;->mHistoryWkLocks:Ljava/util/ArrayList;
 
     iget v2, p0, Lcom/android/server/power/PowerManagerService$WakeLockDetector;->mCurrHistoryIndex:I
 
     invoke-virtual {v1, v2, p1}, Ljava/util/ArrayList;->add(ILjava/lang/Object;)V
 
-    .line 3278
+    .line 3290
     new-instance v1, Ljava/lang/StringBuilder;
 
     invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
@@ -246,20 +246,20 @@
 
     move-result-object v0
 
-    .line 3279
+    .line 3291
     .local v0, log:Ljava/lang/String;
     const-string v1, "info"
 
     invoke-direct {p0, p1, v0, v1}, Lcom/android/server/power/PowerManagerService$WakeLockDetector;->dump(Lcom/android/server/power/PowerManagerService$WakeLock;Ljava/lang/String;Ljava/lang/String;)V
 
-    .line 3280
+    .line 3292
     iget v1, p0, Lcom/android/server/power/PowerManagerService$WakeLockDetector;->mCurrHistoryIndex:I
 
     add-int/lit8 v2, v1, 0x1
 
     iput v2, p0, Lcom/android/server/power/PowerManagerService$WakeLockDetector;->mCurrHistoryIndex:I
 
-    .line 3282
+    .line 3294
     .end local v0           #log:Ljava/lang/String;
     :goto_0
     return v1
@@ -277,7 +277,7 @@
     .parameter "level"
 
     .prologue
-    .line 3394
+    .line 3410
     new-instance v1, Ljava/lang/StringBuilder;
 
     invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
@@ -372,7 +372,7 @@
 
     move-result-object v0
 
-    .line 3402
+    .line 3418
     .local v0, log:Ljava/lang/String;
     const-string v1, "debug"
 
@@ -382,12 +382,12 @@
 
     if-eqz v1, :cond_0
 
-    .line 3403
+    .line 3419
     const-string v1, "PowerManagerService"
 
     invoke-static {v1, v0}, Landroid/util/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 3406
+    .line 3422
     :cond_0
     const-string v1, "info"
 
@@ -397,12 +397,12 @@
 
     if-eqz v1, :cond_1
 
-    .line 3407
+    .line 3423
     const-string v1, "PowerManagerService"
 
     invoke-static {v1, v0}, Landroid/util/Slog;->i(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 3410
+    .line 3426
     :cond_1
     const-string v1, "error"
 
@@ -412,12 +412,12 @@
 
     if-eqz v1, :cond_2
 
-    .line 3411
+    .line 3427
     const-string v1, "PowerManagerService"
 
     invoke-static {v1, v0}, Landroid/util/Slog;->e(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 3414
+    .line 3430
     :cond_2
     return-void
 .end method
@@ -429,31 +429,31 @@
     .prologue
     const/4 v5, 0x1
 
-    .line 3358
+    .line 3374
     iget v6, p1, Lcom/android/server/power/PowerManagerService$WakeLock;->mOwnerUid:I
 
     const/16 v7, 0x2710
 
     if-ge v6, v7, :cond_0
 
-    .line 3359
+    .line 3375
     const-string v6, "Filtered by Uid"
 
     const-string v7, "info"
 
     invoke-direct {p0, p1, v6, v7}, Lcom/android/server/power/PowerManagerService$WakeLockDetector;->dump(Lcom/android/server/power/PowerManagerService$WakeLock;Ljava/lang/String;Ljava/lang/String;)V
 
-    .line 3381
+    .line 3397
     :goto_0
     return v5
 
-    .line 3363
+    .line 3379
     :cond_0
     iget-object v6, p0, Lcom/android/server/power/PowerManagerService$WakeLockDetector;->PidFilters:[I
 
     if-eqz v6, :cond_2
 
-    .line 3364
+    .line 3380
     iget-object v0, p0, Lcom/android/server/power/PowerManagerService$WakeLockDetector;->PidFilters:[I
 
     .local v0, arr$:[I
@@ -468,13 +468,13 @@
 
     aget v2, v0, v1
 
-    .line 3365
+    .line 3381
     .local v2, index:I
     iget v6, p1, Lcom/android/server/power/PowerManagerService$WakeLock;->mOwnerPid:I
 
     if-ne v6, v2, :cond_1
 
-    .line 3366
+    .line 3382
     const-string v6, "Filtered by Pid"
 
     const-string v7, "info"
@@ -483,13 +483,13 @@
 
     goto :goto_0
 
-    .line 3364
+    .line 3380
     :cond_1
     add-int/lit8 v1, v1, 0x1
 
     goto :goto_1
 
-    .line 3372
+    .line 3388
     .end local v0           #arr$:[I
     .end local v1           #i$:I
     .end local v2           #index:I
@@ -499,7 +499,7 @@
 
     if-eqz v6, :cond_4
 
-    .line 3373
+    .line 3389
     iget-object v0, p0, Lcom/android/server/power/PowerManagerService$WakeLockDetector;->TagFilters:[Ljava/lang/String;
 
     .local v0, arr$:[Ljava/lang/String;
@@ -514,7 +514,7 @@
 
     aget-object v4, v0, v1
 
-    .line 3374
+    .line 3390
     .local v4, s:Ljava/lang/String;
     iget-object v6, p1, Lcom/android/server/power/PowerManagerService$WakeLock;->mTag:Ljava/lang/String;
 
@@ -526,7 +526,7 @@
 
     if-eq v6, v7, :cond_3
 
-    .line 3375
+    .line 3391
     const-string v6, "Filtered by Tag"
 
     const-string v7, "info"
@@ -535,13 +535,13 @@
 
     goto :goto_0
 
-    .line 3373
+    .line 3389
     :cond_3
     add-int/lit8 v1, v1, 0x1
 
     goto :goto_2
 
-    .line 3381
+    .line 3397
     .end local v0           #arr$:[Ljava/lang/String;
     .end local v1           #i$:I
     .end local v3           #len$:I
@@ -557,14 +557,14 @@
     .parameter "wk"
 
     .prologue
-    .line 3303
+    .line 3319
     iget-object v1, p0, Lcom/android/server/power/PowerManagerService$WakeLockDetector;->mHistoryWkLocks:Ljava/util/ArrayList;
 
     invoke-virtual {v1}, Ljava/util/ArrayList;->size()I
 
     move-result v6
 
-    .line 3304
+    .line 3320
     .local v6, count:I
     const/4 v7, 0x0
 
@@ -572,7 +572,7 @@
     :goto_0
     if-ge v7, v6, :cond_2
 
-    .line 3305
+    .line 3321
     iget-object v1, p0, Lcom/android/server/power/PowerManagerService$WakeLockDetector;->mHistoryWkLocks:Ljava/util/ArrayList;
 
     invoke-virtual {v1, v7}, Ljava/util/ArrayList;->get(I)Ljava/lang/Object;
@@ -581,7 +581,7 @@
 
     check-cast v0, Lcom/android/server/power/PowerManagerService$WakeLock;
 
-    .line 3306
+    .line 3322
     .local v0, w:Lcom/android/server/power/PowerManagerService$WakeLock;
     invoke-direct {p0, v0}, Lcom/android/server/power/PowerManagerService$WakeLockDetector;->validHistoryItem(Lcom/android/server/power/PowerManagerService$WakeLock;)Z
 
@@ -589,13 +589,13 @@
 
     if-nez v1, :cond_1
 
-    .line 3304
+    .line 3320
     :cond_0
     add-int/lit8 v7, v7, 0x1
 
     goto :goto_0
 
-    .line 3309
+    .line 3325
     :cond_1
     iget v1, p1, Lcom/android/server/power/PowerManagerService$WakeLock;->mFlags:I
 
@@ -613,7 +613,7 @@
 
     if-eqz v1, :cond_0
 
-    .line 3313
+    .line 3329
     .end local v0           #w:Lcom/android/server/power/PowerManagerService$WakeLock;
     .end local v7           #i:I
     :goto_1
@@ -630,14 +630,14 @@
     .locals 6
 
     .prologue
-    .line 3320
+    .line 3336
     sget-object v2, Lcom/android/server/power/PowerManagerService$GenerateType;->WLDTOR_GT_HISTORY:Lcom/android/server/power/PowerManagerService$GenerateType;
 
     iget-object v3, p0, Lcom/android/server/power/PowerManagerService$WakeLockDetector;->mGType:Lcom/android/server/power/PowerManagerService$GenerateType;
 
     if-ne v2, v3, :cond_2
 
-    .line 3321
+    .line 3337
     iget-object v2, p0, Lcom/android/server/power/PowerManagerService$WakeLockDetector;->mHistoryWkLocks:Ljava/util/ArrayList;
 
     invoke-virtual {v2}, Ljava/util/ArrayList;->iterator()Ljava/util/Iterator;
@@ -659,7 +659,7 @@
 
     check-cast v1, Lcom/android/server/power/PowerManagerService$WakeLock;
 
-    .line 3323
+    .line 3339
     .local v1, w:Lcom/android/server/power/PowerManagerService$WakeLock;
     invoke-direct {p0, v1}, Lcom/android/server/power/PowerManagerService$WakeLockDetector;->validHistoryItem(Lcom/android/server/power/PowerManagerService$WakeLock;)Z
 
@@ -675,10 +675,10 @@
 
     if-eqz v2, :cond_0
 
-    .line 3327
+    .line 3343
     invoke-direct {p0, v1}, Lcom/android/server/power/PowerManagerService$WakeLockDetector;->sumTime(Lcom/android/server/power/PowerManagerService$WakeLock;)V
 
-    .line 3328
+    .line 3344
     iget-wide v2, v1, Lcom/android/server/power/PowerManagerService$WakeLock;->mTimeSum:J
 
     const-wide/32 v4, 0xdbba0
@@ -687,12 +687,12 @@
 
     if-ltz v2, :cond_0
 
-    .line 3329
+    .line 3345
     iget-object v2, p0, Lcom/android/server/power/PowerManagerService$WakeLockDetector;->mTargetWkLocks:Ljava/util/ArrayList;
 
     invoke-virtual {v2, v1}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
 
-    .line 3330
+    .line 3346
     const-string v2, "Add in target"
 
     const-string v3, "info"
@@ -701,7 +701,7 @@
 
     goto :goto_0
 
-    .line 3334
+    .line 3350
     .end local v1           #w:Lcom/android/server/power/PowerManagerService$WakeLock;
     :cond_1
     iget-object v2, p0, Lcom/android/server/power/PowerManagerService$WakeLockDetector;->mTargetWkLocks:Ljava/util/ArrayList;
@@ -710,12 +710,12 @@
 
     move-result v2
 
-    .line 3342
+    .line 3358
     .end local v0           #i$:Ljava/util/Iterator;
     :goto_1
     return v2
 
-    .line 3337
+    .line 3353
     :cond_2
     sget-object v2, Lcom/android/server/power/PowerManagerService$GenerateType;->WLDTOR_GT_ALL:Lcom/android/server/power/PowerManagerService$GenerateType;
 
@@ -723,7 +723,7 @@
 
     if-ne v2, v3, :cond_3
 
-    .line 3338
+    .line 3354
     iget-object v2, p0, Lcom/android/server/power/PowerManagerService$WakeLockDetector;->mTargetWkLocks:Ljava/util/ArrayList;
 
     iget-object v3, p0, Lcom/android/server/power/PowerManagerService$WakeLockDetector;->this$0:Lcom/android/server/power/PowerManagerService;
@@ -735,7 +735,7 @@
 
     invoke-virtual {v2, v3}, Ljava/util/ArrayList;->addAll(Ljava/util/Collection;)Z
 
-    .line 3339
+    .line 3355
     iget-object v2, p0, Lcom/android/server/power/PowerManagerService$WakeLockDetector;->mTargetWkLocks:Ljava/util/ArrayList;
 
     invoke-virtual {v2}, Ljava/util/ArrayList;->size()I
@@ -744,7 +744,7 @@
 
     goto :goto_1
 
-    .line 3342
+    .line 3358
     :cond_3
     const/4 v2, 0x0
 
@@ -756,10 +756,10 @@
     .parameter "wk"
 
     .prologue
-    .line 3346
+    .line 3362
     invoke-direct {p0, p1}, Lcom/android/server/power/PowerManagerService$WakeLockDetector;->sumTime(Lcom/android/server/power/PowerManagerService$WakeLock;)V
 
-    .line 3347
+    .line 3363
     iget-wide v0, p1, Lcom/android/server/power/PowerManagerService$WakeLock;->mTimeSum:J
 
     const-wide/32 v2, 0xdbba0
@@ -768,31 +768,31 @@
 
     if-ltz v0, :cond_0
 
-    .line 3348
+    .line 3364
     iget-object v0, p0, Lcom/android/server/power/PowerManagerService$WakeLockDetector;->mTargetWkLocks:Ljava/util/ArrayList;
 
     invoke-virtual {v0, p1}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
 
-    .line 3349
+    .line 3365
     const-string v0, "Add in target"
 
     const-string v1, "info"
 
     invoke-direct {p0, p1, v0, v1}, Lcom/android/server/power/PowerManagerService$WakeLockDetector;->dump(Lcom/android/server/power/PowerManagerService$WakeLock;Ljava/lang/String;Ljava/lang/String;)V
 
-    .line 3350
+    .line 3366
     iget-object v0, p0, Lcom/android/server/power/PowerManagerService$WakeLockDetector;->mHistoryWkLocks:Ljava/util/ArrayList;
 
     invoke-virtual {v0, p1}, Ljava/util/ArrayList;->remove(Ljava/lang/Object;)Z
 
-    .line 3351
+    .line 3367
     iget-object v0, p0, Lcom/android/server/power/PowerManagerService$WakeLockDetector;->mTargetWkLocks:Ljava/util/ArrayList;
 
     invoke-virtual {v0}, Ljava/util/ArrayList;->size()I
 
     move-result v0
 
-    .line 3354
+    .line 3370
     :goto_0
     return v0
 
@@ -806,7 +806,7 @@
     .locals 2
 
     .prologue
-    .line 3190
+    .line 3203
     sget-object v0, Lcom/android/server/power/PowerManagerService$6;->$SwitchMap$com$android$server$power$PowerManagerService$HandleType:[I
 
     iget-object v1, p0, Lcom/android/server/power/PowerManagerService$WakeLockDetector;->mHType:Lcom/android/server/power/PowerManagerService$HandleType;
@@ -819,26 +819,26 @@
 
     packed-switch v0, :pswitch_data_0
 
-    .line 3198
+    .line 3211
     invoke-direct {p0}, Lcom/android/server/power/PowerManagerService$WakeLockDetector;->transferTo()V
 
-    .line 3201
+    .line 3214
     :goto_0
     return-void
 
-    .line 3192
+    .line 3205
     :pswitch_0
     invoke-direct {p0}, Lcom/android/server/power/PowerManagerService$WakeLockDetector;->transferTo()V
 
     goto :goto_0
 
-    .line 3195
+    .line 3208
     :pswitch_1
     invoke-direct {p0}, Lcom/android/server/power/PowerManagerService$WakeLockDetector;->releaseAll()V
 
     goto :goto_0
 
-    .line 3190
+    .line 3203
     nop
 
     :pswitch_data_0
@@ -853,7 +853,7 @@
     .parameter "wk"
 
     .prologue
-    .line 3253
+    .line 3265
     const/4 v0, 0x1
 
     const/4 v1, 0x0
@@ -872,12 +872,12 @@
     .parameter "bSum"
 
     .prologue
-    .line 3257
+    .line 3269
     invoke-direct {p0, p1}, Lcom/android/server/power/PowerManagerService$WakeLockDetector;->findHistory(Lcom/android/server/power/PowerManagerService$WakeLock;)I
 
     move-result v0
 
-    .line 3258
+    .line 3270
     .local v0, index:I
     invoke-direct {p0, v0}, Lcom/android/server/power/PowerManagerService$WakeLockDetector;->validHistoryIndex(I)Z
 
@@ -885,19 +885,19 @@
 
     if-eqz v1, :cond_1
 
-    .line 3259
+    .line 3271
     invoke-direct {p0, v0, p3}, Lcom/android/server/power/PowerManagerService$WakeLockDetector;->update(IZ)V
 
-    .line 3265
+    .line 3277
     :cond_0
     :goto_0
     return v0
 
-    .line 3261
+    .line 3273
     :cond_1
     if-eqz p2, :cond_0
 
-    .line 3262
+    .line 3274
     invoke-direct {p0, p1}, Lcom/android/server/power/PowerManagerService$WakeLockDetector;->add(Lcom/android/server/power/PowerManagerService$WakeLock;)I
 
     move-result v0
@@ -909,10 +909,10 @@
     .locals 8
 
     .prologue
-    .line 3205
+    .line 3218
     const/4 v4, 0x0
 
-    .line 3206
+    .line 3219
     .local v4, wk:Lcom/android/server/power/PowerManagerService$WakeLock;
     :try_start_0
     iget-object v5, p0, Lcom/android/server/power/PowerManagerService$WakeLockDetector;->mTargetWkLocks:Ljava/util/ArrayList;
@@ -921,7 +921,7 @@
 
     move-result v1
 
-    .line 3207
+    .line 3220
     .local v1, count:I
     add-int/lit8 v3, v1, -0x1
 
@@ -929,7 +929,7 @@
     :goto_0
     if-ltz v3, :cond_1
 
-    .line 3208
+    .line 3221
     iget-object v5, p0, Lcom/android/server/power/PowerManagerService$WakeLockDetector;->mTargetWkLocks:Ljava/util/ArrayList;
 
     invoke-virtual {v5, v3}, Ljava/util/ArrayList;->get(I)Ljava/lang/Object;
@@ -942,14 +942,14 @@
 
     move-object v4, v0
 
-    .line 3209
+    .line 3222
     invoke-direct {p0, v4}, Lcom/android/server/power/PowerManagerService$WakeLockDetector;->filterOut(Lcom/android/server/power/PowerManagerService$WakeLock;)Z
 
     move-result v5
 
     if-nez v5, :cond_0
 
-    .line 3210
+    .line 3223
     iget-object v5, p0, Lcom/android/server/power/PowerManagerService$WakeLockDetector;->this$0:Lcom/android/server/power/PowerManagerService;
 
     iget-object v6, v4, Lcom/android/server/power/PowerManagerService$WakeLock;->mLock:Landroid/os/IBinder;
@@ -958,7 +958,7 @@
 
     invoke-virtual {v5, v6, v7}, Lcom/android/server/power/PowerManagerService;->releaseWakeLock(Landroid/os/IBinder;I)V
 
-    .line 3211
+    .line 3224
     const-string v5, "Released at background"
 
     const-string v6, "info"
@@ -968,19 +968,19 @@
     .catch Ljava/util/ConcurrentModificationException; {:try_start_0 .. :try_end_0} :catch_0
     .catch Ljava/lang/NullPointerException; {:try_start_0 .. :try_end_0} :catch_1
 
-    .line 3207
+    .line 3220
     :cond_0
     add-int/lit8 v3, v3, -0x1
 
     goto :goto_0
 
-    .line 3214
+    .line 3227
     .end local v1           #count:I
     .end local v3           #i:I
     :catch_0
     move-exception v2
 
-    .line 3215
+    .line 3228
     .local v2, e:Ljava/util/ConcurrentModificationException;
     const-string v5, "PowerManagerService"
 
@@ -988,17 +988,17 @@
 
     invoke-static {v5, v6}, Landroid/util/Slog;->e(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 3219
+    .line 3232
     .end local v2           #e:Ljava/util/ConcurrentModificationException;
     :cond_1
     :goto_1
     return-void
 
-    .line 3216
+    .line 3229
     :catch_1
     move-exception v2
 
-    .line 3217
+    .line 3230
     .local v2, e:Ljava/lang/NullPointerException;
     invoke-virtual {v2}, Ljava/lang/NullPointerException;->printStackTrace()V
 
@@ -1010,12 +1010,12 @@
     .parameter "wk"
 
     .prologue
-    .line 3297
+    .line 3309
     invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
 
     move-result-wide v0
 
-    .line 3298
+    .line 3311
     .local v0, curTime:J
     iget-wide v2, p1, Lcom/android/server/power/PowerManagerService$WakeLock;->mTimeStamp:J
 
@@ -1025,6 +1025,7 @@
 
     if-lez v2, :cond_0
 
+    .line 3312
     iget-wide v2, p1, Lcom/android/server/power/PowerManagerService$WakeLock;->mTimeSum:J
 
     iget-wide v4, p1, Lcom/android/server/power/PowerManagerService$WakeLock;->mTimeStamp:J
@@ -1035,9 +1036,11 @@
 
     iput-wide v2, p1, Lcom/android/server/power/PowerManagerService$WakeLock;->mTimeSum:J
 
+    .line 3315
     :cond_0
     iput-wide v0, p1, Lcom/android/server/power/PowerManagerService$WakeLock;->mTimeStamp:J
 
+    .line 3316
     return-void
 .end method
 
@@ -1045,7 +1048,7 @@
     .locals 7
 
     .prologue
-    .line 3225
+    .line 3238
     iget-object v3, p0, Lcom/android/server/power/PowerManagerService$WakeLockDetector;->mTargetWkLocks:Ljava/util/ArrayList;
 
     invoke-virtual {v3}, Ljava/util/ArrayList;->isEmpty()Z
@@ -1054,11 +1057,11 @@
 
     if-eqz v3, :cond_0
 
-    .line 3250
+    .line 3262
     :goto_0
     return-void
 
-    .line 3229
+    .line 3242
     :cond_0
     iget-object v3, p0, Lcom/android/server/power/PowerManagerService$WakeLockDetector;->mTargetWkLocks:Ljava/util/ArrayList;
 
@@ -1081,7 +1084,7 @@
 
     check-cast v2, Lcom/android/server/power/PowerManagerService$WakeLock;
 
-    .line 3230
+    .line 3243
     .local v2, wk:Lcom/android/server/power/PowerManagerService$WakeLock;
     invoke-direct {p0, v2}, Lcom/android/server/power/PowerManagerService$WakeLockDetector;->filterOut(Lcom/android/server/power/PowerManagerService$WakeLock;)Z
 
@@ -1089,7 +1092,7 @@
 
     if-nez v3, :cond_1
 
-    .line 3233
+    .line 3246
     const/16 v3, 0x85
 
     iget v4, v2, Lcom/android/server/power/PowerManagerService$WakeLock;->mFlags:I
@@ -1112,7 +1115,7 @@
 
     invoke-static {v3, v4, v5, v6}, Landroid/util/LogPower;->spush(ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 3234
+    .line 3247
     new-instance v3, Ljava/lang/StringBuilder;
 
     invoke-direct {v3}, Ljava/lang/StringBuilder;-><init>()V
@@ -1197,21 +1200,25 @@
 
     move-result-object v1
 
+    .line 3255
     .local v1, log:Ljava/lang/String;
     const-string v3, "PowerManagerService"
 
     invoke-static {v3, v1}, Landroid/util/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
 
+    .line 3257
     const/4 v3, 0x1
 
     iput v3, v2, Lcom/android/server/power/PowerManagerService$WakeLock;->mDetectorTransferToFlags:I
 
+    .line 3258
     const-wide/16 v3, 0x0
 
     iput-wide v3, v2, Lcom/android/server/power/PowerManagerService$WakeLock;->mTimeSum:J
 
     goto/16 :goto_1
 
+    .line 3261
     .end local v1           #log:Ljava/lang/String;
     .end local v2           #wk:Lcom/android/server/power/PowerManagerService$WakeLock;
     :cond_2
@@ -1228,7 +1235,7 @@
     .parameter "bSum"
 
     .prologue
-    .line 3286
+    .line 3298
     iget-object v2, p0, Lcom/android/server/power/PowerManagerService$WakeLockDetector;->mHistoryWkLocks:Ljava/util/ArrayList;
 
     invoke-virtual {v2, p1}, Ljava/util/ArrayList;->get(I)Ljava/lang/Object;
@@ -1237,14 +1244,14 @@
 
     check-cast v1, Lcom/android/server/power/PowerManagerService$WakeLock;
 
-    .line 3287
+    .line 3299
     .local v1, w:Lcom/android/server/power/PowerManagerService$WakeLock;
     if-eqz p2, :cond_0
 
-    .line 3288
+    .line 3300
     invoke-direct {p0, v1}, Lcom/android/server/power/PowerManagerService$WakeLockDetector;->sumTime(Lcom/android/server/power/PowerManagerService$WakeLock;)V
 
-    .line 3292
+    .line 3304
     :goto_0
     new-instance v2, Ljava/lang/StringBuilder;
 
@@ -1270,16 +1277,16 @@
 
     move-result-object v0
 
-    .line 3293
+    .line 3305
     .local v0, log:Ljava/lang/String;
     const-string v2, "debug"
 
     invoke-direct {p0, v1, v0, v2}, Lcom/android/server/power/PowerManagerService$WakeLockDetector;->dump(Lcom/android/server/power/PowerManagerService$WakeLock;Ljava/lang/String;Ljava/lang/String;)V
 
-    .line 3294
+    .line 3306
     return-void
 
-    .line 3290
+    .line 3302
     .end local v0           #log:Ljava/lang/String;
     :cond_0
     invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
@@ -1296,7 +1303,7 @@
     .parameter "index"
 
     .prologue
-    .line 3385
+    .line 3401
     if-ltz p1, :cond_0
 
     const/16 v0, 0x60
@@ -1321,6 +1328,7 @@
     .prologue
     const/4 v0, 0x1
 
+    .line 3405
     iget v1, p1, Lcom/android/server/power/PowerManagerService$WakeLock;->mDetectorTransferToFlags:I
 
     if-eq v1, v0, :cond_0
@@ -1341,10 +1349,10 @@
     .parameter "wk"
 
     .prologue
-    .line 3178
+    .line 3191
     invoke-direct {p0, p1}, Lcom/android/server/power/PowerManagerService$WakeLockDetector;->history(Lcom/android/server/power/PowerManagerService$WakeLock;)I
 
-    .line 3179
+    .line 3192
     return-void
 .end method
 
@@ -1353,7 +1361,7 @@
     .parameter "wk"
 
     .prologue
-    .line 3182
+    .line 3195
     const/4 v1, 0x0
 
     const/4 v2, 0x1
@@ -1362,7 +1370,7 @@
 
     move-result v0
 
-    .line 3183
+    .line 3196
     .local v0, index:I
     invoke-direct {p0, v0}, Lcom/android/server/power/PowerManagerService$WakeLockDetector;->validHistoryIndex(I)Z
 
@@ -1370,7 +1378,7 @@
 
     if-eqz v1, :cond_0
 
-    .line 3184
+    .line 3197
     iget-object v1, p0, Lcom/android/server/power/PowerManagerService$WakeLockDetector;->mHistoryWkLocks:Ljava/util/ArrayList;
 
     invoke-virtual {v1, v0}, Ljava/util/ArrayList;->get(I)Ljava/lang/Object;
@@ -1383,7 +1391,7 @@
 
     iput-wide v2, v1, Lcom/android/server/power/PowerManagerService$WakeLock;->mTimeStamp:J
 
-    .line 3186
+    .line 3199
     :cond_0
     return-void
 .end method
@@ -1392,13 +1400,13 @@
     .locals 0
 
     .prologue
-    .line 3167
+    .line 3180
     invoke-virtual {p0}, Lcom/android/server/power/PowerManagerService$WakeLockDetector;->stop()V
 
-    .line 3168
+    .line 3181
     invoke-virtual {p0}, Lcom/android/server/power/PowerManagerService$WakeLockDetector;->start()V
 
-    .line 3169
+    .line 3182
     return-void
 .end method
 
@@ -1408,18 +1416,18 @@
     .prologue
     const/4 v0, 0x0
 
-    .line 3172
+    .line 3185
     iput-boolean v0, p0, Lcom/android/server/power/PowerManagerService$WakeLockDetector;->mInSchedule:Z
 
-    .line 3173
+    .line 3186
     iput v0, p0, Lcom/android/server/power/PowerManagerService$WakeLockDetector;->mCurrHistoryIndex:I
 
-    .line 3174
+    .line 3187
     iget-object v0, p0, Lcom/android/server/power/PowerManagerService$WakeLockDetector;->mHistoryWkLocks:Ljava/util/ArrayList;
 
     invoke-virtual {v0}, Ljava/util/ArrayList;->clear()V
 
-    .line 3175
+    .line 3188
     return-void
 .end method
 
@@ -1428,10 +1436,10 @@
     .parameter "gType"
 
     .prologue
-    .line 3100
+    .line 3113
     iput-object p1, p0, Lcom/android/server/power/PowerManagerService$WakeLockDetector;->mGType:Lcom/android/server/power/PowerManagerService$GenerateType;
 
-    .line 3101
+    .line 3114
     return-void
 .end method
 
@@ -1440,10 +1448,10 @@
     .parameter "hType"
 
     .prologue
-    .line 3109
+    .line 3122
     iput-object p1, p0, Lcom/android/server/power/PowerManagerService$WakeLockDetector;->mHType:Lcom/android/server/power/PowerManagerService$HandleType;
 
-    .line 3110
+    .line 3123
     return-void
 .end method
 
@@ -1451,16 +1459,16 @@
     .locals 9
 
     .prologue
-    .line 3113
+    .line 3126
     iget-boolean v0, p0, Lcom/android/server/power/PowerManagerService$WakeLockDetector;->mInSchedule:Z
 
     if-eqz v0, :cond_0
 
-    .line 3152
+    .line 3165
     :goto_0
     return-void
 
-    .line 3118
+    .line 3131
     :cond_0
     const-string v0, "PowerManagerService"
 
@@ -1468,7 +1476,7 @@
 
     invoke-static {v0, v1}, Landroid/util/Slog;->i(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 3122
+    .line 3135
     iget-object v0, p0, Lcom/android/server/power/PowerManagerService$WakeLockDetector;->mHistoryWkLocks:Ljava/util/ArrayList;
 
     invoke-virtual {v0}, Ljava/util/ArrayList;->iterator()Ljava/util/Iterator;
@@ -1490,7 +1498,7 @@
 
     check-cast v8, Lcom/android/server/power/PowerManagerService$WakeLock;
 
-    .line 3123
+    .line 3136
     .local v8, w:Lcom/android/server/power/PowerManagerService$WakeLock;
     invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
 
@@ -1498,7 +1506,7 @@
 
     iput-wide v0, v8, Lcom/android/server/power/PowerManagerService$WakeLock;->mTimeStamp:J
 
-    .line 3125
+    .line 3138
     iget-wide v0, v8, Lcom/android/server/power/PowerManagerService$WakeLock;->mTimeSum:J
 
     const-wide/16 v2, 0x0
@@ -1507,14 +1515,14 @@
 
     if-eqz v0, :cond_1
 
-    .line 3126
+    .line 3139
     const-wide/16 v0, 0x1
 
     iput-wide v0, v8, Lcom/android/server/power/PowerManagerService$WakeLock;->mTimeSum:J
 
     goto :goto_1
 
-    .line 3130
+    .line 3143
     .end local v8           #w:Lcom/android/server/power/PowerManagerService$WakeLock;
     :cond_2
     new-instance v0, Ljava/util/Timer;
@@ -1523,7 +1531,7 @@
 
     iput-object v0, p0, Lcom/android/server/power/PowerManagerService$WakeLockDetector;->mTimer:Ljava/util/Timer;
 
-    .line 3132
+    .line 3145
     :try_start_0
     iget-object v0, p0, Lcom/android/server/power/PowerManagerService$WakeLockDetector;->mTimer:Ljava/util/Timer;
 
@@ -1537,7 +1545,7 @@
 
     invoke-virtual/range {v0 .. v5}, Ljava/util/Timer;->scheduleAtFixedRate(Ljava/util/TimerTask;JJ)V
 
-    .line 3146
+    .line 3159
     const/4 v0, 0x1
 
     iput-boolean v0, p0, Lcom/android/server/power/PowerManagerService$WakeLockDetector;->mInSchedule:Z
@@ -1547,11 +1555,11 @@
 
     goto :goto_0
 
-    .line 3147
+    .line 3160
     :catch_0
     move-exception v6
 
-    .line 3148
+    .line 3161
     .local v6, e:Ljava/lang/IllegalStateException;
     const-string v0, "PowerManagerService"
 
@@ -1561,12 +1569,12 @@
 
     goto :goto_0
 
-    .line 3149
+    .line 3162
     .end local v6           #e:Ljava/lang/IllegalStateException;
     :catch_1
     move-exception v6
 
-    .line 3150
+    .line 3163
     .local v6, e:Ljava/lang/Exception;
     invoke-virtual {v6}, Ljava/lang/Exception;->printStackTrace()V
 
@@ -1577,37 +1585,37 @@
     .locals 2
 
     .prologue
-    .line 3156
+    .line 3169
     const-string v0, "PowerManagerService"
 
     const-string v1, "WakeLockDetector stop"
 
     invoke-static {v0, v1}, Landroid/util/Slog;->i(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 3158
+    .line 3171
     iget-object v0, p0, Lcom/android/server/power/PowerManagerService$WakeLockDetector;->mTimer:Ljava/util/Timer;
 
     if-eqz v0, :cond_0
 
-    .line 3159
+    .line 3172
     iget-object v0, p0, Lcom/android/server/power/PowerManagerService$WakeLockDetector;->mTimer:Ljava/util/Timer;
 
     invoke-virtual {v0}, Ljava/util/Timer;->cancel()V
 
-    .line 3160
+    .line 3173
     iget-object v0, p0, Lcom/android/server/power/PowerManagerService$WakeLockDetector;->mTimer:Ljava/util/Timer;
 
     invoke-virtual {v0}, Ljava/util/Timer;->purge()I
 
-    .line 3161
+    .line 3174
     const/4 v0, 0x0
 
     iput-object v0, p0, Lcom/android/server/power/PowerManagerService$WakeLockDetector;->mTimer:Ljava/util/Timer;
 
-    .line 3163
+    .line 3176
     :cond_0
     invoke-virtual {p0}, Lcom/android/server/power/PowerManagerService$WakeLockDetector;->reset()V
 
-    .line 3164
+    .line 3177
     return-void
 .end method

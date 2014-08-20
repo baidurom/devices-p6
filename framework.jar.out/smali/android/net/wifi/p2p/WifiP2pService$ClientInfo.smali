@@ -49,29 +49,29 @@
     .parameter "m"
 
     .prologue
-    .line 2889
+    .line 2893
     iput-object p1, p0, Landroid/net/wifi/p2p/WifiP2pService$ClientInfo;->this$0:Landroid/net/wifi/p2p/WifiP2pService;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 2890
+    .line 2894
     iput-object p2, p0, Landroid/net/wifi/p2p/WifiP2pService$ClientInfo;->mMessenger:Landroid/os/Messenger;
 
-    .line 2891
+    .line 2895
     new-instance v0, Landroid/util/SparseArray;
 
     invoke-direct {v0}, Landroid/util/SparseArray;-><init>()V
 
     iput-object v0, p0, Landroid/net/wifi/p2p/WifiP2pService$ClientInfo;->mReqList:Landroid/util/SparseArray;
 
-    .line 2892
+    .line 2896
     new-instance v0, Ljava/util/ArrayList;
 
     invoke-direct {v0}, Ljava/util/ArrayList;-><init>()V
 
     iput-object v0, p0, Landroid/net/wifi/p2p/WifiP2pService$ClientInfo;->mServList:Ljava/util/List;
 
-    .line 2893
+    .line 2897
     return-void
 .end method
 
@@ -82,7 +82,7 @@
     .parameter "x2"
 
     .prologue
-    .line 2871
+    .line 2875
     invoke-direct {p0, p1, p2}, Landroid/net/wifi/p2p/WifiP2pService$ClientInfo;-><init>(Landroid/net/wifi/p2p/WifiP2pService;Landroid/os/Messenger;)V
 
     return-void
@@ -93,7 +93,7 @@
     .parameter "x0"
 
     .prologue
-    .line 2871
+    .line 2875
     iget-object v0, p0, Landroid/net/wifi/p2p/WifiP2pService$ClientInfo;->mReqList:Landroid/util/SparseArray;
 
     return-object v0
@@ -104,7 +104,7 @@
     .parameter "x0"
 
     .prologue
-    .line 2871
+    .line 2875
     iget-object v0, p0, Landroid/net/wifi/p2p/WifiP2pService$ClientInfo;->mServList:Ljava/util/List;
 
     return-object v0
@@ -115,7 +115,7 @@
     .parameter "x0"
 
     .prologue
-    .line 2871
+    .line 2875
     iget-object v0, p0, Landroid/net/wifi/p2p/WifiP2pService$ClientInfo;->mMessenger:Landroid/os/Messenger;
 
     return-object v0

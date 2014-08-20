@@ -24,7 +24,7 @@
     .parameter
 
     .prologue
-    .line 1476
+    .line 1630
     iput-object p1, p0, Lcom/android/server/AlarmManagerService$2;->this$0:Lcom/android/server/AlarmManagerService;
 
     invoke-direct {p0}, Landroid/content/BroadcastReceiver;-><init>()V
@@ -40,12 +40,12 @@
     .parameter "intent"
 
     .prologue
-    .line 1479
+    .line 1633
     invoke-virtual {p2}, Landroid/content/Intent;->getAction()Ljava/lang/String;
 
     move-result-object v0
 
-    .line 1480
+    .line 1634
     .local v0, action:Ljava/lang/String;
     const-string v2, "android.net.conn.CONNECTIVITY_CHANGE"
 
@@ -55,18 +55,18 @@
 
     if-eqz v2, :cond_1
 
-    .line 1481
+    .line 1635
     invoke-static {}, Landroid/os/Message;->obtain()Landroid/os/Message;
 
     move-result-object v1
 
-    .line 1482
+    .line 1636
     .local v1, msg:Landroid/os/Message;
     const/4 v2, 0x4
 
     iput v2, v1, Landroid/os/Message;->what:I
 
-    .line 1483
+    .line 1637
     iget-object v2, p0, Lcom/android/server/AlarmManagerService$2;->this$0:Lcom/android/server/AlarmManagerService;
 
     #getter for: Lcom/android/server/AlarmManagerService;->mHandler:Lcom/android/server/AlarmManagerService$AlarmHandler;
@@ -76,13 +76,13 @@
 
     invoke-virtual {v2, v1}, Lcom/android/server/AlarmManagerService$AlarmHandler;->sendMessage(Landroid/os/Message;)Z
 
-    .line 1495
+    .line 1649
     .end local v1           #msg:Landroid/os/Message;
     :cond_0
     :goto_0
     return-void
 
-    .line 1484
+    .line 1638
     :cond_1
     const-string v2, "huawei.action.intent.PHB_STATE_CHANGE"
 
@@ -92,7 +92,7 @@
 
     if-eqz v2, :cond_0
 
-    .line 1485
+    .line 1639
     const-string v2, "phb_enable"
 
     const/4 v3, 0x0
@@ -103,18 +103,18 @@
 
     if-eqz v2, :cond_2
 
-    .line 1486
+    .line 1640
     invoke-static {}, Landroid/os/Message;->obtain()Landroid/os/Message;
 
     move-result-object v1
 
-    .line 1487
+    .line 1641
     .restart local v1       #msg:Landroid/os/Message;
     const/4 v2, 0x5
 
     iput v2, v1, Landroid/os/Message;->what:I
 
-    .line 1488
+    .line 1642
     iget-object v2, p0, Lcom/android/server/AlarmManagerService$2;->this$0:Lcom/android/server/AlarmManagerService;
 
     #getter for: Lcom/android/server/AlarmManagerService;->mHandler:Lcom/android/server/AlarmManagerService$AlarmHandler;
@@ -126,20 +126,20 @@
 
     goto :goto_0
 
-    .line 1490
+    .line 1644
     .end local v1           #msg:Landroid/os/Message;
     :cond_2
     invoke-static {}, Landroid/os/Message;->obtain()Landroid/os/Message;
 
     move-result-object v1
 
-    .line 1491
+    .line 1645
     .restart local v1       #msg:Landroid/os/Message;
     const/4 v2, 0x6
 
     iput v2, v1, Landroid/os/Message;->what:I
 
-    .line 1492
+    .line 1646
     iget-object v2, p0, Lcom/android/server/AlarmManagerService$2;->this$0:Lcom/android/server/AlarmManagerService;
 
     #getter for: Lcom/android/server/AlarmManagerService;->mHandler:Lcom/android/server/AlarmManagerService$AlarmHandler;

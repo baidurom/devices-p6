@@ -554,16 +554,12 @@
     .end local v26           #s:Ljava/lang/String;
     :cond_4
     move/from16 v0, v17
-    
-    add-int/lit8 v0, v0, -0x1
 
     new-array v7, v0, [Lcom/android/internal/app/LocalePicker$LocaleInfo;
 
     .line 189
     .local v7, localeInfos:[Lcom/android/internal/app/LocalePicker$LocaleInfo;
     const/16 v18, 0x0
-    
-    const/16 v4, 0x0
 
     :goto_3
     move/from16 v0, v18
@@ -574,27 +570,12 @@
 
     .line 190
     aget-object v3, v24, v18
-    
-    const-string v5, "Español(Latinoamérica)"
 
-    invoke-virtual {v3}, Lcom/android/internal/app/LocalePicker$LocaleInfo;->toString()Ljava/lang/String;
-
-    move-result-object v6
-    
-    invoke-virtual {v5, v6}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
-
-    move-result v6
-    
-    if-nez v6, :cond_9 
-
-    aput-object v3, v7, v4
+    aput-object v3, v7, v18
 
     .line 189
-    add-int/lit8 v4, v4, 0x1
-    
-    :cond_9
     add-int/lit8 v18, v18, 0x1
-    
+
     goto :goto_3
 
     .line 192

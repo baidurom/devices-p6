@@ -884,7 +884,7 @@
 
     move-result v3
 
-    goto :cond_0
+    if-eqz v3, :cond_0
 
     const/4 v3, 0x0
 

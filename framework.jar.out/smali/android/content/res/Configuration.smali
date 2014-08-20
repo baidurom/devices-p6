@@ -200,8 +200,6 @@
 
 .field public smallestScreenWidthDp:I
 
-.field public themeChanged:I
-
 .field public touchscreen:I
 
 .field public uiMode:I
@@ -232,11 +230,18 @@
 .end method
 
 .method public constructor <init>()V
-    .locals 0
+    .locals 1
 
     .prologue
     .line 548
-    invoke-direct/range {p0 .. p0}, Ljava/lang/Object;-><init>()V
+    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+
+    .line 536
+    new-instance v0, Landroid/content/res/ConfigurationEx;
+
+    invoke-direct {v0}, Landroid/content/res/ConfigurationEx;-><init>()V
+
+    iput-object v0, p0, Landroid/content/res/Configuration;->extraConfig:Landroid/content/res/ConfigurationEx;
 
     .line 549
     invoke-virtual {p0}, Landroid/content/res/Configuration;->setToDefaults()V
@@ -246,12 +251,19 @@
 .end method
 
 .method public constructor <init>(Landroid/content/res/Configuration;)V
-    .locals 0
+    .locals 1
     .parameter "o"
 
     .prologue
     .line 555
-    invoke-direct/range {p0 .. p0}, Ljava/lang/Object;-><init>()V
+    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+
+    .line 536
+    new-instance v0, Landroid/content/res/ConfigurationEx;
+
+    invoke-direct {v0}, Landroid/content/res/ConfigurationEx;-><init>()V
+
+    iput-object v0, p0, Landroid/content/res/Configuration;->extraConfig:Landroid/content/res/ConfigurationEx;
 
     .line 556
     invoke-virtual {p0, p1}, Landroid/content/res/Configuration;->setTo(Landroid/content/res/Configuration;)V
@@ -261,12 +273,19 @@
 .end method
 
 .method private constructor <init>(Landroid/os/Parcel;)V
-    .locals 0
+    .locals 1
     .parameter "source"
 
     .prologue
     .line 1142
-    invoke-direct/range {p0 .. p0}, Ljava/lang/Object;-><init>()V
+    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+
+    .line 536
+    new-instance v0, Landroid/content/res/ConfigurationEx;
+
+    invoke-direct {v0}, Landroid/content/res/ConfigurationEx;-><init>()V
+
+    iput-object v0, p0, Landroid/content/res/Configuration;->extraConfig:Landroid/content/res/ConfigurationEx;
 
     .line 1143
     invoke-virtual {p0, p1}, Landroid/content/res/Configuration;->readFromParcel(Landroid/os/Parcel;)V
@@ -298,69 +317,8 @@
     return v0
 .end method
 
-.method private multiTheme_dealThemeChange(Landroid/content/res/Configuration;)I
-    .locals 3
-    .parameter "delta"
-
-    .prologue
-    .line 897
-    const/4 v0, 0x0
-
-    .line 898
-    .local v0, changed:I
-    iget v1, p1, Landroid/content/res/Configuration;->themeChanged:I
-
-    if-eqz v1, :cond_0
-
-    iget v1, p0, Landroid/content/res/Configuration;->themeChanged:I
-
-    iget v2, p1, Landroid/content/res/Configuration;->themeChanged:I
-
-    if-eq v1, v2, :cond_0
-
-    .line 901
-    iget v1, p1, Landroid/content/res/Configuration;->themeChanged:I
-
-    iput v1, p0, Landroid/content/res/Configuration;->themeChanged:I
-
-    .line 902
-    const/high16 v0, -0x8000
-
-    .line 904
-    :cond_0
-    return v0
-.end method
-
-.method private multiTheme_dealThemeChange2(Landroid/content/res/Configuration;)I
-    .locals 3
-    .parameter "delta"
-
-    .prologue
-    .line 908
-    const/4 v0, 0x0
-
-    .line 909
-    .local v0, changed:I
-    iget v1, p1, Landroid/content/res/Configuration;->themeChanged:I
-
-    if-eqz v1, :cond_0
-
-    iget v1, p0, Landroid/content/res/Configuration;->themeChanged:I
-
-    iget v2, p1, Landroid/content/res/Configuration;->themeChanged:I
-
-    if-eq v1, v2, :cond_0
-
-    .line 912
-    const/high16 v0, -0x8000
-
-    .line 914
-    :cond_0
-    return v0
-.end method
-
 .method public static needNewResources(II)Z
-    .locals 2
+    .locals 1
     .parameter "configChanges"
     .parameter "interestingChanges"
 
@@ -370,20 +328,23 @@
 
     or-int/2addr v0, p1
 
-    const/high16 v1, -0x8000
-    
-    or-int/2addr v0, v1
-    
     and-int/2addr v0, p0
 
-    if-eqz v0, :cond_0
+    if-nez v0, :cond_0
 
+    invoke-static {p0}, Landroid/content/res/ConfigurationEx;->needNewResources(I)Z
+
+    move-result v0
+
+    if-eqz v0, :cond_1
+
+    :cond_0
     const/4 v0, 0x1
 
     :goto_0
     return v0
 
-    :cond_0
+    :cond_1
     const/4 v0, 0x0
 
     goto :goto_0
@@ -831,16 +792,19 @@
 
     sub-int v2, v3, v4
 
+    .line 1194
+    if-nez v2, :cond_0
+
     .line 1195
-    iget v3, p0, Landroid/content/res/Configuration;->themeChanged:I
+    iget-object v3, p0, Landroid/content/res/Configuration;->extraConfig:Landroid/content/res/ConfigurationEx;
 
-    iget v4, p1, Landroid/content/res/Configuration;->themeChanged:I
+    iget-object v4, p1, Landroid/content/res/Configuration;->extraConfig:Landroid/content/res/ConfigurationEx;
 
-    sub-int v2, v3, v4
+    invoke-virtual {v3, v4}, Landroid/content/res/ConfigurationEx;->compareTo(Landroid/content/res/ConfigurationEx;)I
+
+    move-result v2
 
     .line 1197
-    if-eqz v2, :cond_0
-    
     goto/16 :goto_0
 .end method
 
@@ -933,6 +897,16 @@
 
     .line 939
     :cond_2
+    iget-object v1, p0, Landroid/content/res/Configuration;->extraConfig:Landroid/content/res/ConfigurationEx;
+
+    iget-object v2, p1, Landroid/content/res/Configuration;->extraConfig:Landroid/content/res/ConfigurationEx;
+
+    invoke-virtual {v1, v2}, Landroid/content/res/ConfigurationEx;->diff(Landroid/content/res/ConfigurationEx;)I
+
+    move-result v1
+
+    or-int/2addr v0, v1
+
     .line 941
     iget-object v1, p1, Landroid/content/res/Configuration;->locale:Ljava/util/Locale;
 
@@ -1168,12 +1142,6 @@
 
     .line 1001
     :cond_11
-    invoke-direct {p0, p1}, Landroid/content/res/Configuration;->multiTheme_dealThemeChange2(Landroid/content/res/Configuration;)I
-    
-    move-result v1
-    
-    or-int/2addr v0, v1
-    
     return v0
 .end method
 
@@ -1399,7 +1367,11 @@
     .line 1234
     mul-int/lit8 v1, v0, 0x1f
 
-    iget v2, p0, Landroid/content/res/Configuration;->themeChanged:I
+    iget-object v2, p0, Landroid/content/res/Configuration;->extraConfig:Landroid/content/res/ConfigurationEx;
+
+    invoke-virtual {v2}, Landroid/content/res/ConfigurationEx;->hashCode()I
+
+    move-result v2
 
     add-int v0, v1, v2
 
@@ -1689,6 +1661,11 @@
 
     iput v0, p0, Landroid/content/res/Configuration;->compatSmallestScreenWidthDp:I
 
+    .line 1123
+    iget-object v0, p0, Landroid/content/res/Configuration;->extraConfig:Landroid/content/res/ConfigurationEx;
+
+    invoke-virtual {v0, p1}, Landroid/content/res/ConfigurationEx;->readFromParcel(Landroid/os/Parcel;)V
+
     .line 1125
     invoke-virtual {p1}, Landroid/os/Parcel;->readInt()I
 
@@ -1697,12 +1674,6 @@
     iput v0, p0, Landroid/content/res/Configuration;->seq:I
 
     .line 1126
-    invoke-virtual {p1}, Landroid/os/Parcel;->readInt()I
-    
-    move-result v0
-    
-    iput v0, p0, Landroid/content/res/Configuration;->themeChanged:I
-    
     return-void
 
     .line 1105
@@ -1763,7 +1734,7 @@
 .end method
 
 .method public setTo(Landroid/content/res/Configuration;)V
-    .locals 1
+    .locals 2
     .parameter "o"
 
     .prologue
@@ -1885,18 +1856,17 @@
     iput v0, p0, Landroid/content/res/Configuration;->compatSmallestScreenWidthDp:I
 
     .line 584
+    iget-object v0, p0, Landroid/content/res/Configuration;->extraConfig:Landroid/content/res/ConfigurationEx;
 
+    iget-object v1, p1, Landroid/content/res/Configuration;->extraConfig:Landroid/content/res/ConfigurationEx;
 
+    invoke-virtual {v0, v1}, Landroid/content/res/ConfigurationEx;->setTo(Landroid/content/res/ConfigurationEx;)V
 
     .line 586
     iget v0, p1, Landroid/content/res/Configuration;->seq:I
 
     iput v0, p0, Landroid/content/res/Configuration;->seq:I
 
-    iget v0, p1, Landroid/content/res/Configuration;->themeChanged:I
-    
-    iput v0, p0, Landroid/content/res/Configuration;->themeChanged:I
-    
     .line 587
     return-void
 .end method
@@ -1970,12 +1940,15 @@
     .line 750
     iput v1, p0, Landroid/content/res/Configuration;->densityDpi:I
 
+    .line 752
+    iget-object v0, p0, Landroid/content/res/Configuration;->extraConfig:Landroid/content/res/ConfigurationEx;
+
+    invoke-virtual {v0}, Landroid/content/res/ConfigurationEx;->setToDefaults()V
+
     .line 754
     iput v1, p0, Landroid/content/res/Configuration;->seq:I
 
     .line 755
-    iput v1, p0, Landroid/content/res/Configuration;->themeChanged:I
-    
     return-void
 .end method
 
@@ -2337,6 +2310,14 @@
 
     .line 720
     :goto_12
+    iget-object v2, p0, Landroid/content/res/Configuration;->extraConfig:Landroid/content/res/ConfigurationEx;
+
+    invoke-virtual {v2}, Landroid/content/res/ConfigurationEx;->toString()Ljava/lang/String;
+
+    move-result-object v2
+
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
     .line 722
     iget v2, p0, Landroid/content/res/Configuration;->seq:I
 
@@ -2354,14 +2335,6 @@
 
     .line 726
     :cond_0
-    const-string v2, " themeChanged="
-    
-    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-    
-    iget v2, p0, Landroid/content/res/Configuration;->themeChanged:I
-    
-    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
-    
     const/16 v2, 0x7d
 
     invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(C)Ljava/lang/StringBuilder;
@@ -2776,8 +2749,6 @@
     goto/16 :goto_12
 
     .line 613
-    nop
-    
     :sswitch_data_0
     .sparse-switch
         0x0 -> :sswitch_2
@@ -3376,6 +3347,16 @@
 
     .line 887
     :cond_17
+    iget-object v1, p0, Landroid/content/res/Configuration;->extraConfig:Landroid/content/res/ConfigurationEx;
+
+    iget-object v2, p1, Landroid/content/res/Configuration;->extraConfig:Landroid/content/res/ConfigurationEx;
+
+    invoke-virtual {v1, v2}, Landroid/content/res/ConfigurationEx;->updateFrom(Landroid/content/res/ConfigurationEx;)I
+
+    move-result v1
+
+    or-int/2addr v0, v1
+
     .line 889
     iget v1, p1, Landroid/content/res/Configuration;->seq:I
 
@@ -3388,12 +3369,6 @@
 
     .line 893
     :cond_18
-    invoke-direct {p0, p1}, Landroid/content/res/Configuration;->multiTheme_dealThemeChange(Landroid/content/res/Configuration;)I
-    
-    move-result v1
-    
-    or-int/2addr v0, v1
-    
     return v0
 
     .line 787
@@ -3409,21 +3384,6 @@
     iput v1, p0, Landroid/content/res/Configuration;->screenLayout:I
 
     goto/16 :goto_1
-.end method
-
-.method public updateTheme()V
-    .locals 1
-
-    .prologue
-    .line 1080
-    iget v0, p0, Landroid/content/res/Configuration;->themeChanged:I
-
-    add-int/lit8 v0, v0, 0x1
-
-    iput v0, p0, Landroid/content/res/Configuration;->themeChanged:I
-
-    .line 1081
-    return-void
 .end method
 
 .method public writeToParcel(Landroid/os/Parcel;I)V
@@ -3549,15 +3509,16 @@
 
     invoke-virtual {p1, v0}, Landroid/os/Parcel;->writeInt(I)V
 
+    .line 1092
+    iget-object v0, p0, Landroid/content/res/Configuration;->extraConfig:Landroid/content/res/ConfigurationEx;
+
+    invoke-virtual {v0, p1, p2}, Landroid/content/res/ConfigurationEx;->writeToParcel(Landroid/os/Parcel;I)V
+
     .line 1094
     iget v0, p0, Landroid/content/res/Configuration;->seq:I
 
     invoke-virtual {p1, v0}, Landroid/os/Parcel;->writeInt(I)V
 
-    iget v0, p0, Landroid/content/res/Configuration;->themeChanged:I
-    
-    invoke-virtual {p1, v0}, Landroid/os/Parcel;->writeInt(I)V
-    
     .line 1095
     return-void
 

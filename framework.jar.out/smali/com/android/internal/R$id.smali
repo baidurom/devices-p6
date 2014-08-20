@@ -129,8 +129,6 @@
 
 .field public static final cancel:I = 0x1020274
 
-.field public static final cancel_button:I = #id@cancel_button#t
-
 .field public static final candidatesArea:I = 0x102001d
 
 .field public static final carrier:I = 0x10202e5
@@ -733,7 +731,7 @@
     .locals 0
 
     .prologue
-    .line 12128
+    .line 12136
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     return-void

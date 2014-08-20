@@ -255,7 +255,7 @@
     .locals 2
 
     .prologue
-    .line 190
+    .line 193
     const-class v1, Landroid/net/EthernetDataTracker;
 
     monitor-enter v1
@@ -271,7 +271,7 @@
 
     sput-object v0, Landroid/net/EthernetDataTracker;->sInstance:Landroid/net/EthernetDataTracker;
 
-    .line 191
+    .line 194
     :cond_0
     sget-object v0, Landroid/net/EthernetDataTracker;->sInstance:Landroid/net/EthernetDataTracker;
     :try_end_0
@@ -281,7 +281,7 @@
 
     return-object v0
 
-    .line 190
+    .line 193
     :catchall_0
     move-exception v0
 
@@ -511,11 +511,11 @@
 
     invoke-direct {v0, v1}, Ljava/lang/Thread;-><init>(Ljava/lang/Runnable;)V
 
-    .line 186
+    .line 189
     .local v0, dhcpThread:Ljava/lang/Thread;
     invoke-virtual {v0}, Ljava/lang/Thread;->start()V
 
-    .line 187
+    .line 190
     return-void
 .end method
 
@@ -530,7 +530,7 @@
     .end annotation
 
     .prologue
-    .line 195
+    .line 198
     new-instance v0, Ljava/lang/CloneNotSupportedException;
 
     invoke-direct {v0}, Ljava/lang/CloneNotSupportedException;-><init>()V
@@ -542,7 +542,7 @@
     .locals 0
 
     .prologue
-    .line 280
+    .line 283
     return-void
 .end method
 
@@ -551,12 +551,12 @@
     .parameter "enabled"
 
     .prologue
-    .line 397
+    .line 400
     iget-object v0, p0, Landroid/net/EthernetDataTracker;->mDefaultRouteSet:Ljava/util/concurrent/atomic/AtomicBoolean;
 
     invoke-virtual {v0, p1}, Ljava/util/concurrent/atomic/AtomicBoolean;->set(Z)V
 
-    .line 398
+    .line 401
     return-void
 .end method
 
@@ -682,7 +682,7 @@
     .locals 1
 
     .prologue
-    .line 383
+    .line 386
     iget-object v0, p0, Landroid/net/EthernetDataTracker;->mDefaultGatewayAddr:Ljava/util/concurrent/atomic/AtomicInteger;
 
     invoke-virtual {v0}, Ljava/util/concurrent/atomic/AtomicInteger;->get()I
@@ -696,7 +696,7 @@
     .locals 2
 
     .prologue
-    .line 376
+    .line 379
     new-instance v0, Landroid/net/LinkCapabilities;
 
     iget-object v1, p0, Landroid/net/EthernetDataTracker;->mLinkCapabilities:Landroid/net/LinkCapabilities;
@@ -710,7 +710,7 @@
     .locals 2
 
     .prologue
-    .line 366
+    .line 369
     monitor-enter p0
 
     :try_start_0
@@ -738,7 +738,7 @@
     .locals 1
 
     .prologue
-    .line 359
+    .line 362
     monitor-enter p0
 
     :try_start_0
@@ -762,7 +762,7 @@
     .locals 1
 
     .prologue
-    .line 405
+    .line 408
     const-string/jumbo v0, "net.tcp.buffersize.wifi"
 
     return-object v0
@@ -772,7 +772,7 @@
     .locals 1
 
     .prologue
-    .line 294
+    .line 297
     monitor-enter p0
 
     :try_start_0
@@ -800,7 +800,7 @@
     .locals 1
 
     .prologue
-    .line 390
+    .line 393
     iget-object v0, p0, Landroid/net/EthernetDataTracker;->mDefaultRouteSet:Ljava/util/concurrent/atomic/AtomicBoolean;
 
     invoke-virtual {v0}, Ljava/util/concurrent/atomic/AtomicBoolean;->get()Z
@@ -814,7 +814,7 @@
     .locals 1
 
     .prologue
-    .line 345
+    .line 348
     iget-object v0, p0, Landroid/net/EthernetDataTracker;->mPrivateDnsRouteSet:Ljava/util/concurrent/atomic/AtomicBoolean;
 
     invoke-virtual {v0}, Ljava/util/concurrent/atomic/AtomicBoolean;->get()Z
@@ -828,7 +828,7 @@
     .locals 1
 
     .prologue
-    .line 203
+    .line 206
     iget-object v0, p0, Landroid/net/EthernetDataTracker;->mTeardownRequested:Ljava/util/concurrent/atomic/AtomicBoolean;
 
     invoke-virtual {v0}, Ljava/util/concurrent/atomic/AtomicBoolean;->get()Z
@@ -843,12 +843,12 @@
     .parameter "enabled"
 
     .prologue
-    .line 352
+    .line 355
     iget-object v0, p0, Landroid/net/EthernetDataTracker;->mPrivateDnsRouteSet:Ljava/util/concurrent/atomic/AtomicBoolean;
 
     invoke-virtual {v0, p1}, Ljava/util/concurrent/atomic/AtomicBoolean;->set(Z)V
 
-    .line 353
+    .line 356
     return-void
 .end method
 
@@ -856,22 +856,22 @@
     .locals 2
 
     .prologue
-    .line 270
+    .line 273
     sget-boolean v0, Landroid/net/EthernetDataTracker;->mLinkUp:Z
 
     if-eqz v0, :cond_0
 
-    .line 271
+    .line 274
     iget-object v0, p0, Landroid/net/EthernetDataTracker;->mTeardownRequested:Ljava/util/concurrent/atomic/AtomicBoolean;
 
     const/4 v1, 0x0
 
     invoke-virtual {v0, v1}, Ljava/util/concurrent/atomic/AtomicBoolean;->set(Z)V
 
-    .line 272
+    .line 275
     invoke-direct {p0}, Landroid/net/EthernetDataTracker;->runDhcp()V
 
-    .line 274
+    .line 277
     :cond_0
     sget-boolean v0, Landroid/net/EthernetDataTracker;->mLinkUp:Z
 
@@ -883,7 +883,7 @@
     .parameter "met"
 
     .prologue
-    .line 410
+    .line 413
     return-void
 .end method
 
@@ -892,7 +892,7 @@
     .parameter "enabled"
 
     .prologue
-    .line 338
+    .line 341
     const-string v0, "Ethernet"
 
     new-instance v1, Ljava/lang/StringBuilder;
@@ -921,7 +921,7 @@
 
     invoke-static {v0, v1}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 339
+    .line 342
     return-void
 .end method
 
@@ -930,7 +930,7 @@
     .parameter "turnOn"
 
     .prologue
-    .line 287
+    .line 290
     const/4 v0, 0x1
 
     return v0
@@ -941,12 +941,12 @@
     .parameter "isRequested"
 
     .prologue
-    .line 199
+    .line 202
     iget-object v0, p0, Landroid/net/EthernetDataTracker;->mTeardownRequested:Ljava/util/concurrent/atomic/AtomicBoolean;
 
     invoke-virtual {v0, p1}, Ljava/util/concurrent/atomic/AtomicBoolean;->set(Z)V
 
-    .line 200
+    .line 203
     return-void
 .end method
 
@@ -955,7 +955,7 @@
     .parameter "enabled"
 
     .prologue
-    .line 333
+    .line 336
     const-string v0, "Ethernet"
 
     new-instance v1, Ljava/lang/StringBuilder;
@@ -984,7 +984,7 @@
 
     invoke-static {v0, v1}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 334
+    .line 337
     return-void
 .end method
 
@@ -994,20 +994,20 @@
     .parameter "target"
 
     .prologue
-    .line 210
+    .line 213
     iput-object p1, p0, Landroid/net/EthernetDataTracker;->mContext:Landroid/content/Context;
 
-    .line 211
+    .line 214
     iput-object p2, p0, Landroid/net/EthernetDataTracker;->mCsHandler:Landroid/os/Handler;
 
-    .line 214
+    .line 217
     const-string/jumbo v8, "network_management"
 
     invoke-static {v8}, Landroid/os/ServiceManager;->getService(Ljava/lang/String;)Landroid/os/IBinder;
 
     move-result-object v1
 
-    .line 215
+    .line 218
     .local v1, b:Landroid/os/IBinder;
     invoke-static {v1}, Landroid/os/INetworkManagementService$Stub;->asInterface(Landroid/os/IBinder;)Landroid/os/INetworkManagementService;
 
@@ -1015,14 +1015,14 @@
 
     iput-object v8, p0, Landroid/net/EthernetDataTracker;->mNMService:Landroid/os/INetworkManagementService;
 
-    .line 217
+    .line 220
     new-instance v8, Landroid/net/EthernetDataTracker$InterfaceObserver;
 
     invoke-direct {v8, p0}, Landroid/net/EthernetDataTracker$InterfaceObserver;-><init>(Landroid/net/EthernetDataTracker;)V
 
     iput-object v8, p0, Landroid/net/EthernetDataTracker;->mInterfaceObserver:Landroid/net/EthernetDataTracker$InterfaceObserver;
 
-    .line 221
+    .line 224
     invoke-virtual {p1}, Landroid/content/Context;->getResources()Landroid/content/res/Resources;
 
     move-result-object v8
@@ -1035,7 +1035,7 @@
 
     sput-object v8, Landroid/net/EthernetDataTracker;->sIfaceMatch:Ljava/lang/String;
 
-    .line 224
+    .line 227
     :try_start_0
     iget-object v8, p0, Landroid/net/EthernetDataTracker;->mNMService:Landroid/os/INetworkManagementService;
 
@@ -1043,7 +1043,7 @@
 
     move-result-object v6
 
-    .line 225
+    .line 228
     .local v6, ifaces:[Ljava/lang/String;
     move-object v0, v6
 
@@ -1059,7 +1059,7 @@
 
     aget-object v5, v0, v4
 
-    .line 226
+    .line 229
     .local v5, iface:Ljava/lang/String;
     sget-object v8, Landroid/net/EthernetDataTracker;->sIfaceMatch:Ljava/lang/String;
 
@@ -1069,22 +1069,22 @@
 
     if-eqz v8, :cond_2
 
-    .line 227
+    .line 230
     sput-object v5, Landroid/net/EthernetDataTracker;->mIface:Ljava/lang/String;
 
-    .line 228
+    .line 231
     iget-object v8, p0, Landroid/net/EthernetDataTracker;->mNMService:Landroid/os/INetworkManagementService;
 
     invoke-interface {v8, v5}, Landroid/os/INetworkManagementService;->setInterfaceUp(Ljava/lang/String;)V
 
-    .line 229
+    .line 232
     iget-object v8, p0, Landroid/net/EthernetDataTracker;->mNMService:Landroid/os/INetworkManagementService;
 
     invoke-interface {v8, v5}, Landroid/os/INetworkManagementService;->getInterfaceConfig(Ljava/lang/String;)Landroid/net/InterfaceConfiguration;
 
     move-result-object v2
 
-    .line 230
+    .line 233
     .local v2, config:Landroid/net/InterfaceConfiguration;
     const-string/jumbo v8, "up"
 
@@ -1094,44 +1094,44 @@
 
     sput-boolean v8, Landroid/net/EthernetDataTracker;->mLinkUp:Z
 
-    .line 231
+    .line 234
     if-eqz v2, :cond_0
 
     iget-object v8, p0, Landroid/net/EthernetDataTracker;->mHwAddr:Ljava/lang/String;
 
     if-nez v8, :cond_0
 
-    .line 232
+    .line 235
     invoke-virtual {v2}, Landroid/net/InterfaceConfiguration;->getHardwareAddress()Ljava/lang/String;
 
     move-result-object v8
 
     iput-object v8, p0, Landroid/net/EthernetDataTracker;->mHwAddr:Ljava/lang/String;
 
-    .line 233
+    .line 236
     iget-object v8, p0, Landroid/net/EthernetDataTracker;->mHwAddr:Ljava/lang/String;
 
     if-eqz v8, :cond_0
 
-    .line 234
+    .line 237
     iget-object v8, p0, Landroid/net/EthernetDataTracker;->mNetworkInfo:Landroid/net/NetworkInfo;
 
     iget-object v9, p0, Landroid/net/EthernetDataTracker;->mHwAddr:Ljava/lang/String;
 
     invoke-virtual {v8, v9}, Landroid/net/NetworkInfo;->setExtraInfo(Ljava/lang/String;)V
 
-    .line 239
+    .line 242
     :cond_0
     sget-object v8, Landroid/net/EthernetDataTracker;->mIface:Ljava/lang/String;
 
     invoke-static {v8}, Landroid/net/NetworkUtils;->stopDhcp(Ljava/lang/String;)Z
 
-    .line 241
+    .line 244
     invoke-virtual {p0}, Landroid/net/EthernetDataTracker;->reconnect()Z
     :try_end_0
     .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
 
-    .line 250
+    .line 253
     .end local v0           #arr$:[Ljava/lang/String;
     .end local v2           #config:Landroid/net/InterfaceConfiguration;
     .end local v4           #i$:I
@@ -1149,11 +1149,11 @@
     :try_end_1
     .catch Landroid/os/RemoteException; {:try_start_1 .. :try_end_1} :catch_1
 
-    .line 254
+    .line 257
     :goto_2
     return-void
 
-    .line 225
+    .line 228
     .restart local v0       #arr$:[Ljava/lang/String;
     .restart local v4       #i$:I
     .restart local v5       #iface:Ljava/lang/String;
@@ -1164,7 +1164,7 @@
 
     goto :goto_0
 
-    .line 245
+    .line 248
     .end local v0           #arr$:[Ljava/lang/String;
     .end local v4           #i$:I
     .end local v5           #iface:Ljava/lang/String;
@@ -1173,7 +1173,7 @@
     :catch_0
     move-exception v3
 
-    .line 246
+    .line 249
     .local v3, e:Landroid/os/RemoteException;
     const-string v8, "Ethernet"
 
@@ -1199,12 +1199,12 @@
 
     goto :goto_1
 
-    .line 251
+    .line 254
     .end local v3           #e:Landroid/os/RemoteException;
     :catch_1
     move-exception v3
 
-    .line 252
+    .line 255
     .restart local v3       #e:Landroid/os/RemoteException;
     const-string v8, "Ethernet"
 
@@ -1238,7 +1238,7 @@
     .parameter "callingUid"
 
     .prologue
-    .line 311
+    .line 314
     const/4 v0, -0x1
 
     return v0
@@ -1251,7 +1251,7 @@
     .parameter "callingUid"
 
     .prologue
-    .line 328
+    .line 331
     const/4 v0, -0x1
 
     return v0
@@ -1263,16 +1263,16 @@
     .prologue
     const/4 v1, 0x1
 
-    .line 261
+    .line 264
     iget-object v0, p0, Landroid/net/EthernetDataTracker;->mTeardownRequested:Ljava/util/concurrent/atomic/AtomicBoolean;
 
     invoke-virtual {v0, v1}, Ljava/util/concurrent/atomic/AtomicBoolean;->set(Z)V
 
-    .line 262
+    .line 265
     sget-object v0, Landroid/net/EthernetDataTracker;->mIface:Ljava/lang/String;
 
     invoke-static {v0}, Landroid/net/NetworkUtils;->stopDhcp(Ljava/lang/String;)Z
 
-    .line 263
+    .line 266
     return v1
 .end method

@@ -37,7 +37,7 @@
     .parameter
 
     .prologue
-    .line 1062
+    .line 1086
     iput-object p1, p0, Lcom/android/server/AlarmManagerService$1;->this$0:Lcom/android/server/AlarmManagerService;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -53,7 +53,7 @@
     .parameter "rhs"
 
     .prologue
-    .line 1065
+    .line 1089
     iget-wide v0, p1, Lcom/android/server/AlarmManagerService$FilterStats;->aggregateTime:J
 
     iget-wide v2, p2, Lcom/android/server/AlarmManagerService$FilterStats;->aggregateTime:J
@@ -62,14 +62,14 @@
 
     if-gez v0, :cond_0
 
-    .line 1066
+    .line 1090
     const/4 v0, 0x1
 
-    .line 1070
+    .line 1094
     :goto_0
     return v0
 
-    .line 1067
+    .line 1091
     :cond_0
     iget-wide v0, p1, Lcom/android/server/AlarmManagerService$FilterStats;->aggregateTime:J
 
@@ -79,12 +79,12 @@
 
     if-lez v0, :cond_1
 
-    .line 1068
+    .line 1092
     const/4 v0, -0x1
 
     goto :goto_0
 
-    .line 1070
+    .line 1094
     :cond_1
     const/4 v0, 0x0
 
@@ -97,7 +97,7 @@
     .parameter "x1"
 
     .prologue
-    .line 1062
+    .line 1086
     check-cast p1, Lcom/android/server/AlarmManagerService$FilterStats;
 
     .end local p1

@@ -68,18 +68,14 @@
     aput-object v1, v0, v4
 
     const-string v1, "efid"
-    
-    const/4 v5, 0x4
 
     aput-object v1, v0, v5
 
     const-string v1, "index"
-    
-    const/4 v7, 0x5
 
     aput-object v1, v0, v7
 
-    const/4 v1, 0x3
+    const/4 v1, 0x5
 
     const-string v2, "_id"
 
@@ -105,24 +101,20 @@
     aput-object v1, v0, v4
 
     const-string v1, "efid"
-    
-    const/4 v5, 0x5
 
     aput-object v1, v0, v5
 
     const-string v1, "index"
-    
-    const/4 v7, 0x6
 
     aput-object v1, v0, v7
 
-    const/4 v1, 0x4
+    const/4 v1, 0x5
 
     const-string v2, "anrs"
 
     aput-object v2, v0, v1
 
-    const/4 v1, 0x3
+    const/4 v1, 0x6
 
     const-string v2, "_id"
 
@@ -163,8 +155,6 @@
     const-string v1, "icc"
 
     const-string v2, "sdn"
-    
-    const/4 v5, 0x3
 
     invoke-virtual {v0, v1, v2, v5}, Landroid/content/UriMatcher;->addURI(Ljava/lang/String;Ljava/lang/String;I)V
 
@@ -341,7 +331,7 @@
 
     .line 830
     .local v7, success:Z
-    :try_start_0   
+    :try_start_0
     const-string v1, "simphonebook"
 
     invoke-static {v1}, Landroid/os/ServiceManager;->getService(Ljava/lang/String;)Landroid/os/IBinder;
@@ -410,7 +400,7 @@
 
     .line 1073
     .local v11, success:Z
-    :try_start_0   
+    :try_start_0
     const-string v1, "simphonebook"
 
     invoke-static {v1}, Landroid/os/ServiceManager;->getService(Ljava/lang/String;)Landroid/os/IBinder;
@@ -553,7 +543,7 @@
 
     .line 806
     .local v6, success:Z
-    :try_start_0    
+    :try_start_0
     const-string v1, "simphonebook"
 
     invoke-static {v1}, Landroid/os/ServiceManager;->getService(Ljava/lang/String;)Landroid/os/IBinder;
@@ -1194,7 +1184,7 @@
 
 # virtual methods
 .method public delete(Landroid/net/Uri;Ljava/lang/String;[Ljava/lang/String;)I
-    .locals 27
+    .locals 26
     .parameter "url"
     .parameter "where"
     .parameter "whereArgs"
@@ -1235,7 +1225,7 @@
     invoke-virtual {v2, v0}, Landroid/content/UriMatcher;->match(Landroid/net/Uri;)I
 
     move-result v17
-    
+
     .line 336
     .local v17, match:I
     packed-switch v17, :pswitch_data_0
@@ -1270,8 +1260,6 @@
     .line 338
     :pswitch_0
     const/16 v3, 0x6f3a
-    
-    move/from16 v26, v3
 
     .line 351
     .local v3, efType:I
@@ -1408,8 +1396,6 @@
     .end local v24           #tokens:[Ljava/lang/String;
     :pswitch_1
     const/16 v3, 0x6f3b
-    
-    move/from16 v26, v3
 
     .line 343
     .restart local v3       #efType:I
@@ -1692,9 +1678,9 @@
     move-result v2
 
     if-nez v2, :cond_e
-    
+
     move-object/from16 v2, p0
-    
+
     .line 446
     invoke-direct/range {v2 .. v7}, Lcom/android/internal/telephony/IccProvider;->deleteIccRecordFromEf(ILjava/lang/String;Ljava/lang/String;[Ljava/lang/String;Ljava/lang/String;)Z
 
@@ -1722,7 +1708,7 @@
     move-object v12, v6
 
     move-object v14, v7
-    
+
     .line 448
     invoke-direct/range {v8 .. v14}, Lcom/android/internal/telephony/IccProvider;->deleteIccRecordFromEf(ILjava/lang/String;Ljava/lang/String;[Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Z
 
@@ -1731,9 +1717,7 @@
     goto :goto_3
 
     .line 453
-    :cond_f  
-    if-eqz v21, :cond_12
-    
+    :cond_f
     invoke-static/range {v21 .. v21}, Ljava/lang/Integer;->valueOf(Ljava/lang/String;)Ljava/lang/Integer;
 
     move-result-object v2
@@ -1741,16 +1725,8 @@
     invoke-virtual {v2}, Ljava/lang/Integer;->intValue()I
 
     move-result v3
-    
-    goto :goto_4
-    
-    :cond_12
-    move/from16 v3, v26
-        
+
     .line 454
-    :goto_4
-    if-eqz v22, :cond_13
-    
     invoke-static/range {v22 .. v22}, Ljava/lang/Integer;->valueOf(Ljava/lang/String;)Ljava/lang/Integer;
 
     move-result-object v2
@@ -1758,16 +1734,6 @@
     invoke-virtual {v2}, Ljava/lang/Integer;->intValue()I
 
     move-result v15
-    
-    goto :goto_5
-    
-    :cond_13
-    const/4 v0, 0x0
-    
-    move/from16 v15, v0
-    
-    :goto_5
-    add-int/lit8 v15, v15, 0x1
 
     .line 455
     if-lez v15, :cond_d
@@ -1778,7 +1744,7 @@
     move-result v2
 
     if-nez v2, :cond_10
-    
+
     .line 462
     move-object/from16 v0, p0
 
@@ -1789,7 +1755,7 @@
     goto :goto_3
 
     .line 464
-    :cond_10   
+    :cond_10
     move-object/from16 v0, p0
 
     invoke-direct {v0, v3, v15, v7}, Lcom/android/internal/telephony/IccProvider;->deleteIccRecordFromEfByIndex(IILjava/lang/String;)Z
@@ -2119,7 +2085,7 @@
 
     invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
 
-    sget v8, Lcom/android/internal/telephony/AdnRecordCache;->s_efid:I
+    sget v8, Lcom/android/internal/telephony/AdnRecordCache;->s_index:I
 
     invoke-static {v8}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
 
@@ -2142,10 +2108,8 @@
     invoke-virtual {v14, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
     .line 295
-    sget v1, Lcom/android/internal/telephony/AdnRecordCache;->s_index:I
-    
-    add-int/lit8 v1, v1, -0x1
-      
+    sget v1, Lcom/android/internal/telephony/AdnRecordCache;->s_efid:I
+
     invoke-static {v1}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
 
     move-result-object v1
@@ -2374,12 +2338,12 @@
     .end local v9           #i$:I
     .end local v11           #len$:I
     :cond_4
-    const/4 v13, 0x4
+    const/4 v13, 0x3
 
     aput-object v5, v4, v13
 
     .line 906
-    const/4 v13, 0x5
+    const/4 v13, 0x4
 
     aput-object v10, v4, v13
 
@@ -2397,12 +2361,12 @@
 
     .line 913
     .local v2, anrs:Ljava/lang/String;
-    const/4 v13, 0x4
+    const/4 v13, 0x5
 
     aput-object v2, v4, v13
 
     .line 914
-    const/4 v13, 0x3
+    const/4 v13, 0x6
 
     invoke-static/range {p3 .. p3}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
 
@@ -2435,7 +2399,7 @@
     .restart local v10       #index:Ljava/lang/String;
     .restart local v12       #number:Ljava/lang/String;
     :cond_6
-    const/4 v13, 0x3
+    const/4 v13, 0x5
 
     invoke-static/range {p3 .. p3}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
 
@@ -2447,14 +2411,10 @@
 .end method
 
 .method protected log(Ljava/lang/String;)V
-    .locals 1
+    .locals 0
     .parameter "msg"
 
     .prologue
-    const-string v0, "IccProvider"
-         
-    invoke-static {v0, p1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
-        
     .line 933
     return-void
 .end method
@@ -3075,7 +3035,7 @@
 .end method
 
 .method public update(Landroid/net/Uri;Landroid/content/ContentValues;Ljava/lang/String;[Ljava/lang/String;)I
-    .locals 37
+    .locals 36
     .parameter "url"
     .parameter "values"
     .parameter "where"
@@ -3129,8 +3089,6 @@
     .line 494
     :pswitch_0
     const/16 v2, 0x6f3a
-    
-    move/from16 v36, v2
 
     .line 507
     .local v2, efType:I
@@ -3389,8 +3347,6 @@
     .end local v35           #success:Z
     :pswitch_1
     const/16 v2, 0x6f3b
-    
-    move/from16 v36, v2
 
     .line 499
     .restart local v2       #efType:I
@@ -3444,8 +3400,6 @@
 
     .line 577
     :cond_8
-    if-eqz v29, :cond_b
-    
     invoke-static/range {v29 .. v29}, Ljava/lang/Integer;->valueOf(Ljava/lang/String;)Ljava/lang/Integer;
 
     move-result-object v1
@@ -3453,23 +3407,8 @@
     invoke-virtual {v1}, Ljava/lang/Integer;->intValue()I
 
     move-result v2
-    
-    goto :goto_3
-    
-    :cond_b
-    move/from16 v2, v36
 
     .line 578
-    :goto_3
-    if-nez v34, :cond_c
-    
-    const/4 v0, 0x0
-    
-    move/from16 v20, v0
-    
-    goto :goto_4
-      
-    :cond_c
     invoke-static/range {v34 .. v34}, Ljava/lang/Integer;->valueOf(Ljava/lang/String;)Ljava/lang/Integer;
 
     move-result-object v1
@@ -3477,11 +3416,8 @@
     invoke-virtual {v1}, Ljava/lang/Integer;->intValue()I
 
     move-result v20
-    
+
     .line 579
-    :goto_4
-    add-int/lit8 v20, v20, 0x1
-    
     if-lez v20, :cond_6
 
     .line 584
@@ -3522,7 +3458,7 @@
     move-object/from16 v26, v17
 
     move/from16 v27, v20
-    
+
     move-object/from16 v28, v7
 
     .line 588

@@ -43,10 +43,12 @@
     .prologue
     const/4 v6, 0x1
 
+    .line 173
     new-instance v0, Landroid/net/DhcpInfoInternal;
 
     invoke-direct {v0}, Landroid/net/DhcpInfoInternal;-><init>()V
 
+    .line 174
     .local v0, dhcpInfoInternal:Landroid/net/DhcpInfoInternal;
     invoke-static {}, Landroid/net/EthernetDataTracker;->access$000()Ljava/lang/String;
 
@@ -85,7 +87,7 @@
 
     invoke-static {v2, v3}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 184
+    .line 187
     :goto_0
     return-void
 
@@ -114,7 +116,7 @@
 
     invoke-virtual {v2, v3}, Landroid/net/LinkProperties;->setInterfaceName(Ljava/lang/String;)V
 
-    .line 181
+    .line 182
     iget-object v2, p0, Landroid/net/EthernetDataTracker$1;->this$0:Landroid/net/EthernetDataTracker;
 
     #getter for: Landroid/net/EthernetDataTracker;->mNetworkInfo:Landroid/net/NetworkInfo;
@@ -124,6 +126,7 @@
 
     invoke-virtual {v2, v6}, Landroid/net/NetworkInfo;->setIsAvailable(Z)V
 
+    .line 184
     iget-object v2, p0, Landroid/net/EthernetDataTracker$1;->this$0:Landroid/net/EthernetDataTracker;
 
     #getter for: Landroid/net/EthernetDataTracker;->mNetworkInfo:Landroid/net/NetworkInfo;
@@ -144,7 +147,7 @@
 
     invoke-virtual {v2, v3, v4, v5}, Landroid/net/NetworkInfo;->setDetailedState(Landroid/net/NetworkInfo$DetailedState;Ljava/lang/String;Ljava/lang/String;)V
 
-    .line 182
+    .line 185
     iget-object v2, p0, Landroid/net/EthernetDataTracker$1;->this$0:Landroid/net/EthernetDataTracker;
 
     #getter for: Landroid/net/EthernetDataTracker;->mCsHandler:Landroid/os/Handler;
@@ -163,7 +166,7 @@
 
     move-result-object v1
 
-    .line 183
+    .line 186
     .local v1, msg:Landroid/os/Message;
     invoke-virtual {v1}, Landroid/os/Message;->sendToTarget()V
 

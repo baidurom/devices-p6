@@ -31,7 +31,7 @@
     .parameter
 
     .prologue
-    .line 1321
+    .line 1323
     iput-object p1, p0, Landroid/widget/CalendarView$ScrollStateRunnable;->this$0:Landroid/widget/CalendarView;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -45,7 +45,7 @@
     .parameter "x1"
 
     .prologue
-    .line 1321
+    .line 1323
     invoke-direct {p0, p1}, Landroid/widget/CalendarView$ScrollStateRunnable;-><init>(Landroid/widget/CalendarView;)V
 
     return-void
@@ -59,25 +59,25 @@
     .parameter "scrollState"
 
     .prologue
-    .line 1334
+    .line 1336
     iput-object p1, p0, Landroid/widget/CalendarView$ScrollStateRunnable;->mView:Landroid/widget/AbsListView;
 
-    .line 1335
+    .line 1337
     iput p2, p0, Landroid/widget/CalendarView$ScrollStateRunnable;->mNewState:I
 
-    .line 1336
+    .line 1338
     iget-object v0, p0, Landroid/widget/CalendarView$ScrollStateRunnable;->this$0:Landroid/widget/CalendarView;
 
     invoke-virtual {v0, p0}, Landroid/widget/CalendarView;->removeCallbacks(Ljava/lang/Runnable;)Z
 
-    .line 1337
+    .line 1339
     iget-object v0, p0, Landroid/widget/CalendarView$ScrollStateRunnable;->this$0:Landroid/widget/CalendarView;
 
     const-wide/16 v1, 0x28
 
     invoke-virtual {v0, p0, v1, v2}, Landroid/widget/CalendarView;->postDelayed(Ljava/lang/Runnable;J)Z
 
-    .line 1338
+    .line 1340
     return-void
 .end method
 
@@ -87,7 +87,7 @@
     .prologue
     const/16 v4, 0x1f4
 
-    .line 1341
+    .line 1343
     iget-object v2, p0, Landroid/widget/CalendarView$ScrollStateRunnable;->this$0:Landroid/widget/CalendarView;
 
     iget v3, p0, Landroid/widget/CalendarView$ScrollStateRunnable;->mNewState:I
@@ -95,7 +95,7 @@
     #setter for: Landroid/widget/CalendarView;->mCurrentScrollState:I
     invoke-static {v2, v3}, Landroid/widget/CalendarView;->access$1002(Landroid/widget/CalendarView;I)I
 
-    .line 1343
+    .line 1345
     iget v2, p0, Landroid/widget/CalendarView$ScrollStateRunnable;->mNewState:I
 
     if-nez v2, :cond_1
@@ -109,7 +109,7 @@
 
     if-eqz v2, :cond_1
 
-    .line 1345
+    .line 1347
     iget-object v2, p0, Landroid/widget/CalendarView$ScrollStateRunnable;->mView:Landroid/widget/AbsListView;
 
     const/4 v3, 0x0
@@ -118,16 +118,16 @@
 
     move-result-object v0
 
-    .line 1346
+    .line 1348
     .local v0, child:Landroid/view/View;
     if-nez v0, :cond_0
 
-    .line 1360
+    .line 1362
     .end local v0           #child:Landroid/view/View;
     :goto_0
     return-void
 
-    .line 1350
+    .line 1352
     .restart local v0       #child:Landroid/view/View;
     :cond_0
     invoke-virtual {v0}, Landroid/view/View;->getBottom()I
@@ -143,7 +143,7 @@
 
     sub-int v1, v2, v3
 
-    .line 1351
+    .line 1353
     .local v1, dist:I
     iget-object v2, p0, Landroid/widget/CalendarView$ScrollStateRunnable;->this$0:Landroid/widget/CalendarView;
 
@@ -154,7 +154,7 @@
 
     if-le v1, v2, :cond_1
 
-    .line 1352
+    .line 1354
     iget-object v2, p0, Landroid/widget/CalendarView$ScrollStateRunnable;->this$0:Landroid/widget/CalendarView;
 
     #getter for: Landroid/widget/CalendarView;->mIsScrollingUp:Z
@@ -164,7 +164,7 @@
 
     if-eqz v2, :cond_2
 
-    .line 1353
+    .line 1355
     iget-object v2, p0, Landroid/widget/CalendarView$ScrollStateRunnable;->mView:Landroid/widget/AbsListView;
 
     invoke-virtual {v0}, Landroid/view/View;->getHeight()I
@@ -175,7 +175,7 @@
 
     invoke-virtual {v2, v3, v4}, Landroid/widget/AbsListView;->smoothScrollBy(II)V
 
-    .line 1359
+    .line 1361
     .end local v0           #child:Landroid/view/View;
     .end local v1           #dist:I
     :cond_1
@@ -189,7 +189,7 @@
 
     goto :goto_0
 
-    .line 1355
+    .line 1357
     .restart local v0       #child:Landroid/view/View;
     .restart local v1       #dist:I
     :cond_2

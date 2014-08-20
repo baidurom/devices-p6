@@ -6,7 +6,6 @@
 # annotations
 .annotation system Ldalvik/annotation/MemberClasses;
     value = {
-        Lcom/android/internal/telephony/SMSDispatcher$BaiduInjector;,
         Lcom/android/internal/telephony/SMSDispatcher$ConfirmDialogListener;,
         Lcom/android/internal/telephony/SMSDispatcher$SmsTracker;,
         Lcom/android/internal/telephony/SMSDispatcher$SettingsObserver;
@@ -564,8 +563,6 @@
     const/16 v1, 0xc
 
     invoke-virtual {v0, p0, v1, v5}, Lcom/android/internal/telephony/uicc/UiccController;->registerForIccChanged(Landroid/os/Handler;ILjava/lang/Object;)V
-
-    invoke-static {p0}, Lcom/android/internal/telephony/SMSDispatcher$BaiduInjector;->registerReceiver(Lcom/android/internal/telephony/SMSDispatcher;)V
 
     .line 314
     return-void
@@ -1825,8 +1822,6 @@
     if-ne v0, v1, :cond_1
 
     .line 780
-    invoke-static {p1}, Lcom/android/internal/telephony/SMSDispatcher$BaiduInjector;->setMsgAddress(Lcom/android/internal/telephony/SmsMessageBase;)V
-
     iget-object v0, p0, Lcom/android/internal/telephony/SMSDispatcher;->mWapPush:Lcom/android/internal/telephony/WapPushOverSms;
 
     invoke-virtual {p1}, Lcom/android/internal/telephony/SmsMessageBase;->getUserData()[B
@@ -1859,23 +1854,6 @@
 
     .line 788
     :cond_2
-    iget-object v1, p0, Lcom/android/internal/telephony/SMSDispatcher;->mContext:Landroid/content/Context;
-
-    invoke-virtual {p0}, Lcom/android/internal/telephony/SMSDispatcher;->getFormat()Ljava/lang/String;
-
-    move-result-object v2
-
-    invoke-static {v1, v11, v2, v8}, Lcom/android/internal/telephony/SMSPlugin;->prehandleMsg(Landroid/content/Context;[[BLjava/lang/String;I)Z
-
-    move-result v1
-
-    if-eqz v1, :cond_baidu_1
-
-    const/4 v8, 0x1
-
-    goto :goto_0
-
-    :cond_baidu_1
     invoke-virtual {p0, v11}, Lcom/android/internal/telephony/SMSDispatcher;->dispatchPdus([[B)V
 
     goto :goto_0
@@ -4212,8 +4190,6 @@
     if-ne v0, v3, :cond_c
 
     .line 920
-    invoke-static/range {p2 .. p2}, Lcom/android/internal/telephony/SMSDispatcher$BaiduInjector;->setMsgAddress(Ljava/lang/String;)V
-
     move-object/from16 v0, p0
 
     iget-object v3, v0, Lcom/android/internal/telephony/SMSDispatcher;->mWapPush:Lcom/android/internal/telephony/WapPushOverSms;
@@ -4267,8 +4243,6 @@
     move/from16 v0, p8
 
     if-ne v0, v3, :cond_10
-
-    invoke-static/range {p2 .. p2}, Lcom/android/internal/telephony/SMSDispatcher$BaiduInjector;->setMsgAddress(Ljava/lang/String;)V
 
     .line 934
     new-instance v20, Ljava/io/ByteArrayOutputStream;

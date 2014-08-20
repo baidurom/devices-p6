@@ -219,7 +219,7 @@
     if-nez v2, :cond_0
 
     .line 159
-    const v2, #id@content#t
+    const v2, 0x1020002
 
     invoke-virtual {v0, v2}, Landroid/view/View;->findViewById(I)Landroid/view/View;
 
@@ -686,8 +686,12 @@
     new-instance v0, Lcom/android/internal/widget/ScrollingTabContainerView;
 
     iget-object v1, p0, Lcom/android/internal/app/ActionBarImpl;->mContext:Landroid/content/Context;
-    
-    invoke-direct {v0, v1}, Lcom/android/internal/widget/ScrollingTabContainerView;-><init>(Landroid/content/Context;)V
+
+    iget-object v2, p0, Lcom/android/internal/app/ActionBarImpl;->mActionView:Lcom/android/internal/widget/ActionBarView;
+
+    iget-boolean v2, v2, Lcom/android/internal/widget/ActionBarView;->mIsHwActionBar:Z
+
+    invoke-direct {v0, v1, v2}, Lcom/android/internal/widget/ScrollingTabContainerView;-><init>(Landroid/content/Context;Z)V
 
     .line 252
     .local v0, tabScroller:Lcom/android/internal/widget/ScrollingTabContainerView;
@@ -800,7 +804,7 @@
     iput-object v3, p0, Lcom/android/internal/app/ActionBarImpl;->mContext:Landroid/content/Context;
 
     .line 170
-    const v3, #id@action_bar_overlay_layout#t
+    const v3, 0x102035d
 
     invoke-virtual {p1, v3}, Landroid/view/View;->findViewById(I)Landroid/view/View;
 
@@ -822,7 +826,7 @@
 
     .line 175
     :cond_0
-    const v3, #id@action_bar#t
+    const v3, 0x102035a
 
     invoke-virtual {p1, v3}, Landroid/view/View;->findViewById(I)Landroid/view/View;
 
@@ -833,7 +837,7 @@
     iput-object v3, p0, Lcom/android/internal/app/ActionBarImpl;->mActionView:Lcom/android/internal/widget/ActionBarView;
 
     .line 176
-    const v3, #id@action_context_bar#t
+    const v3, 0x102035b
 
     invoke-virtual {p1, v3}, Landroid/view/View;->findViewById(I)Landroid/view/View;
 
@@ -844,7 +848,7 @@
     iput-object v3, p0, Lcom/android/internal/app/ActionBarImpl;->mContextView:Lcom/android/internal/widget/ActionBarContextView;
 
     .line 178
-    const v3, #id@action_bar_container#t
+    const v3, 0x1020359
 
     invoke-virtual {p1, v3}, Landroid/view/View;->findViewById(I)Landroid/view/View;
 
@@ -855,7 +859,7 @@
     iput-object v3, p0, Lcom/android/internal/app/ActionBarImpl;->mContainerView:Lcom/android/internal/widget/ActionBarContainer;
 
     .line 180
-    const v3, #id@top_action_bar#t
+    const v3, 0x102035e
 
     invoke-virtual {p1, v3}, Landroid/view/View;->findViewById(I)Landroid/view/View;
 
@@ -877,7 +881,7 @@
 
     .line 185
     :cond_1
-    const v3, #id@split_action_bar#t
+    const v3, 0x102035c
 
     invoke-virtual {p1, v3}, Landroid/view/View;->findViewById(I)Landroid/view/View;
 
@@ -1715,7 +1719,7 @@
     :cond_4
     iget-object v4, p0, Lcom/android/internal/app/ActionBarImpl;->mContext:Landroid/content/Context;
 
-    const v5, #interpolator@accelerate_cubic#t
+    const v5, 0x10c0002
 
     invoke-static {v4, v5}, Landroid/view/animation/AnimationUtils;->loadInterpolator(Landroid/content/Context;I)Landroid/view/animation/Interpolator;
 
@@ -1954,7 +1958,7 @@
     :cond_5
     iget-object v4, p0, Lcom/android/internal/app/ActionBarImpl;->mContext:Landroid/content/Context;
 
-    const v5, #interpolator@decelerate_cubic#t
+    const v5, 0x10c0003
 
     invoke-static {v4, v5}, Landroid/view/animation/AnimationUtils;->loadInterpolator(Landroid/content/Context;I)Landroid/view/animation/Interpolator;
 
@@ -2307,7 +2311,7 @@
 
     .line 803
     .local v0, currentTheme:Landroid/content/res/Resources$Theme;
-    const v3, #attr@actionBarWidgetTheme#t
+    const v3, 0x1010397
 
     const/4 v4, 0x1
 
@@ -2523,10 +2527,6 @@
 
     .prologue
     .line 210
-    iget-object v0, p0, Lcom/android/internal/app/ActionBarImpl;->mActionView:Lcom/android/internal/widget/ActionBarView;
-    
-    invoke-virtual {v0}, Lcom/android/internal/widget/ActionBarView;->reloadHomeIcon()V
-    
     iget-object v0, p0, Lcom/android/internal/app/ActionBarImpl;->mContext:Landroid/content/Context;
 
     invoke-static {v0}, Lcom/android/internal/view/ActionBarPolicy;->get(Landroid/content/Context;)Lcom/android/internal/view/ActionBarPolicy;

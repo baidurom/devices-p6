@@ -23,7 +23,7 @@
     .locals 3
 
     .prologue
-    .line 3190
+    .line 3203
     invoke-static {}, Lcom/android/server/power/PowerManagerService$HandleType;->values()[Lcom/android/server/power/PowerManagerService$HandleType;
 
     move-result-object v0

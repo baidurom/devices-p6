@@ -40,7 +40,7 @@
 
     const/4 v2, 0x0
 
-    .line 3063
+    .line 3076
     new-instance v0, Lcom/android/server/power/PowerManagerService$GenerateType;
 
     const-string v1, "WLDTOR_GT_HISTORY"
@@ -49,7 +49,7 @@
 
     sput-object v0, Lcom/android/server/power/PowerManagerService$GenerateType;->WLDTOR_GT_HISTORY:Lcom/android/server/power/PowerManagerService$GenerateType;
 
-    .line 3064
+    .line 3077
     new-instance v0, Lcom/android/server/power/PowerManagerService$GenerateType;
 
     const-string v1, "WLDTOR_GT_ALL"
@@ -58,7 +58,7 @@
 
     sput-object v0, Lcom/android/server/power/PowerManagerService$GenerateType;->WLDTOR_GT_ALL:Lcom/android/server/power/PowerManagerService$GenerateType;
 
-    .line 3062
+    .line 3075
     const/4 v0, 0x2
 
     new-array v0, v0, [Lcom/android/server/power/PowerManagerService$GenerateType;
@@ -87,7 +87,7 @@
     .end annotation
 
     .prologue
-    .line 3062
+    .line 3075
     invoke-direct {p0, p1, p2}, Ljava/lang/Enum;-><init>(Ljava/lang/String;I)V
 
     return-void
@@ -98,7 +98,7 @@
     .parameter "name"
 
     .prologue
-    .line 3062
+    .line 3075
     const-class v0, Lcom/android/server/power/PowerManagerService$GenerateType;
 
     invoke-static {v0, p0}, Ljava/lang/Enum;->valueOf(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Enum;
@@ -114,7 +114,7 @@
     .locals 1
 
     .prologue
-    .line 3062
+    .line 3075
     sget-object v0, Lcom/android/server/power/PowerManagerService$GenerateType;->$VALUES:[Lcom/android/server/power/PowerManagerService$GenerateType;
 
     invoke-virtual {v0}, [Lcom/android/server/power/PowerManagerService$GenerateType;->clone()Ljava/lang/Object;

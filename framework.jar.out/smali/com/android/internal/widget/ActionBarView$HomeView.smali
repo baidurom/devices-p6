@@ -73,33 +73,6 @@
     return-void
 .end method
 
-.method private getOffset()I
-    .locals 2
-
-    .prologue
-    .line 1448
-    const/high16 v0, 0x40c0
-
-    invoke-virtual {p0}, Lcom/android/internal/widget/ActionBarView$HomeView;->getContext()Landroid/content/Context;
-
-    move-result-object v1
-
-    invoke-virtual {v1}, Landroid/content/Context;->getResources()Landroid/content/res/Resources;
-
-    move-result-object v1
-
-    invoke-virtual {v1}, Landroid/content/res/Resources;->getDisplayMetrics()Landroid/util/DisplayMetrics;
-
-    move-result-object v1
-
-    iget v1, v1, Landroid/util/DisplayMetrics;->density:F
-
-    mul-float/2addr v0, v1
-
-    float-to-int v0, v0
-
-    return v0
-.end method
 
 # virtual methods
 .method public dispatchHoverEvent(Landroid/view/MotionEvent;)Z
@@ -144,9 +117,7 @@
 
     if-ne v0, v1, :cond_0
 
-    invoke-direct {p0}, Lcom/android/internal/widget/ActionBarView$HomeView;->getOffset()I
-    
-    move-result v0
+    iget v0, p0, Lcom/android/internal/widget/ActionBarView$HomeView;->mUpWidth:I
 
     :goto_0
     return v0
@@ -162,7 +133,7 @@
 
     .prologue
     .line 1481
-    const v0, #id@up#t
+    const v0, 0x1020246
 
     invoke-virtual {p0, v0}, Lcom/android/internal/widget/ActionBarView$HomeView;->findViewById(I)Landroid/view/View;
 
@@ -171,7 +142,7 @@
     iput-object v0, p0, Lcom/android/internal/widget/ActionBarView$HomeView;->mUpView:Landroid/view/View;
 
     .line 1482
-    const v0, #id@home#t
+    const v0, 0x102002c
 
     invoke-virtual {p0, v0}, Lcom/android/internal/widget/ActionBarView$HomeView;->findViewById(I)Landroid/view/View;
 
@@ -201,7 +172,7 @@
 
     .line 1536
     .local v23, vCenter:I
-    invoke-virtual/range {p0 .. p0}, Lcom/android/internal/widget/ActionBarView$HomeView;->isLayoutRtl()Z
+    invoke-virtual/range {p0 .. p0}, Lcom/android/internal/widget/ActionBarView$HomeView;->isRtlLocale()Z
 
     move-result v13
 

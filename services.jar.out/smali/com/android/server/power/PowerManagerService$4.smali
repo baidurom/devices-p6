@@ -24,7 +24,7 @@
     .parameter
 
     .prologue
-    .line 2473
+    .line 2485
     iput-object p1, p0, Lcom/android/server/power/PowerManagerService$4;->this$0:Lcom/android/server/power/PowerManagerService;
 
     invoke-direct {p0}, Landroid/os/UEventObserver;-><init>()V
@@ -39,14 +39,14 @@
     .parameter "event"
 
     .prologue
-    .line 2477
+    .line 2489
     const-string v2, "SWITCH_STATE"
 
     invoke-virtual {p1, v2}, Landroid/os/UEventObserver$UEvent;->get(Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v1
 
-    .line 2480
+    .line 2492
     .local v1, state:Ljava/lang/String;
     :try_start_0
     iget-object v2, p0, Lcom/android/server/power/PowerManagerService$4;->this$0:Lcom/android/server/power/PowerManagerService;
@@ -60,7 +60,7 @@
     :try_end_0
     .catch Ljava/lang/NumberFormatException; {:try_start_0 .. :try_end_0} :catch_0
 
-    .line 2485
+    .line 2497
     :goto_0
     const-string v2, "PowerManagerService"
 
@@ -84,14 +84,14 @@
 
     invoke-static {v2, v3}, Landroid/util/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 2486
+    .line 2498
     return-void
 
-    .line 2481
+    .line 2493
     :catch_0
     move-exception v0
 
-    .line 2482
+    .line 2494
     .local v0, ex:Ljava/lang/NumberFormatException;
     const-string v2, "PowerManagerService"
 

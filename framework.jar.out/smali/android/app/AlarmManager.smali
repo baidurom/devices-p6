@@ -33,13 +33,13 @@
     .parameter "service"
 
     .prologue
-    .line 88
+    .line 89
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 89
+    .line 90
     iput-object p1, p0, Landroid/app/AlarmManager;->mService:Landroid/app/IAlarmManager;
 
-    .line 90
+    .line 91
     return-void
 .end method
 
@@ -50,7 +50,7 @@
     .parameter "operation"
 
     .prologue
-    .line 299
+    .line 300
     :try_start_0
     iget-object v0, p0, Landroid/app/AlarmManager;->mService:Landroid/app/IAlarmManager;
 
@@ -58,11 +58,11 @@
     :try_end_0
     .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
 
-    .line 302
+    .line 303
     :goto_0
     return-void
 
-    .line 300
+    .line 301
     :catch_0
     move-exception v0
 
@@ -73,7 +73,7 @@
     .locals 1
 
     .prologue
-    .line 145
+    .line 146
     :try_start_0
     iget-object v0, p0, Landroid/app/AlarmManager;->mService:Landroid/app/IAlarmManager;
 
@@ -81,11 +81,11 @@
     :try_end_0
     .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
 
-    .line 149
+    .line 150
     :goto_0
     return-void
 
-    .line 146
+    .line 147
     :catch_0
     move-exception v0
 
@@ -96,7 +96,7 @@
     .locals 1
 
     .prologue
-    .line 152
+    .line 153
     :try_start_0
     iget-object v0, p0, Landroid/app/AlarmManager;->mService:Landroid/app/IAlarmManager;
 
@@ -104,11 +104,11 @@
     :try_end_0
     .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
 
-    .line 156
+    .line 157
     :goto_0
     return-void
 
-    .line 153
+    .line 154
     :catch_0
     move-exception v0
 
@@ -119,10 +119,10 @@
     .locals 2
 
     .prologue
-    .line 356
+    .line 357
     const/4 v0, 0x0
 
-    .line 358
+    .line 359
     .local v0, result:I
     :try_start_0
     iget-object v1, p0, Landroid/app/AlarmManager;->mService:Landroid/app/IAlarmManager;
@@ -133,11 +133,11 @@
 
     move-result v0
 
-    .line 361
+    .line 362
     :goto_0
     return v0
 
-    .line 359
+    .line 360
     :catch_0
     move-exception v1
 
@@ -148,10 +148,10 @@
     .locals 2
 
     .prologue
-    .line 338
+    .line 339
     const/4 v0, 0x0
 
-    .line 340
+    .line 341
     .local v0, result:Z
     :try_start_0
     iget-object v1, p0, Landroid/app/AlarmManager;->mService:Landroid/app/IAlarmManager;
@@ -162,11 +162,11 @@
 
     move-result v0
 
-    .line 343
+    .line 344
     :goto_0
     return v0
 
-    .line 341
+    .line 342
     :catch_0
     move-exception v1
 
@@ -177,10 +177,10 @@
     .locals 2
 
     .prologue
-    .line 382
+    .line 383
     const/4 v0, 0x0
 
-    .line 384
+    .line 385
     .local v0, result:Z
     :try_start_0
     iget-object v1, p0, Landroid/app/AlarmManager;->mService:Landroid/app/IAlarmManager;
@@ -191,11 +191,11 @@
 
     move-result v0
 
-    .line 387
+    .line 388
     :goto_0
     return v0
 
-    .line 385
+    .line 386
     :catch_0
     move-exception v1
 
@@ -208,7 +208,7 @@
     .parameter "isChecked"
 
     .prologue
-    .line 159
+    .line 160
     :try_start_0
     iget-object v0, p0, Landroid/app/AlarmManager;->mService:Landroid/app/IAlarmManager;
 
@@ -216,11 +216,11 @@
     :try_end_0
     .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
 
-    .line 163
+    .line 164
     :goto_0
     return-void
 
-    .line 160
+    .line 161
     :catch_0
     move-exception v0
 
@@ -231,6 +231,7 @@
     .locals 1
 
     .prologue
+    .line 425
     :try_start_0
     iget-object v0, p0, Landroid/app/AlarmManager;->mService:Landroid/app/IAlarmManager;
 
@@ -238,9 +239,11 @@
     :try_end_0
     .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
 
+    .line 428
     :goto_0
     return-void
 
+    .line 426
     :catch_0
     move-exception v0
 
@@ -254,7 +257,7 @@
     .parameter "operation"
 
     .prologue
-    .line 137
+    .line 138
     :try_start_0
     iget-object v0, p0, Landroid/app/AlarmManager;->mService:Landroid/app/IAlarmManager;
 
@@ -262,11 +265,11 @@
     :try_end_0
     .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
 
-    .line 140
+    .line 141
     :goto_0
     return-void
 
-    .line 138
+    .line 139
     :catch_0
     move-exception v0
 
@@ -279,10 +282,10 @@
     .parameter "type"
 
     .prologue
-    .line 393
+    .line 394
     const/4 v0, 0x0
 
-    .line 395
+    .line 396
     .local v0, result:I
     :try_start_0
     iget-object v1, p0, Landroid/app/AlarmManager;->mService:Landroid/app/IAlarmManager;
@@ -293,11 +296,11 @@
 
     move-result v0
 
-    .line 398
+    .line 399
     :goto_0
     return v0
 
-    .line 396
+    .line 397
     :catch_0
     move-exception v1
 
@@ -309,10 +312,10 @@
     .parameter "hb"
 
     .prologue
-    .line 347
+    .line 348
     const/4 v0, 0x0
 
-    .line 349
+    .line 350
     .local v0, result:Z
     :try_start_0
     iget-object v1, p0, Landroid/app/AlarmManager;->mService:Landroid/app/IAlarmManager;
@@ -323,11 +326,11 @@
 
     move-result v0
 
-    .line 352
+    .line 353
     :goto_0
     return v0
 
-    .line 350
+    .line 351
     :catch_0
     move-exception v1
 
@@ -339,7 +342,7 @@
     .parameter "flag"
 
     .prologue
-    .line 332
+    .line 333
     :try_start_0
     iget-object v0, p0, Landroid/app/AlarmManager;->mService:Landroid/app/IAlarmManager;
 
@@ -347,11 +350,11 @@
     :try_end_0
     .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
 
-    .line 335
+    .line 336
     :goto_0
     return-void
 
-    .line 333
+    .line 334
     :catch_0
     move-exception v0
 
@@ -374,6 +377,7 @@
     .end annotation
 
     .prologue
+    .line 414
     .local p1, pkgList:Ljava/util/List;,"Ljava/util/List<Ljava/lang/String;>;"
     :try_start_0
     iget-object v0, p0, Landroid/app/AlarmManager;->mService:Landroid/app/IAlarmManager;
@@ -382,9 +386,11 @@
     :try_end_0
     .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
 
+    .line 417
     :goto_0
     return-void
 
+    .line 415
     :catch_0
     move-exception v0
 
@@ -399,7 +405,7 @@
     .parameter "operation"
 
     .prologue
-    .line 282
+    .line 283
     :try_start_0
     iget-object v0, p0, Landroid/app/AlarmManager;->mService:Landroid/app/IAlarmManager;
 
@@ -415,11 +421,11 @@
     :try_end_0
     .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
 
-    .line 285
+    .line 286
     :goto_0
     return-void
 
-    .line 283
+    .line 284
     :catch_0
     move-exception v0
 
@@ -431,7 +437,7 @@
     .parameter "enable"
 
     .prologue
-    .line 373
+    .line 374
     :try_start_0
     iget-object v0, p0, Landroid/app/AlarmManager;->mService:Landroid/app/IAlarmManager;
 
@@ -439,11 +445,11 @@
     :try_end_0
     .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
 
-    .line 376
+    .line 377
     :goto_0
     return-void
 
-    .line 374
+    .line 375
     :catch_0
     move-exception v0
 
@@ -458,7 +464,7 @@
     .parameter "operation"
 
     .prologue
-    .line 216
+    .line 217
     :try_start_0
     iget-object v0, p0, Landroid/app/AlarmManager;->mService:Landroid/app/IAlarmManager;
 
@@ -474,11 +480,11 @@
     :try_end_0
     .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
 
-    .line 219
+    .line 220
     :goto_0
     return-void
 
-    .line 217
+    .line 218
     :catch_0
     move-exception v0
 
@@ -490,7 +496,7 @@
     .parameter "millis"
 
     .prologue
-    .line 312
+    .line 313
     :try_start_0
     iget-object v0, p0, Landroid/app/AlarmManager;->mService:Landroid/app/IAlarmManager;
 
@@ -498,11 +504,11 @@
     :try_end_0
     .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
 
-    .line 315
+    .line 316
     :goto_0
     return-void
 
-    .line 313
+    .line 314
     :catch_0
     move-exception v0
 
@@ -514,7 +520,7 @@
     .parameter "timeZone"
 
     .prologue
-    .line 325
+    .line 326
     :try_start_0
     iget-object v0, p0, Landroid/app/AlarmManager;->mService:Landroid/app/IAlarmManager;
 
@@ -522,11 +528,11 @@
     :try_end_0
     .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
 
-    .line 328
+    .line 329
     :goto_0
     return-void
 
-    .line 326
+    .line 327
     :catch_0
     move-exception v0
 
