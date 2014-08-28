@@ -256,10 +256,12 @@
 .end method
 
 .method private getRange(I)Landroid/graphics/Rect;
-    .locals 10
+    .locals 11
     .parameter "offset"
 
     .prologue
+    const/4 v7, 0x0
+
     iget-object v6, p0, Lcom/android/internal/widget/MagnifierView;->mTarget:Landroid/widget/TextView;
 
     .local v6, tv:Landroid/widget/TextView;
@@ -268,16 +270,23 @@
     move-result-object v0
 
     .local v0, layout:Landroid/text/Layout;
+    if-nez v0, :cond_1
+
+    :cond_0
+    :goto_0
+    return-object v7
+
+    :cond_1
     invoke-virtual {v0, p1}, Landroid/text/Layout;->getLineForOffset(I)I
 
     move-result v1
 
     .local v1, line:I
-    iget-object v7, p0, Lcom/android/internal/widget/MagnifierView;->mTarget:Landroid/widget/TextView;
+    iget-object v8, p0, Lcom/android/internal/widget/MagnifierView;->mTarget:Landroid/widget/TextView;
 
-    iget-object v8, p0, Lcom/android/internal/widget/MagnifierView;->mCoordinate:[I
+    iget-object v9, p0, Lcom/android/internal/widget/MagnifierView;->mCoordinate:[I
 
-    invoke-virtual {v7, v8}, Landroid/widget/TextView;->getLocationInWindow([I)V
+    invoke-virtual {v8, v9}, Landroid/widget/TextView;->getLocationInWindow([I)V
 
     invoke-virtual {v0, v1}, Landroid/text/Layout;->getLineTop(I)I
 
@@ -286,222 +295,216 @@
     .local v2, lineTop:I
     invoke-virtual {v0, v1}, Landroid/text/Layout;->getLineBaseline(I)I
 
-    move-result v7
+    move-result v8
 
-    iget v8, p0, Lcom/android/internal/widget/MagnifierView;->mRangePadding:I
+    iget v9, p0, Lcom/android/internal/widget/MagnifierView;->mRangePadding:I
 
-    add-int/2addr v7, v8
+    add-int/2addr v8, v9
 
-    sub-int v4, v7, v2
+    sub-int v4, v8, v2
 
     .local v4, range:I
-    iget-object v7, p0, Lcom/android/internal/widget/MagnifierView;->mRect:Landroid/graphics/Rect;
-
-    if-nez v7, :cond_0
-
-    new-instance v7, Landroid/graphics/Rect;
-
-    invoke-direct {v7}, Landroid/graphics/Rect;-><init>()V
-
-    iput-object v7, p0, Lcom/android/internal/widget/MagnifierView;->mRect:Landroid/graphics/Rect;
-
-    :cond_0
-    iget-object v7, p0, Lcom/android/internal/widget/MagnifierView;->mTarget:Landroid/widget/TextView;
-
     iget-object v8, p0, Lcom/android/internal/widget/MagnifierView;->mRect:Landroid/graphics/Rect;
 
-    invoke-virtual {v7, v8}, Landroid/widget/TextView;->getDrawingRect(Landroid/graphics/Rect;)V
+    if-nez v8, :cond_2
+
+    new-instance v8, Landroid/graphics/Rect;
+
+    invoke-direct {v8}, Landroid/graphics/Rect;-><init>()V
+
+    iput-object v8, p0, Lcom/android/internal/widget/MagnifierView;->mRect:Landroid/graphics/Rect;
+
+    :cond_2
+    iget-object v8, p0, Lcom/android/internal/widget/MagnifierView;->mTarget:Landroid/widget/TextView;
+
+    iget-object v9, p0, Lcom/android/internal/widget/MagnifierView;->mRect:Landroid/graphics/Rect;
+
+    invoke-virtual {v8, v9}, Landroid/widget/TextView;->getDrawingRect(Landroid/graphics/Rect;)V
 
     new-instance v3, Landroid/graphics/Rect;
 
-    iget-object v7, p0, Lcom/android/internal/widget/MagnifierView;->mRect:Landroid/graphics/Rect;
+    iget-object v8, p0, Lcom/android/internal/widget/MagnifierView;->mRect:Landroid/graphics/Rect;
 
-    invoke-direct {v3, v7}, Landroid/graphics/Rect;-><init>(Landroid/graphics/Rect;)V
+    invoke-direct {v3, v8}, Landroid/graphics/Rect;-><init>(Landroid/graphics/Rect;)V
 
     .local v3, oldRect:Landroid/graphics/Rect;
-    const-string v7, "SYGTC"
+    const-string v8, "SYGTC"
 
-    new-instance v8, Ljava/lang/StringBuilder;
+    new-instance v9, Ljava/lang/StringBuilder;
 
-    invoke-direct {v8}, Ljava/lang/StringBuilder;-><init>()V
+    invoke-direct {v9}, Ljava/lang/StringBuilder;-><init>()V
 
-    const-string v9, "mTarget mRect = "
+    const-string v10, "mTarget mRect = "
 
-    invoke-virtual {v8, v9}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v8
-
-    iget-object v9, p0, Lcom/android/internal/widget/MagnifierView;->mRect:Landroid/graphics/Rect;
-
-    invoke-virtual {v9}, Landroid/graphics/Rect;->toString()Ljava/lang/String;
+    invoke-virtual {v9, v10}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
     move-result-object v9
 
-    invoke-virtual {v8, v9}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    iget-object v10, p0, Lcom/android/internal/widget/MagnifierView;->mRect:Landroid/graphics/Rect;
 
-    move-result-object v8
+    invoke-virtual {v10}, Landroid/graphics/Rect;->toString()Ljava/lang/String;
 
-    invoke-virtual {v8}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+    move-result-object v10
 
-    move-result-object v8
+    invoke-virtual {v9, v10}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    invoke-static {v7, v8}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+    move-result-object v9
 
-    const-string v7, "SYGTC"
+    invoke-virtual {v9}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
-    new-instance v8, Ljava/lang/StringBuilder;
+    move-result-object v9
 
-    invoke-direct {v8}, Ljava/lang/StringBuilder;-><init>()V
+    invoke-static {v8, v9}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    const-string v9, " lineTop "
+    const-string v8, "SYGTC"
 
-    invoke-virtual {v8, v9}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    new-instance v9, Ljava/lang/StringBuilder;
 
-    move-result-object v8
+    invoke-direct {v9}, Ljava/lang/StringBuilder;-><init>()V
 
-    invoke-virtual {v8, v2}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+    const-string v10, " lineTop "
 
-    move-result-object v8
+    invoke-virtual {v9, v10}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    invoke-virtual {v8}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+    move-result-object v9
 
-    move-result-object v8
+    invoke-virtual {v9, v2}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
 
-    invoke-static {v7, v8}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+    move-result-object v9
 
-    div-int/lit8 v7, v4, 0x2
+    invoke-virtual {v9}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
-    sub-int v7, v2, v7
+    move-result-object v9
 
-    iget-object v8, p0, Lcom/android/internal/widget/MagnifierView;->mTarget:Landroid/widget/TextView;
+    invoke-static {v8, v9}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    invoke-virtual {v8}, Landroid/widget/TextView;->getPaddingTop()I
+    div-int/lit8 v8, v4, 0x2
 
-    move-result v8
+    sub-int v8, v2, v8
 
-    add-int v5, v7, v8
+    iget-object v9, p0, Lcom/android/internal/widget/MagnifierView;->mTarget:Landroid/widget/TextView;
+
+    invoke-virtual {v9}, Landroid/widget/TextView;->getPaddingTop()I
+
+    move-result v9
+
+    add-int v5, v8, v9
 
     .local v5, tmp:I
-    iget-object v7, p0, Lcom/android/internal/widget/MagnifierView;->mRect:Landroid/graphics/Rect;
+    iget-object v8, p0, Lcom/android/internal/widget/MagnifierView;->mRect:Landroid/graphics/Rect;
 
-    iget v7, v7, Landroid/graphics/Rect;->top:I
+    iget v8, v8, Landroid/graphics/Rect;->top:I
 
-    if-lt v5, v7, :cond_1
+    if-lt v5, v8, :cond_3
 
-    iget-object v7, p0, Lcom/android/internal/widget/MagnifierView;->mRect:Landroid/graphics/Rect;
+    iget-object v8, p0, Lcom/android/internal/widget/MagnifierView;->mRect:Landroid/graphics/Rect;
 
-    iput v5, v7, Landroid/graphics/Rect;->top:I
+    iput v5, v8, Landroid/graphics/Rect;->top:I
 
-    :cond_1
-    iget-object v7, p0, Lcom/android/internal/widget/MagnifierView;->mRect:Landroid/graphics/Rect;
+    :cond_3
+    iget-object v8, p0, Lcom/android/internal/widget/MagnifierView;->mRect:Landroid/graphics/Rect;
 
-    iget v7, v7, Landroid/graphics/Rect;->top:I
+    iget v8, v8, Landroid/graphics/Rect;->top:I
 
-    mul-int/lit8 v8, v4, 0x2
+    mul-int/lit8 v9, v4, 0x2
 
-    add-int v5, v7, v8
+    add-int v5, v8, v9
 
-    iget-object v7, p0, Lcom/android/internal/widget/MagnifierView;->mRect:Landroid/graphics/Rect;
+    iget-object v8, p0, Lcom/android/internal/widget/MagnifierView;->mRect:Landroid/graphics/Rect;
 
-    iget v7, v7, Landroid/graphics/Rect;->bottom:I
+    iget v8, v8, Landroid/graphics/Rect;->bottom:I
 
-    if-gt v5, v7, :cond_2
+    if-gt v5, v8, :cond_4
 
-    iget-object v7, p0, Lcom/android/internal/widget/MagnifierView;->mRect:Landroid/graphics/Rect;
+    iget-object v8, p0, Lcom/android/internal/widget/MagnifierView;->mRect:Landroid/graphics/Rect;
 
-    iput v5, v7, Landroid/graphics/Rect;->bottom:I
+    iput v5, v8, Landroid/graphics/Rect;->bottom:I
 
-    :cond_2
+    :cond_4
     invoke-virtual {v0, p1}, Landroid/text/Layout;->getPrimaryHorizontal(I)F
-
-    move-result v7
-
-    float-to-int v7, v7
-
-    mul-int/lit8 v8, v4, 0x3
-
-    sub-int/2addr v7, v8
-
-    iget-object v8, p0, Lcom/android/internal/widget/MagnifierView;->mTarget:Landroid/widget/TextView;
-
-    invoke-virtual {v8}, Landroid/widget/TextView;->getPaddingLeft()I
 
     move-result v8
 
-    add-int v5, v7, v8
+    float-to-int v8, v8
 
-    iget-object v7, p0, Lcom/android/internal/widget/MagnifierView;->mRect:Landroid/graphics/Rect;
+    mul-int/lit8 v9, v4, 0x3
 
-    iget v7, v7, Landroid/graphics/Rect;->left:I
+    sub-int/2addr v8, v9
 
-    if-lt v5, v7, :cond_3
+    iget-object v9, p0, Lcom/android/internal/widget/MagnifierView;->mTarget:Landroid/widget/TextView;
 
-    iget-object v7, p0, Lcom/android/internal/widget/MagnifierView;->mRect:Landroid/graphics/Rect;
+    invoke-virtual {v9}, Landroid/widget/TextView;->getPaddingLeft()I
 
-    iput v5, v7, Landroid/graphics/Rect;->left:I
+    move-result v9
 
-    :cond_3
-    iget-object v7, p0, Lcom/android/internal/widget/MagnifierView;->mRect:Landroid/graphics/Rect;
+    add-int v5, v8, v9
 
-    iget v7, v7, Landroid/graphics/Rect;->left:I
+    iget-object v8, p0, Lcom/android/internal/widget/MagnifierView;->mRect:Landroid/graphics/Rect;
 
-    mul-int/lit8 v8, v4, 0x6
+    iget v8, v8, Landroid/graphics/Rect;->left:I
 
-    add-int v5, v7, v8
+    if-lt v5, v8, :cond_5
 
-    iget-object v7, p0, Lcom/android/internal/widget/MagnifierView;->mRect:Landroid/graphics/Rect;
+    iget-object v8, p0, Lcom/android/internal/widget/MagnifierView;->mRect:Landroid/graphics/Rect;
 
-    iget v7, v7, Landroid/graphics/Rect;->right:I
+    iput v5, v8, Landroid/graphics/Rect;->left:I
 
-    if-gt v5, v7, :cond_4
+    :cond_5
+    iget-object v8, p0, Lcom/android/internal/widget/MagnifierView;->mRect:Landroid/graphics/Rect;
 
-    iget-object v7, p0, Lcom/android/internal/widget/MagnifierView;->mRect:Landroid/graphics/Rect;
+    iget v8, v8, Landroid/graphics/Rect;->left:I
 
-    iput v5, v7, Landroid/graphics/Rect;->right:I
+    mul-int/lit8 v9, v4, 0x6
 
-    :cond_4
-    const-string v7, "SYGTC"
+    add-int v5, v8, v9
 
-    new-instance v8, Ljava/lang/StringBuilder;
+    iget-object v8, p0, Lcom/android/internal/widget/MagnifierView;->mRect:Landroid/graphics/Rect;
 
-    invoke-direct {v8}, Ljava/lang/StringBuilder;-><init>()V
+    iget v8, v8, Landroid/graphics/Rect;->right:I
 
-    const-string v9, "Drawable mRect = "
+    if-gt v5, v8, :cond_6
 
-    invoke-virtual {v8, v9}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    iget-object v8, p0, Lcom/android/internal/widget/MagnifierView;->mRect:Landroid/graphics/Rect;
 
-    move-result-object v8
+    iput v5, v8, Landroid/graphics/Rect;->right:I
 
-    iget-object v9, p0, Lcom/android/internal/widget/MagnifierView;->mRect:Landroid/graphics/Rect;
+    :cond_6
+    const-string v8, "SYGTC"
 
-    invoke-virtual {v9}, Landroid/graphics/Rect;->toString()Ljava/lang/String;
+    new-instance v9, Ljava/lang/StringBuilder;
+
+    invoke-direct {v9}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v10, "Drawable mRect = "
+
+    invoke-virtual {v9, v10}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
     move-result-object v9
 
-    invoke-virtual {v8, v9}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    iget-object v10, p0, Lcom/android/internal/widget/MagnifierView;->mRect:Landroid/graphics/Rect;
 
-    move-result-object v8
+    invoke-virtual {v10}, Landroid/graphics/Rect;->toString()Ljava/lang/String;
 
-    invoke-virtual {v8}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+    move-result-object v10
 
-    move-result-object v8
+    invoke-virtual {v9, v10}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    invoke-static {v7, v8}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+    move-result-object v9
 
-    iget-object v7, p0, Lcom/android/internal/widget/MagnifierView;->mRect:Landroid/graphics/Rect;
+    invoke-virtual {v9}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
-    invoke-virtual {v7}, Landroid/graphics/Rect;->isEmpty()Z
+    move-result-object v9
 
-    move-result v7
+    invoke-static {v8, v9}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    if-eqz v7, :cond_5
+    iget-object v8, p0, Lcom/android/internal/widget/MagnifierView;->mRect:Landroid/graphics/Rect;
 
-    const/4 v7, 0x0
+    invoke-virtual {v8}, Landroid/graphics/Rect;->isEmpty()Z
 
-    :goto_0
-    return-object v7
+    move-result v8
 
-    :cond_5
+    if-nez v8, :cond_0
+
     iget-object v7, p0, Lcom/android/internal/widget/MagnifierView;->mRect:Landroid/graphics/Rect;
 
     invoke-virtual {v7}, Landroid/graphics/Rect;->width()I
@@ -528,7 +531,7 @@
 
     move-result v7
 
-    if-gez v7, :cond_9
+    if-gez v7, :cond_a
 
     iget v7, v3, Landroid/graphics/Rect;->left:I
 
@@ -536,7 +539,7 @@
 
     iget v8, v8, Landroid/graphics/Rect;->left:I
 
-    if-ne v7, v8, :cond_7
+    if-ne v7, v8, :cond_8
 
     iget v7, v3, Landroid/graphics/Rect;->right:I
 
@@ -544,7 +547,7 @@
 
     iget v8, v8, Landroid/graphics/Rect;->right:I
 
-    if-le v7, v8, :cond_7
+    if-le v7, v8, :cond_8
 
     iget-object v7, p0, Lcom/android/internal/widget/MagnifierView;->mRect:Landroid/graphics/Rect;
 
@@ -568,25 +571,25 @@
 
     iget v7, v3, Landroid/graphics/Rect;->right:I
 
-    if-gt v5, v7, :cond_6
+    if-gt v5, v7, :cond_7
 
     iget-object v7, p0, Lcom/android/internal/widget/MagnifierView;->mRect:Landroid/graphics/Rect;
 
     iput v5, v7, Landroid/graphics/Rect;->right:I
 
-    :cond_6
+    :cond_7
     iget-object v7, p0, Lcom/android/internal/widget/MagnifierView;->mRect:Landroid/graphics/Rect;
 
-    goto :goto_0
+    goto/16 :goto_0
 
-    :cond_7
+    :cond_8
     iget v7, v3, Landroid/graphics/Rect;->left:I
 
     iget-object v8, p0, Lcom/android/internal/widget/MagnifierView;->mRect:Landroid/graphics/Rect;
 
     iget v8, v8, Landroid/graphics/Rect;->left:I
 
-    if-ge v7, v8, :cond_9
+    if-ge v7, v8, :cond_a
 
     iget v7, v3, Landroid/graphics/Rect;->right:I
 
@@ -594,7 +597,7 @@
 
     iget v8, v8, Landroid/graphics/Rect;->right:I
 
-    if-ne v7, v8, :cond_9
+    if-ne v7, v8, :cond_a
 
     iget-object v7, p0, Lcom/android/internal/widget/MagnifierView;->mRect:Landroid/graphics/Rect;
 
@@ -618,21 +621,21 @@
 
     iget v7, v3, Landroid/graphics/Rect;->left:I
 
-    if-lt v5, v7, :cond_8
+    if-lt v5, v7, :cond_9
 
     iget-object v7, p0, Lcom/android/internal/widget/MagnifierView;->mRect:Landroid/graphics/Rect;
 
     iput v5, v7, Landroid/graphics/Rect;->left:I
 
-    :cond_8
-    iget-object v7, p0, Lcom/android/internal/widget/MagnifierView;->mRect:Landroid/graphics/Rect;
-
-    goto :goto_0
-
     :cond_9
     iget-object v7, p0, Lcom/android/internal/widget/MagnifierView;->mRect:Landroid/graphics/Rect;
 
-    goto :goto_0
+    goto/16 :goto_0
+
+    :cond_a
+    iget-object v7, p0, Lcom/android/internal/widget/MagnifierView;->mRect:Landroid/graphics/Rect;
+
+    goto/16 :goto_0
 .end method
 
 .method private setRange(Landroid/graphics/Rect;)V
