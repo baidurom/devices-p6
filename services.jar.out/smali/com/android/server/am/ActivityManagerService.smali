@@ -55638,7 +55638,7 @@
 
     .line 6231
     :try_start_0
-    invoke-static {p0, p1, p2}, Lcom/android/server/am/BaiduActivityInjector;->hookMoveTaskToFront(Lcom/android/server/am/ActivityManagerService;II)Z
+    invoke-static/range {p0 .. p2}, Lcom/android/server/am/BaiduActivityInjector;->hookMoveTaskToFront(Lcom/android/server/am/ActivityManagerService;II)Z
 
     move-result v0
 
@@ -62375,7 +62375,7 @@
     .prologue
     iput-object p1, p0, Lcom/android/server/am/ActivityManagerService;->mWindowManager:Lcom/android/server/wm/WindowManagerService;
 
-    invoke-direct {p0}, Lcom/android/server/am/ActivityManagerService;->yiServiceLoader()V
+    invoke-direct/range {p0 .. p0}, Lcom/android/server/am/ActivityManagerService;->yiServiceLoader()V
 
     return-void
 .end method

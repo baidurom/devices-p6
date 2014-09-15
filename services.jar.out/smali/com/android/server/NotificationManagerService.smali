@@ -2395,7 +2395,7 @@
     .locals 7
 
     .prologue
-    invoke-direct {p0}, Lcom/android/server/NotificationManagerService;->updateLightsLockedHook()Z
+    invoke-direct/range {p0 .. p0}, Lcom/android/server/NotificationManagerService;->updateLightsLockedHook()Z
 
     move-result v0
 

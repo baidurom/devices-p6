@@ -387,7 +387,7 @@
     if-gez v2, :cond_1
 
     :cond_0
-    invoke-direct {p0}, Landroid/widget/Editor$InsertionHandleView;->updatePopupPosition()V
+    invoke-direct/range {p0 .. p0}, Landroid/widget/Editor$InsertionHandleView;->updatePopupPosition()V
 
     const/4 v2, 0x0
 
@@ -405,7 +405,7 @@
     .prologue
     invoke-virtual {p0}, Landroid/widget/Editor$InsertionHandleView;->show()V
 
-    invoke-direct {p0}, Landroid/widget/Editor$InsertionHandleView;->updatePopupPosition()V
+    invoke-direct/range {p0 .. p0}, Landroid/widget/Editor$InsertionHandleView;->updatePopupPosition()V
 
     const/4 v0, 0x0
 

@@ -2808,3 +2808,35 @@
 
     return-object p1
 .end method
+
+.method static synthetic access$invoke-handleCarrierInfoUpdate-4463b4(Lcom/android/internal/policy/impl/keyguard/KeyguardUpdateMonitor;)V
+    .locals 0
+    .parameter "x0"
+
+    .prologue
+    invoke-direct {p0}, Lcom/android/internal/policy/impl/keyguard/KeyguardUpdateMonitor;->handleCarrierInfoUpdate()V
+
+    return-void
+.end method
+
+.method static synthetic access$iput-mTelephonyPlmn-22b469(Lcom/android/internal/policy/impl/keyguard/KeyguardUpdateMonitor;Ljava/lang/CharSequence;)Ljava/lang/CharSequence;
+    .locals 0
+    .parameter "x0"
+    .parameter "x1"
+
+    .prologue
+    iput-object p1, p0, Lcom/android/internal/policy/impl/keyguard/KeyguardUpdateMonitor;->mTelephonyPlmn:Ljava/lang/CharSequence;
+
+    return-object p1
+.end method
+
+.method static synthetic access$iput-mTelephonySpn-698d09(Lcom/android/internal/policy/impl/keyguard/KeyguardUpdateMonitor;Ljava/lang/CharSequence;)Ljava/lang/CharSequence;
+    .locals 0
+    .parameter "x0"
+    .parameter "x1"
+
+    .prologue
+    iput-object p1, p0, Lcom/android/internal/policy/impl/keyguard/KeyguardUpdateMonitor;->mTelephonySpn:Ljava/lang/CharSequence;
+
+    return-object p1
+.end method
